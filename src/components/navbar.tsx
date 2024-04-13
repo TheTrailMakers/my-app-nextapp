@@ -72,7 +72,7 @@ export default function Navbar () {
                         <li className="pr-4 pb-4 text-2xl">
                             <Link  
                                 href={href}
-                                key={name}
+                                key={href}
                                 className={`${pathname === href ? "text-sky-500" : "text-white"}`}
                             >
                                 {name}

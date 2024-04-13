@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 
 export default function TrekCard({trekName, trekState, trekDescription, trekDistance, trekDuration, trekDifficulty, trekCost, trekInfo, trekLink} : any) {
@@ -8,7 +9,7 @@ export default function TrekCard({trekName, trekState, trekDescription, trekDist
         <div className="m-4 border-[1px] border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-72 flex-shrink-0 rounded-3xl">
 
                 <Link href={trekLink}>
-                  <img src="/Ranisui_manali_speedhike_The_Trail_Makers.jpg" alt={trekName} className =" h-44 w-72 object-cover rounded-t-3xl p-2" ></img>
+                  <Image src="/Ranisui_manali_speedhike_The_Trail_Makers.jpg" alt={trekName} height={176} width={288} className =" object-cover rounded-t-3xl p-2" ></Image>
                 </Link>
          
 
