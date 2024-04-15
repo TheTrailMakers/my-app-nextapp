@@ -1,15 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 
-export default function TrekCard({trekName, trekState, trekDescription, trekDistance, trekDuration, trekDifficulty, trekCost, trekInfo, trekLink} : any) {
+export default function TrekCard({trekName, trekState, trekDescription, trekDistance, trekDuration, trekDifficulty, trekDate, trekLink} : any) {
 
     return (
-        <div className="m-4 border-[1px] border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-72 flex-shrink-0 rounded-3xl">
+        <div className="m-4 border-[1px] border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl">
 
                 <Link href={trekLink}>
-                  <Image src="/Ranisui_manali_speedhike_The_Trail_Makers.jpg" alt={trekName} height={176} width={288} className =" object-cover rounded-t-3xl p-2" ></Image>
+                  <img src="/Bandarpunchh-Black Peak.jpg" alt={trekName} className ="object-cover w-80 h-48 rounded-t-3xl p-2" ></img>
                 </Link>
          
 
@@ -24,7 +23,7 @@ export default function TrekCard({trekName, trekState, trekDescription, trekDist
             
             </div>
 
-            <div className="p-2 pt-1 border-b-[1px] border-slate-700">
+            <div className="p-2 pt-1  border-slate-700">
                 <h3 className=" pl-1 font-bold text-sm uppercase text-neutral-500 inline-block">Trek Details</h3>
                 <div className="px-4 pt-1 flex justify-between">
                         <div className="">
@@ -39,11 +38,8 @@ export default function TrekCard({trekName, trekState, trekDescription, trekDist
                 </div>
             </div>
 
-            <div className="flex justify-between mx-4 my-4 ">
-                <div className="inline-block">
-                    <h3 className="font-bold text-xl text-white ">INR {trekCost}</h3>
-                    <h4 className="text-xs text-yellow-400">{trekInfo}</h4>
-                </div>
+            <div className="text-center flex flex-col items-center pt-4">
+                <p className="text-white bg-gradient-to-r from-red-600 to-red-900 py-1 w-3/4 font-bold text-lg rounded-t-3xl">{trekDate[0]}</p>
             </div>
    
         </div>
