@@ -9,7 +9,8 @@
         "trekDifficulty": "0.7",
         "trekCost": "9,500",
         "trekInfo": "stay included",
-        "trekLink": "/ranisui-lake-trek"
+        "trekLink": "/ranisui-lake-trek",
+        "trekDate": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
       {
@@ -22,7 +23,8 @@
         "trekDifficulty": "0.6",
         "trekCost": "9,500",
         "trekInfo": "transport included",
-        "trekLink": "/bhrigu-lake-trek"
+        "trekLink": "/bhrigu-lake-trek",
+        "trekDate": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
       {
@@ -35,8 +37,8 @@
         "trekDifficulty": "0.5",
         "trekCost": "10,500",
         "trekInfo": "transport included",
-        "trekLink": "/hampta-pass-trek"
-      },
+        "trekLink": "/hampta-pass-trek",
+        "trekDate": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]      },
       
       {
         "trekIndex": 104,
@@ -48,7 +50,8 @@
         "trekDifficulty": "6",
         "trekCost": "25,000",
         "trekInfo": "transport included",
-        "trekLink": "/yunam-peak-expedition"
+        "trekLink": "/yunam-peak-expedition",
+        "trekDate": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       }
     ]
   

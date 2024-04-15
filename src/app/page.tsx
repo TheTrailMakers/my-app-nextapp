@@ -6,6 +6,7 @@ import Homecards from "@/components/homecards";
 import mockdata from "@/data/homepage_cards.json";
 
 
+
 interface Trek {
   trekIndex: number;
   trekName: string;
@@ -27,7 +28,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 })
 
   return (
-    <div className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black">
       <Image alt="trail running to lamadugh" width={0} height={0} sizes="100vw" style={{width: '100%',height: 'auto' }} src="/Ranisui_manali_speedhike_The_Trail_Makers.jpg"></Image>
       <div className="h-40"></div>
       <h1 className="font-bold text-white text-center h-96"> Hello World</h1>
@@ -38,7 +39,7 @@ const {hamburgerOpen} = useStore((state:any) => {
         <Homecards {...mockdata[2]}/>
         <Homecards {...mockdata[3]}/>
       </div>
-    </div>
+    </main>
   );
 }
 
