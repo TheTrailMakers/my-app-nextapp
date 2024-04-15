@@ -54,7 +54,7 @@ export default function Navbar () {
         
         <header className="top-0 left-0 right-0 flex items-center justify-end gap-4 bg-black h-16"> 
 
-            <Image  className="pl-4 mr-auto"src="vercel.svg" alt="The Trail Makers Logo" width={96} height={96}/>
+            <Image  className="pl-4 mr-auto" src="/TTM.png" alt="The Trail Makers Logo" width={80} height={80}/>
             
             
             <Button text="Sign Up" bgcolor="bg-neutral-700" txtcolor="text-white" ></Button>
