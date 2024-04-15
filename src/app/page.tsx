@@ -29,9 +29,11 @@ const {hamburgerOpen} = useStore((state:any) => {
 
   return (
     <main className="min-h-screen bg-black">
-      <Image alt="trail running to lamadugh" width={0} height={0} sizes="100vw" style={{width: '100%',height: 'auto' }} src="/Ranisui_manali_speedhike_The_Trail_Makers.jpg"></Image>
-      <div className="h-40"></div>
-      <h1 className="font-bold text-white text-center h-96"> Hello World</h1>
+      <Image alt="trail running to lamadugh" width={0} height={0} sizes="100vw" style={{width: '100%',height: 'auto' }} src="/Ranisui_manali_speedhike_The_Trail_Makers.jpg" className="relative"></Image>
+      <div className="-rotate-12 pl-2 pt-52 absolute top-96">
+        <img src="/ttm image.png" alt="ttm image" className="h-60 mx-auto"></img>
+      </div>
+      <div className="h-60"></div>
       <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
       <div className="flex overflow-x-auto snap-x bg-black">
         <Homecards {...mockdata[0]}/>
