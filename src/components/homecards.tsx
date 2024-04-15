@@ -5,21 +5,21 @@ import Link from "next/link";
 export default function TrekCard({trekName, trekState, trekDescription, trekDistance, trekDuration, trekDifficulty, trekDate, trekLink} : any) {
 
     return (
-        <div className="m-4 border-[1px] border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl">
+        <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
 
                 <Link href={trekLink}>
                   <img src="/Bandarpunchh-Black Peak.jpg" alt={trekName} className ="object-cover w-80 h-48 rounded-t-3xl p-2" ></img>
                 </Link>
          
 
-            <div className="border-b-[1px] border-yellow-500 p-2">
+            <div className="border-b-[1px] border-yellow-500 p-2 min-h-40">
 
                 <div className="flex items-center">
                     <h2 className=" pl-1 font-semibold uppercase text-white ">{trekName}</h2>
                     <h4 className=" px-2 ml-4 text-[10px] text-center font-medium uppercase rounded-lg bg-slate-700 text-blue-300 ">{trekState}</h4>
                 </div>
 
-                <p className="  text-sm p-1 text-stone-400">{trekDescription}</p>
+                <p className=" text-sm p-1 text-stone-400">{trekDescription}</p>
             
             </div>
 

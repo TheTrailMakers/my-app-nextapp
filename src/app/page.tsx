@@ -33,7 +33,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       <div className="h-40"></div>
       <h1 className="font-bold text-white text-center h-96"> Hello World</h1>
       <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
-      <div className="flex overflow-x-auto no-scrollbar snap-start bg-black">
+      <div className="flex overflow-x-auto no-scrollbar snap-x bg-black">
         <Homecards {...mockdata[0]}/>
         <Homecards {...mockdata[1]}/>
         <Homecards {...mockdata[2]}/>
