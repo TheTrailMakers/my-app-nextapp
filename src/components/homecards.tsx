@@ -7,7 +7,7 @@ export default function TrekCard({trekName, trekState, trekDescription, trekDist
     return (
         <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
 
-                <Link href={trekLink}>
+                <Link href="/Coming_Soon">
                   <img src="/Bandarpunchh-Black Peak.jpg" alt={trekName} className ="object-cover w-80 h-48 rounded-t-3xl p-2" ></img>
                 </Link>
          
@@ -38,9 +38,11 @@ export default function TrekCard({trekName, trekState, trekDescription, trekDist
                 </div>
             </div>
 
+            <Link href="/Coming_Soon">
             <div className="text-center flex flex-col items-center pt-4">
                 <p className="text-white bg-gradient-to-r from-red-600 to-red-900 py-1 w-3/4 font-bold text-lg rounded-t-3xl">{trekDate[0]}</p>
             </div>
+            </Link>
    
         </div>
     )
