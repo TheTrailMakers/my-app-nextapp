@@ -57,8 +57,8 @@ export default function Navbar () {
             <Image  className="pl-4 mr-auto" src="/TTM.png" alt="The Trail Makers Logo" width={80} height={80}/>
             
             
-            <Button text="Sign Up" bgcolor="bg-neutral-700" txtcolor="text-white" ></Button>
-            <Button text="Log In" bgcolor="bg-white" txtcolor="text-black" ></Button>
+            <Link href="/Coming_Soon"><Button text="Sign Up" bgcolor="bg-neutral-700" txtcolor="text-white" ></Button></Link>
+            <Link href="/Coming_Soon"><Button text="Log In" bgcolor="bg-white" txtcolor="text-black" ></Button></Link>
 
             <nav className={`font-mono uppercase bg-neutral-950 text-white
                             fixed h-full w-80 max-w-[calc(100%-3rem)] top-0 right-0

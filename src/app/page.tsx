@@ -4,6 +4,7 @@ import Image from "next/image";
 import useStore from "@/store/store";
 import Homecards from "@/components/homecards";
 import mockdata from "@/data/homepage_cards.json";
+import Link from "next/link";
 
 
 
@@ -51,8 +52,13 @@ const {hamburgerOpen} = useStore((state:any) => {
         So today we have bunch of young people, who by mind and body are depresssed, frustrated, living inside a cubicle.
         <br/><br/>
         The Trail Makers works as a gateway to see the world as it is, inspire and encourage people to solve the knots of society in their own way.
-        <div className=" mx-auto pt-24 border-b-2 w-3/4 border-yellow-500"></div>
+        <div className=" mx-auto pt-24 border-b-2 w-3/5 border-yellow-500"></div>
       </div>
+
+
+
+
+
 
       <div className="text-white text-7xl font-extrabold mx-4 my-20">
         <h2 className="uppercase">How Trekking can change life</h2>
@@ -99,7 +105,7 @@ const {hamburgerOpen} = useStore((state:any) => {
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
           </svg>
-          <h3 className="mx-1 font-bold text-center">Goals and rules are important, So are COMRADES</h3>
+          <h3 className="mx-1 font-bold text-left">Goals and rules are important, So are COMRADES</h3>
         </div>
         <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
             Once when my life had no adventure, I 
@@ -117,6 +123,70 @@ const {hamburgerOpen} = useStore((state:any) => {
             my life
         </p>
       </section>
+
+      <div className=" mx-auto pt-24 border-b-2 w-3/5 border-yellow-500"></div>
+
+
+
+
+      <div className="text-white text-7xl font-extrabold mx-4 my-20 text-right">
+        <h2 className="uppercase">Getting ready</h2>
+      </div>
+      
+      <section className="mx-4 mt-6 mb-32">
+        <img src="/dog_deotibba.jpg" className="w-2/3 my-4 rounded-tr-[50%]"></img>
+        <h4 className="text-amber-600">Am I fit enough for a Trek ?</h4>
+        <h3 className="uppercase text-3xl font-bold w-2/3">START YOUR JOURNEY</h3>
+        <p className="mt-8 pr-10 text-neutral-400">Embarking on a mountain backpacking 
+            adventure is a thrilling and rewarding 
+            experience, but it demands physical 
+            preparedness to tackle the challenges 
+            that come with traversing rugged 
+            terrains, steep ascents, and 
+            unpredictable weather conditions.
+        </p>
+        <Link href="/Coming_Soon"><p className="font-extrabold">Read More</p></Link>
+      </section>
+      
+      <section className="mx-4 mt-6 mb-32">
+        <img src="/pano_view.jpg" className="w-2/3 my-4 rounded-tr-[50%]"></img>
+        <h4 className="text-amber-600">What to pack for a trek? ?</h4>
+        <h3 className="uppercase text-3xl font-bold w-2/3">PACKING THE NECESSITY</h3>
+        <p className="mt-8 pr-10 text-neutral-400">The most important thing is the right 
+                        mindset, without that even heaven 
+                        is insufficient. We follow the carry 
+                        less, worry less principle but, make 
+                        sure you don’t die. So we made a 
+                        checklist of stuffs you will need, 
+                        carry more than that we break your 
+                        back
+        </p>
+        <Link href="/Coming_Soon"><p className="font-extrabold">Read More</p></Link>
+      </section>
+      
+      <section className="mx-4 mt-6 mb-32">
+        <img src="/river_crossing.jpg" className="w-2/3 my-4 rounded-tr-[50%]"></img>
+        <h4 className="text-amber-600">What is the best season for tekking?</h4>
+        <h3 className="uppercase text-3xl font-bold w-2/3">UNDERSTANDING SEASONS IN 
+        TREKKING</h3>
+        <p className="mt-8 pr-10 text-neutral-400">If you don’t want to miss your train 
+          by getting stuck in a landslide, or 
+          shiver all night in the month of May, 
+          thinking it won't be that cold, read 
+          this. we made an deeper 
+          understanding of climates in 
+          different parts of Himalayas and the 
+          hurdles of different seasons. Even of 
+          summer.
+        </p>
+        <Link href="/Coming_Soon"><p className="font-extrabold">Read More</p></Link>
+      </section>
+
+
+
+
+
+  
 
       <div className="h-96"></div>
     </main>
