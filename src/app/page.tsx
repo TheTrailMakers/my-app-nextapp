@@ -28,7 +28,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 })
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black text-white">
       <Image alt="trail running to lamadugh" width={0} height={0} sizes="100vw" style={{width: '100%',height: 'auto' }} src="/Ranisui_manali_speedhike_The_Trail_Makers.jpg" className=""></Image>
       
       <div className=" pl-2 pb-20 ">
@@ -57,6 +57,51 @@ const {hamburgerOpen} = useStore((state:any) => {
       <div className="text-white text-7xl font-extrabold mx-4 my-20">
         <h2 className="uppercase">How Trekking can change life</h2>
       </div>
+
+      <section className="my-20">
+        <img src="/lamadugh_dog.jpg" className="h-40 object-cover w-full object-[0%_70%]"></img>
+        <h3 className="mx-4 pt-6 pb-4 font-bold">Through Type II fun</h3>
+        <p className="mx-4 pr-6 text-neutral-400"> Type two fun is activities you undertake 
+            which are not fun at the time but after 
+            you look back at the experience as fun. 
+            These type of activities can be incredibly 
+            beneficial and I have found that it has 
+            benefitted me in so many ways.
+        </p>
+      </section>
+
+      <section className="my-20">
+        <img src="/camfire.jpg" className="h-40 object-cover w-full object-[0%_50%]"></img>
+        <h3 className="mx-4 pt-6 pb-4 font-bold">Carry less, worry less, have fun</h3>
+        <p className="mx-4 pr-6 text-neutral-400"> Type two fun is activities you undertake 
+            which are not fun at the time but after 
+            you look back at the experience as fun. 
+            These type of activities can be incredibly 
+            beneficial and I have found that it has 
+            benefitted me in so many ways.
+        </p>
+      </section>
+
+      <section className="my-20">
+        <img src="/lamadugh_group.jpg" className="h-40 object-cover w-full object-[0%_70%]"></img>
+        <img src="/lamadugh_cows.jpg" className="h-40 object-cover w-full object-[0%_60%]"></img>
+        <h3 className="mx-4 pt-6 pb-4 font-bold">Goals and rules are important, So are COMRADES</h3>
+        <p className="mx-4 pr-6 text-neutral-400"> Type two fun is activities you undertake 
+            Once when my life had no adventure, I 
+            always thought about leaving all life, all 
+            my people and all my rights and duties 
+            aside just because I was attracted to 
+            nature and less motivated by people. 
+            But after two to three years of life 
+            nurtured through traveling, hiking, 
+            trekking amidst of nature, I started 
+            respecting nature. And in return, I 
+            learned one gem of my learnings not 
+            to ignore people and how to live with 
+            people with whom I have been most of 
+            my life
+        </p>
+      </section>
 
       <div className="h-96"></div>
     </main>
