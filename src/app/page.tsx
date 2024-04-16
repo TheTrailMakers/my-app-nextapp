@@ -36,7 +36,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
       
       <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
-      <div className="flex overflow-x-auto snap-x bg-black">
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
         <Homecards {...mockdata[0]}/>
         <Homecards {...mockdata[1]}/>
         <Homecards {...mockdata[2]}/>
@@ -60,8 +60,13 @@ const {hamburgerOpen} = useStore((state:any) => {
 
       <section className="my-20">
         <img src="/lamadugh_dog.jpg" className="h-40 object-cover w-full object-[0%_70%]"></img>
-        <h3 className="mx-4 pt-6 pb-4 font-bold">Through Type II fun</h3>
-        <p className="mx-4 pr-6 text-neutral-400"> Type two fun is activities you undertake 
+        <div className="mx-4 pt-6 pb-4 flex items-center">
+          <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
+          </svg>
+          <h3 className="mx-1 font-bold text-center">Through Type II fun</h3>
+        </div>
+        <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
             which are not fun at the time but after 
             you look back at the experience as fun. 
             These type of activities can be incredibly 
@@ -72,8 +77,13 @@ const {hamburgerOpen} = useStore((state:any) => {
 
       <section className="my-20">
         <img src="/camfire.jpg" className="h-40 object-cover w-full object-[0%_50%]"></img>
-        <h3 className="mx-4 pt-6 pb-4 font-bold">Carry less, worry less, have fun</h3>
-        <p className="mx-4 pr-6 text-neutral-400"> Type two fun is activities you undertake 
+        <div className="mx-4 pt-6 pb-4 flex items-center">
+          <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
+          </svg>
+          <h3 className="mx-1 font-bold text-center">Carry less, worry less, have fun</h3>
+        </div>
+        <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
             which are not fun at the time but after 
             you look back at the experience as fun. 
             These type of activities can be incredibly 
@@ -85,8 +95,13 @@ const {hamburgerOpen} = useStore((state:any) => {
       <section className="my-20">
         <img src="/lamadugh_group.jpg" className="h-40 object-cover w-full object-[0%_70%]"></img>
         <img src="/lamadugh_cows.jpg" className="h-40 object-cover w-full object-[0%_60%]"></img>
-        <h3 className="mx-4 pt-6 pb-4 font-bold">Goals and rules are important, So are COMRADES</h3>
-        <p className="mx-4 pr-6 text-neutral-400"> Type two fun is activities you undertake 
+        <div className="mx-4 pt-6 pb-4 flex items-center">
+          <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
+          </svg>
+          <h3 className="mx-1 font-bold text-center">Goals and rules are important, So are COMRADES</h3>
+        </div>
+        <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
             Once when my life had no adventure, I 
             always thought about leaving all life, all 
             my people and all my rights and duties 
