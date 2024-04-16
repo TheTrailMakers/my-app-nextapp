@@ -172,7 +172,7 @@ const {hamburgerOpen} = useStore((state:any) => {
         <p className="mt-8 pr-10 text-neutral-400">If you don’t want to miss your train 
           by getting stuck in a landslide, or 
           shiver all night in the month of May, 
-          thinking it won't be that cold, read 
+          thinking it wont be that cold, read 
           this. we made an deeper 
           understanding of climates in 
           different parts of Himalayas and the 
