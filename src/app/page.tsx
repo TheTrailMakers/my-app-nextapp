@@ -65,7 +65,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
 
       <section className="my-20">
-        <img src="/lamadugh_dog.jpg" className="h-40 object-cover w-full object-[0%_70%]"></img>
+        <img src="/lamadugh_dog.jpg" alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_70%]"></img>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -82,7 +82,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
 
       <section className="my-20">
-        <img src="/camfire.jpg" className="h-40 object-cover w-full object-[0%_50%]"></img>
+        <img src="/camfire.jpg" alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_50%]"></img>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -99,8 +99,8 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
 
       <section className="my-20">
-        <img src="/lamadugh_group.jpg" className="h-40 object-cover w-full object-[0%_70%]"></img>
-        <img src="/lamadugh_cows.jpg" className="h-40 object-cover w-full object-[0%_60%]"></img>
+        <img src="/lamadugh_group.jpg" alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_70%]"></img>
+        <img src="/lamadugh_cows.jpg" alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_60%]"></img>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -134,7 +134,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
       
       <section className="mx-4 mt-6 mb-32">
-        <img src="/dog_deotibba.jpg" className="w-2/3 my-4 rounded-tr-[50%]"></img>
+        <img src="/dog_deotibba.jpg" alt="The Trail Makers" className="w-2/3 my-4 rounded-tr-[50%]"></img>
         <h4 className="text-amber-600">Am I fit enough for a Trek ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">START YOUR JOURNEY</h3>
         <p className="mt-8 pr-10 text-neutral-400">Embarking on a mountain backpacking 
@@ -149,7 +149,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
       
       <section className="mx-4 mt-6 mb-32">
-        <img src="/pano_view.jpg" className="w-2/3 my-4 rounded-tr-[50%]"></img>
+        <img src="/pano_view.jpg" alt="The Trail Makers" className="w-2/3 my-4 rounded-tr-[50%]"></img>
         <h4 className="text-amber-600">What to pack for a trek? ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">PACKING THE NECESSITY</h3>
         <p className="mt-8 pr-10 text-neutral-400">The most important thing is the right 
@@ -165,7 +165,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
       
       <section className="mx-4 mt-6 mb-32">
-        <img src="/river_crossing.jpg" className="w-2/3 my-4 rounded-tr-[50%]"></img>
+        <img src="/river_crossing.jpg" alt="The Trail Makers" className="w-2/3 my-4 rounded-tr-[50%]"></img>
         <h4 className="text-amber-600">What is the best season for tekking?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">UNDERSTANDING SEASONS IN 
         TREKKING</h3>
