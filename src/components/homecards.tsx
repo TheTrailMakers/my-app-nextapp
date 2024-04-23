@@ -1,5 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+
+import BandarpunchhImg from "../../public/Bandarpunchh-Black Peak.jpg"
 
 
 export default function TrekCard({trekName, trekState, trekDescription, trekDistance, trekDuration, trekDifficulty, trekDate, trekLink} : any) {
@@ -8,7 +11,7 @@ export default function TrekCard({trekName, trekState, trekDescription, trekDist
         <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
 
                 <Link href="/Coming_Soon">
-                  <img src="/Bandarpunchh-Black Peak.jpg" alt={trekName} className ="object-cover w-80 h-48 rounded-t-3xl p-2" ></img>
+                  <Image src={BandarpunchhImg} alt={trekName} className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 798px) 100vw, 800px" placeholder="blur"></Image>
                 </Link>
          
 
