@@ -8,7 +8,13 @@ import Link from "next/link";
 
 import heroImage from "../../public/Ranisui_manali_speedhike_The_Trail_Makers.jpg"
 import ttmHeader from "../../public/ttm image.png"
-
+import lamadughDogImg from "../../public/lamadugh_dog.jpg"
+import campfireImg from "../../public/camfire.jpg"
+import lamadughGroupImg from "../../public/lamadugh_group.jpg"
+import lamadughCowsImg from "../../public/lamadugh_cows.jpg"
+import deotibbaDogImg from "../../public/dog_deotibba.jpg"
+import panoviewImg from "../../public/pano_view.jpg"
+import bhriguRiverCrossingImg from "../../public/river_crossing.jpg"
 
 
 interface Trek {
@@ -33,10 +39,10 @@ const {hamburgerOpen} = useStore((state:any) => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Image alt="trail running to lamadugh" sizes="5(max-width: 768px) 412px, 800px" style={{width: '100%',height: 'auto' }} src={heroImage} priority placeholder="blur"></Image>
+      <Image alt="trail running to lamadugh" sizes="(max-width: 768px) 50vw, 800px"  src={heroImage} priority placeholder="blur"></Image>
       
       <div className=" pl-2 pb-20 ">
-        <Image src={ttmHeader} alt="ttm image" className="h-52 mx-auto -rotate-12"></Image>
+        <Image src={ttmHeader} alt="ttm image" className="h-52 w-auto mx-auto -rotate-12"></Image>
       </div>
       
       <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
@@ -68,7 +74,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
 
       <section className="my-20">
-        <img src="/lamadugh_dog.jpg" alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_70%]"></img>
+        <Image src={lamadughDogImg} alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_70%]" placeholder="blur"></Image>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -85,7 +91,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
 
       <section className="my-20">
-        <img src="/camfire.jpg" alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_50%]"></img>
+        <Image src={campfireImg} alt="The Trail Makers" className="h-40 object-cover w-full object-[0%_50%]" placeholder="blur"></Image>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -102,8 +108,8 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
 
       <section className="my-20">
-        <Image src="/lamadugh_group.jpg" alt="The Trail Makers"  width={0} height={0} sizes="50vw" style={{width: '100%',height: '160px' }} className="object-cover w-full object-[0%_70%]"></Image>
-        <Image src="/lamadugh_cows.jpg" alt="The Trail Makers" width={0} height={0} sizes="50vw" style={{width: '100%',height: '160px' }} className="object-cover w-full object-[0%_60%]"></Image>
+        <Image src={lamadughGroupImg} alt="The Trail Makers" sizes="10vw" style={{width: '100%',height: '160px' }} className="object-cover w-full object-[0%_70%]" placeholder="blur"></Image>
+        <Image src={lamadughCowsImg} alt="The Trail Makers" sizes="50vw" style={{width: '100%',height: '160px' }} className="object-cover w-full object-[0%_60%]" placeholder="blur"></Image>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -137,7 +143,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
       
       <section className="mx-4 mt-6 mb-32">
-        <Image src="/dog_deotibba.jpg" alt="The Trail Makers" width={0} height={0} sizes="30vw" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]"></Image>
+        <Image src={deotibbaDogImg} alt="The Trail Makers" sizes="30vw" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]" placeholder="blur"></Image>
         <h4 className="text-amber-600">Am I fit enough for a Trek ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">START YOUR JOURNEY</h3>
         <p className="mt-8 pr-10 text-neutral-400">Embarking on a mountain backpacking 
@@ -152,7 +158,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
       
       <section className="mx-4 mt-6 mb-32">
-        <Image src="/pano_view.jpg" alt="The Trail Makers"  width={0} height={0} sizes="30vw" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]"></Image>
+        <Image src={panoviewImg} alt="The Trail Makers" sizes="30vw" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]" placeholder="blur"></Image>
         <h4 className="text-amber-600">What to pack for a trek? ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">PACKING THE NECESSITY</h3>
         <p className="mt-8 pr-10 text-neutral-400">The most important thing is the right 
@@ -168,7 +174,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
       
       <section className="mx-4 mt-6 mb-32">
-        <Image src="/river_crossing.jpg" alt="The Trail Makers" width={0} height={0} sizes="30vw" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]"></Image>
+        <Image src={bhriguRiverCrossingImg} alt="The Trail Makers" sizes="30vw" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]" placeholder="blur"></Image>
         <h4 className="text-amber-600">What is the best season for tekking?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">UNDERSTANDING SEASONS IN 
         TREKKING</h3>
