@@ -3,6 +3,7 @@
 import Image from "next/image";
 import useStore from "@/store/store";
 import Homecards from "@/components/homecards";
+import Accordion from "@/components/accordion";
 import mockdata from "@/data/homepage_cards.json";
 import Link from "next/link";
 
@@ -15,6 +16,7 @@ import lamadughCowsImg from "../../public/lamadugh_cows.jpg"
 import deotibbaDogImg from "../../public/dog_deotibba.jpg"
 import panoviewImg from "../../public/pano_view.jpg"
 import bhriguRiverCrossingImg from "../../public/river_crossing.jpg"
+import Scrollables from "@/components/scrollables";
 
 
 interface Trek {
@@ -35,6 +37,8 @@ export default function Home() {
 const {hamburgerOpen} = useStore((state:any) => {
   return {hamburgerOpen: state.hamburgerOpen}
 
+  
+
 })
 
   return (
@@ -44,14 +48,14 @@ const {hamburgerOpen} = useStore((state:any) => {
       <div className=" pl-2 pb-20 ">
         <Image src={ttmHeader} alt="ttm image" className="h-52 w-auto mx-auto -rotate-12"></Image>
       </div>
-      
-      <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
-      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
-        <Homecards {...mockdata[0]}/>
-        <Homecards {...mockdata[1]}/>
-        <Homecards {...mockdata[2]}/>
-        <Homecards {...mockdata[3]}/>
-      </div>
+
+        <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
+        <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+          <Homecards {...mockdata[0]}/>
+          <Homecards {...mockdata[1]}/>
+          <Homecards {...mockdata[2]}/>
+          <Homecards {...mockdata[3]}/>
+        </div>
 
       <div className=" m-6 pt-10 pr-6 text-base font-medium text-neutral-500">
         As people moved from agarian society to Industrial society, individuals started to become specialised in single persuits. Same stuff everyday broke the back, while as a human they aren’t meant to do so, they kept them alive, but never let live.
@@ -66,12 +70,15 @@ const {hamburgerOpen} = useStore((state:any) => {
 
 
 
+{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
 
-
-      <div className="text-white text-7xl font-extrabold mx-4 my-20">
+      
+      <div className="text-7xl font-extrabold mx-4 my-20 md:text-center md:mx-[10%]">
         <h2 className="uppercase">How Trekking can change life</h2>
       </div>
+
+<div className="md:mx-[20%]">
 
       <section className="my-20">
         <Image src={lamadughDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" className="h-40 object-cover w-full object-[0%_70%]" placeholder="blur"></Image>
@@ -132,15 +139,20 @@ const {hamburgerOpen} = useStore((state:any) => {
             my life
         </p>
       </section>
-
+</div>
       <div className=" mx-auto pt-24 border-b-2 w-3/5 border-yellow-500"></div>
 
+  
+
+{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
 
 
-      <div className="text-white text-7xl font-extrabold mx-4 my-20 text-right">
+      <div className="text-7xl font-extrabold mx-4 my-20 text-right md:text-center md:mx-[10%]">
         <h2 className="uppercase">Getting ready</h2>
       </div>
+
+<div className="md:mx-[20%]">
       
       <section className="mx-4 mt-6 mb-32">
         <Image src={deotibbaDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]" placeholder="blur"></Image>
@@ -191,7 +203,102 @@ const {hamburgerOpen} = useStore((state:any) => {
         <Link href="/Coming_Soon"><p className="font-extrabold">Read More</p></Link>
       </section>
 
+</div>
 
+
+{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+
+<div className="md:mx-auto md:max-w-[500px]">
+      <div className="bg-amber-950 ">
+        <div className="text-right pr-8 pt-8">
+          <h3 className="uppercase text-6xl font-bold"> faq</h3>
+          <h5 className="font-semibold">Learn More About Mountains</h5>
+        </div>
+
+        <section className="mx-8 mt-8 mb-16">
+          <h5 className="text-2xl font-bold mb-4">About Me</h5>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+          <Accordion question="I feel old, can I trek?" answer="My answer"/>
+          <Accordion question="Can I trek with Kids?" answer="My answer"/>
+          <div className=" mx-auto mt-12 border-b-2 w-3/5 border-yellow-500"></div>
+        </section>
+
+        <section className="mx-8 mt-8 mb-16">
+          <h5 className="text-2xl font-bold mb-4">My Gears</h5>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+          <Accordion question="I feel old, can I trek?" answer="My answer"/>
+          <Accordion question="Can I trek with Kids?" answer="My answer"/>
+          <div className=" mx-auto mt-12 border-b-2 w-3/5 border-yellow-500"></div>
+        </section>
+
+        <section className="mx-8 mt-8 mb-16">
+          <h5 className="text-2xl font-bold mb-4">About Treks</h5>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+          <Accordion question="I feel old, can I trek?" answer="My answer"/>
+          <Accordion question="Can I trek with Kids?" answer="My answer"/>
+          <div className=" mx-auto mt-12 border-b-2 w-3/5 border-yellow-500"></div>
+        </section>
+        <div className="h-24"></div>
+      </div>
+</div>
+
+<div className="mt-16">
+  <div>
+      <div className="ml-8 text-4xl font-bold">SUMMER Plans</div>
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+        <Scrollables {...mockdata[0]}/>
+        <Scrollables {...mockdata[1]}/>
+        <Scrollables {...mockdata[2]}/>
+        <Scrollables {...mockdata[3]}/>
+      </div>
+  </div>
+
+  <div>
+      <div className="ml-8 text-4xl font-bold">CAMPS</div>
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+        <Scrollables {...mockdata[0]}/>
+        <Scrollables {...mockdata[1]}/>
+        <Scrollables {...mockdata[2]}/>
+        <Scrollables {...mockdata[3]}/>
+      </div>
+  </div>
+  
+  <div>
+      <div className="ml-8 text-4xl font-bold">Weekend Plans</div>
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+        <Scrollables {...mockdata[0]}/>
+        <Scrollables {...mockdata[1]}/>
+        <Scrollables {...mockdata[2]}/>
+        <Scrollables {...mockdata[3]}/>
+      </div>
+  </div>
+
+  <div>
+      <div className="ml-8 text-4xl font-bold">NEW Routes</div>
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+        <Scrollables {...mockdata[0]}/>
+        <Scrollables {...mockdata[1]}/>
+        <Scrollables {...mockdata[2]}/>
+        <Scrollables {...mockdata[3]}/>
+      </div>
+  </div>
+
+  <div>
+      <div className="ml-8 text-4xl font-bold">Upcoming EXPLORATION</div>
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+        <Scrollables {...mockdata[0]}/>
+        <Scrollables {...mockdata[1]}/>
+        <Scrollables {...mockdata[2]}/>
+        <Scrollables {...mockdata[3]}/>
+      </div>
+  </div>
+
+
+
+
+
+</div>
 
 
 
