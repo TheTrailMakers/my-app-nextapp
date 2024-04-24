@@ -6,10 +6,12 @@ import BandarpunchhImg from "../../public/Bandarpunchh-Black Peak.jpg"
 
 function Scrollables({trekName, trekState} : any) {
   return (
-    <div className='m-4 snap-center text-center w-40 flex-shrink-0 rounded-3xl '>
+    <div className='m-4 snap-center w-60 flex-shrink-0 rounded-3xl'>
         <Link href="/Coming_Soon">
-            <h4 className=''>{trekName}</h4>
-            <Image src={BandarpunchhImg} alt={trekName} className="object-cover rounded-3xl" sizes="(max-width: 768px) 250px, 800px" placeholder="blur"></Image>
+            <div className='relative  flex flex-col justify-center items-center'>
+            <Image src={BandarpunchhImg} alt={trekName} className=" rounded-3xl" sizes="(max-width: 768px) 250px, 800px" placeholder="blur"></Image>
+            <h4 className='absolute top-2 text-4xl text-center px-4 font-extrabold'>{trekName}</h4>
+            </div>
         </Link>
     </div>
   )

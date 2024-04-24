@@ -245,7 +245,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 
 <div className="mt-16">
   <div>
-      <div className="ml-8 text-4xl font-bold">SUMMER Plans</div>
+      <div className="ml-4 text-4xl font-bold">SUMMER Plans</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
@@ -254,7 +254,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
 
-  <div>
+  <div className="mb-4">
       <div className="ml-8 text-4xl font-bold">CAMPS</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
         <Scrollables {...mockdata[0]}/>
@@ -264,8 +264,8 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
   
-  <div>
-      <div className="ml-8 text-4xl font-bold">Weekend Plans</div>
+  <div className="mb-4">
+      <div className="ml-4 text-4xl font-bold">Weekend Plans</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
@@ -274,8 +274,8 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
 
-  <div>
-      <div className="ml-8 text-4xl font-bold">NEW Routes</div>
+  <div className="mb-4">
+      <div className="ml-4 text-4xl font-bold">NEW Routes</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
@@ -284,9 +284,9 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
 
-  <div>
-      <div className="ml-8 text-4xl font-bold">Upcoming EXPLORATION</div>
-      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+  <div className="mb-4">
+      <div className="ml-4 text-4xl font-bold">Upcoming <br/>EXPLORATION</div>
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black ">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
         <Scrollables {...mockdata[2]}/>
