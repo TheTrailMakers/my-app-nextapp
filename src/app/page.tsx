@@ -42,7 +42,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 })
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white no-scrollbar">
       <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 800px"   priority placeholder="blur"></Image>
       
       <div className=" pl-2 pb-20 ">
@@ -50,7 +50,7 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
 
         <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
-        <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+        <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
           <Homecards {...mockdata[0]}/>
           <Homecards {...mockdata[1]}/>
           <Homecards {...mockdata[2]}/>
@@ -244,9 +244,9 @@ const {hamburgerOpen} = useStore((state:any) => {
 </div>
 
 <div className="mt-16">
-  <div>
+  <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">SUMMER Plans</div>
-      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
         <Scrollables {...mockdata[2]}/>
@@ -254,9 +254,9 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
 
-  <div className="mb-4">
+  <div className="mb-16">
       <div className="ml-8 text-4xl font-bold">CAMPS</div>
-      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
         <Scrollables {...mockdata[2]}/>
@@ -264,9 +264,9 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
   
-  <div className="mb-4">
+  <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">Weekend Plans</div>
-      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
         <Scrollables {...mockdata[2]}/>
@@ -274,9 +274,9 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
 
-  <div className="mb-4">
+  <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">NEW Routes</div>
-      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black">
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
         <Scrollables {...mockdata[2]}/>
@@ -284,9 +284,9 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
   </div>
 
-  <div className="mb-4">
+  <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">Upcoming <br/>EXPLORATION</div>
-      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black ">
+      <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         <Scrollables {...mockdata[0]}/>
         <Scrollables {...mockdata[1]}/>
         <Scrollables {...mockdata[2]}/>
