@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { Poppins } from 'next/font/google';
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -23,6 +26,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       <body className={poppins.variable}>
         <Navbar/>
         {children}
+        <Footer/>
       </body>
     </html>
   );
