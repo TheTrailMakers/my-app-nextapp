@@ -3,9 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Poppins } from 'next/font/google';
-import { Suspense } from "react";
-import Loading from "./loading";
 
+ 
 const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
@@ -22,8 +21,8 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 
 
   return (
-    <html lang="en">
-      <body className={poppins.variable}>
+    <html lang="en" className={`${poppins.variable}`}>
+      <body className="poppins">
         <Navbar/>
         {children}
         <Footer/>
