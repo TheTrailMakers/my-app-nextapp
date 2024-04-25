@@ -49,8 +49,8 @@ const {hamburgerOpen} = useStore((state:any) => {
 
         <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 800px" priority placeholder="blur"></Image>
 
-      <div className=" pl-2 pb-20 ">
-        <Image src={ttmHeader} alt="ttm image" className="h-52 w-auto mx-auto -rotate-12"></Image>
+      <div className="text-[5vw] pb-20 px-[25vw] font-mono">
+        A Different way to live life, with Nature.
       </div>
       
 
