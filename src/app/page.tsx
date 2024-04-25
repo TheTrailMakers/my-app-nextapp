@@ -17,6 +17,7 @@ import deotibbaDogImg from "../../public/dog_deotibba.jpg"
 import panoviewImg from "../../public/pano_view.jpg"
 import bhriguRiverCrossingImg from "../../public/river_crossing.jpg"
 import Scrollables from "@/components/scrollables";
+import { cloudinaryLoader } from "next-cloudinary";
 
 
 interface Trek {
@@ -32,10 +33,12 @@ interface Trek {
   trekLink: string;
 }
 
+
 export default function Home() {
 
 const {hamburgerOpen} = useStore((state:any) => {
   return {hamburgerOpen: state.hamburgerOpen}
+
 
   
 
@@ -43,11 +46,13 @@ const {hamburgerOpen} = useStore((state:any) => {
 
   return (
     <div className="min-h-screen bg-black text-white no-scrollbar">
-      <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 800px"   priority placeholder="blur"></Image>
-      
+
+        <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 800px" priority placeholder="blur"></Image>
+
       <div className=" pl-2 pb-20 ">
         <Image src={ttmHeader} alt="ttm image" className="h-52 w-auto mx-auto -rotate-12"></Image>
       </div>
+      
 
         <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
         <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">

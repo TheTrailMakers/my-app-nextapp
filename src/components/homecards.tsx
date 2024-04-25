@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
+import Loading from "@/app/loading";
 
 import BandarpunchhImg from "../../public/Bandarpunchh-Black Peak.jpg"
 
@@ -9,12 +11,11 @@ export default function TrekCard({trekName, trekState, trekDescription, trekDist
 
     return (
         <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
-
+<Suspense fallback={<p>Loading...</p>}>
                 <Link href="/Coming_Soon">
                   <Image src={BandarpunchhImg} alt={trekName} className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 768px) 250px, 800px" placeholder="blur"></Image>
                 </Link>
-         
-
+</Suspense>
             <div className="border-b-[1px] border-yellow-500 p-2 min-h-40">
 
                 <div className="flex items-center">
