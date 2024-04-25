@@ -47,22 +47,15 @@ const {hamburgerOpen} = useStore((state:any) => {
   return (
     <div className="min-h-screen bg-black text-white no-scrollbar">
 
-        <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 800px" priority placeholder="blur"></Image>
+        <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 80vw" priority placeholder="blur"></Image>
 
-      <div className="text-[5vw] pb-20 px-[25vw] font-mono">
+      <div className="text-[5vw] pt-16 pb-10 px-[25vw] font-mono text-center font-bold leading-tight">
         A Different way to live life, with Nature.
       </div>
-      
 
-        <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
-        <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
-          <Homecards {...mockdata[0]}/>
-          <Homecards {...mockdata[1]}/>
-          <Homecards {...mockdata[2]}/>
-          <Homecards {...mockdata[3]}/>
-        </div>
-
-      <div className=" m-6 pt-10 pr-6 text-base font-medium text-neutral-500">
+      <div className=" m-6 pt-10 pr-6 mb-20 text-base font-medium text-neutral-500 
+                        md:w-[50vw] md:m-auto md:pl-8 md:mb-20
+                        lg:w-[35vw]">
         As people moved from agarian society to Industrial society, individuals started to become specialised in single persuits. Same stuff everyday broke the back, while as a human they aren’t meant to do so, they kept them alive, but never let live.
         <br/><br/>
         Capitalism prioritise WANT, not NEED. <strong>Human need Wide Open Space </strong>, Boundaryless Grassfield.
@@ -70,8 +63,19 @@ const {hamburgerOpen} = useStore((state:any) => {
         So today we have bunch of young people, who by mind and body are depresssed, frustrated, living inside a cubicle.
         <br/><br/>
         The Trail Makers works as a gateway to see the world as it is, inspire and encourage people to solve the knots of society in their own way.
-        <div className=" mx-auto pt-24 border-b-2 w-3/5 border-yellow-500"></div>
       </div>
+
+           
+
+      <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
+        <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
+          <Homecards {...mockdata[0]}/>
+          <Homecards {...mockdata[1]}/>
+          <Homecards {...mockdata[2]}/>
+          <Homecards {...mockdata[3]}/>
+        </div>
+
+        <div className=" mx-auto pt-24 border-b-2 w-3/5 border-yellow-500"></div>
 
 
 
