@@ -45,7 +45,7 @@ function Footer() {
         
       </div>
 
-      <div className='text-lg flex justify-start items-start'>
+      <div className='text-lg flex justify-between items-start'>
         <div className='p-6'>
           <h5 className='font-bold'>Treks by Duration</h5>
           <div className='font-extralight'>
@@ -59,6 +59,24 @@ function Footer() {
           </div>
         </div>
 
+
+        <div className='p-6'>
+          <h5 className='font-bold'>Treks by Region</h5>
+          <div className='font-extralight'>
+            <div className='pt-1'>Himachal</div>
+            <div className='pt-1'>Ladakh</div>
+            <div className='pt-1'>Sikkim</div>
+            <div className='pt-1'>Kashmir</div>
+            <div className='pt-1'>Uttarakhand</div>
+            <div className='pt-1'>West Bengal</div>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <div className='text-lg flex justify-between items-start'>
+            
         <div className='p-6'>
           <h5 className='font-bold'>Treks by Difficulty</h5>
            <div className='font-extralight'>
@@ -73,19 +91,8 @@ function Footer() {
             </div>
         </div>
 
-        <div className='p-6'>
-          <h5 className='font-bold'>Treks by Region</h5>
-          <div className='font-extralight'>
-          <div className='pt-1'>Himachal</div>
-          <div className='pt-1'>Ladakh</div>
-          <div className='pt-1'>Sikkim</div>
-          <div className='pt-1'>Kashmir</div>
-          <div className='pt-1'>Uttarakhand</div>
-          <div className='pt-1'>West Bengal</div>
-          </div>
-        </div>
-        
       </div>
+        
       <div className='bottom-0 text-center text-slate-500 pt-8'>© the trail makers</div>
       <div className='text-neutral-500 text-center'>Made by Pritam Bera</div>
     </footer>
