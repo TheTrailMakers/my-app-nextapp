@@ -17,7 +17,6 @@ import deotibbaDogImg from "../../public/dog_deotibba.jpg"
 import panoviewImg from "../../public/pano_view.jpg"
 import bhriguRiverCrossingImg from "../../public/river_crossing.jpg"
 import Scrollables from "@/components/scrollables";
-import { cloudinaryLoader } from "next-cloudinary";
 
 
 interface Trek {
@@ -38,10 +37,6 @@ export default function Home() {
 
 const {hamburgerOpen} = useStore((state:any) => {
   return {hamburgerOpen: state.hamburgerOpen}
-
-
-  
-
 })
 
   return (
@@ -87,7 +82,7 @@ const {hamburgerOpen} = useStore((state:any) => {
         <h2 className="uppercase">How Trekking can change life</h2>
       </div>
 
-<div className="md:mx-[20%]">
+<div className="md:mx-[20vw] lg:mx-[25vw] xl:mx-[30vw]">
 
       <section className="my-20">
         <Image src={lamadughDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" className="h-40 object-cover w-full object-[0%_70%]" placeholder="blur"></Image>
@@ -256,20 +251,14 @@ const {hamburgerOpen} = useStore((state:any) => {
   <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">SUMMER Plans</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
-        <Scrollables {...mockdata[0]}/>
-        <Scrollables {...mockdata[1]}/>
-        <Scrollables {...mockdata[2]}/>
-        <Scrollables {...mockdata[3]}/>
+        {mockdata.map((trek) => trek.tag.includes('summer-trek')? <Scrollables {...trek} key={trek.Index}/>:null)}
       </div>
   </div>
 
   <div className="mb-16">
       <div className="ml-8 text-4xl font-bold">CAMPS</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
-        <Scrollables {...mockdata[0]}/>
-        <Scrollables {...mockdata[1]}/>
-        <Scrollables {...mockdata[2]}/>
-        <Scrollables {...mockdata[3]}/>
+          {mockdata.map((trek) => trek.tag.includes('camp')? <Scrollables {...trek} key={trek.Index}/>:null)}    
       </div>
   </div>
   
