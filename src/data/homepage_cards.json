@@ -108,8 +108,107 @@
         "Info": "stay included",
         "PageLink": "/lamadugh-hike",
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
-      }
+      },
 
+      {
+        "Index": 108,
+        "tag": ["summer-trek", "new-route", "upcoming-exploration"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714117919/khanpari-kalihani-pass-trek.jpg",
+        "Name": "Kalihani Pass Trek",
+        "State": "Himachal",
+        "Description": "A weekend Plan near Manali",
+        "Distance": "34km",
+        "Duration": "6Days",
+        "Difficulty": "6",
+        "Cost": "18,500",
+        "Info": "stay included",
+        "PageLink": "/kalihani-pass-trek",
+        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+      },
+
+      {
+        "Index": 110,
+        "tag": ["summer-trek"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714118662/beas-kund-trek.jpg",
+        "Name": "Beas Kund Trek",
+        "State": "Himachal",
+        "Description": "Best beginner trek near Manali",
+        "Distance": "24km",
+        "Duration": "4Days",
+        "Difficulty": "2",
+        "Cost": "8,500",
+        "Info": "stay included",
+        "PageLink": "/beas-kund-trek",
+        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+      },
+
+      
+      {
+        "Index": 111,
+        "tag": ["summer-trek", "new-route"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714119299/Gephan_ghat_trek.webp",
+        "Name": "Gephan Lake Trek",
+        "State": "Himachal",
+        "Description": "Best beginner trek near Manali",
+        "Distance": "24km",
+        "Duration": "5Days",
+        "Difficulty": "2",
+        "Cost": "9,500",
+        "Info": "stay included",
+        "PageLink": "/gephan-lake-trek",
+        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+      },
+
+           
+      {
+        "Index": 112,
+        "tag": ["weekend-plan"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714120262/kanyal-aksu-evening-hike-manali.jpg",
+        "Name": "Kanyal Hike",
+        "State": "Himachal",
+        "Description": "Best weekned hike near manali",
+        "Distance": "24km",
+        "Duration": "4Days",
+        "Difficulty": "2",
+        "Cost": "1,500",
+        "Info": "stay excluded",
+        "PageLink": "/kanyal-hike",
+        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+      },
+
+           
+      {
+        "Index": 113,
+        "tag": ["weekend-plan"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714120028/kho-waterfall-hike.jpg",
+        "Name": "Kho Waterfall",
+        "State": "Himachal",
+        "Description": "Best beginner trek near Manali",
+        "Distance": "24km",
+        "Duration": "1Days",
+        "Difficulty": "2",
+        "Cost": "2,500",
+        "Info": "stay included",
+        "PageLink": "/kho-waterfall-hike",
+        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+      },
+
+                 
+      {
+        "Index": 114,
+        "tag": ["weekend-plan"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714119822/Climbinh-in-Lahaul.jpg",
+        "Name": "Climbinh in Lahaul",
+        "State": "Himachal",
+        "Description": "Best climbing near Manali",
+        "Distance": "2km",
+        "Duration": "1Days",
+        "Difficulty": "3",
+        "Cost": "2,500",
+        "Info": "stay included",
+        "PageLink": "/climbing-lahaul",
+        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+      }
 
     ]
   
