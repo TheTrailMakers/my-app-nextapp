@@ -247,7 +247,13 @@ const {hamburgerOpen} = useStore((state:any) => {
       </div>
 </div>
 
-<div className="mt-16">
+
+
+{/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
+
+
+<div className="mt-16 md:mx-auto pb-24">
   <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">SUMMER Plans</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
@@ -265,45 +271,30 @@ const {hamburgerOpen} = useStore((state:any) => {
   <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">Weekend Plans</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
-        <Scrollables {...mockdata[0]}/>
-        <Scrollables {...mockdata[1]}/>
-        <Scrollables {...mockdata[2]}/>
-        <Scrollables {...mockdata[3]}/>
+        {mockdata.map((trek) => trek.tag.includes('weekend-plan')? <Scrollables {...trek} key={trek.Index}/>:null)}
       </div>
   </div>
 
   <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">NEW Routes</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
-        <Scrollables {...mockdata[0]}/>
-        <Scrollables {...mockdata[1]}/>
-        <Scrollables {...mockdata[2]}/>
-        <Scrollables {...mockdata[3]}/>
+        {mockdata.map((trek) => trek.tag.includes('new-route')? <Scrollables {...trek} key={trek.Index}/>:null)}
       </div>
   </div>
 
   <div className="mb-16">
       <div className="ml-4 text-4xl font-bold">Upcoming <br/>EXPLORATION</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
-        <Scrollables {...mockdata[0]}/>
-        <Scrollables {...mockdata[1]}/>
-        <Scrollables {...mockdata[2]}/>
-        <Scrollables {...mockdata[3]}/>
+        {mockdata.map((trek) => trek.tag.includes('upcoming-exploration')? <Scrollables {...trek} key={trek.Index}/>:null)}    
       </div>
   </div>
-
-
-
-
 
 </div>
 
 
 
-  
-
-      <div className="h-96"></div>
-    </div>
+      
+</div>
   );
 }
 
