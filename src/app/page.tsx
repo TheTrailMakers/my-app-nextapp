@@ -40,7 +40,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 })
 
   return (
-    <div className="min-h-screen bg-black text-white no-scrollbar">
+    <main className="min-h-screen bg-black text-white no-scrollbar">
 
         <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 80vw" priority placeholder="blur"></Image>
 
@@ -294,7 +294,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 
 
       
-</div>
+</main>
   );
 }
 

@@ -11,7 +11,7 @@ function  Scrollables({Name, Img} : any) {
         <Link href="/Coming_Soon">
             <div className='relative  flex flex-col justify-center items-center'>
 
-                <CldImage src={Img || default_Image} height={640} width={480} crop="fill" alt={Name} className="h-[320] w-[240] rounded-3xl bg-gradient-to-b from-black to-slate-500" 
+                <CldImage src={Img || default_Image} height={640} width={480} crop="fill" alt={Name} className="h-[320] w-[240] rounded-3xl gradient from-black to-slate-500" 
                 sizes="(max-width: 768px) 250px, 800px"></CldImage>
 
                 <h4 className='absolute top-4 text-2xl text-center px-6 font-bold'>{Name}</h4>
