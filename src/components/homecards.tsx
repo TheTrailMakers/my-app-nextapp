@@ -40,7 +40,7 @@ export default function TrekCard({Name, State, Description, Distance, Duration, 
                 </div>
             </div>
 
-            <Link href="/Coming_Soon">
+            <Link href={PageLink}>
             <div className="text-center flex flex-col items-center pt-4">
                 <p className="text-white bg-gradient-to-r from-red-600 to-red-900 py-1 w-3/4 font-bold text-lg rounded-t-3xl">{Date[0]}</p>
             </div>
