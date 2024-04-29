@@ -20,16 +20,16 @@ import Scrollables from "@/components/scrollables";
 
 
 interface Trek {
-  trekIndex: number;
-  trekName: string;
-  trekState: string;
-  trekDescription: string;
-  trekDistance: string;
-  trekDuration: string;
-  trekDifficulty: string;
-  trekCost: string;
-  trekInfo: string;
-  trekLink: string;
+  Index: number;
+  Name: string;
+  State: string;
+  Description: string;
+  Distance: string;
+  Duration: string;
+  Difficulty: string;
+  Cost: string;
+  Info: string;
+  Link: string;
 }
 
 
