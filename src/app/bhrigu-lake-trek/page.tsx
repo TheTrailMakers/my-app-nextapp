@@ -98,7 +98,7 @@ function page() {
 
 
       <section className='bg-green-900 rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
-        <h3 className='text-5xl font-extrabold px-6 pl-20 py-20 text-right uppercase'>
+        <h3 className='text-5xl font-extrabold px-6 pl-16 py-20 text-right uppercase'>
           Each Day of Bhrigu Lake Trek in Details
         </h3>
 

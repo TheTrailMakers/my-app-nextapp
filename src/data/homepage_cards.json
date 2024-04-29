@@ -1,8 +1,8 @@
 [
       {
         "Index": 101,
-        "tag":"summer-trek",
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_320,h_192/v1714105762/Ranisui-summer.jpg",
+        "tag": ["trek", "summer-trek", "monsoon-trek", "autumn-trek", "winter-trek", "spring-trek"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714105762/Ranisui-summer.jpg",
         "Name": "Ranisui Lake Trek",
         "State": "Himachal",
         "Description": "At the back yard of Manali, offers a serene summit (13,220ft) and a alpine lake (12,385ft). A moderate trek with a 360 degree view of stunning peaks, best explored from May to December.",
@@ -17,8 +17,8 @@
 
       {
         "Index": 102,
-        "tag":"winter-trek",
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_320,h_192/v1714141883/bhrigu-lake-winter-climb.jpg",
+        "tag": ["trek", "summer-trek", "monsoon-trek", "winter-trek"],
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714141883/bhrigu-lake-winter-climb.jpg",
         "Name": "Bhrigu Lake Trek",
         "State": "Himachal",
         "Description": "A scenic high-altitude trek in Himachal Pradesh, offering stunning views of snow-capped peaks and pristine alpine landscapes, with a moderate level of difficulty.",
@@ -33,7 +33,7 @@
 
       {
         "Index": 103,
-        "tag":"monsoon-trek",
+        "tag": ["trek", "monsoon-trek", "autumn-trek"],
         "Img": null,
         "Name": "Hampta Pass Trek",
         "State": "Himachal",
@@ -48,7 +48,7 @@
       
       {
         "Index": 104,
-        "tag":"expedition",
+        "tag": ["expedition", ""],
         "Img": null,
         "Name": "Yunam Peak Expedition",
         "State": "Himachal",
@@ -96,7 +96,7 @@
 
       {
         "Index": 107,
-        "tag": ["summer-trek", "weekend-plan", "winter-trek"],
+        "tag": ["trek", "hike",  "weekend-plan", "summer-trek", "winter-trek"],
         "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714113008/lamadugh_summer.jpg",
         "Name": "Lamadugh Hike",
         "State": "Himachal",
@@ -112,7 +112,7 @@
 
       {
         "Index": 108,
-        "tag": ["summer-trek", "new-route", "upcoming-exploration"],
+        "tag": ["trek", "new-route", "upcoming-exploration", "summer-trek", "monsoon-trek", "autumn-trek"],
         "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714117919/khanpari-kalihani-pass-trek.jpg",
         "Name": "Kalihani Pass Trek",
         "State": "Himachal",
@@ -128,7 +128,7 @@
 
       {
         "Index": 110,
-        "tag": ["summer-trek"],
+        "tag": ["trek", "summer-trek", "monsoon-trek", "autumn-trek"],
         "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714118662/beas-kund-trek.jpg",
         "Name": "Beas Kund Trek",
         "State": "Himachal",
@@ -145,7 +145,7 @@
       
       {
         "Index": 111,
-        "tag": ["summer-trek", "new-route"],
+        "tag": [ "trek", "new-route", "summer-trek", "monsoon-trek", "autumn-trek"],
         "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714119299/Gephan_ghat_trek.webp",
         "Name": "Gephan Lake Trek",
         "State": "Himachal",
@@ -198,7 +198,7 @@
         "Index": 114,
         "tag": ["weekend-plan"],
         "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714119822/Climbinh-in-Lahaul.jpg",
-        "Name": "Climbinh in Lahaul",
+        "Name": "Climbing in Lahaul",
         "State": "Himachal",
         "Description": "Best climbing near Manali",
         "Distance": "2km",

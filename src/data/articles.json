@@ -1,8 +1,8 @@
 [
     {
         "Index" : 1,
-        "ImageLink" : "/dog_deotibba.jpg",
-        "ImageAlt" : "Dog watching high peaks on grassy land, Mountain",
+        "ImageLink" : "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714408566/kashmir-nomad-great-lakes.jpg",
+        "ImageAlt" : "Kashmiri Gaddi smiling",
         "Title" : "Guardians of the Himalayas: A Glimpse into Sherpa Culture",
         "Brief" : "Where mountaineering prowess, deep spirituality, and unwavering hospitality converge in the shadow of the worlds highest peaks.",
         "Author" : "Anayna Das",
@@ -12,8 +12,8 @@
     
     {
         "Index" : 1,
-        "ImageLink" : "/dog_deotibba.jpg",
-        "ImageAlt" : "Dog watching high peaks on grassy land, Mountain",
+        "ImageLink" : "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714408045/gangar-kids-wooden-house.jpg",
+        "ImageAlt" : "happy kids in a old wooden house balcony, gangar Village",
         "Title" : "Majestic Himalayas: A Cultural Tapestry Woven Through Millennia",
         "Brief" : "Nestled amidst towering peaks, the Himalayas boast a rich cultural heritage shaped by diverse communities, ancient traditions, and breathtaking landscapes.",
         "Author" : "Sarah Patel",
@@ -23,8 +23,8 @@
 
     {
         "Index" : 1,
-        "ImageLink" : "/dog_deotibba.jpg",
-        "ImageAlt" : "Dog watching high peaks on grassy land, Mountain",
+        "ImageLink" : "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714408096/haridwar-saint-yogi-blessing.jpg",
+        "ImageAlt" : "Saint blessing people in",
         "Title" : "The Melting Pot: Cultural Diversity in the Himalayan Foothills",
         "Brief" : "Explore cultures flourishing in the foothills of the Himalayas, where diverse traditions, languages, and customs intertwine to create a unique way of life.",
         "Author" : "Rohan Gupta",
@@ -34,8 +34,8 @@
 
     {
         "Index" : 1,
-        "ImageLink" : "/dog_deotibba.jpg",
-        "ImageAlt" : "Dog watching high peaks on grassy land, Mountain",
+        "ImageLink" : "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714408383/old-modern-haridwar-sadhu.jpg",
+        "ImageAlt" : "sadhu, woman, boy speaking on phone, on ghat of haridwar",
         "Title" : "Living in Harmony: Exploring the Indigenous Peoples of the Himalayas",
         "Brief" : "From the resilient Sherpas to the spiritual Sadhus, discover the vibrant tapestry of indigenous communities thriving in the lap of the Himalayas.",
         "Author" : "Rajesh Sharma",
