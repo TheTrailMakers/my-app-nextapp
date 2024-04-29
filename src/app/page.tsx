@@ -170,7 +170,7 @@ const {hamburgerOpen} = useStore((state:any) => {
             terrains, steep ascents, and 
             unpredictable weather conditions.
         </p>
-        <Link href="/Coming_Soon"><p className="font-extrabold">Read More</p></Link>
+        <Link href="/contact"><p className="font-extrabold">Read More</p></Link>
       </section>
       
       <section className="mx-4 mt-6 mb-32">
@@ -186,7 +186,7 @@ const {hamburgerOpen} = useStore((state:any) => {
                         carry more than that we break your 
                         back
         </p>
-        <Link href="/Coming_Soon"><p className="font-extrabold">Read More</p></Link>
+        <Link href="/contact"><p className="font-extrabold">Read More</p></Link>
       </section>
       
       <section className="mx-4 mt-6 mb-32">
@@ -204,7 +204,7 @@ const {hamburgerOpen} = useStore((state:any) => {
           hurdles of different seasons. Even of 
           summer.
         </p>
-        <Link href="/Coming_Soon"><p className="font-extrabold">Read More</p></Link>
+        <Link href="/contact"><p className="font-extrabold">Read More</p></Link>
       </section>
 
 </div>
