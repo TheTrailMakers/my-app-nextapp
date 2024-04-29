@@ -10,7 +10,7 @@ import JoinDate from '@/components/joinDate'
 
 function page() {
   return (
-    <main className="min-h-screen bg-stone-900 text-white no-scrollbar">
+    <main className="min-h-[80vh] bg-stone-900 text-white no-scrollbar">
       <div className='bg-gradient-to-b from-black to-50% to-white h-[100vh] relative'>
 
         <Image src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
