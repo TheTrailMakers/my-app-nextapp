@@ -4,7 +4,9 @@ import React from 'react'
 import Image from 'next/image'
 import Accordion from '@/components/accordion'
 import Article from '@/components/article'
-import articleData from '@/data/articles.json' 
+import articleData from '@/data/articles.json'
+import mockdata from '@/data/homepage_cards.json'
+import JoinDate from '@/components/joinDate'
 
 function page() {
   return (
@@ -30,9 +32,9 @@ function page() {
 
 
 
-      <div className='bg-stone-900 pb-20'>
+      <div className='bg-stone-900 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
         <h4 className='uppercase text-3xl font-semibold p-8 pr-24 pb-0'>Hidden Alpine Lake near Manali</h4>
-        <div className='p-8 pr-16 leading-7 text-stone-400'>
+        <div className='p-8 pb-8 pr-16 leading-7 text-stone-400'>
             <p>
             Brigu Lake Trek offers a mesmerizing journey through the picturesque landscapes of Himachal Pradesh, India. 
             Situated at an altitude of 4,300 meters (14,100 feet) above sea level, this trek is a delightful blend of 
@@ -68,6 +70,27 @@ function page() {
 
           </div>
       </div>
+
+
+
+{/* ///////////////////////////////////////Join The Team/////////////////////////////////////////////////////////////////////////// */}
+
+
+      <section className='md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+        <h3 className='text-5xl uppercase font-bold p-8'>Join The Team</h3>
+        <div className='flex ml-6 items-center overflow-x-auto
+          snap-x snap-mandatory no-scrollbar'>
+          {mockdata.map((treks) => 
+            treks.Name.includes('Bhrigu Lake Trek')?
+              (treks.Date.map((dates) => 
+                <JoinDate date={dates} key={dates}/>)) : null)}
+        </div>
+        <div className='p-8 text-sm'>
+        <span className='font-bold'>To Create Your Own Group.</span>
+        <span className='text-yellow-500 font-bold'> Click Here.</span>
+        <div>Join on any date with your friends.</div>
+        </div>
+        </section>
 
 
 {/* ///////////////////////////////////////Trek In Details/////////////////////////////////////////////////////////////////////////////////////// */}
@@ -306,7 +329,7 @@ function page() {
 
 {/* //////////////////////////////////////Articles Section///////////////////////////////////////////////////////////////////////////////////////////// */}
     
-    <section>
+    <section className=' md:mx-[10%] '>
       <div className='px-8 text-left flex flex-col items-start'>
           <h3 className='text-5xl font-extrabold pt-20 uppercase max-w-60'>
             Food for Soul
@@ -317,7 +340,8 @@ function page() {
       </div>
       <div className='py-8 tracking-[10px] mx-auto pl-8'> 1 2 3 4 5 6 7 8 ...</div>
 
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col md:flex-row items-center overflow-x-auto
+       snap-x snap-mandatory no-scrollbar'>
       {articleData.map((articles) => <Article {...articles} key={articles.Index}/>)}
       </div>
     </section>

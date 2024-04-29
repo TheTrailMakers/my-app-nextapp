@@ -2,7 +2,7 @@
       {
         "Index": 101,
         "tag":"summer-trek",
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714105762/Ranisui-summer.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_320,h_192/v1714105762/Ranisui-summer.jpg",
         "Name": "Ranisui Lake Trek",
         "State": "Himachal",
         "Description": "At the back yard of Manali, offers a serene summit (13,220ft) and a alpine lake (12,385ft). A moderate trek with a 360 degree view of stunning peaks, best explored from May to December.",
@@ -18,7 +18,7 @@
       {
         "Index": 102,
         "tag":"winter-trek",
-        "Img": null,
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_320,h_192/v1714141883/bhrigu-lake-winter-climb.jpg",
         "Name": "Bhrigu Lake Trek",
         "State": "Himachal",
         "Description": "A scenic high-altitude trek in Himachal Pradesh, offering stunning views of snow-capped peaks and pristine alpine landscapes, with a moderate level of difficulty.",
@@ -28,7 +28,7 @@
         "Cost": "9,500",
         "Info": "transport included",
         "PageLink": "/bhrigu-lake-trek",
-        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+        "Date": ["28th May, 2024", "25th June, 2024", "16th July, 2024"]
       },
 
       {
@@ -44,7 +44,7 @@
         "Cost": "10,500",
         "Info": "transport included",
         "PageLink": "/hampta-pass-trek",
-        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]      },
+        "Date": ["28th May, 2024", "24th June, 2024", "24th June, 2024"]      },
       
       {
         "Index": 104,
