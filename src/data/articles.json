@@ -8,5 +8,38 @@
         "Author" : "Anayna Das",
         "CreatedOn" : "March 9, 2024",
         "Likes" : 0
+    },
+    
+    {
+        "Index" : 1,
+        "ImageLink" : "/dog_deotibba.jpg",
+        "ImageAlt" : "Dog watching high peaks on grassy land, Mountain",
+        "Title" : "Majestic Himalayas: A Cultural Tapestry Woven Through Millennia",
+        "Brief" : "Nestled amidst towering peaks, the Himalayas boast a rich cultural heritage shaped by diverse communities, ancient traditions, and breathtaking landscapes.",
+        "Author" : "Sarah Patel",
+        "CreatedOn" : "July 21, 2023",
+        "Likes" : 0
+    },
+
+    {
+        "Index" : 1,
+        "ImageLink" : "/dog_deotibba.jpg",
+        "ImageAlt" : "Dog watching high peaks on grassy land, Mountain",
+        "Title" : "The Melting Pot: Cultural Diversity in the Himalayan Foothills",
+        "Brief" : "Explore cultures flourishing in the foothills of the Himalayas, where diverse traditions, languages, and customs intertwine to create a unique way of life.",
+        "Author" : "Rohan Gupta",
+        "CreatedOn" : "March 9, 2024",
+        "Likes" : 0
+    },
+
+    {
+        "Index" : 1,
+        "ImageLink" : "/dog_deotibba.jpg",
+        "ImageAlt" : "Dog watching high peaks on grassy land, Mountain",
+        "Title" : "Living in Harmony: Exploring the Indigenous Peoples of the Himalayas",
+        "Brief" : "From the resilient Sherpas to the spiritual Sadhus, discover the vibrant tapestry of indigenous communities thriving in the lap of the Himalayas.",
+        "Author" : "Rajesh Sharma",
+        "CreatedOn" : "March 9, 2024",
+        "Likes" : 0
     }
 ]

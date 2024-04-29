@@ -2,16 +2,16 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import BandarpunchhImg from "../../public/Bandarpunchh-Black Peak.jpg"
 
+export default function TrekCard({Name, Img, State, Description, Distance, Duration, Difficulty, Date, PageLink} : any) {
 
-export default function TrekCard({Name, State, Description, Distance, Duration, Difficulty, Date, PageLink} : any) {
+    const default_Image = "https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg"
 
     return (
         <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
 
                 <Link href="/Coming_Soon">
-                  <Image src={BandarpunchhImg} alt={Name} className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 768px) 250px, 800px" placeholder="blur"></Image>
+                  <Image src={Img || default_Image} alt={Name} width={320} height={192} className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 768px) 250px, 800px"></Image>
                 </Link>
 
             <div className="border-b-[1px] border-yellow-500 p-2 min-h-40">

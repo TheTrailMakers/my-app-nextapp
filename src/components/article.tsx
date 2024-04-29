@@ -6,7 +6,7 @@ function Article({ImageLink, ImageAlt, Title, Brief, Author, CreatedOn, Likes} :
 
 
   return (
-    <div className='max-w-80 h-[500px] bg-white rounded-3xl shadow-lg text-black'>
+    <div className='max-w-80 h-[500px] bg-white rounded-3xl snap-center flex-shrink-0 shadow-lg text-black m-4'>
         <div className='relative w-80 h-48'>
         <Image src={ImageLink} 
                 alt={ImageAlt}
