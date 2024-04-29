@@ -7,12 +7,13 @@ function Footer() {
     <footer className='bg-neutral-800 pb-4 pt-2 text-white'>
       <div className='flex justify-between items-center p-4 lg:mx-28'>
         <Image src={TTMLogo} alt="The Trail Makers Logo" sizes="(max-width: 768px) 100px, 100px" className='w-20 lg:w-40' priority></Image>
-        <h4 className='uppercase font-bold bg-amber-500 text-xl text-white p-2 px-6 rounded-2xl text-right w-56 mr-4 leading-5'>Newly Explored Routes</h4>
+        <h4 className='uppercase font-bold bg-amber-500 text-xl text-white
+         p-2 px-6 rounded-2xl text-right max-w-56 mr-4 leading-5'>Newly Explored Routes</h4>
       </div>
 
       <div className='flex flex-wrap lg:justify-center'>
-        <div className='text-lg flex justify-between items-start'>
-          <div className='p-6'>
+        <div className='text-lg flex flex-wrap justify-between items-start'>
+          <div className='p-4'>
             <h5 className='font-bold'>Treks by Season</h5>
             <div className='font-extralight'>
               <div className='pt-1'>Summer</div>
@@ -23,16 +24,16 @@ function Footer() {
             </div>
           </div>
 
-          <div className='p-6'>
+          <div className='p-4'>
             <h5 className='font-bold'>Treks by Months</h5>
-            <div className='flex justify-between items-start font-extralight'>
+            <div className='flex justify-between flex-wrap items-start font-extralight'>
               <div className='pr-4'>
-                <div className='pt-1'>January</div>
-                <div className='pt-1'>February</div>
-                <div className='pt-1'>March</div>
-                <div className='pt-1'>April</div>
-                <div className='pt-1'>May</div>
-                <div className='pt-1'>June</div>
+                <p className='pt-1'>January</p>
+                <p className='pt-1'>February</p>
+                <p className='pt-1'>March</p>
+                <p className='pt-1'>April</p>
+                <p className='pt-1'>May</p>
+                <p className='pt-1'>June</p>
               </div>
               <div >
                 <div className='pt-1'>July</div>
@@ -47,8 +48,8 @@ function Footer() {
           
         </div>
 
-        <div className='text-lg flex justify-between items-start'>
-          <div className='p-6'>
+        <div className='text-lg flex flex-wrap justify-between items-start'>
+          <div className='p-4'>
             <h5 className='font-bold'>Treks by Duration</h5>
             <div className='font-extralight'>
             <div className='pt-1'>2 Days</div>
@@ -62,7 +63,7 @@ function Footer() {
           </div>
 
 
-          <div className='p-6'>
+          <div className='p-4'>
             <h5 className='font-bold'>Treks by Region</h5>
             <div className='font-extralight'>
               <div className='pt-1'>Himachal</div>
@@ -77,7 +78,7 @@ function Footer() {
           
         </div>
 
-        <div className='text-lg flex justify-between items-start'>
+        <div className='text-lg flex flex-wrap justify-between items-start'>
               
           <div className='p-6'>
             <h5 className='font-bold'>Treks by Difficulty</h5>
