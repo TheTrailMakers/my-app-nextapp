@@ -20,7 +20,7 @@ function page() {
         alt="Climbing towards bhrigu lake"></Image>
 
         <div className='absolute p-16 flex flex-col justify-center items-center w-full '>
-          <h1 className='text-8xl lg:text-[10rem] xl:px-40 text-center font-bold uppercase mx-auto '>Bhrigu Lake Trek</h1>
+          <h1 className='text-[20vw] leading-[1] lg:text-[10rem] xl:px-40 text-center font-bold uppercase mx-auto '>Bhrigu Lake Trek</h1>
         </div>
       </div>
 
@@ -307,7 +307,7 @@ function page() {
     
     <section>
       <div className='px-8 text-left flex flex-col items-start'>
-          <h3 className='text-5xl font-extrabold pt-20 uppercase w-60'>
+          <h3 className='text-5xl font-extrabold pt-20 uppercase max-w-60'>
             Food for Soul
           </h3>
           <h6 className='w-[70%]'>

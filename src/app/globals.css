@@ -15,4 +15,6 @@
   .poppins {
     font-family: var(--font-poppins);
   }
+
+  * {border: 2px solid red !important}
 }

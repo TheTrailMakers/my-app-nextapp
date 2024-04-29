@@ -3,8 +3,10 @@ import Image from 'next/image'
 
 
 function Article({ImageLink, ImageAlt, Title, Brief, Author, CreatedOn, Likes} : any) {
+
+
   return (
-    <div className='w-80 h-[500px] bg-white rounded-3xl shadow-lg text-black'>
+    <div className='max-w-80 h-[500px] bg-white rounded-3xl shadow-lg text-black'>
         <div className='relative w-80 h-48'>
         <Image src={ImageLink} 
                 alt={ImageAlt}
