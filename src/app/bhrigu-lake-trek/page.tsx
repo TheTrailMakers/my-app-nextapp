@@ -1,9 +1,14 @@
+"use client"
+
 import React from 'react'
 import Image from 'next/image'
+import Accordion from '@/components/accordion'
+import Article from '@/components/article'
+import articleData from '@/data/articles.json' 
 
 function page() {
   return (
-    <main className="min-h-screen bg-black text-white no-scrollbar">
+    <main className="min-h-screen bg-stone-900 text-white no-scrollbar">
       <div className='bg-gradient-to-b from-black to-50% to-white h-[100vh] relative'>
 
         <Image src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
@@ -15,9 +20,13 @@ function page() {
         alt="Climbing towards bhrigu lake"></Image>
 
         <div className='absolute p-16 flex flex-col justify-center items-center w-full '>
-          <h1 className='text-8xl lg:text-[10rem] xl:px-40 text-center font-bold uppercase mx-auto'>Bhrigu Lake Trek</h1>
+          <h1 className='text-8xl lg:text-[10rem] xl:px-40 text-center font-bold uppercase mx-auto '>Bhrigu Lake Trek</h1>
         </div>
       </div>
+
+
+{/* ////////////////////////////////////////Short Intro////////////////////////////////////////////////////////////////////////////////////////// */}
+
 
 
       <div className='bg-stone-900 pb-20'>
@@ -38,8 +47,8 @@ function page() {
 
             <p>
             One of the highlights of the Brigu Lake Trek is reaching the azure-blue Brigu Lake itself. 
-            Encircled by snow-capped peaks, the lake's tranquil waters reflect the surrounding beauty, 
-            creating a serene atmosphere that's perfect for meditation and introspection. Legend has it 
+            Encircled by snow-capped peaks, the lake&apos;s tranquil waters reflect the surrounding beauty, 
+            creating a serene atmosphere that&apos;s perfect for meditation and introspection. Legend has it 
             that the lake never freezes completely, even in the coldest winters, adding to its mystique.
             </p><br />
 
@@ -59,26 +68,31 @@ function page() {
           </div>
       </div>
 
-      <div className='bg-green-900'>
-        <h3 className='text-5xl font-extrabold px-6 pl-20 py-20 text-right md:text-center md:mx-[10%] uppercase'>
-          Each Day of Bhrigu Lake Trek in Details</h3>
-        
-        <div className='p-4'>
-          <div className='flex justify-between items-start mb-8'>
-            <h4 className='text-4xl'>Day 1</h4>
+
+{/* ///////////////////////////////////////Trek In Details/////////////////////////////////////////////////////////////////////////////////////// */}
+
+
+
+      <section className='bg-green-900 rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+        <h3 className='text-5xl font-extrabold px-6 pl-20 py-20 text-right uppercase'>
+          Each Day of Bhrigu Lake Trek in Details
+        </h3>
+
+        <div className=''>
+          <div className='flex justify-between items-start mb-8 px-8 pt-8'>
+            <h4 className='text-6xl'>Day 1</h4>
             <div>Manali</div>
           </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
-          height={200}
-          width={800}
-                  alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
-                  style={{width: '100%',height: '160px' }} 
-                  className="object-cover w-full object-[0%_60%]">
-
+              height={200}
+              width={800}
+              alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
+              style={{width: '100%',height: '160px' }} 
+              className="object-cover w-full object-[0%_90%]">
           </Image>
 
-          <div className='pr-6 leading-7 text-stone-200'>
+          <div className='pt-12 leading-7 text-stone-300 px-8'>
             <p>
             As the golden rays of the morning sun kissed the quaint town of Manali, 
             adventurers from around the world gathered, their hearts filled with 
@@ -97,7 +111,7 @@ function page() {
             As the day unfolded, the trail unveiled its treasures - meandering 
             streams, vibrant wildflowers, and panoramic vistas that took their 
             breath away. With every turn, the landscape transformed, weaving a 
-            tapestry of nature's wonders that left them in awe.
+            tapestry of nature&apos;s wonders that left them in awe.
             </p><br />
 
             <p>
@@ -107,11 +121,213 @@ function page() {
             morrow.
             </p><br />
           </div>
-
         </div>
+
+        <div className='h-2 my-8 bg-green-950'></div>
+
+        <div className=''>
+          <div className='flex justify-between items-start mb-8 px-8 pt-8'>
+            <h4 className='text-6xl'>Day 2</h4>
+            <div>Manali</div>
+          </div>
+
+          <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
+              height={200}
+              width={800}
+              alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
+              style={{width: '100%',height: '160px' }} 
+              className="object-cover w-full object-[0%_90%]">
+          </Image>
+
+          <div className='pt-12 leading-7 text-stone-300 px-8'>
+            <p>
+            As the golden rays of the morning sun kissed the quaint town of Manali, 
+            adventurers from around the world gathered, their hearts filled with 
+            excitement and anticipation. Armed with sturdy boots and backpacks, they 
+            set out on the trail leading to the mystical Bhrigu Lake.
+            </p><br />
+
+            <p>
+            The trek commenced with a gentle ascent through lush green forests, 
+            the air echoing with the melodious chirping of birds. Each step brought 
+            them closer to the heart of the Himalayas, where legends whispered of a 
+            sacred lake nestled amidst towering peaks.
+            </p><br />
+
+            <p>
+            As the day unfolded, the trail unveiled its treasures - meandering 
+            streams, vibrant wildflowers, and panoramic vistas that took their 
+            breath away. With every turn, the landscape transformed, weaving a 
+            tapestry of nature&apos;s wonders that left them in awe.
+            </p><br />
+
+            <p>
+            As the sun dipped below the horizon, painting the sky in hues of 
+            orange and pink, weary yet exhilarated, they made camp beneath a 
+            canopy of stars, eager for the adventures that awaited them on the 
+            morrow.
+            </p><br />
+          </div>
+        </div>
+
+        
+        <div className='h-2 my-8 bg-green-950'></div>
+
+        <div className=''>
+          <div className='flex justify-between items-start mb-8 px-8 pt-8'>
+            <h4 className='text-6xl'>Day 3</h4>
+            <div>Manali</div>
+          </div>
+
+          <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
+              height={200}
+              width={800}
+              alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
+              style={{width: '100%',height: '160px' }} 
+              className="object-cover w-full object-[0%_90%]">
+          </Image>
+
+          <div className='pt-12 leading-7 text-stone-300 px-8'>
+            <p>
+            As the golden rays of the morning sun kissed the quaint town of Manali, 
+            adventurers from around the world gathered, their hearts filled with 
+            excitement and anticipation. Armed with sturdy boots and backpacks, they 
+            set out on the trail leading to the mystical Bhrigu Lake.
+            </p><br />
+
+            <p>
+            The trek commenced with a gentle ascent through lush green forests, 
+            the air echoing with the melodious chirping of birds. Each step brought 
+            them closer to the heart of the Himalayas, where legends whispered of a 
+            sacred lake nestled amidst towering peaks.
+            </p><br />
+
+            <p>
+            As the day unfolded, the trail unveiled its treasures - meandering 
+            streams, vibrant wildflowers, and panoramic vistas that took their 
+            breath away. With every turn, the landscape transformed, weaving a 
+            tapestry of nature&apos;s wonders that left them in awe.
+            </p><br />
+
+            <p>
+            As the sun dipped below the horizon, painting the sky in hues of 
+            orange and pink, weary yet exhilarated, they made camp beneath a 
+            canopy of stars, eager for the adventures that awaited them on the 
+            morrow.
+            </p><br />
+          </div>
+        </div>
+
+        
+        <div className='h-2 my-8 bg-green-950'></div>
+
+        <div className=''>
+          <div className='flex justify-between items-start mb-8 px-8 pt-8'>
+            <h4 className='text-6xl'>Day 4</h4>
+            <div>Manali</div>
+          </div>
+
+          <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
+              height={200}
+              width={800}
+              alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
+              style={{width: '100%',height: '160px' }} 
+              className="object-cover w-full object-[0%_90%]">
+          </Image>
+
+          <div className='pt-12 leading-7 text-stone-300 px-8'>
+            <p>
+            As the golden rays of the morning sun kissed the quaint town of Manali, 
+            adventurers from around the world gathered, their hearts filled with 
+            excitement and anticipation. Armed with sturdy boots and backpacks, they 
+            set out on the trail leading to the mystical Bhrigu Lake.
+            </p><br />
+
+            <p>
+            The trek commenced with a gentle ascent through lush green forests, 
+            the air echoing with the melodious chirping of birds. Each step brought 
+            them closer to the heart of the Himalayas, where legends whispered of a 
+            sacred lake nestled amidst towering peaks.
+            </p><br />
+
+            <p>
+            As the day unfolded, the trail unveiled its treasures - meandering 
+            streams, vibrant wildflowers, and panoramic vistas that took their 
+            breath away. With every turn, the landscape transformed, weaving a 
+            tapestry of nature&apos;s wonders that left them in awe.
+            </p><br />
+
+            <p>
+            As the sun dipped below the horizon, painting the sky in hues of 
+            orange and pink, weary yet exhilarated, they made camp beneath a 
+            canopy of stars, eager for the adventures that awaited them on the 
+            morrow.
+            </p><br />
+          </div>
+        </div>
+
+
+      </section>
+
+
+{/* ////////////////////////////////////// FAQ ///////////////////////////////////////////////////////////////////////////// */}
+
+
+      <section className='bg-black md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+        <div className='px-8'>
+          <h3 className='text-5xl font-extrabold pt-20 text-left uppercase'>
+            faq
+          </h3>
+          <h6 className='w-[70%]'>frequently asked questions about bhrigu lake trek</h6>
+        </div>
+
+        <div className='mx-[10%] py-20'>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+          <Accordion question="Am I fit enough for trekking?" answer="My answer"/>
+        </div>
+
+      </section>
+
+
+{/* ////////////////////////////////////// What to Pack///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+    <section className='bg-red-600 h-96 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+      <div className='px-8 text-right flex flex-col items-end'>
+          <h3 className='text-5xl font-extrabold pt-20 uppercase w-60'>
+            What to Pack
+          </h3>
+          <h6 className='w-[70%]'>There is <strong className='text-amber-200'>no bad weather</strong> only bad clothing</h6>
       </div>
 
+    </section>
 
+{/* //////////////////////////////////////Articles Section///////////////////////////////////////////////////////////////////////////////////////////// */}
+    
+    <section>
+      <div className='px-8 text-left flex flex-col items-start'>
+          <h3 className='text-5xl font-extrabold pt-20 uppercase w-60'>
+            Food for Soul
+          </h3>
+          <h6 className='w-[70%]'>
+            Learn The way Of Mountains
+          </h6>
+      </div>
+      <div className='py-8 tracking-[10px] mx-auto pl-8'> 1 2 3 4 5 6 7 8 ...</div>
+
+      <div className='flex flex-col items-center'>
+      {articleData.map((articles) => <Article {...articles} key={articles.Index}/>)}
+      </div>
+    </section>
+
+{/* ///////////////////////////////////Similar Activities/////////////////////////////////////////////////////////////////////////////////////////////// */}
+    <section>
+
+    </section>
+
+
+    
     </main>
   )
 }
