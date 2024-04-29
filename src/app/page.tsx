@@ -50,7 +50,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 
       <div className=" m-6 pt-10 pr-6 mb-20 text-base font-medium text-neutral-500 
                         md:w-[50vw] md:m-auto md:pl-8 md:mb-20
-                        lg:w-[35vw]">
+                         lg:text-lg">
         As people moved from agarian society to Industrial society, individuals started to become specialised in single persuits. Same stuff everyday broke the back, while as a human they aren’t meant to do so, they kept them alive, but never let live.
         <br/><br/>
         Capitalism prioritise WANT, not NEED. <strong>Human need Wide Open Space </strong>, Boundaryless Grassfield.

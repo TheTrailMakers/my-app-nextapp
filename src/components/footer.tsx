@@ -11,7 +11,7 @@ function Footer() {
          p-2 px-6 rounded-2xl text-right flex-shrink max-w-40 mr-2 leading-5'>Newly Explored Routes</h4>
       </div>
 
-      <div className='flex flex-wrap justify-between lg:justify-center text-lg'>
+      <div className='flex flex-wrap justify-between lg:justify-center text-lg gap-8'>
 
 
           <div className='p-4'>
@@ -27,7 +27,7 @@ function Footer() {
 
           <div className='p-4'>
             <h5 className='font-bold'>Treks by Months</h5>
-            <div className='font-extralight flex flex-wrap text-right justify-end items-end '>
+            <div className='font-extralight flex flex-wrap gap-6'>
               <div className=''>
                 <p className='pt-1'>January</p>
                 <p className='pt-1'>February</p>
