@@ -5,14 +5,15 @@ import Image from 'next/image'
 function Footer() {
   return (
     <footer className='bg-neutral-800 pb-4 pt-2 text-white'>
-      <div className='flex justify-between items-center p-4 lg:mx-28'>
+      <div className='flex justify-between flex-wrap items-center p-4 lg:mx-28'>
         <Image src={TTMLogo} alt="The Trail Makers Logo" sizes="(max-width: 768px) 100px, 100px" className='w-20 lg:w-40' priority></Image>
         <h4 className='uppercase font-bold bg-amber-500 text-xl text-white
-         p-2 px-6 rounded-2xl text-right max-w-56 mr-4 leading-5'>Newly Explored Routes</h4>
+         p-2 px-6 rounded-2xl text-right flex-shrink max-w-40 mr-2 leading-5'>Newly Explored Routes</h4>
       </div>
 
-      <div className='flex flex-wrap lg:justify-center'>
-        <div className='text-lg flex flex-wrap justify-between items-start'>
+      <div className='flex flex-wrap justify-between lg:justify-center text-lg'>
+
+
           <div className='p-4'>
             <h5 className='font-bold'>Treks by Season</h5>
             <div className='font-extralight'>
@@ -26,8 +27,8 @@ function Footer() {
 
           <div className='p-4'>
             <h5 className='font-bold'>Treks by Months</h5>
-            <div className='flex justify-between flex-wrap items-start font-extralight'>
-              <div className='pr-4'>
+            <div className='font-extralight flex flex-wrap text-right justify-end items-end '>
+              <div className=''>
                 <p className='pt-1'>January</p>
                 <p className='pt-1'>February</p>
                 <p className='pt-1'>March</p>
@@ -46,9 +47,8 @@ function Footer() {
             </div>
           </div>
           
-        </div>
 
-        <div className='text-lg flex flex-wrap justify-between items-start'>
+
           <div className='p-4'>
             <h5 className='font-bold'>Treks by Duration</h5>
             <div className='font-extralight'>
@@ -75,10 +75,8 @@ function Footer() {
             </div>
           </div>
 
-          
-        </div>
 
-        <div className='text-lg flex flex-wrap justify-between items-start'>
+
               
           <div className='p-6'>
             <h5 className='font-bold'>Treks by Difficulty</h5>
@@ -91,10 +89,9 @@ function Footer() {
               <div className='pt-1'>Grade 5+</div>
               <div className='pt-1'>Technical Treks</div>
               <div className='pt-1'>Exploratory Trek</div>
-              </div>
+            </div>
           </div>
 
-        </div>
       </div>
         
       <div className='bottom-0 text-center text-slate-500 pt-8'>© the trail makers</div>

@@ -20,7 +20,8 @@ function page() {
         alt="Climbing towards bhrigu lake"></Image>
 
         <div className='absolute p-16 flex flex-col justify-center items-center w-full '>
-          <h1 className='text-[20vw] leading-[1] lg:text-[10rem] xl:px-40 text-center font-bold uppercase mx-auto '>Bhrigu Lake Trek</h1>
+          <h1 className='text-[20vw] leading-[1] lg:text-[10rem] xl:px-40
+           text-center font-bold uppercase mx-20'>Bhrigu Lake Trek</h1>
         </div>
       </div>
 

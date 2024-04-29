@@ -12,7 +12,7 @@ function Article({ImageLink, ImageAlt, Title, Brief, Author, CreatedOn, Likes} :
                 alt={ImageAlt}
                 width={384}
                 height={192}
-                className='object-cover rounded-t-3xl w-80 h-48 object-[0%_80%]'
+                className='object-cover rounded-t-3xl max-w-80 h-48 object-[0%_80%]'
                 >
         </Image>
         <div className='absolute bottom-2 left-2 text-2xl font-extrabold text-white'> Like {Likes}</div>
