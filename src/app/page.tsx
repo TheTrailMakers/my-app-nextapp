@@ -17,6 +17,7 @@ import deotibbaDogImg from "../../public/dog_deotibba.jpg"
 import panoviewImg from "../../public/pano_view.jpg"
 import bhriguRiverCrossingImg from "../../public/river_crossing.jpg"
 import Scrollables from "@/components/scrollables";
+import TrekCard from "@/components/homecards";
 
 
 interface Trek {
@@ -64,10 +65,10 @@ const {hamburgerOpen} = useStore((state:any) => {
 
       <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
         <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
-          <Homecards {...mockdata[0]}/>
-          <Homecards {...mockdata[1]}/>
-          <Homecards {...mockdata[2]}/>
-          <Homecards {...mockdata[3]}/>
+          <TrekCard {...mockdata[0]}/>
+          <TrekCard {...mockdata[1]}/>
+          <TrekCard {...mockdata[2]}/>
+          <TrekCard {...mockdata[3]}/>
         </div>
 
         <div className=" mx-auto pt-24 border-b-2 w-3/5 border-yellow-500"></div>
@@ -210,7 +211,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 </div>
 
 
-{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+{/* //////////////////////////////////////////////Faq Section///////////////////////////////////////////////////////////////////////////////////////////// */}
 
 
 <div className="md:mx-auto md:max-w-[500px]">

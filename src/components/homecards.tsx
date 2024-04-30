@@ -10,7 +10,7 @@ export default function TrekCard({Name, Img, State, Description, Distance, Durat
     return (
         <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
 
-                <Link href="/Coming_Soon">
+                <Link href="/contact">
                   <Image src={Img || default_Image} alt={Name} width={320} height={192} className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 768px) 250px, 800px"></Image>
                 </Link>
 
