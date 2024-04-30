@@ -10,12 +10,12 @@ import JoinDate from '@/components/joinDate'
 
 function page() {
   return (
-    <main className="min-h-[80vh] bg-stone-900 text-white no-scrollbar">
-      <div className='bg-gradient-to-b from-black to-50% to-white h-[100vh] relative'>
+    <main className="min-h-screen bg-stone-900 text-white no-scrollbar">
+      <div className='bg-gradient-to-b from-black to-50% to-white h-[80vh] relative'>
 
         <Image src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
         className='object-cover object-[25%] w-full md:object-bottom  mix-blend-multiply absolute'
-        style={{ width: "100%", height: "100vh"}}
+        style={{ width: "100%", height: "80vh"}}
         height={800}
         width={400} 
         sizes="(max-width: 768px) 100vw, 100vw"
