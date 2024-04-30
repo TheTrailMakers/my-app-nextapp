@@ -20,14 +20,14 @@ function All() {
         <p className='pr-[20%] pl-6'>List of All Activies, Treks and Expeditions, that we Organise or have Documented.</p>
     
         <section className='mt-8'>
-            <section className='bg-yellow-600 p-6'>
+            <section className='bg-yellow-600 p-2 md:p-6'>
                 <h2 className='text-4xl font-semibold'>Hikes</h2>
                 <div className="mt-8 flex flex-wrap">
                     {mockdata.map((trek) => trek.tag.includes('hike')? <AllCard {...trek} key={trek.Index}/>:null)}
                 </div>
             </section>
 
-            <section className='bg-green-950 p-6'>
+            <section className='bg-green-950 pl-2 p-6 md:p-6'>
                 <div className='flex justify-between items-baseline'>
                 <h2 className='text-4xl font-semibold'>Treks</h2>
 
@@ -55,7 +55,7 @@ function All() {
             </div>
             </section>
 
-            <section className='bg-red-950 p-6'>
+            <section className='bg-red-950 pl-2 p-6 md:p-6'>
                 <h2 className='text-4xl font-semibold'>Expeditions</h2>
                 <div className="mt-8 flex flex-wrap">
                 {mockdata
@@ -64,14 +64,14 @@ function All() {
                 </div>
             </section>
 
-            <section className='bg-red-300 p-6'>
+            <section className='bg-red-300 pl-2 p-6 md:p-6'>
                 <h2 className='text-4xl font-semibold'>Camps</h2>
                 <div className="mt-8 flex flex-wrap">
                     {mockdata.map((trek) => trek.tag.includes('camp')? <AllCard {...trek} key={trek.Index}/>:null)}
                 </div>
             </section>
 
-            <section className='bg-orange-300 p-6'>
+            <section className='bg-orange-300 pl-2 p-6 md:p-6'>
                 <h2 className='text-4xl font-semibold'>Week-End Plans</h2>
                 <div className="mt-8 flex flex-wrap">
                     {mockdata.map((trek) => trek.tag.includes('weekend-plan')? <AllCard {...trek} key={trek.Index}/>:null)}
