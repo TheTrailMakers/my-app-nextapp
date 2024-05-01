@@ -11,7 +11,8 @@ import GalleryImage from '@/components/galleryImage'
 
 function page() {
   return (
-    <main className="min-h-screen bg-stone-900 text-white no-scrollbar">
+    <main className="min-h-screen bg-stone-900 text-white no-scrollbar relative">
+
       <div className='bg-gradient-to-b from-black to-50% to-white h-[80vh] relative'>
 
         <Image src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
@@ -118,17 +119,13 @@ function page() {
             <div>Manali</div>
           </div>
 
-          <div className="p-6 flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
-            {mockdata.map((treks) => <GalleryImage {...treks} key={treks.Index} />)}
-          </div>
-
-          {/* <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
+          <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
               height={200}
               width={800}
               alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
               style={{width: '100%',height: '160px' }} 
               className="object-cover w-full object-[0%_90%]">
-          </Image> */}
+          </Image>
 
           <div className='pt-12 leading-7 text-stone-300 px-8'>
             <p>
