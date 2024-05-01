@@ -9,7 +9,7 @@ export default function AllCard({Name, Img, State, Description, Distance, Durati
     return (
         <div className="m-1 relative flex flex-col items-center border-cyan-600 bg-gradient-to-b from-black to-gray-900 40 h-60 rounded-2xl">
 
-            <Link href="/contact">
+            <Link href={PageLink || "/contact"}>
                   <Image src={Img || default_Image} alt={Name} width={320} height={320} 
                          className="object-cover w-40 h-60 rounded-2xl" 
                          sizes="(max-width: 768px) 250px, 800px"></Image>
