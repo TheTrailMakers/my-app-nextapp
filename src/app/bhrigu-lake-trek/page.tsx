@@ -226,20 +226,20 @@ function page() {
             Forgot your socks? No problem. You can also rent gear right here at the Homestay if you&apos;re in a pinch.
             </p><br />
 
-            <p>Don't forget to check out our handy guides:</p>
+            <p>Don&apos;t forget to check out our handy guides:</p>
 
             <div><Link href={"/contact"} className='text-sky-500'>Where to snag adventure gear in Manali?</Link></div>
             <div><Link href={"/contact"} className='text-sky-500'>Cool spots to explore in Manali on foot</Link></div>
 
             <br/>
             <p>
-            <span className='font-bold'>Dinner Time: </span>Get ready for a hearty dinner, served a bit earlier than usual. Yep, that's the 
+            <span className='font-bold'>Dinner Time: </span>Get ready for a hearty dinner, served a bit earlier than usual. Yep, that&apos;s the 
             mountain life for you - early to bed, early to rise. But hey, it&apos;s all part of the adventure, 
             right?
             </p><br/>
 
             <p>
-            <span className='font-bold'>Rest Up: </span>After a satisfying meal, it&apos;s time to hit the sack. Snuggle up and get a good night's 
+            <span className='font-bold'>Rest Up: </span>After a satisfying meal, it&apos;s time to hit the sack. Snuggle up and get a good night&apos;s 
             sleep. We&apos;ve got big plans for tomorrow, and you&apos;ll want to be well-rested for the journey ahead.
             </p><br />
 
