@@ -52,12 +52,13 @@ export default function Navbar () {
 
     return(
         
-        <header className="top-0 left-0 right-0 flex items-center justify-end gap-4 bg-black h-16"> 
+        <header className="top-0 left-0 right-0 flex 
+        items-center justify-end gap-4 bg-orange-500 h-16"> 
 
             <Link href='/' className="mr-auto"><Image  className="pl-4 " src="/TTM.png" alt="The Trail Makers Logo" width={80} height={80}/></Link>
             
             
-            <Link href="/Coming_Soon"><Button text="Sign Up" bgcolor="bg-neutral-700" txtcolor="text-white" ></Button></Link>
+            <Link href="/Coming_Soon"><Button text="Sign Up" bgcolor="bg-yellow-400" txtcolor="text-black" ></Button></Link>
             <Link href="/Coming_Soon"><Button text="Log In" bgcolor="bg-white" txtcolor="text-black" ></Button></Link>
 
             <nav className={`font-mono uppercase bg-neutral-950 text-white

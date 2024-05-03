@@ -12,7 +12,7 @@ import Link from 'next/link'
 
 function page() {
   return (
-    <main className="min-h-screen bg-stone-900 text-white no-scrollbar relative">
+    <main className="min-h-screen bg-neutral-900 text-white no-scrollbar relative">
 
       <div className='bg-gradient-to-b from-black to-50% to-white h-[80vh] relative'>
 
@@ -58,9 +58,9 @@ function page() {
 
 {/* ////////////////////////////////////////Short Intro & Join the Date////////////////////////////////////////////////////////////////////////////////////////// */}
 
-    <div className=' flex flex-col md:flex-row justify-evenly'>
+  
 
-      <section className='bg-stone-900 max-w-[400px]'>
+      <section className='bg-green-950 max-w-[400px]'>
         <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0'>Easiest Alpine Grassland and Lake Trek in Manali</h2>
         <div className='p-8 pb-8 pr-12 md:pr-0 leading-7 text-stone-300'>
             <p>
@@ -135,13 +135,12 @@ function page() {
         </div>
         </section>
   
-  </div>
 
 
 {/* ///////////////////////////////////////Brief Itinerray////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
 
-      <section className='flex flex-col rounded-3xl bg-white text-black m-4'>
+      <section className='flex flex-col rounded-3xl bg-white text-black m-4 my-24'>
         <h3 className='text-5xl font-bold uppercase m-4 mb-0 max-w-[50%]'>Brief Itinerary</h3>
         <div className='m-4 font-mono text-lg font-semibold'>
           <ul>
@@ -174,8 +173,10 @@ function page() {
 
 {/* ////////////////////////////////////////Image Gallery//////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-<section className="p-4 my-24  flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
-        {mockdata.map((treks) => <GalleryImage {...treks} key={treks.Index} />)}
+      <section> 
+        <div className="p-4 my-24  flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
+          {mockdata.map((treks) => <GalleryImage {...treks} key={treks.Index} />)}
+        </div>
       </section>
 
 
@@ -183,14 +184,14 @@ function page() {
 
 
 
-      <section className='bg-emerald-600 rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
-        <h3 className='text-5xl font-extrabold px-6 pl-16 py-20 text-right uppercase'>
+      <section className='bg-emerald-950 rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+        <h3 className='text-5xl text-yellow-500 font-extrabold px-6 py-20 text-right uppercase'>
           Each Day of Bhrigu Lake Trek in Details
         </h3>
 
         <div className='mx-4'>
-          <div className='flex justify-between items-start mb-4 pt-8'>
-            <h4 className='text-6xl'>Day 1</h4>
+          <div className='flex justify-between items-center mb-4 pt-8'>
+            <h4 className='text-6xl font-extrabold bg-amber-500'>Day 1</h4>
             <div>Manali</div>
           </div>
           <div className='text-slate-300 pt-4'>Altitude : 6500ft</div>
@@ -235,11 +236,11 @@ function page() {
           </div>
         </div>
 
-        <div className='h-2 my-8 bg-green-950'></div>
+        <div className='h-2 my-8 bg-black'></div>
 
         <div className='mx-4'>
           <div className='flex justify-between items-center mb-4 mt-16 gap-4 '>
-            <h4 className='text-6xl flex-shrink-0'>Day 2</h4>
+            <h4 className='text-6xl flex-shrink-0 bg-amber-500'>Day 2</h4>
             <div className='text-right'>Manali - Gulaba - Raulikholi</div>
           </div>
           <div className='text-slate-300 pt-4'>Altitude : 6500ft - 9500ft - 12,500ft</div>
@@ -284,11 +285,11 @@ function page() {
         </div>
 
         
-        <div className='h-2 my-8 bg-green-950'></div>
+        <div className='h-2 my-8  bg-black'></div>
 
         <div className='m-4'>
           <div className='flex justify-between items-center mb-4 mt-16 gap-4'>
-            <h4 className='text-6xl shrink-0'>Day 3</h4>
+            <h4 className='text-6xl shrink-0 bg-amber-500'>Day 3</h4>
             <div className='text-right'>Raulikholi - Bhrigu Lake- Raulikholi</div>
           </div>
           <div className='text-slate-300 pt-4'>Altitude : 12500ft - 14,090ft - 12,500ft</div>
@@ -333,24 +334,24 @@ function page() {
         </div>
 
         
-        <div className='h-2 my-8 bg-green-950'></div>
+        <div className='h-2 my-8 bg-black'></div>
 
         <div className='mx-4'>
           <div className='flex justify-between items-center mb-4 mt-16 gap-4 '>
-            <h4 className='text-6xl flex-shrink-0'>Day 4</h4>
+            <h4 className='text-6xl flex-shrink-0 bg-amber-500'>Day 4</h4>
             <div className='text-right'>Raulikholi - Gulaba - Manali</div>
           </div>
-          <div className='text-slate-300 mb-4'>Altitude : 12,500ft - 9500ft - 6500ft</div>
+          <div className='text-slate-300 pt-4'>Altitude : 12,500ft - 9500ft - 6500ft</div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
               height={200}
               width={800}
               alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
               style={{width: '100%',height: '160px' }} 
-              className="object-cover w-full object-[0%_90%]">
+              className="object-cover w-full object-[0%_90%] my-12">
           </Image>
 
-          <div className='pt-12 leading-7 text-stone-300'>
+          <div className='leading-7 text-stone-300'>
             <p>
             As the golden rays of the morning sun kissed the quaint town of Manali, 
             adventurers from around the world gathered, their hearts filled with 
