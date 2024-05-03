@@ -274,32 +274,37 @@ function page() {
 
           <div className='leading-7 text-stone-300'>
             <p>
-            As the golden rays of the morning sun kissed the quaint town of Manali, 
-            adventurers from around the world gathered, their hearts filled with 
-            excitement and anticipation. Armed with sturdy boots and backpacks, they 
-            set out on the trail leading to the mystical Bhrigu Lake.
+            <span className='font-bold'></span>Preparation: First things first, freshen up and double-check your gear. Raincoat? Torch? 
+            It&apos;s the little things that count, so make sure you&apos;ve got everything you need. Pro tip: 
+            Keeping a checklist helps avoid those "oops" moments!
             </p><br />
 
             <p>
-            The trek commenced with a gentle ascent through lush green forests, 
-            the air echoing with the melodious chirping of birds. Each step brought 
-            them closer to the heart of the Himalayas, where legends whispered of a 
-            sacred lake nestled amidst towering peaks.
+            <span className='font-bold'>Breakfast and Roll: </span>Fuel up with a hearty breakfast because we&apos;ve got some ground to cover. Hop into the 
+            waiting car parked outside our Homestay. Our destination? The 14th bend to Rohtang Pass, 
+            near Gulaba. Locals call it "Chowda More." If you're here in autumn, get ready for a scenic 
+            drive adorned with golden leaves. Picture-perfect, just like those European road trip movies!
             </p><br />
 
             <p>
-            As the day unfolded, the trail unveiled its treasures - meandering 
-            streams, vibrant wildflowers, and panoramic vistas that took their 
-            breath away. With every turn, the landscape transformed, weaving a 
-            tapestry of nature&apos;s wonders that left them in awe.
+            <span className='font-bold'>The Climb Begins: </span>From Gulaba to Raulikholi, it&apos;s a 6km trek with a 3000ft altitude gain. Brace yourself 
+            for the challenge! Despite our creature comforts, there&apos;s something about the call of 
+            the wild that draws us in. Embrace the discomfort and let the adventure unfold.
             </p><br />
 
             <p>
-            As the sun dipped below the horizon, painting the sky in hues of 
-            orange and pink, weary yet exhilarated, they made camp beneath a 
-            canopy of stars, eager for the adventures that awaited them on the 
-            morrow.
+            <span className='font-bold'>Slow and Steady: </span>Remember, this isn&apos;t a race. Take it slow and steady as you tackle 
+            the moderately steep sections. Enjoy the journey; you&apos;re here to unwind, after all. 
+            Along the way, you&apos;ll stumble upon &apos;BaitharDhar,&apos; a quaint dhaba crafted by local 
+            nomadic travelers known as Gaddis. Take a breather before the final stretch to Raulikholi.
             </p><br />
+
+            <p>
+            <span className='font-bold'>Campsite Charm: </span>Raulikholi awaits, less than an hour from BaitharDhar. Prepare to be 
+            enchanted by its natural beauty, though it can get a tad damp at times. The soothing 
+            melody of &apos;Khanora Nala&apos; fills the air, lulling tired souls to rest. Dinner will be 
+            served earlier than back in Manali, so you can refuel and recharge for the adventures 
+            yet to come.</p><br/>
           </div>
         </div>
 
