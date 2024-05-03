@@ -119,7 +119,7 @@ function page() {
         <div className='m-8'>
           <div className='text-3xl max-w-[80%] font-light'>Trek Cost with The Trail Makers</div>
           <div className='text-5xl font-bold text-yellow-500 mt-4 mb-1'>8,500/-</div>
-          <div className='text-sm max-w-[80%] text-slate-300 font-light'>* Stay & Fooding on Day 1, at Manali Included</div>
+          <div className='text-sm max-w-[80%] text-slate-300 font-light'>* Stay & Fooding at Manali Included</div>
         </div>
         <div className='flex pl-6 items-center overflow-x-auto
           snap-x snap-mandatory no-scrollbar'>
@@ -184,7 +184,7 @@ function page() {
 
 
 
-      <section className='bg-emerald-950 rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+      <section className='bg-emerald-950 lg:text-lg rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
         <h3 className='text-5xl text-yellow-500 font-extrabold px-6 py-20 text-right uppercase'>
           Each Day of Bhrigu Lake Trek in Details
         </h3>
@@ -194,7 +194,12 @@ function page() {
             <h4 className='text-6xl font-extrabold bg-amber-500'>Day 1</h4>
             <div>Manali</div>
           </div>
-          <div className='text-slate-300 pt-4'>Altitude : 6500ft</div>
+
+          <div className='pt-4'>
+            <div className='text-slate-300'>Altitude : 6500ft</div>
+            <div className='text-slate-300'>Trail Length : NIL</div>
+            <div className='text-slate-300'>Duration : NIL</div>
+          </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
               height={200}
@@ -206,33 +211,42 @@ function page() {
 
           <div className='leading-7 text-stone-300'>
             <p>
-            As you get off the Volvo Bus, take a cab straight ahead to our Homestay. 
-            Link for Homestay location is here.You will have to walk a little, but the 
-            stay is Amazing, between the Apple Orchard and clear open view. 
-            </p><br />
-
-            <p>
-            Here you will meet your other teammates, get to know your instructor, 
-            will go for a easy acclimatisation hike, so that your next days go smooth.
-            </p><br />
-
-            <p>
-            In the evening we will visit the market if you have forgotten to bring anything, 
-            or you can rent at homestay, if available. 
-            </p><br />
-
-            <div><Link href={"/contact"} className='text-sky-500'>List of Adventure Gear shop in Manali.</Link></div>
-            <div><Link href={"/contact"} className='text-sky-500'>List of places in Manali you can visit on foot.</Link></div>
-
-            <br/><p>
-            While you&apos;ll be back. we&apos;ll have the Dinner ready for you. Sorry to say, but it 
-            will be before your usual dinner time. This is the mountain way, early to bed and 
-            early to rise, we will be following this schedule for the next few days.
+            <span className='font-bold'>Getting Here: </span>Once you step off the Volvo Bus, just hop into a cab straight to our Homestay. 
+            Trust me, it's worth the journey! Surrounded by lush Apple Orchards and stunning views, you'll 
+            feel right at home.
             </p><br/>
 
             <p>
-            Okkay, sleep tight, sleep warm, see you on next morning.
+            <span className='font-bold'>Meet and Greet: </span>Upon arrival, you'll meet the gang - your trekking buddies and our instructors. 
+            We'll kick things off with an easy acclimatization hike to get you warmed up for the adventures ahead.
             </p><br />
+
+            <p>
+            <span className='font-bold'>Gear Up: </span>Need any last-minute gear? No worries! We'll hit the local market in the evening. 
+            Forgot your socks? No problem. You can also rent gear right here at the Homestay if you're in a pinch.
+            </p><br />
+
+            <p>Don't forget to check out our handy guides:</p>
+
+            <div><Link href={"/contact"} className='text-sky-500'>Where to snag adventure gear in Manali?</Link></div>
+            <div><Link href={"/contact"} className='text-sky-500'>Cool spots to explore in Manali on foot</Link></div>
+
+            <br/>
+            <p>
+            <span className='font-bold'>Dinner Time: </span>Get ready for a hearty dinner, served a bit earlier than usual. Yep, that's the 
+            mountain life for you - early to bed, early to rise. But hey, it's all part of the adventure, 
+            right?
+            </p><br/>
+
+            <p>
+            <span className='font-bold'>Rest Up: </span>After a satisfying meal, it's time to hit the sack. Snuggle up and get a good night's 
+            sleep. We've got big plans for tomorrow, and you'll want to be well-rested for the journey ahead.
+            </p><br />
+
+            <p>
+            Alright, my friend, get some shut-eye and I'll catch you bright and early for more trekking fun. 
+            Sleep tight!
+            </p><br/>
           </div>
         </div>
 
@@ -243,7 +257,12 @@ function page() {
             <h4 className='text-6xl flex-shrink-0 bg-amber-500'>Day 2</h4>
             <div className='text-right'>Manali - Gulaba - Raulikholi</div>
           </div>
-          <div className='text-slate-300 pt-4'>Altitude : 6500ft - 9500ft - 12,500ft</div>
+
+          <div className='pt-4'>
+            <div className='text-slate-300 pt-4'>Altitude : 6500ft - 9500ft - 12,500ft</div>
+            <div className='text-slate-300'>Trail Length : 6km</div>
+            <div className='text-slate-300'>Duration : 3-5 hrs</div>
+          </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
               height={200}
