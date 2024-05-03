@@ -7,7 +7,7 @@ export default function AllCard({Name, Img, State, Description, Distance, Durati
     const default_Image = "https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg"
 
     return (
-        <div className="m-1 relative flex flex-col items-center border-cyan-600 bg-gradient-to-b from-black to-gray-900 40 h-60 rounded-2xl">
+        <div className="m-1 relative flex flex-col items-center border-cyan-600 bg-gradient-to-b from-black to-gray-900 h-60 rounded-2xl">
 
             <Link href={PageLink || "/contact"}>
                   <Image src={Img || default_Image} alt={Name} width={320} height={320} 
