@@ -60,9 +60,9 @@ function page() {
 
   
 
-      <section className='bg-green-950 max-w-[400px]'>
-        <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0'>Easiest Alpine Grassland and Lake Trek in Manali</h2>
-        <div className='p-8 pb-8 pr-12 md:pr-0 leading-7 text-stone-300'>
+      <section className='bg-green-950'>
+        <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0 max-w-[400px]'>Easiest Alpine Grassland and Lake Trek in Manali</h2>
+        <div className='p-8 max-w-[95%] md:pr-0 leading-7 text-stone-300'>
             <p>
             In Life, if you should do an Alpine Trek, be how small it is, how weak you are, it should be Bhrigu Lake Trek.
             </p><br />
