@@ -43,10 +43,12 @@ const {hamburgerOpen} = useStore((state:any) => {
   return (
     <main className="min-h-screen bg-black text-white no-scrollbar">
 
-        <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 80vw" priority placeholder="blur"></Image>
+      <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 80vw" priority placeholder="blur" 
+      className="lg:max-h-screen lg:object-cover lg:relative lg:object-[0%_90%]">
+      </Image>
 
-      <div className="text-[5vw] pt-16 pb-10 px-[25vw] font-mono text-center font-bold leading-tight">
-        A Different way to live life, with Nature.
+      <div className="lg:absolute lg:bottom-10 text-[5vw] text-amber-400 pt-16 pb-10 px-[25vw] font-mono text-center font-bold leading-tight">
+        IF lost,Choose a New Trail.
       </div>
 
       <div className=" m-6 pt-10 pr-6 mb-20 text-base font-medium text-neutral-500 
