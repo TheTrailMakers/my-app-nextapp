@@ -88,7 +88,7 @@ function page() {
             </p><br/>
 
             <p>
-            But, no one dies rolling down from a snowfield, but yeah the thrill that you will feel looking down will be too real, you don't
+            But, no one dies rolling down from a snowfield, but yeah the thrill that you will feel looking down will be too real, you don&apos;t
             really feel it until you are there. 
             </p>
 
@@ -98,7 +98,7 @@ function page() {
             </p><br />
 
             <p>
-            But my friend, the Story doesn't ends here, how will you get down the snowy slope that you have worked so hard to climb. No worries, this is a
+            But my friend, the Story doesn&apos;t ends here, how will you get down the snowy slope that you have worked so hard to climb. No worries, this is a
             very fun part, you slide. Well, the tired legs will a bit at first, but as you start to have fun there is no stopping.
             </p><br/>
 
@@ -225,7 +225,7 @@ function page() {
             <div><Link href={"/contact"} className='text-sky-500'>List of places in Manali you can visit on foot.</Link></div>
 
             <br/><p>
-            While you'll be back. we'll have the Dinner ready for you. Sorry to say, but it 
+            While you&apos;ll be back. we&apos;ll have the Dinner ready for you. Sorry to say, but it 
             will be before your usual dinner time. This is the mountain way, early to bed and 
             early to rise, we will be following this schedule for the next few days.
             </p><br/>
