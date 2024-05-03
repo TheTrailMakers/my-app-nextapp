@@ -47,8 +47,8 @@ const {hamburgerOpen} = useStore((state:any) => {
       className="lg:max-h-screen lg:object-cover lg:relative lg:object-[0%_90%]">
       </Image>
 
-      <div className="lg:absolute lg:bottom-10 text-[5vw] text-amber-400 pt-16 pb-10 px-[25vw] font-mono text-center font-bold leading-tight">
-        IF lost,Choose a New Trail.
+      <div className="lg:absolute lg:bottom-10 text-[5vw] pt-16 pb-10 px-[25vw] font-mono text-center font-bold leading-tight">
+        Choose a new Trail, close to the Nature.
       </div>
 
       <div className=" m-6 pt-10 pr-6 mb-20 text-base font-medium text-neutral-500 
@@ -159,11 +159,11 @@ const {hamburgerOpen} = useStore((state:any) => {
         <h2 className="uppercase">Getting ready</h2>
       </div>
 
-<div className="md:mx-[20vw] lg:mx-[25vw] xl:mx-[30vw]">
+<div className="md:mx-[20vw] lg:mx-8 lg:my-24 lg:flex lg:justify-center lg:items-start lg:gap-4">
       
-      <section className="mx-4 mt-6 mb-32">
-        <Image src={deotibbaDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" style={{width: '60%',height: 'auto' }}
-         className="max-w-60 my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+      <section className="mx-4 mt-6 mb-32 lg:m-0 shrink-0 max-w-96">
+        <Image src={deotibbaDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
+        style={{width: 'auto',height: 'auto' }} className="max-w-60 my-4 h-96 object-cover rounded-tr-[50%]" placeholder="blur"></Image>
 
         <h4 className="text-amber-600">Am I fit enough for a Trek ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">START YOUR JOURNEY</h3>
@@ -178,9 +178,9 @@ const {hamburgerOpen} = useStore((state:any) => {
         <Link href="/contact"><p className="font-extrabold">Read More</p></Link>
       </section>
       
-      <section className="mx-4 mt-6 mb-32">
+      <section className="mx-4 mt-6 mb-32 lg:m-0 shrink-0 max-w-96">
         <Image src={panoviewImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
-         style={{width: '60%',height: 'auto' }} className="max-w-60 my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+         style={{width: 'auto',height: 'auto' }} className="max-w-60 h-96 object-cover my-4 rounded-tr-[50%]" placeholder="blur"></Image>
 
         <h4 className="text-amber-600">What to pack for a trek? ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">PACKING THE NECESSITY</h3>
@@ -196,9 +196,9 @@ const {hamburgerOpen} = useStore((state:any) => {
         <Link href="/contact"><p className="font-extrabold">Read More</p></Link>
       </section>
       
-      <section className="mx-4 mt-6 mb-32">
+      <section className="mx-4 mt-6 mb-32 lg:m-0 shrink-0 max-w-96">
         <Image src={bhriguRiverCrossingImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
-         style={{width: '60%',height: 'auto' }} className="max-w-60 my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+         style={{width: 'auto',height: 'auto' }} className="max-w-60 h-96 object-cover my-4 rounded-tr-[50%]" placeholder="blur"></Image>
 
         <h4 className="text-amber-600">What is the best season for tekking?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">UNDERSTANDING SEASONS IN TREKKING</h3>
