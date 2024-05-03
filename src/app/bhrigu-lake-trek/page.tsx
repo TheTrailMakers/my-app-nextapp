@@ -212,18 +212,18 @@ function page() {
           <div className='leading-7 text-stone-300'>
             <p>
             <span className='font-bold'>Getting Here: </span>Once you step off the Volvo Bus, just hop into a cab straight to our Homestay. 
-            Trust me, it's worth the journey! Surrounded by lush Apple Orchards and stunning views, you'll 
+            Trust me, it&apos;s worth the journey! Surrounded by lush Apple Orchards and stunning views, you&apos;ll 
             feel right at home.
             </p><br/>
 
             <p>
-            <span className='font-bold'>Meet and Greet: </span>Upon arrival, you'll meet the gang - your trekking buddies and our instructors. 
-            We'll kick things off with an easy acclimatization hike to get you warmed up for the adventures ahead.
+            <span className='font-bold'>Meet and Greet: </span>Upon arrival, you&apos;ll meet the gang - your trekking buddies and our instructors. 
+            We&apos;ll kick things off with an easy acclimatization hike to get you warmed up for the adventures ahead.
             </p><br />
 
             <p>
-            <span className='font-bold'>Gear Up: </span>Need any last-minute gear? No worries! We'll hit the local market in the evening. 
-            Forgot your socks? No problem. You can also rent gear right here at the Homestay if you're in a pinch.
+            <span className='font-bold'>Gear Up: </span>Need any last-minute gear? No worries! We&apos;ll hit the local market in the evening. 
+            Forgot your socks? No problem. You can also rent gear right here at the Homestay if you&apos;re in a pinch.
             </p><br />
 
             <p>Don't forget to check out our handy guides:</p>
@@ -234,17 +234,17 @@ function page() {
             <br/>
             <p>
             <span className='font-bold'>Dinner Time: </span>Get ready for a hearty dinner, served a bit earlier than usual. Yep, that's the 
-            mountain life for you - early to bed, early to rise. But hey, it's all part of the adventure, 
+            mountain life for you - early to bed, early to rise. But hey, it&apos;s all part of the adventure, 
             right?
             </p><br/>
 
             <p>
-            <span className='font-bold'>Rest Up: </span>After a satisfying meal, it's time to hit the sack. Snuggle up and get a good night's 
-            sleep. We've got big plans for tomorrow, and you'll want to be well-rested for the journey ahead.
+            <span className='font-bold'>Rest Up: </span>After a satisfying meal, it&apos;s time to hit the sack. Snuggle up and get a good night's 
+            sleep. We&apos;ve got big plans for tomorrow, and you&apos;ll want to be well-rested for the journey ahead.
             </p><br />
 
             <p>
-            Alright, my friend, get some shut-eye and I'll catch you bright and early for more trekking fun. 
+            Alright, my friend, get some shut-eye and I&apos;ll catch you bright and early for more trekking fun. 
             Sleep tight!
             </p><br/>
           </div>
