@@ -6,7 +6,7 @@ function GalleryImage({Img, Name, PageLink} : any) {
 
   const default_Image = "https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg"
   return (
-    <div className=' snap-center w-60 h-60 flex-shrink-0'>
+    <div className=' snap-center max-w-60 max-h-60 flex-shrink-0 m-2'>
         <Link href={PageLink || '/contact'}>
         <Image
             src={Img || default_Image}
