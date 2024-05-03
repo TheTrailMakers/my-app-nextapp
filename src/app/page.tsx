@@ -75,7 +75,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 
 
 
-{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+{/* /////////////////////////////How Trekking can Change Life////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
 
       
@@ -149,21 +149,23 @@ const {hamburgerOpen} = useStore((state:any) => {
 
   
 
-{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+{/* /////////////////////////////Getting Ready////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
 
 
-      <div className="text-7xl font-extrabold mx-4 my-20 text-right md:text-center md:mx-[10%]">
+      <div className="text-7xl font-extrabold mx-4 my-20 text-right md:text-center md:mx-[20%]">
         <h2 className="uppercase">Getting ready</h2>
       </div>
 
-<div className="md:mx-[20%]">
+<div className="md:mx-[20vw] lg:mx-[25vw] xl:mx-[30vw]">
       
       <section className="mx-4 mt-6 mb-32">
-        <Image src={deotibbaDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+        <Image src={deotibbaDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" style={{width: '60%',height: 'auto' }}
+         className="max-w-60 my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+
         <h4 className="text-amber-600">Am I fit enough for a Trek ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">START YOUR JOURNEY</h3>
-        <p className="mt-8 pr-10 text-neutral-400">Embarking on a mountain backpacking 
+        <p className="mt-8 pr-10 text-neutral-400 max-w-[350px]">Embarking on a mountain backpacking 
             adventure is a thrilling and rewarding 
             experience, but it demands physical 
             preparedness to tackle the challenges 
@@ -175,10 +177,12 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
       
       <section className="mx-4 mt-6 mb-32">
-        <Image src={panoviewImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+        <Image src={panoviewImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
+         style={{width: '60%',height: 'auto' }} className="max-w-60 my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+
         <h4 className="text-amber-600">What to pack for a trek? ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">PACKING THE NECESSITY</h3>
-        <p className="mt-8 pr-10 text-neutral-400">The most important thing is the right 
+        <p className="mt-8 pr-10 text-neutral-400 max-w-[350px]">The most important thing is the right 
                         mindset, without that even heaven 
                         is insufficient. We follow the carry 
                         less, worry less principle but, make 
@@ -191,11 +195,12 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
       
       <section className="mx-4 mt-6 mb-32">
-        <Image src={bhriguRiverCrossingImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" style={{width: '60%',height: 'auto' }} className="my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+        <Image src={bhriguRiverCrossingImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
+         style={{width: '60%',height: 'auto' }} className="max-w-60 my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+
         <h4 className="text-amber-600">What is the best season for tekking?</h4>
-        <h3 className="uppercase text-3xl font-bold w-2/3">UNDERSTANDING SEASONS IN 
-        TREKKING</h3>
-        <p className="mt-8 pr-10 text-neutral-400">If you don’t want to miss your train 
+        <h3 className="uppercase text-3xl font-bold w-2/3">UNDERSTANDING SEASONS IN TREKKING</h3>
+        <p className="mt-8 pr-10 text-neutral-400 max-w-[350px]">If you don’t want to miss your train 
           by getting stuck in a landslide, or 
           shiver all night in the month of May, 
           thinking it wont be that cold, read 
