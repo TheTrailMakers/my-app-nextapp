@@ -276,13 +276,13 @@ function page() {
             <p>
             <span className='font-bold'></span>Preparation: First things first, freshen up and double-check your gear. Raincoat? Torch? 
             It&apos;s the little things that count, so make sure you&apos;ve got everything you need. Pro tip: 
-            Keeping a checklist helps avoid those "oops" moments!
+            Keeping a checklist helps avoid those &quot;oops&quot; moments!
             </p><br />
 
             <p>
             <span className='font-bold'>Breakfast and Roll: </span>Fuel up with a hearty breakfast because we&apos;ve got some ground to cover. Hop into the 
             waiting car parked outside our Homestay. Our destination? The 14th bend to Rohtang Pass, 
-            near Gulaba. Locals call it "Chowda More." If you're here in autumn, get ready for a scenic 
+            near Gulaba. Locals call it &quot;Chowda More.&quot; If you&apos;re here in autumn, get ready for a scenic 
             drive adorned with golden leaves. Picture-perfect, just like those European road trip movies!
             </p><br />
 
