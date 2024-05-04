@@ -6,6 +6,7 @@ import mockdata from '@/data/homepage_cards.json'
 import AllCard from '@/components/allcards'
 import { useState } from 'react'
 
+
 function All() {
 
     const [sortBy, setSortBy] = useState('difficulty');
