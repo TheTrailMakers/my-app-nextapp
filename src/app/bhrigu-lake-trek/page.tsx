@@ -9,9 +9,20 @@ import mockdata from '@/data/homepage_cards.json'
 import JoinDate from '@/components/joinDate'
 import GalleryImage from '@/components/galleryImage'
 import Link from 'next/link'
+import RootLayout from '../layout'
+
 
 function page() {
+
+  const metadata = {
+    title: "Bhrigu Lake Trek 2024 - Explore the Himalayan High Altitude(14,00ft) | The Trail Makers",
+    description: "Discover an unforgettable alpine adventure with The Trail Makers. Experience the stunning beauty of Himachal Pradesh on the Bhrigu Lake Trek. Whether it's exploring a hidden trail, chasing sunsets, or simply getting lost in the beauty of nature, it'll be an epic adventure.",
+    keywords: "Bhrigu Lake Trek, Himachal Pradesh trekking, Himalayan treks, adventure travel, Manali, Hike, Panduropa, hiking in India, trekking expeditions, scenic landscapes, outdoor adventures, Raulikholi, Baithardhar, Gulaba, Kulang, Moridugh, Khanora Nala"
+  };
+  
+
   return (
+    <RootLayout metadata={metadata}>
     <main className="min-h-screen bg-neutral-900 text-white no-scrollbar relative">
 
       <div className='bg-gradient-to-b from-black to-50% to-white h-[80vh] relative'>
@@ -61,11 +72,11 @@ function page() {
   
 
       <section className='bg-green-950'>
-        <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0 max-w-[400px]'>Discover Bhrigu Lake Trek: A Beginner's Alpine Adventure Worth Exploring!</h2>
+        <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0 max-w-[400px]'>Discover Bhrigu Lake Trek: A Beginner&apos;s Alpine Adventure Worth Exploring!</h2>
         <div className='p-8 max-w-[95%] md:pr-0 leading-7 text-stone-300'>
             <p>
             So, ever thought about tackling an Alpine trek? Let me tell you 
-            about this gem called the Bhrigu Lake Trek. It's like a hidden 
+            about this gem called the Bhrigu Lake Trek. It&apos;s like a hidden 
             adventure playground, perfect for rookies like us. All you gotta 
             do is take it easy and soak in the sights.
             </p><br />
@@ -74,25 +85,25 @@ function page() {
             Imagine this: fields of vibrant flowers, lush green grass, and 
             those majestic snow-capped peaks in the distance. And as you hike, 
             you might even spot some wildlife in the forests – maybe even a bear 
-            if you're lucky (or unlucky, depends on how you see it).
+            if you&apos;re lucky (or unlucky, depends on how you see it).
             </p><br/>
             
             <p>
-            But here's where it gets exciting – when you hit those snowfields, 
-            it's like stepping into a whole new world. Don't worry, it's not as 
-            daunting as it sounds. It's more about the thrill of the climb and 
+            But here&apos;s where it gets exciting – when you hit those snowfields, 
+            it&apos;s like stepping into a whole new world. Don&apos;t worry, it&apos;s not as 
+            daunting as it sounds. It&apos;s more about the thrill of the climb and 
             the epic views you get at the top.
             </p><br />
 
             <p>
-            And when you finally reach Bhrigu Lake, man, it's like something out of a dream. 
-            Surrounded by towering peaks, it's pure magic. But here's the best part – sliding 
+            And when you finally reach Bhrigu Lake, man, it&apos;s like something out of a dream. 
+            Surrounded by towering peaks, it&apos;s pure magic. But here&apos;s the best part – sliding 
             down those snowy slopes afterward? Absolute blast.
             </p><br/>
 
             <p>
-            But fair warning – it's over way too soon. If you're craving more adrenaline, 
-            though, don't sweat it. There are plenty more treks out there waiting to be explored. 
+            But fair warning – it&apos;s over way too soon. If you&apos;re craving more adrenaline, 
+            though, don&apos;t sweat it. There are plenty more treks out there waiting to be explored. 
             So, what do you say? Ready to lace up those boots and embark on an adventure of a lifetime?
             </p>
           
@@ -318,32 +329,35 @@ function page() {
 
           <div className='leading-7 text-stone-300'>
             <p>
-            As the golden rays of the morning sun kissed the quaint town of Manali, 
-            adventurers from around the world gathered, their hearts filled with 
-            excitement and anticipation. Armed with sturdy boots and backpacks, they 
-            set out on the trail leading to the mystical Bhrigu Lake.
+            Picture this: as the morning sun kisses those peaks, it&apos;s like 
+            a scene from a dream. Today&apos;s the big one – an early start to 
+            cross the Khanora Nala and begin our ascent. Snow&apos;s a whole different 
+            ballgame, but trust me, once you get the hang of it, you&apos;ll be 
+            cruising. Sure, the initial climb is steep, but soon enough, 
+            it evens out, and bam – there&apos;s the mythical lake, unfolding 
+            before your eyes.
             </p><br />
 
             <p>
-            The trek commenced with a gentle ascent through lush green forests, 
-            the air echoing with the melodious chirping of birds. Each step brought 
-            them closer to the heart of the Himalayas, where legends whispered of a 
-            sacred lake nestled amidst towering peaks.
-            </p><br />
+            But here&apos;s the kicker – the real magic isn&apos;t just the lake. 
+            It&apos;s the view from up there. Standing tall at 14,000ft, it&apos;s 
+            like the whole world&apos;s at our feet. And that feeling? 
+            Man, it&apos;s indescribable.
+            </p><br/>
 
             <p>
-            As the day unfolded, the trail unveiled its treasures - meandering 
-            streams, vibrant wildflowers, and panoramic vistas that took their 
-            breath away. With every turn, the landscape transformed, weaving a 
-            tapestry of nature&apos;s wonders that left them in awe.
-            </p><br />
+            But alas, all good things must come to an end. We&apos;ve gotta make 
+            our way back before the sun sets. The journey down&apos;s no walk in 
+            the park, especially for us rookies. But hey, every slip and 
+            slide is just part of the adventure, right?
+            </p><br/>
 
             <p>
-            As the sun dipped below the horizon, painting the sky in hues of 
-            orange and pink, weary yet exhilarated, they made camp beneath a 
-            canopy of stars, eager for the adventures that awaited them on the 
-            morrow.
+            By the time you&apos;re back at camp, you&apos;re practically one with the 
+            mountain. Laughing, goofing around – it&apos;s all part of the experience. 
+            Quick tip: don&apos;t miss that sunset – it&apos;s pure magic from up here.
             </p><br />
+
           </div>
         </div>
 
@@ -510,6 +524,7 @@ function page() {
 
     
     </main>
+  </RootLayout>
   )
 }
 
