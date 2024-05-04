@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Poppins } from 'next/font/google';
+import type { Metadata } from 'next';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -12,23 +12,16 @@ const poppins = Poppins({
 });
 
 
-type Metadata = {
-  title: string;
-  description: string;
-  keywords: string;
+export const metadata: Metadata = {
+  title: "The Trail Makers - Explore new routes in the Himalayas",
+  description: "Join for unforgettable journeys with The Trail Makers, your ultimate destination for immersive trekking and hiking experiences. Discover breathtaking landscapes, explore challenging trails, and forge lasting memories in the great outdoors.",
 };
 
+export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
 
-
-export default function RootLayout({ metadata, children }: { metadata: Metadata; children: React.ReactNode; }) {
-  const { title, description, keywords } = metadata;
 
   return (
     <html lang="en" className={`${poppins.variable}`}>
-      <head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </head>
       <body className="poppins">
         <Navbar />
         {children}

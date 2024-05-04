@@ -6,7 +6,6 @@ import Homecards from "@/components/homecards";
 import Accordion from "@/components/accordion";
 import mockdata from "@/data/homepage_cards.json";
 import Link from "next/link";
-import RootLayout from "./layout";
 
 import heroImage from "../../public/Ranisui_manali_speedhike_The_Trail_Makers.jpg"
 import ttmHeader from "../../public/ttm image.png"
@@ -37,18 +36,12 @@ interface Trek {
 
 export default function Home() {
 
-  const metadata = {
-    title: "The Trail Makers - Explore new routes in the Himalayas",
-    description: "Join for unforgettable journeys with The Trail Makers, your ultimate destination for immersive trekking and hiking experiences. Discover breathtaking landscapes, explore challenging trails, and forge lasting memories in the great outdoors.",
-    keywords: "thetrailmakers"
-  };
-
 const {hamburgerOpen} = useStore((state:any) => {
   return {hamburgerOpen: state.hamburgerOpen}
 })
 
   return (
-    <RootLayout metadata={metadata}>
+
     <main className="min-h-screen bg-black text-white no-scrollbar">
 
       <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 80vw" priority placeholder="blur" 
@@ -311,7 +304,6 @@ const {hamburgerOpen} = useStore((state:any) => {
 
       
 </main>
-</RootLayout>
   );
 }
 

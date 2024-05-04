@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react'
 import Image from 'next/image'
 import Accordion from '@/components/accordion'
@@ -9,20 +7,16 @@ import mockdata from '@/data/homepage_cards.json'
 import JoinDate from '@/components/joinDate'
 import GalleryImage from '@/components/galleryImage'
 import Link from 'next/link'
-import RootLayout from '../layout'
 
+export const metadata = {
+  title: "Bhrigu Lake Trek 2024 - Explore the Himalayan High Altitude(14,00ft) | The Trail Makers",
+  description: "Discover an unforgettable alpine adventure with The Trail Makers. Experience the stunning beauty of Himachal Pradesh on the Bhrigu Lake Trek. Whether it's exploring a hidden trail, chasing sunsets, or simply getting lost in the beauty of nature, it'll be an epic adventure.",
+  keywords: "Bhrigu Lake Trek, Himachal Pradesh trekking, Himalayan treks, adventure travel, Manali, Hike, Panduropa, hiking in India, trekking expeditions, scenic landscapes, outdoor adventures, Raulikholi, Baithardhar, Gulaba, Kulang, Moridugh, Khanora Nala"
+};
 
 function page() {
 
-  const metadata = {
-    title: "Bhrigu Lake Trek 2024 - Explore the Himalayan High Altitude(14,00ft) | The Trail Makers",
-    description: "Discover an unforgettable alpine adventure with The Trail Makers. Experience the stunning beauty of Himachal Pradesh on the Bhrigu Lake Trek. Whether it's exploring a hidden trail, chasing sunsets, or simply getting lost in the beauty of nature, it'll be an epic adventure.",
-    keywords: "Bhrigu Lake Trek, Himachal Pradesh trekking, Himalayan treks, adventure travel, Manali, Hike, Panduropa, hiking in India, trekking expeditions, scenic landscapes, outdoor adventures, Raulikholi, Baithardhar, Gulaba, Kulang, Moridugh, Khanora Nala"
-  };
-  
-
   return (
-    <RootLayout metadata={metadata}>
     <main className="min-h-screen bg-neutral-900 text-white no-scrollbar relative">
 
       <div className='bg-gradient-to-b from-black to-50% to-white h-[80vh] relative'>
@@ -524,7 +518,6 @@ function page() {
 
     
     </main>
-  </RootLayout>
   )
 }
 
