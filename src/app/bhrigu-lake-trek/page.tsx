@@ -56,55 +56,45 @@ function page() {
       </div>
     </section>
 
-{/* ////////////////////////////////////////Short Intro & Join the Date////////////////////////////////////////////////////////////////////////////////////////// */}
+{/* ////////////////////////////////////////Short Intro////////////////////////////////////////////////////////////////////////////////////////// */}
 
   
 
       <section className='bg-green-950'>
-        <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0 max-w-[400px]'>Easiest Alpine Grassland and Lake Trek in Manali</h2>
+        <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0 max-w-[400px]'>Discover Bhrigu Lake Trek: A Beginner's Alpine Adventure Worth Exploring!</h2>
         <div className='p-8 max-w-[95%] md:pr-0 leading-7 text-stone-300'>
             <p>
-            In Life, if you should do an Alpine Trek, be how small it is, how weak you are, it should be Bhrigu Lake Trek.
+            So, ever thought about tackling an Alpine trek? Let me tell you 
+            about this gem called the Bhrigu Lake Trek. It's like a hidden 
+            adventure playground, perfect for rookies like us. All you gotta 
+            do is take it easy and soak in the sights.
             </p><br />
 
             <p>
-            Reasons? you are completely noob, still you can do it, all you have to do is walk slow ans steady, the Alpine Grassfield 
-            distant spiky small white peaks, all starts to unfold around you.
+            Imagine this: fields of vibrant flowers, lush green grass, and 
+            those majestic snow-capped peaks in the distance. And as you hike, 
+            you might even spot some wildlife in the forests – maybe even a bear 
+            if you're lucky (or unlucky, depends on how you see it).
             </p><br/>
             
             <p>
-            The tiny little colourful flowers, some as small as a button,
-            blue and yellow, perfectly spread across the field, with the green grass, which looks like, as if someone  have mowed the lawn 
-            too perfect, as natural as it should be.
+            But here's where it gets exciting – when you hit those snowfields, 
+            it's like stepping into a whole new world. Don't worry, it's not as 
+            daunting as it sounds. It's more about the thrill of the climb and 
+            the epic views you get at the top.
             </p><br />
 
             <p>
-            You can see the distant forest, of pine, birch and someother trees, brown in color, may be hiding a bear.
+            And when you finally reach Bhrigu Lake, man, it's like something out of a dream. 
+            Surrounded by towering peaks, it's pure magic. But here's the best part – sliding 
+            down those snowy slopes afterward? Absolute blast.
             </p><br/>
 
             <p>
-            Then as you climb higher, comes the snow, speard upon the slanted canvas, and you gotta climb that. Most of us never have to 
-            risk the life in cities, unless you are doing some particular works, but here you will, or, atleast you will think you will.  
-            </p><br/>
-
-            <p>
-            But, no one dies rolling down from a snowfield, but yeah the thrill that you will feel looking down will be too real, you don&apos;t
-            really feel it until you are there. 
+            But fair warning – it's over way too soon. If you're craving more adrenaline, 
+            though, don't sweat it. There are plenty more treks out there waiting to be explored. 
+            So, what do you say? Ready to lace up those boots and embark on an adventure of a lifetime?
             </p>
-
-            <p>
-            After a very hard climb, and a long walk, you will reach the lake you were looking for. At the height of, 14,000ft, a small icy pond, 
-            on one side shielded by the mountain wall, on another side open to a vast land of uncountable spiky peaks of Pir Panjal and Dhauladhar Range.
-            </p><br />
-
-            <p>
-            But my friend, the Story doesn&apos;t ends here, how will you get down the snowy slope that you have worked so hard to climb. No worries, this is a
-            very fun part, you slide. Well, the tired legs will a bit at first, but as you start to have fun there is no stopping.
-            </p><br/>
-
-            <p>
-            Still the worst part is, it ends too quickly. For adventerous souls, we have other treks as well, for longer snow slides.
-            </p><br />
           
           </div>
       </section>
