@@ -110,7 +110,7 @@ function page() {
         <h2 className='text-3xl font-semibold p-8 pr-12 md:pr-0 pb-0 max-w-[400px]'>Discover Bhrigu Lake Trek: A Beginner&apos;s Alpine Adventure Worth Exploring!</h2>
         <div className='p-8 max-w-[95%] md:pr-0 leading-7 text-stone-300'>
             <p>
-            So, ever thought about tackling an Alpine trek? Let me tell you 
+            So, ever thought about going on an Alpine trek? Let me tell you 
             about this gem called the Bhrigu Lake Trek. It&apos;s like a hidden 
             adventure playground, perfect for rookies like us. All you gotta 
             do is take it easy and soak in the sights.
@@ -130,11 +130,6 @@ function page() {
             the epic views you get at the top.
             </p><br />
 
-            <p>
-            And when you finally reach Bhrigu Lake, man, it&apos;s like something out of a dream. 
-            Surrounded by towering peaks, it&apos;s pure magic. But here&apos;s the best part – sliding 
-            down those snowy slopes afterward? Absolute blast.
-            </p><br/>
 
             <p>
             But fair warning – it&apos;s over way too soon. If you&apos;re craving more adrenaline, 
@@ -237,7 +232,7 @@ function page() {
 
 
 
-      <section className='bg-emerald-100 m-6 text-orange-950  lg:text-lg rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+      <section className='bg-emerald-100 m-4 text-orange-950  lg:text-lg rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
         <h3 className='text-5xl text-lime-800 font-extrabold pr-6 pl-4 py-20 text-right uppercase'>
           Each Day of Bhrigu Lake Trek in Details
         </h3>
@@ -515,7 +510,7 @@ function page() {
 <section className='bg-emerald-900 py-20 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
         <div className='flex px-8 items-center'>
           <GiSplitArrows className='text-amber-500 size-24 shrink-0'/>
-          <h3 className='text-5xl text-right font-extrabold uppercase'>
+          <h3 className='text-3xl text-right font-extrabold uppercase'>
             Alternate Routes to Bhrigu Lake
           </h3>
         </div>
@@ -602,15 +597,15 @@ function page() {
 {/* ////////////////////////////////////// Inclusion & Exclusions //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 <section className='bg-sky-700 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
   <div className='flex items-center justify-items-start gap-2 bg-sky-900 pr-2'>
-    <h3 className='text-4xl font-bold p-4 max-w-72'> Inclusions & Exclusions</h3>
+    <h3 className='text-3xl below-xs:text-xl font-bold p-4 max-w-60'> Inclusions & Exclusions</h3>
     <FaCheck className='size-16 text-amber-400'/>
     <ImCross className='size-16 text-red-700'/>
   </div>
 
-  <div className='flex p-4 justify-evenly '>
-      <section className='flex flex-col w-[49%]'>
-        <h4 className='text-3xl below-xs:text-xl font-medium mb-2'>Inclusions</h4>
-          <ul className='flex flex-col text-sm'>
+  <div className='flex flex-col p-4 justify-evenly '>
+      <section className='flex flex-col my-6'>
+        <h4 className='text-3xl below-xs:text-xl font-medium mb-4'>Inclusions</h4>
+          <ul className='flex flex-col text-sm gap-1'>
             <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Day 1 Manali Stay in Homestay</li>
             <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2 '/>Stay in Tent During Trek [ 3 Sharing basis ]</li>
             <br/>
@@ -636,10 +631,10 @@ function page() {
           </ul>
       </section>
 
-      <div className='w-[3px] rounded-full bg-white mx-2'></div>
+      <div className='h-[3px] rounded-full bg-white mx-2'></div>
 
-      <section className='flex flex-col w-[49%]'>
-        <h4 className='text-3xl below-xs:text-xl font-medium '>Exclusions</h4>
+      <section className='flex flex-col my-6'>
+        <h4 className='text-3xl below-xs:text-xl font-medium mb-4'>Exclusions</h4>
             <ul className='flex flex-col text-sm -ml-1'>
               <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Insurance Fees</li>
               <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Camera charges or, any similar fees</li>
