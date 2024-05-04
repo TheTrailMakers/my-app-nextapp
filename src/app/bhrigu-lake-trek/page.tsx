@@ -23,10 +23,19 @@ import { FaCheck } from "react-icons/fa";
 import { GiCheckMark } from "react-icons/gi";
 import { IoCloseOutline } from "react-icons/io5";
 
+import { GiTreasureMap } from "react-icons/gi";
+
+import { GiSummits } from "react-icons/gi";
+
+import { GiSplitArrows } from "react-icons/gi";
+import { FaCircle } from "react-icons/fa";
+
 import { GiBackpack } from "react-icons/gi";
 
-
 import { RiNewspaperFill } from "react-icons/ri";
+
+
+
 
 
 
@@ -145,7 +154,7 @@ function page() {
         <h3 className='text-5xl uppercase font-bold m-8'>Join The Team</h3>
         <div className='m-8 my-12'>
           <div className='text-3xl max-w-[80%] font-light'>Trek Cost with The Trail Makers</div>
-          <div className='flex flex-col bg-gradient-to-r from-red-500 from-10% via-black via-60% to-white to-100% 
+          <div className='flex flex-col bg-gradient-to-r from-red-500 from-10% via-black via-60% to-white to-100%
                           rounded-2xl p-2 py-6 my-12 gap-4'>
 
             <div className='flex justify-normal items-center gap-2'>
@@ -228,21 +237,21 @@ function page() {
 
 
 
-      <section className='bg-emerald-950 lg:text-lg rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
-        <h3 className='text-5xl text-yellow-500 font-extrabold px-6 py-20 text-right uppercase'>
+      <section className='bg-emerald-100 m-6 text-orange-950  lg:text-lg rounded-t-[4rem] md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+        <h3 className='text-5xl text-lime-800 font-extrabold pr-6 pl-4 py-20 text-right uppercase'>
           Each Day of Bhrigu Lake Trek in Details
         </h3>
 
         <div className='mx-4'>
           <div className='flex justify-between items-center mb-4 pt-8'>
-            <h4 className='text-6xl font-extrabold bg-amber-500'>Day 1</h4>
+            <h4 className='text-6xl font-extrabold bg-yellow-500'>Day 1</h4>
             <div>Manali</div>
           </div>
 
-          <div className='pt-4'>
-            <div className='text-slate-300'>Altitude : 6500ft</div>
-            <div className='text-slate-300'>Trail Length : NIL</div>
-            <div className='text-slate-300'>Duration : NIL</div>
+          <div className='pt-8 font-semibold'>
+            <div>Altitude : 6500ft</div>
+            <div>Trail Length : NIL</div>
+            <div>Duration : NIL</div>
           </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
@@ -253,7 +262,7 @@ function page() {
               className="object-cover w-full object-[0%_90%] my-12">
           </Image>
 
-          <div className='leading-7 text-stone-300'>
+          <div className='leading-7'>
             <p>
             <span className='font-bold'>Getting Here: </span>Once you step off the Volvo Bus, just hop into a cab straight to our Homestay. 
             Trust me, it&apos;s worth the journey! Surrounded by lush Apple Orchards and stunning views, you&apos;ll 
@@ -299,14 +308,14 @@ function page() {
 
         <div className='mx-4'>
           <div className='flex justify-between items-center mb-4 mt-16 gap-4 '>
-            <h4 className='text-6xl flex-shrink-0 bg-amber-500'>Day 2</h4>
+            <h4 className='text-6xl flex-shrink-0 font-extrabold bg-amber-500'>Day 2</h4>
             <div className='text-right'>Manali - Gulaba - Raulikholi</div>
           </div>
 
-          <div className='pt-4'>
-            <div className='text-slate-300 pt-4'>Altitude : 6500ft - 9500ft - 12,500ft</div>
-            <div className='text-slate-300'>Trail Length : 6km</div>
-            <div className='text-slate-300'>Duration : 3-5 hrs</div>
+          <div className='pt-8 font-semibold'>
+            <div>Altitude : 6500ft - 9500ft - 12,500ft</div>
+            <div>Trail Length : 6km</div>
+            <div>Duration : 3-5 hrs</div>
           </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
@@ -317,9 +326,9 @@ function page() {
               className="object-cover w-full object-[0%_90%]  my-12">
           </Image>
 
-          <div className='leading-7 text-stone-300'>
+          <div className='leading-7'>
             <p>
-            <span className='font-bold'></span>Preparation: First things first, freshen up and double-check your gear. Raincoat? Torch? 
+            <span className='font-bold'>Preparation: </span>First things first, freshen up and double-check your gear. Raincoat? Torch? 
             It&apos;s the little things that count, so make sure you&apos;ve got everything you need. Pro tip: 
             Keeping a checklist helps avoid those &quot;oops&quot; moments!
             </p><br />
@@ -358,14 +367,14 @@ function page() {
 
         <div className='m-4'>
           <div className='flex justify-between items-center mb-4 mt-16 gap-4'>
-            <h4 className='text-6xl shrink-0 bg-amber-500'>Day 3</h4>
+            <h4 className='text-6xl shrink-0 font-extrabold bg-amber-500'>Day 3</h4>
             <div className='text-right'>Raulikholi - Bhrigu Lake- Raulikholi</div>
           </div>
 
-          <div className='pt-4'>
-            <div className='text-slate-300 pt-4'>Altitude : 12500ft - 14,090ft - 12,500ft</div>
-            <div className='text-slate-300'>Trail Length : 10km</div>
-            <div className='text-slate-300'>Duration : 6-8 hrs</div>
+          <div className='pt-8 font-semibold'>
+            <div>Altitude : 12500ft - 14,090ft - 12,500ft</div>
+            <div>Trail Length : 10km</div>
+            <div>Duration : 6-8 hrs</div>
           </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
@@ -376,9 +385,9 @@ function page() {
               className="object-cover w-full object-[0%_90%] my-12">
           </Image>
 
-          <div className='leading-7 text-stone-300'>
+          <div className='leading-7'>
             <p>
-            Picture this: as the morning sun kisses those peaks, it&apos;s like 
+            <span className='font-bold'>Picture this: </span>as the morning sun kisses those peaks, it&apos;s like 
             a scene from a dream. Today&apos;s the big one – an early start to 
             cross the Khanora Nala and begin our ascent. Snow&apos;s a whole different 
             ballgame, but trust me, once you get the hang of it, you&apos;ll be 
@@ -415,14 +424,14 @@ function page() {
 
         <div className='mx-4'>
           <div className='flex justify-between items-center mb-4 mt-16 gap-4 '>
-            <h4 className='text-6xl flex-shrink-0 bg-amber-500'>Day 4</h4>
+            <h4 className='text-6xl flex-shrink-0 font-extrabold bg-amber-500'>Day 4</h4>
             <div className='text-right'>Raulikholi - Gulaba - Manali</div>
           </div>
 
-          <div className='pt-4'>
-            <div className='text-slate-300 pt-4'>Altitude : 12,500ft - 9500ft - 6500ft</div>
-            <div className='text-slate-300'>Trail Length : 6km</div>
-            <div className='text-slate-300'>Duration : 2-4 hrs</div>
+          <div className='pt-8 font-semibold'>
+            <div>Altitude : 12,500ft - 9500ft - 6500ft</div>
+            <div>Trail Length : 6km</div>
+            <div>Duration : 2-4 hrs</div>
           </div>
 
 
@@ -434,9 +443,9 @@ function page() {
               className="object-cover w-full object-[0%_90%] my-12">
           </Image>
 
-          <div className='leading-7 text-stone-300'>
+          <div className='leading-7'>
             <p>
-            Hey there! So, picture this: you&apos;re at the end of your trip, packing 
+            You&apos;re at the end of your trip, packing 
             up your stuff all careful-like. Now, I know those downward slopes are 
             calling your name, but hold up a sec! It&apos;s smart to get the hang of 
             the controls first before you go zooming down. Believe it or not, 
@@ -457,8 +466,100 @@ function page() {
           </div>
         </div>
 
-
+        <div className='py-12 pb-16'>
+        <GiTreasureMap className='size-36 text-stone-500 mx-auto'/>
+        </div>
       </section>
+
+
+
+{/* ////////////////////////////////////// Peaks from Bhrigu Lake Trek///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+    
+
+<section className='bg-slate-200  py-20 text-cyan-950 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+
+        <div className='flex px-8 '>
+          <GiSummits className='text-sky-950 size-20 shrink-0'/>
+          <h3 className='text-5xl text-right font-extrabold uppercase'>
+            Peaks from Bhrigu Lake Trek
+          </h3>
+        </div>
+        
+        <div className='p-4 mr-6'>
+          <p className='py-2'>Both the Raulikholi campsite and the Bhrigu Lake have a 
+            commanding view on <strong>Dhauladhar and Pirpanjal Range.</strong></p>
+          <p className='py-2 font-semibold'>Here is a List of Peaks seen on the Trek, Climbed or Unclimbed.</p>
+          <ol className='p-4 ml-4 list-decimal '>
+            <li>Friendship Peak (5289m)</li>
+            <li>Shitidhar Peak (5294m)</li>
+            <li>Manali Peak (5669m)</li>
+            <li>Ladakhi Peak (5345m)</li>
+            <li>Shikhar Beh (6200m)</li>
+            <li>hanuman Tibba (5860m)</li>
+            <li>Patalsu Peak (4230m)</li>
+            <li>Goh Kincha (5110m)</li>
+            <li>Kulkangri Peak (5160m)</li>
+            <li>khanpari Tibba (4025m)</li>
+          </ol>
+          <p className='my-8'>There are many other unnamed peaks in these two ranges, 
+            many of them are unclimbed, or climbed but never documented. 
+            Hope some of you will be there and Write that down on History</p>
+        </div>
+
+    </section>
+
+
+{/* ////////////////////////////////////// Alternate Bhrigu Lake Trek///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+    
+
+<section className='bg-emerald-900 py-20 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+        <div className='flex px-8 items-center'>
+          <GiSplitArrows className='text-amber-500 size-24 shrink-0'/>
+          <h3 className='text-5xl text-right font-extrabold uppercase'>
+            Alternate Routes to Bhrigu Lake
+          </h3>
+        </div>
+        
+        <div className='p-4 mr-6 text-neutral-300'>
+
+          <p className='py-2 text-yellow-400'>There is practically only <strong>two other routes</strong> to Bhrigu Lake. One of them is commonly visited by 
+          trekkers, while the other one is the Path Less Taken.</p>
+
+          <div className='mt-8'>
+            <div className='flex items-center'>
+              <FaCircle className='size-3 mr-2 text-yellow-500 '/>
+              <h5 className='text-xl font-semibold'>Path 1</h5>
+            </div>
+            <h6 className='text-lg font-extralight'>Kulang-Moridugh</h6>
+            <p className='mt-4 '>Kulang to Moridugh is also an altrenate good route, the route starts from a seemingly 
+              unnoticable village of Kulang, a few km before the Solang Valley. The first 1km of the 
+              trek is quite steep, and also little muddy. You will probably find a Dhaba run by local 
+              aunties at the end of the steep section. After the fist 1km, the route is totally flat 
+              to the Moridugh campsite. Criss-crossing through pine forest, over 4-5 streams. One of 
+              streams, the last one, is source to the Jogini Waterfall. After this last stream, the 
+              campsite takes less than 30mins to walk.</p>
+
+            <p className='mt-4'> From Moridugh, the trail to Bhrigu Lake is little longer, but this one become accessible 
+              from start of May, before the Gulaba-Raulikholi Route.
+            </p>
+          </div>
+          
+          <div className='mt-16'>
+          <div className='flex items-center'>
+              <FaCircle className='size-3 mr-2 text-yellow-500 '/>
+              <h5 className='text-xl font-semibold'>Path 2</h5>
+            </div>
+            <h6 className='text-lg font-extralight'>Vashisht-Moridugh</h6>
+            <p className='mt-4'>Almost the same Route, only difference is the first Day. Vashisht to Moridugh, 
+            is very very steep, practically can be suggested only to the experinced hikers or, trekkers. 
+            Starts from the staircase just beside the Vasisht Temple. After Moridugh, the rest of the route is 
+            same.</p>
+
+          </div>
+          
+        </div>
+
+    </section>
 
 
 {/* ////////////////////////////////////// FAQ ///////////////////////////////////////////////////////////////////////////// */}

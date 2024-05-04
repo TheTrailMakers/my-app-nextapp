@@ -11,7 +11,7 @@ function Footer() {
          p-2 px-6 rounded-2xl text-right flex-shrink max-w-40 mr-2 leading-5'>Newly Explored Routes</h4>
       </div>
 
-      <div className='flex flex-wrap justify-between lg:justify-center text-lg gap-8'>
+      <div className='flex flex-wrap justify-between lg:justify-center gap-8 text-sm'>
 
 
           <div className='p-4'>
