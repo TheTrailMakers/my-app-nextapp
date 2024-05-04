@@ -8,6 +8,28 @@ import JoinDate from '@/components/joinDate'
 import GalleryImage from '@/components/galleryImage'
 import Link from 'next/link'
 
+import { GiDuration } from "react-icons/gi";
+import { MdOutlineNetworkCell } from "react-icons/md";
+import { GiMountaintop } from "react-icons/gi";
+import { FaThinkPeaks } from "react-icons/fa";
+import { GiPathDistance } from "react-icons/gi";
+
+import { FaRupeeSign } from "react-icons/fa";
+import { MdAddHomeWork } from "react-icons/md";
+import { FaCarOn } from "react-icons/fa6";
+
+import { ImCross } from "react-icons/im";
+import { FaCheck } from "react-icons/fa";
+import { GiCheckMark } from "react-icons/gi";
+import { IoCloseOutline } from "react-icons/io5";
+
+import { GiBackpack } from "react-icons/gi";
+
+
+import { RiNewspaperFill } from "react-icons/ri";
+
+
+
 export const metadata = {
   title: "Bhrigu Lake Trek 2024 - Explore the Himalayan High Altitude(14,00ft) | The Trail Makers",
   description: "Discover an unforgettable alpine adventure with The Trail Makers. Experience the stunning beauty of Himachal Pradesh on the Bhrigu Lake Trek. Whether it's exploring a hidden trail, chasing sunsets, or simply getting lost in the beauty of nature, it'll be an epic adventure.",
@@ -38,27 +60,37 @@ function page() {
 
 {/* ////////////////////////////////////////Trek Data////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-    <section className='bg-black flex flex-wrap justify-center items-center'>
-      <div>
-        <h5 className='p-4 font-semibold'>Duration</h5>
-
+    <section className='bg-black flex flex-wrap justify-center items-center gap-2 p-4'>
+      <div className='flex flex-col justify-center items-center p-2'>
+        <GiDuration className='size-8 my-1'/>
+        <p className='font-semibold'>4 Days</p>
+        <h3 className='font-extralight text-lg leading-5'>Duration</h3>
       </div>
 
-      <div>
-        <h5 className='p-4 font-semibold'>Difficulty</h5>
+      <div className='flex flex-col justify-center items-center p-2'>
+        <MdOutlineNetworkCell className='size-8 my-1'/>
+        <p className='font-semibold'>Easy-Moderate</p>
+        <h3 className='font-extralight text-lg leading-5'>Difficulty</h3>
+      </div>
+      
+      <div className='flex flex-col justify-center items-center p-2'>
+        <GiMountaintop className='size-8 my-1'/>
+        <p className='font-semibold'>Manali</p>
+        <h3 className='font-extralight text-lg leading-5'>Starting Point</h3>
+      </div>
+      
+      <div className='flex flex-col justify-center items-center p-2'>
+        <FaThinkPeaks className='size-8 my-1'/>
+        <p className='font-semibold'>14,100ft</p>
+        <h3 className='font-extralight text-lg leading-5'>Highest Elevation</h3>
+      </div>
+      
+      <div className='flex flex-col justify-center items-center p-2'>
+        <GiPathDistance className='size-8 my-1'/>
+        <p className='font-semibold'>22km</p>
+        <h3 className='font-extralight text-lg leading-5'>Trail Length</h3>
       </div>
 
-      <div>
-        <h5 className='p-4 font-semibold'>Starting Point</h5>
-      </div>
-
-      <div>
-        <h5 className='p-4 font-semibold'>Highest Elevation</h5>
-      </div>
-
-      <div>
-        <h5 className='p-4 font-semibold'>Trail Length</h5>
-      </div>
     </section>
 
 {/* ////////////////////////////////////////Short Intro////////////////////////////////////////////////////////////////////////////////////////// */}
@@ -111,10 +143,27 @@ function page() {
 
       <section className=''>
         <h3 className='text-5xl uppercase font-bold m-8'>Join The Team</h3>
-        <div className='m-8'>
+        <div className='m-8 my-12'>
           <div className='text-3xl max-w-[80%] font-light'>Trek Cost with The Trail Makers</div>
-          <div className='text-5xl font-bold text-yellow-500 mt-4 mb-1'>8,500/-</div>
-          <div className='text-sm max-w-[80%] text-slate-300 font-light'>* Stay & Fooding at Manali Included</div>
+          <div className='flex flex-col bg-gradient-to-r from-red-500 from-10% via-black via-60% to-white to-100% 
+                          rounded-2xl p-2 py-6 my-12 gap-4'>
+
+            <div className='flex justify-normal items-center gap-2'>
+              <FaRupeeSign className='inline size-12 text-yellow-500'/>
+              <div className='text-5xl font-bold max-w-60 text-yellow-500'>8,500/-</div>
+            </div>
+
+            <div className='flex justify-normal items-center gap-2'>
+              <MdAddHomeWork className='inline size-12 text-sky-400'/>
+              <div className='text-xl max-w-60 text-sky-500 font-light'> Stay & Fooding at Manali Included</div>
+            </div>
+
+            <div className='flex justify-normal items-center gap-2'>
+              <FaCarOn className='inline size-12 text-white'/>
+              <div className='text-xl max-w-60 text-sky-500 font-light'> Manali to Manali Transport Included</div>
+            </div>
+            
+          </div>
         </div>
         <div className='flex pl-6 items-center overflow-x-auto
           snap-x snap-mandatory no-scrollbar'>
@@ -221,12 +270,13 @@ function page() {
             Forgot your socks? No problem. You can also rent gear right here at the Homestay if you&apos;re in a pinch.
             </p><br />
 
-            <p>Don&apos;t forget to check out our handy guides:</p>
+            <p>Don&apos;t forget to check out our handy guides:</p><br/>
+            
+            <ul className='list-disc ml-6'>
+            <li><Link href={"/contact"} className='text-sky-500'>Where to snag adventure gear in Manali?</Link></li>
+            <li><Link href={"/contact"} className='text-sky-500'>Cool spots to explore in Manali on foot</Link></li>
+            </ul><br/>
 
-            <div><Link href={"/contact"} className='text-sky-500'>Where to snag adventure gear in Manali?</Link></div>
-            <div><Link href={"/contact"} className='text-sky-500'>Cool spots to explore in Manali on foot</Link></div>
-
-            <br/>
             <p>
             <span className='font-bold'>Dinner Time: </span>Get ready for a hearty dinner, served a bit earlier than usual. Yep, that&apos;s the 
             mountain life for you - early to bed, early to rise. But hey, it&apos;s all part of the adventure, 
@@ -311,7 +361,12 @@ function page() {
             <h4 className='text-6xl shrink-0 bg-amber-500'>Day 3</h4>
             <div className='text-right'>Raulikholi - Bhrigu Lake- Raulikholi</div>
           </div>
-          <div className='text-slate-300 pt-4'>Altitude : 12500ft - 14,090ft - 12,500ft</div>
+
+          <div className='pt-4'>
+            <div className='text-slate-300 pt-4'>Altitude : 12500ft - 14,090ft - 12,500ft</div>
+            <div className='text-slate-300'>Trail Length : 10km</div>
+            <div className='text-slate-300'>Duration : 6-8 hrs</div>
+          </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
               height={200}
@@ -363,7 +418,13 @@ function page() {
             <h4 className='text-6xl flex-shrink-0 bg-amber-500'>Day 4</h4>
             <div className='text-right'>Raulikholi - Gulaba - Manali</div>
           </div>
-          <div className='text-slate-300 pt-4'>Altitude : 12,500ft - 9500ft - 6500ft</div>
+
+          <div className='pt-4'>
+            <div className='text-slate-300 pt-4'>Altitude : 12,500ft - 9500ft - 6500ft</div>
+            <div className='text-slate-300'>Trail Length : 6km</div>
+            <div className='text-slate-300'>Duration : 2-4 hrs</div>
+          </div>
+
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
               height={200}
@@ -375,31 +436,23 @@ function page() {
 
           <div className='leading-7 text-stone-300'>
             <p>
-            As the golden rays of the morning sun kissed the quaint town of Manali, 
-            adventurers from around the world gathered, their hearts filled with 
-            excitement and anticipation. Armed with sturdy boots and backpacks, they 
-            set out on the trail leading to the mystical Bhrigu Lake.
+            Hey there! So, picture this: you&apos;re at the end of your trip, packing 
+            up your stuff all careful-like. Now, I know those downward slopes are 
+            calling your name, but hold up a sec! It&apos;s smart to get the hang of 
+            the controls first before you go zooming down. Believe it or not, 
+            most accidents happen when folks get a little too excited and make 
+            risky moves on the way down.
             </p><br />
 
             <p>
-            The trek commenced with a gentle ascent through lush green forests, 
-            the air echoing with the melodious chirping of birds. Each step brought 
-            them closer to the heart of the Himalayas, where legends whispered of a 
-            sacred lake nestled amidst towering peaks.
+            But don&apos;t worry, the descent won&apos;t take long, and your ride will 
+            be waiting for you at the road head. Adios Amigos!
             </p><br />
 
             <p>
-            As the day unfolded, the trail unveiled its treasures - meandering 
-            streams, vibrant wildflowers, and panoramic vistas that took their 
-            breath away. With every turn, the landscape transformed, weaving a 
-            tapestry of nature&apos;s wonders that left them in awe.
-            </p><br />
-
-            <p>
-            As the sun dipped below the horizon, painting the sky in hues of 
-            orange and pink, weary yet exhilarated, they made camp beneath a 
-            canopy of stars, eager for the adventures that awaited them on the 
-            morrow.
+            Oh, and before you head out, make sure to check out all the awesome 
+            cafes and restaurants along Manali Mall Road while you wait for your 
+            evening bus. Trust me, you won&apos;t want to miss it!
             </p><br />
           </div>
         </div>
@@ -434,70 +487,79 @@ function page() {
     
     <section className='bg-red-600 h-96 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
       <div className='px-8 text-right flex flex-col items-end'>
-          <h3 className='text-5xl font-extrabold pt-20 uppercase w-60'>
+        <div className='flex pt-20'>
+          <GiBackpack className='size-20'/>
+          <h3 className='text-5xl font-extrabold uppercase w-60'>
             What to Pack
           </h3>
+        </div>
           <h6 className='w-[70%]'>There is <strong className='text-amber-200'>no bad weather</strong> only bad clothing</h6>
       </div>
 
     </section>
 
 {/* ////////////////////////////////////// Inclusion & Exclusions //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+<section className='bg-sky-700 md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
+  <div className='flex items-center justify-items-start gap-2 bg-sky-900 pr-2'>
+    <h3 className='text-4xl font-bold p-4 max-w-72'> Inclusions & Exclusions</h3>
+    <FaCheck className='size-16 text-amber-400'/>
+    <ImCross className='size-16 text-red-700'/>
+  </div>
 
-    <section className='flex bg-sky-600 p-4 justify-evenly md:mx-[20%] lg:mx-[25%] xl:mx-[30%]'>
-
+  <div className='flex p-4 justify-evenly '>
       <section className='flex flex-col w-[49%]'>
-        <h4 className='text-3xl font-medium mb-2'>Inclusions</h4>
-        <div className='flex flex-col'>
-          <ul className='list-disc pl-5'>
-            <li>Day 1 Manali Stay in Homestay</li>
-            <li>Stay in Tent During Trek [ 3 Sharing basis ]</li>
+        <h4 className='text-3xl below-xs:text-xl font-medium mb-2'>Inclusions</h4>
+          <ul className='flex flex-col text-sm'>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Day 1 Manali Stay in Homestay</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2 '/>Stay in Tent During Trek [ 3 Sharing basis ]</li>
             <br/>
-            <li>Food Day 1 breakfast to Day 4 breakfast</li>
-            <li>Meals [breakfast + Lunch + Snacks + Dinner]</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Food Day 1 breakfast to Day 4 breakfast</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Meals [breakfast + Lunch + Snacks + Dinner]</li>
             <br/>
-            <li>Transport : Manali - Gulaba</li>
-            <li>Transport : Gulaba - Manali</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Transport : Manali - Gulaba</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Transport : Gulaba - Manali</li>
             <br/>
-            <li>Mountaineering Course certified Guide</li>
-            <li>Mountaineering Course certified Trek Leader</li>
-            <li>Cook, porter/mule for Common luggage</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Mountaineering Course certified Guide</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Mountaineering Course certified Trek Leader</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Support Staff [Cook, Helper] </li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>porter/mule for Common luggage</li>
             <br/>
-            <li>Permit & Camping Fees</li>
-            <li>Safety Equipments [Climbing Rope, Crabiners, pulleys, etc.]</li>
-            <li>First Aid Kit</li>
-            <li>Sleeping Bag</li>
-            <li>Sleeping Mattress</li>
-            <li>Kitchen Tent</li>
-            <li>Dining tent</li>
-            <li>Toilet Tent</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Permit & Camping Fees</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Safety Equipments [Climbing Rope, Crabiners, pulleys, etc.]</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>First Aid Kit</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Sleeping Bag</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Sleeping Mattress</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Kitchen Tent</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Dining tent</li>
+            <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Toilet Tent</li>
           </ul>
-        </div>
       </section>
 
       <div className='w-[3px] rounded-full bg-white mx-2'></div>
 
       <section className='flex flex-col w-[49%]'>
-        <h4 className='text-3xl font-medium '>Exclusions</h4>
-          <div className='flex flex-col'>
-            <ul className='list-disc pl-5'>
-              <li>Insurance Fees</li>
-              <li>Camera charges or, any similar fees</li>
-              <li>Any Specially ordered meal, except the inclusions</li>
-              <li>Anything not mentioned in Inclusions</li>
+        <h4 className='text-3xl below-xs:text-xl font-medium '>Exclusions</h4>
+            <ul className='flex flex-col text-sm -ml-1'>
+              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Insurance Fees</li>
+              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Camera charges or, any similar fees</li>
+              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Any Specially ordered meal, except the inclusions</li>
+              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Anything not mentioned in Inclusions</li>
             </ul>
-          </div>
       </section>
 
-    </section>
+    </div>
+    </section> 
 
 {/* //////////////////////////////////////Articles Section///////////////////////////////////////////////////////////////////////////////////////////// */}
     
     <section className=' md:mx-[10%] '>
       <div className='px-8 text-left flex flex-col items-start'>
-          <h3 className='text-5xl font-extrabold pt-20 uppercase max-w-60'>
-            Food for Soul
-          </h3>
+          <div className='flex pt-20'>
+            <h3 className='text-5xl font-extrabold uppercase max-w-60'>
+              Food for Soul
+            </h3>
+            <RiNewspaperFill className='size-24 ml-4'/>
+          </div>
           <h6 className='w-[70%]'>
             Learn The way Of Mountains
           </h6>
