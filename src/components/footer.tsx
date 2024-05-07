@@ -11,9 +11,9 @@ function Footer() {
          p-2 px-6 rounded-2xl text-right flex-shrink max-w-40 mr-2 leading-5'>Newly Explored Routes</h4>
       </div>
 
-      <div className='flex flex-wrap justify-between lg:justify-center gap-8 text-sm'>
+      {/* <div className='flex flex-wrap justify-between lg:justify-center gap-8 text-sm'> */}
 
-
+        <div className=' text-lg font-light grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-[calc((100vw-1280px)/2)] mx-4'>
           <div className='p-4'>
             <h5 className='font-bold'>Treks by Season</h5>
             <div className='font-extralight'>
@@ -78,7 +78,7 @@ function Footer() {
 
 
               
-          <div className='p-6'>
+          <div className='p-4'>
             <h5 className='font-bold'>Treks by Difficulty</h5>
             <div className='font-extralight'>
               <div className='pt-1'>Grade 1</div>
