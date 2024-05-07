@@ -58,8 +58,8 @@ export default function Navbar () {
             <Link href='/' className="mr-auto"><Image  className="pl-4 " src="/TTM.png" alt="The Trail Makers Logo" width={80} height={80}/></Link>
             
             
-            <Link href="/Coming_Soon"><Button text="Sign Up" bgcolor="bg-yellow-400" txtcolor="text-black" ></Button></Link>
-            <Link href="/Coming_Soon"><Button text="Log In" bgcolor="bg-white" txtcolor="text-black" ></Button></Link>
+            <Link href="/contact"><Button text="Sign Up" bgcolor="bg-yellow-400" txtcolor="text-black" ></Button></Link>
+            <Link href="/contact"><Button text="Log In" bgcolor="bg-white" txtcolor="text-black" ></Button></Link>
 
             <nav className={`font-mono uppercase bg-neutral-950 text-white
                             fixed h-full w-80 max-w-[calc(100%-3rem)] top-0 right-0
@@ -72,7 +72,7 @@ export default function Navbar () {
                     {navLinks.map(({name, href}) => (
                         <li key={href} className="pr-4 pb-4 text-2xl">
                             <Link  
-                                href={href}
+                                href={href || "/contact"}
                                 className={`${pathname === href ? "text-sky-500" : "text-white"}`}
                             >
                                 {name}

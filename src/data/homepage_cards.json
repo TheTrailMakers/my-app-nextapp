@@ -2,7 +2,7 @@
       {
         "Index": 101,
         "tag": ["trek", "summer-trek", "monsoon-trek", "autumn-trek", "winter-trek", "spring-trek"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714105762/Ranisui-summer.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714105762/Ranisui-Lake-Trek/Ranisui-summer.jpg",
         "Name": "Ranisui Lake Trek",
         "State": "Himachal",
         "Description": "At the back yard of Manali, offers a serene summit (13,220ft) and a alpine lake (12,385ft). A moderate trek with a 360 degree view of stunning peaks, best explored from May to December.",
@@ -18,7 +18,7 @@
       {
         "Index": 102,
         "tag": ["trek", "summer-trek", "monsoon-trek", "winter-trek"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/c_fill,g_auto,w_640,h_384/v1714141883/bhrigu-lake-winter-climb.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714141883/Bhrigu-Lake-Trek/bhrigu-lake-winter-climb.jpg",
         "Name": "Bhrigu Lake Trek",
         "State": "Himachal",
         "Description": "A scenic high-altitude trek in Himachal Pradesh, offering stunning views of snow-capped peaks and pristine alpine landscapes, with a moderate level of difficulty.",
@@ -43,7 +43,7 @@
         "Difficulty": 0.5,
         "Cost": "10,500",
         "Info": "transport included",
-        "PageLink": "/hampta-pass-trek",
+        "PageLink": null,
         "Date": ["28th May, 2024", "24th June, 2024", "24th June, 2024"]      },
       
       {
@@ -58,14 +58,14 @@
         "Difficulty": 6,
         "Cost": "25,000",
         "Info": "transport included",
-        "PageLink": "/yunam-peak-expedition",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
       {
         "Index": 105,
         "tag": ["camp"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714110770/Rock-climbing-kanyal.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714110770/Rock-climbing-kanyal.jpg",
         "Name": "Rock Climbing Camp",
         "State": "West Bengal",
         "Description": "Experience the Thrill of Life, climb the unimaginable",
@@ -74,14 +74,14 @@
         "Difficulty": 4,
         "Cost": "5,000",
         "Info": "transport excluded",
-        "PageLink": "/rock-climbing-camp",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
       {
         "Index": 106,
         "tag": ["camp"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714112448/Bhrigu_first_camp.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714112448/Bhrigu-Lake-Trek/Bhrigu_first_camp.jpg",
         "Name": "School Summer Camp",
         "State": "Manali",
         "Description": "The only Hydration your kids need,",
@@ -90,14 +90,14 @@
         "Difficulty": 1,
         "Cost": "9,000",
         "Info": "transport included",
-        "PageLink": "/school-summer-camp",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
       {
         "Index": 107,
         "tag": ["trek", "hike",  "weekend-plan", "summer-trek", "winter-trek"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714113008/lamadugh_summer.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714113008/Ranisui-Lake-Trek/lamadugh_summer.jpg",
         "Name": "Lamadugh Hike",
         "State": "Himachal",
         "Description": "A weekend Plan near Manali",
@@ -106,14 +106,14 @@
         "Difficulty": 2,
         "Cost": "4,500",
         "Info": "stay included",
-        "PageLink": "/lamadugh-hike",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
       {
         "Index": 108,
         "tag": ["trek", "new-route", "upcoming-exploration", "summer-trek", "monsoon-trek", "autumn-trek"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714117919/khanpari-kalihani-pass-trek.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714117919/Ranisui-Lake-Trek/khanpari-kalihani-pass-trek.jpg",
         "Name": "Kalihani Pass Trek",
         "State": "Himachal",
         "Description": "A weekend Plan near Manali",
@@ -122,14 +122,14 @@
         "Difficulty": 6,
         "Cost": "18,500",
         "Info": "stay included",
-        "PageLink": "/kalihani-pass-trek",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
       {
         "Index": 110,
         "tag": ["trek", "summer-trek", "monsoon-trek", "autumn-trek"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714118662/beas-kund-trek.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714118662/beas-kund-trek.jpg",
         "Name": "Beas Kund Trek",
         "State": "Himachal",
         "Description": "Best beginner trek near Manali",
@@ -138,7 +138,7 @@
         "Difficulty": 2,
         "Cost": "8,500",
         "Info": "stay included",
-        "PageLink": "/beas-kund-trek",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
@@ -146,7 +146,7 @@
       {
         "Index": 111,
         "tag": [ "trek", "new-route", "summer-trek", "monsoon-trek", "autumn-trek"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714119299/Gephan_ghat_trek.webp",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714119299/Gephan_ghat_trek.webp",
         "Name": "Gephan Lake Trek",
         "State": "Himachal",
         "Description": "Best beginner trek near Manali",
@@ -155,7 +155,7 @@
         "Difficulty": 2,
         "Cost": "9,500",
         "Info": "stay included",
-        "PageLink": "/gephan-lake-trek",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
@@ -163,7 +163,7 @@
       {
         "Index": 112,
         "tag": ["weekend-plan"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714120262/kanyal-aksu-evening-hike-manali.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714120262/kanyal-aksu-evening-hike-manali.jpg",
         "Name": "Kanyal Hike",
         "State": "Himachal",
         "Description": "Best weekned hike near manali",
@@ -172,7 +172,7 @@
         "Difficulty": 2,
         "Cost": "1,500",
         "Info": "stay excluded",
-        "PageLink": "/kanyal-hike",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
@@ -180,7 +180,7 @@
       {
         "Index": 113,
         "tag": ["weekend-plan"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714120028/kho-waterfall-hike.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714120028/kho-waterfall-hike.jpg",
         "Name": "Kho Waterfall",
         "State": "Himachal",
         "Description": "Best beginner trek near Manali",
@@ -189,7 +189,7 @@
         "Difficulty": 2,
         "Cost": "2,500",
         "Info": "stay included",
-        "PageLink": "/kho-waterfall-hike",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 
@@ -197,7 +197,7 @@
       {
         "Index": 114,
         "tag": ["weekend-plan"],
-        "Img": "https://res.cloudinary.com/thetrail/image/upload/v1714119822/Climbinh-in-Lahaul.jpg",
+        "Img": "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714119822/Climbinh-in-Lahaul.jpg",
         "Name": "Climbing in Lahaul",
         "State": "Himachal",
         "Description": "Best climbing near Manali",
@@ -206,7 +206,7 @@
         "Difficulty": 3,
         "Cost": "2,500",
         "Info": "stay included",
-        "PageLink": "/climbing-lahaul",
+        "PageLink": null,
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       }
 

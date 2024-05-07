@@ -8,7 +8,8 @@ export default function TrekCard({Name, Img, State, Description, Distance, Durat
     const default_Image = "https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg"
 
     return (
-        <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
+        <div className="m-4 border-[1px] snap-center relative border-cyan-600 bg-gradient-to-b 
+                        from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
 
                 <Link href={PageLink || "/contact"}>
                   <Image src={Img || default_Image} alt={Name} width={320} height={192} className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 768px) 250px, 800px"></Image>
@@ -40,9 +41,10 @@ export default function TrekCard({Name, Img, State, Description, Distance, Durat
                 </div>
             </div>
 
-            <Link href={PageLink}>
+            <Link href={PageLink || "/contact"}>
             <div className="text-center flex flex-col items-center pt-4">
-                <p className="text-white bg-gradient-to-r from-red-600 to-red-900 py-1 w-3/4 font-bold text-lg rounded-t-3xl">{Date[0]}</p>
+                <p className="text-white bg-gradient-to-r from-red-600 to-red-900 
+                py-1 w-3/4 font-bold text-lg rounded-t-3xl">{Date[0]}</p>
             </div>
             </Link>
    

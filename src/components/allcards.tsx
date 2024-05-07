@@ -7,7 +7,7 @@ export default function AllCard({Name, Img, State, Description, Distance, Durati
     const default_Image = "https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg"
 
     return (
-        <div className="m-1 relative flex flex-col items-center border-cyan-600 bg-gradient-to-b from-black to-gray-900 h-60 rounded-2xl">
+        <div className="m-2 relative shrink-0 snap-center flex flex-col items-center border-cyan-600 bg-gradient-to-b from-black to-gray-900 h-60 rounded-2xl">
 
             <Link href={PageLink || "/contact"}>
                   <Image src={Img || default_Image} alt={Name} width={320} height={320} 
@@ -15,8 +15,8 @@ export default function AllCard({Name, Img, State, Description, Distance, Durati
                          sizes="(max-width: 768px) 250px, 800px"></Image>
             </Link>
 
-            <h2 className="p-1 m-2 absolute bottom-2 bg-red-400 rounded-md shadow-md
-            font-semibold uppercase text-sm text-center">
+            <h2 className="p-1 m-2 absolute top-2 rounded-md
+            font-bold uppercase text-xl text-center ">
                 {Name}
             </h2>
    

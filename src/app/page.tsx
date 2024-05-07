@@ -2,20 +2,11 @@
 
 import Image from "next/image";
 import useStore from "@/store/store";
-import Homecards from "@/components/homecards";
 import Accordion from "@/components/accordion";
 import mockdata from "@/data/homepage_cards.json";
 import Link from "next/link";
 
-import heroImage from "../../public/Ranisui_manali_speedhike_The_Trail_Makers.jpg"
-import ttmHeader from "../../public/ttm image.png"
-import lamadughDogImg from "../../public/lamadugh_dog.jpg"
-import campfireImg from "../../public/camfire.jpg"
-import lamadughGroupImg from "../../public/lamadugh_groupPhoto.jpg"
-import lamadughCowsImg from "../../public/lamadugh_cows.jpg"
-import deotibbaDogImg from "../../public/dog_deotibba.jpg"
-import panoviewImg from "../../public/pano_view.jpg"
-import bhriguRiverCrossingImg from "../../public/river_crossing.jpg"
+
 import Scrollables from "@/components/scrollables";
 import TrekCard from "@/components/homecards";
 
@@ -44,12 +35,17 @@ const {hamburgerOpen} = useStore((state:any) => {
 
     <main className="min-h-screen bg-black text-white no-scrollbar">
 
-      <Image src={heroImage} alt="trail running to lamadugh" sizes="(max-width: 768px) 250px, 80vw" priority placeholder="blur" 
-      className="lg:max-h-screen lg:object-cover lg:relative lg:object-[0%_90%]">
+      <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto/v1713186783/Ranisui_manali_speedhike.jpg" 
+      alt="trail running to lamadugh"
+      width={3}
+      height={4}
+      layout="responsive"
+      priority={true}
+      className="w-full lg:max-h-screen lg:object-cover lg:relative lg:object-[0%_90%]">
       </Image>
 
       <div className="lg:absolute lg:bottom-10 text-[5vw] pt-16 pb-10 px-[25vw] font-mono text-center font-bold leading-tight">
-        Choose a new Trail, close to the Nature.
+        A Life With Nature, Is A Life Well Lived.
       </div>
 
       <div className=" m-6 pt-10 pr-6 mb-20 text-base font-medium text-neutral-500 
@@ -66,7 +62,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 
            
 
-      <h3 className="font-bold text-yellow-500 text-3xl uppercase ml-8">Upcoming<br/>Treks...</h3>
+      <h3 className="font-bold text-yellow-500 text-3xl below-xs:text-[10vw] uppercase ml-8">Upcoming<br/>Treks...</h3>
         <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
           <TrekCard {...mockdata[0]}/>
           <TrekCard {...mockdata[1]}/>
@@ -82,14 +78,19 @@ const {hamburgerOpen} = useStore((state:any) => {
 
 
       
-      <div className="text-7xl font-extrabold mx-4 my-20 md:text-center md:mx-[10%]">
+      <div className="text-7xl text-ellipsis overflow-hidden textover below-xs:text-[10vw] font-extrabold px-4 my-20 md:text-center md:mx-[10%]">
         <h2 className="uppercase">How Trekking can change life</h2>
       </div>
 
 <div className="md:mx-[20vw] lg:mx-[25vw] xl:mx-[30vw]">
 
       <section className="my-20">
-        <Image src={lamadughDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" className="h-40 object-cover w-full object-[0%_70%]" placeholder="blur"></Image>
+        <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_2:1,c_auto,h_320/v1715052583/Ranisui-Lake-Trek/lamadugh_dog_chhotapathhar.jpg" 
+        alt="The Trail Makers"
+        width={250}
+        height={400}
+        sizes="(max-width: 768px) 250px, 800px" 
+        className="h-40 object-cover w-full object-[0%_70%]"></Image>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -106,7 +107,12 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
 
       <section className="my-20">
-        <Image src={campfireImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" className="h-40 object-cover w-full object-[0%_50%]" placeholder="blur"></Image>
+        <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_2:1,c_auto,h_320/v1715052618/Downloaded/camfire.jpg" 
+        alt="The Trail Makers"
+        width={250}
+        height={400} 
+        sizes="(max-width: 768px) 250px, 800px" 
+        className="h-40 object-cover w-full object-[0%_50%]"></Image>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -123,8 +129,15 @@ const {hamburgerOpen} = useStore((state:any) => {
       </section>
 
       <section className="my-20">
-        <Image src={lamadughCowsImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" style={{width: '100%',height: '160px' }} className="object-cover w-full object-[0%_60%]" placeholder="blur"></Image>
+
+        <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_2:1,c_auto,h_320/v1715052575/Ranisui-Lake-Trek/lamadugh_cows.jpg" 
+        alt="The Trail Makers" 
+        width={250}
+        height={400}
+        sizes="(max-width: 768px) 400px, 800px" 
+        className="object-cover w-full object-[0%_60%]"></Image>
         {/* <Image src={lamadughGroupImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" style={{width: '100%',height: '160px' }} className="object-cover w-full object-[0%_70%]" placeholder="blur"></Image> */}
+        
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
@@ -156,15 +169,21 @@ const {hamburgerOpen} = useStore((state:any) => {
 
 
 
-      <div className="text-7xl font-extrabold mx-4 my-20 text-right md:text-center md:mx-[20%]">
+      <div className="text-7xl below-xs:text-4xl font-extrabold mx-4 my-20 text-right md:text-center md:mx-[20%]">
         <h2 className="uppercase">Getting ready</h2>
       </div>
 
-<div className="md:mx-[20vw] lg:mx-8 lg:my-24 lg:flex lg:justify-center lg:items-start lg:gap-4">
+<div className=" pl-4 lg:px-[calc((100vw-1024px)/2)] lg:my-24 lg:grid lg:grid-cols-3">
       
-      <section className="mx-4 mt-6 mb-32 lg:m-0 shrink-0 max-w-96">
-        <Image src={deotibbaDogImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
-        style={{width: 'auto',height: 'auto' }} className="max-w-60 my-4 h-96 object-cover rounded-tr-[50%]" placeholder="blur"></Image>
+      <section className="mx-auto mt-6 mb-32 lg:m-0 max-w-96">
+        <Image 
+        src= "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714969427/Ranisui-Lake-Trek/dog_deotibba.jpg" 
+        alt="Dog on grassy slope, Mountain peaks like deo tibba, Indrasan in background" 
+        sizes="(max-width: 768px) 300px, 400px" 
+        width= {240}
+        height= {320} 
+        className="max-w-60  below-xs:max-w-40 my-4 object-cover rounded-tr-[50%]">
+        </Image>
 
         <h4 className="text-amber-600">Am I fit enough for a Trek ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">START YOUR JOURNEY</h3>
@@ -179,9 +198,15 @@ const {hamburgerOpen} = useStore((state:any) => {
         <Link href="/contact"><p className="font-extrabold">Read More</p></Link>
       </section>
       
-      <section className="mx-4 mt-6 mb-32 lg:m-0 shrink-0 max-w-96">
-        <Image src={panoviewImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
-         style={{width: 'auto',height: 'auto' }} className="max-w-60 h-96 object-cover my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+      <section className="mx-auto mt-6 mb-32 lg:m-0  max-w-96">
+      <Image 
+        src= "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714969858/Ranisui-Lake-Trek/pano_view_KhanpariTibba.jpg" 
+        alt="Watching Indrasan, Deo Tibba from the graddy top of Khanpari Tibba ." 
+        sizes="(max-width: 768px) 250px, 400px" 
+        width= {240}
+        height= {320} 
+        className="max-w-60 below-xs:max-w-40 my-4 object-cover rounded-tr-[50%]">
+        </Image>
 
         <h4 className="text-amber-600">What to pack for a trek? ?</h4>
         <h3 className="uppercase text-3xl font-bold w-2/3">PACKING THE NECESSITY</h3>
@@ -197,12 +222,18 @@ const {hamburgerOpen} = useStore((state:any) => {
         <Link href="/contact"><p className="font-extrabold">Read More</p></Link>
       </section>
       
-      <section className="mx-4 mt-6 mb-32 lg:m-0 shrink-0 max-w-96">
-        <Image src={bhriguRiverCrossingImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 400px" 
-         style={{width: 'auto',height: 'auto' }} className="max-w-60 h-96 object-cover my-4 rounded-tr-[50%]" placeholder="blur"></Image>
+      <section className="mx-auto mt-6 mb-32 lg:m-0 max-w-96">
+      <Image 
+        src= "https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,w_300/v1714970051/Bhrigu-Lake-Trek/river_crossing_BhriguLake-Jogini.jpg" 
+        alt="River Crossing in Rain over a Log Bridge." 
+        sizes="(max-width: 768px) 250px, 400px" 
+        width= {240}
+        height= {320} 
+        className="max-w-60 below-xs:max-w-40 my-4 object-cover rounded-tr-[50%]">
+        </Image>
 
         <h4 className="text-amber-600">What is the best season for tekking?</h4>
-        <h3 className="uppercase text-3xl font-bold w-2/3">UNDERSTANDING SEASONS IN TREKKING</h3>
+        <h3 className="uppercase text-3xl below-xs:text-[10vw] font-bold w-2/3">UNDERSTANDING SEASONS IN TREKKING</h3>
         <p className="mt-8 pr-10 text-neutral-400 max-w-[350px]">If you don’t want to miss your train 
           by getting stuck in a landslide, or 
           shiver all night in the month of May, 
@@ -264,35 +295,35 @@ const {hamburgerOpen} = useStore((state:any) => {
 
 <div className="mt-16 md:mx-auto pb-24">
   <div className="mb-16">
-      <div className="ml-4 text-4xl font-bold">SUMMER Plans</div>
+      <div className="ml-4 text-4xl below-xs:text-[10vw] font-bold">SUMMER Plans</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         {mockdata.map((trek) => trek.tag.includes('summer-trek')? <Scrollables {...trek} key={trek.Index}/>:null)}
       </div>
   </div>
 
   <div className="mb-16">
-      <div className="ml-8 text-4xl font-bold">CAMPS</div>
+      <div className="ml-8 text-4xl below-xs:text-[10vw] font-bold">CAMPS</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
           {mockdata.map((trek) => trek.tag.includes('camp')? <Scrollables {...trek} key={trek.Index}/>:null)}    
       </div>
   </div>
   
   <div className="mb-16">
-      <div className="ml-4 text-4xl font-bold">Weekend Plans</div>
+      <div className="ml-4 text-4xl below-xs:text-[10vw] font-bold">Weekend Plans</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         {mockdata.map((trek) => trek.tag.includes('weekend-plan')? <Scrollables {...trek} key={trek.Index}/>:null)}
       </div>
   </div>
 
   <div className="mb-16">
-      <div className="ml-4 text-4xl font-bold">NEW Routes</div>
+      <div className="ml-4 text-4xl below-xs:text-[10vw] font-bold">NEW Routes</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         {mockdata.map((trek) => trek.tag.includes('new-route')? <Scrollables {...trek} key={trek.Index}/>:null)}
       </div>
   </div>
 
   <div className="mb-16">
-      <div className="ml-4 text-4xl font-bold">Upcoming <br/>EXPLORATION</div>
+      <div className="ml-4 text-4xl below-xs:text-[10vw] font-bold">Upcoming <br/>EXPLORATION</div>
       <div className="flex overflow-x-auto snap-x snap-mandatory bg-black no-scrollbar">
         {mockdata.map((trek) => trek.tag.includes('upcoming-exploration')? <Scrollables {...trek} key={trek.Index}/>:null)}    
       </div>
