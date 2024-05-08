@@ -89,7 +89,7 @@ const {hamburgerOpen} = useStore((state:any) => {
         alt="The Trail Makers"
         width={250}
         height={400}
-        sizes="(max-width: 768px) 250px, 800px" 
+        sizes="(max-width: 768px) 400px, 800px" 
         className="h-40 object-cover w-full object-[0%_70%]"></Image>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +111,7 @@ const {hamburgerOpen} = useStore((state:any) => {
         alt="The Trail Makers"
         width={250}
         height={400} 
-        sizes="(max-width: 768px) 250px, 800px" 
+        sizes="(max-width: 768px) 400px, 800px" 
         className="h-40 object-cover w-full object-[0%_50%]"></Image>
         <div className="mx-4 pt-6 pb-4 flex items-center">
           <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
