@@ -96,32 +96,32 @@ function page() {
         <div className='p-8 max-w-[95%] md:pr-0 leading-7 text-stone-300 text-lg font-light'>
             <p>
             Embark on an incredible journey through the captivating landscapes of 
-            the Ranisui Lake Trek, just a stone's throw away from Manali. Over 
+            the Ranisui Lake Trek, just a stone&apos;s throw away from Manali. Over 
             three unforgettable days, this offbeat adventure promises to whisk 
             you away into a world of natural wonders and breathtaking beauty.
             </p><br />
 
             <p>
             Picture yourself winding through lush forests, charming villages, 
-            and meadows that seem to stretch on forever. Along the way, you'll 
+            and meadows that seem to stretch on forever. Along the way, you&apos;ll 
             stumble upon Lamadugh, a serene oasis offering sweeping views of 
             the majestic Himalayas. Take a moment to soak in the tranquility 
             and marvel at the sheer grandeur of your surroundings.
             </p><br/>
             
             <p>
-            But that's not all – the trek also introduces you to the lesser-known 
+            But that&apos;s not all – the trek also introduces you to the lesser-known 
             trail of Badapathhar, where every twist and turn reveals something 
-            new and exciting. And what's a trek without a little exploration? 
+            new and exciting. And what&apos;s a trek without a little exploration? 
             Set aside a day to venture off on a thrilling hike, delving deeper 
             into the untouched wilderness and uncovering its hidden gems.
             </p><br />
 
 
             <p>
-            The Ranisui Lake Trek isn't just about following a trail – it's 
+            The Ranisui Lake Trek isn&apos;t just about following a trail – it&apos;s 
             about forging your own path, discovering new routes, and immersing 
-            yourself in the raw beauty of nature. So, if you're ready to escape 
+            yourself in the raw beauty of nature. So, if you&apos;re ready to escape 
             the ordinary and embrace adventure, join us on this unforgettable 
             journey through the heart of the Himalayas.
             </p>
@@ -360,7 +360,7 @@ function page() {
           </Image>
 
           <div className='leading-7'>
-            <p>Coming Soon"
+            <p>Coming Soon
             </p><br />
           </div>
         </div>
