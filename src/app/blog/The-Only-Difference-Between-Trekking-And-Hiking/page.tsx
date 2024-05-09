@@ -1,0 +1,139 @@
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+function page() {
+  return (
+    <main className='min-h-screen px-[calc((100vw-600px)/2)]'>
+      <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_4:5,c_auto,h_640/v1715240575/blogs/Difference-between-hiking-and-trekking.png" 
+        alt="The Trail Makers"
+        width={400}
+        height={500}
+        sizes="(max-width: 768px) 400px, 800px" 
+        className="object-cover w-full"
+        blurDataURL='https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,h_30/v1715240575/blogs/Difference-between-hiking-and-trekking.png'
+        placeholder='blur'
+        priority>
+      </Image>
+
+      <div className='p-3'>
+        <h1 className='text-3xl text-neutral-800 font-bold py-2'>Hiking vs Trekking: What's the Difference</h1>
+        <h3 className='uppercase text-neutral-500 text-sm inline font-medium'>By Pritam Bera</h3>
+        <span className='px-1'>|</span>
+        <h3 className='uppercase text-neutral-500 text-sm inline font-semibold'>9th May, 2024</h3>
+      </div>
+
+      <div className='p-3 leading-8'>
+          <p>
+          On a Saturday evening, over a drink, the words 'Hiking' and 'Trekking' 
+          can create a fight between even two respectable members of a great 
+          adventure community.
+          </p><br/>
+
+          <p>
+          So, let's get to its roots. More than opinions, it is best to see 
+          the origin, as the words have transformed over the centuries, bleeding 
+          into each other's meaning and now becoming almost synonymous.
+          </p>
+
+          <Image src="https://i.pinimg.com/564x/82/5d/11/825d114ba8a81b73f6a082fa39cd1bf9.jpg" 
+          alt="Ox Wagon Transport in the Free State | South Africa, flickr.com"
+          width={400}
+          height={300}
+          sizes="(max-width: 768px) 400px, 800px" 
+          className="object-cover w-full pt-8 pb-2 rounded-lg"
+          priority>
+        </Image>
+        <div className='mx-12 pb-8 text-center text-sm'>
+          Ox Wagon Transport in the Free State | South Africa, flickr.com
+        </div>
+
+          <p>
+          <Link href={"https://en.m.wiktionary.org/wiki/trek"} className='text-blue-800'>&apos;Trekking&apos; has an Old Dutch origin from the word &apos;trekkan&apos;, and 
+          also a Proto Germanic origin of &apos;trekana&apos;.</Link> Coming to the meanings 
+          of these words just a second later. At the beginning of the 19th 
+          century, as the Dutch started to settle in Africa, around what 
+          is now Cape Town, it became the Afrikaans word &apos;trekken&apos;.
+          <strong className='text-neutral-600'> &apos;Trekken&apos; 
+          in Afrikaans has the meaning of &apos;Migration by ox cart&apos;</strong>, &apos;trekkan&apos; 
+          means pulling, similarly &apos;trekana&apos; also means pulling. I hope you 
+          can get the idea now, where it&apos;s heading. Trekking in the past was a 
+          &apos;Migratory Journey&apos;.
+          </p><br/>
+
+          <p>
+          <Link href={"https://www.etymologynerd.com/blog/take-a-hike"} className='text-blue-800'>
+          Hike has a Middle English origin of &apos;hichhen,&apos; meaning &apos;to move&apos; 
+          or, &apos;hyke&apos; meaning to &apos;walk vigorously.&apos;</Link> However, it wasn&apos;t widely 
+          used until the end of the 19th century, gaining popularity during 
+          World War. To quote John Muir: "I don&apos;t like either the word 
+          &lbrack;hike&rbrack; or the thing. People ought to saunter in the mountains - 
+          not &apos;hike!&apos; Do you know the origin of that word saunter? It&apos;s a 
+          beautiful word. Back in the Middle Ages, people used to go on 
+          pilgrimages to the Holy Land, and when people in the villages 
+          they passed through asked where they were going, they would 
+          reply, &apos;A la sainte terre&apos;, &apos;To the Holy Land.&apos; Well, certainly, 
+          that&apos;s not how people behave in the mountains now.
+          </p><br/>
+
+          <Image src="https://foresthistory.org/wp-content/uploads/2017/01/Views34_th-1.jpg" 
+            alt="Family hiking in Austin Pass, Mt. Baker National Forest, Washington, July 1925. | foresthistory.org"
+            width={400}
+            height={300}
+            sizes="(max-width: 768px) 400px, 800px" 
+            className="object-cover w-full pt-8 pb-2 rounded-lg"
+            priority>
+          </Image>
+          <div className='mx-12 pb-8 text-center text-sm'>
+            Family hiking in Austin Pass, Mt. Baker National Forest, Washington, July 1925 | foresthistory.org
+          </div>
+          
+          <p>
+          Both words are relatively new to the world, with &apos;hike&apos; being 
+          younger. Initially, they had distinct meanings; &apos;trek&apos; was 
+          related to migratory journeys, while &apos;hike&apos; was about walking.
+          </p><br/>
+
+          <p>
+          Over the centuries, these two words overlapped and became 
+          almost synonymous. But that doesn&apos;t mean they should be 
+          differentiated by factors like carrying a heavy backpack or 
+          not, or being multi-day or single-day activities. These 
+          distinctions don&apos;t hold universally true. Even popular hiking 
+          or trekking trails vary widely in difficulty.
+          </p><br/>
+
+          <p>
+          How you differentiate them in one part of the world may have 
+          the opposite meaning in another part. Perceived or local 
+          meanings of these words have evolved differently in different 
+          regions of the world.
+          </p><br/>
+
+     
+          <h4 className='font-bold text-xl'>Final Thoughts:</h4><br/>
+          <p>
+          Origin-wise, they had different meanings; one was a migratory 
+          journey, the other was walking. However, in today&apos;s world, 
+          they have become almost interchangeable, as some parts of the 
+          world use &apos;hike&apos; more commonly while others use &apos;trek&apos; more 
+          commonly.<strong className='text-neutral-600'> Fundamentally, if you want to differentiate them, 
+          trekking is considered a serious activity, while hiking is 
+          more leisurely. Trekking can become risky in some cases, while 
+          hiking is generally safer.</strong>
+          </p>
+
+          <div className=''>
+          <h5 className='font-semibold text-lg pt-20'>Source :</h5>
+          <p className='text-sm'>
+          <Link href={"https://en.m.wiktionary.org/wiki/trek"} className='block text-sky-700'>https://en.m.wiktionary.org/wiki/trek</Link>
+          <Link href={"https://www.etymologynerd.com/blog/take-a-hike"} className='block text-sky-700'>https://www.etymologynerd.com/blog/take-a-hike</Link>
+          </p>
+          </div>
+
+      </div>
+    </main>
+  )
+}0
+
+export default page
