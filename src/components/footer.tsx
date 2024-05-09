@@ -1,6 +1,7 @@
 import React from 'react'
 import TTMLogo from "../../public/TTM.png"
 import Image from 'next/image'
+import Link from 'next/link'
 
 function Footer() {
   return (
@@ -89,6 +90,14 @@ function Footer() {
               <div className='pt-1'>Grade 5+</div>
               <div className='pt-1'>Technical Treks</div>
               <div className='pt-1'>Exploratory Trek</div>
+            </div>
+          </div>
+              
+          <div className='p-4'>
+            <h5 className='font-bold'>Popular Articles</h5>
+            <div className='font-extralight'>
+              <Link href={"/blog/The-Only-Difference-Between-Trekking-And-Hiking"} className='text-sky-300'><div className='pt-1'>The-Only-Difference-Between-Trekking-And-Hiking</div></Link>
+
             </div>
           </div>
 
