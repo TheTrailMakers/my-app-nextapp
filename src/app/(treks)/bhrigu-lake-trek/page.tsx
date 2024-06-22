@@ -37,6 +37,7 @@ import { GiCardRandom } from "react-icons/gi";
 import { RiNewspaperFill } from "react-icons/ri";
 import TrekCard from '@/components/homecards'
 import AllCard from '@/components/allcards'
+import Scrollables from '@/components/scrollables'
 
 
 
@@ -258,7 +259,7 @@ function page() {
               className="object-cover w-full object-[0%_90%] my-12">
           </Image>
 
-          <div className='leading-7'>
+          <div className='leading-7 text-base'>
             <p>
             <span className='font-bold'>Getting Here: </span>Once you step off the Volvo Bus, just hop into a cab straight to our Homestay. 
             Trust me, it&apos;s worth the journey! Surrounded by lush Apple Orchards and stunning views, you&apos;ll 
@@ -323,7 +324,7 @@ function page() {
               className="object-cover w-full object-[0%_90%]  my-12">
           </Image>
 
-          <div className='leading-7'>
+          <div className='leading-7 text-sm'>
             <p>
             <span className='font-bold'>Preparation: </span>First things first, freshen up and double-check your gear. Raincoat? Torch? 
             It&apos;s the little things that count, so make sure you&apos;ve got everything you need. Pro tip: 
@@ -382,7 +383,7 @@ function page() {
               className="object-cover w-full object-[0%_90%] my-12">
           </Image>
 
-          <div className='leading-7'>
+          <div className='leading-7 text-base'>
             <p>
             <span className='font-bold'>Picture this: </span>as the morning sun kisses those peaks, it&apos;s like 
             a scene from a dream. Today&apos;s the big one – an early start to 
@@ -801,7 +802,7 @@ function page() {
       <div className="px-4 py-4 flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
           {mockdata
           .filter(trek => trek.Index === 101 || trek.Index === 110)
-          .map((treks) => (<AllCard {...treks} key={treks.Index} />))}
+          .map((treks) => (<Scrollables {...treks} key={treks.Index} />))}
       </div>
      </div>       
 
@@ -818,7 +819,7 @@ function page() {
         .map(ranisuiTrek => 
             mockdata
             .filter(trek => trek.State === ranisuiTrek.State)
-            .map((treks) => (<AllCard {...treks} key={treks.Index} />))
+            .map((treks) => (<Scrollables {...treks} key={treks.Index} />))
         )}
         </div>
       </div>
