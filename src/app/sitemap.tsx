@@ -21,7 +21,7 @@ export default async function sitemap() {
     },
 
     {
-      url: 'https://thetrailmakers.in/blog/The-Only-Difference-Between-Trekking-And-Hikingk',
+      url: 'https://thetrailmakers.in/blog/The-Only-Difference-Between-Trekking-And-Hiking',
       lastModified: new Date()
     },
 

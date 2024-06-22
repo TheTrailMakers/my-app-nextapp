@@ -14,7 +14,7 @@ function Footer() {
 
       {/* <div className='flex flex-wrap justify-between lg:justify-center gap-8 text-sm'> */}
 
-        <div className=' text-lg font-light grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-[calc((100vw-1280px)/2)] mx-4'>
+        <div className=' text-base font-light grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-[calc((100vw-1280px)/2)] mx-4'>
           <div className='p-4'>
             <h5 className='font-bold'>Treks by Season</h5>
             <div className='font-extralight'>

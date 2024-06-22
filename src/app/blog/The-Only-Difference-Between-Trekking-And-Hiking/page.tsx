@@ -67,7 +67,7 @@ function page() {
           or, &apos;hyke&apos; meaning to &apos;walk vigorously.&apos;</Link> However, it wasn&apos;t widely 
           used until the end of the 19th century, gaining popularity during 
           World War. To quote John Muir: <span className='italic'>&quot;I don &apos;t like either the word 
-           &lbrack;hike &rbrack; or the thing. People ought to saunter in the mountains - 
+           &#40;hike&#41; or the thing. People ought to saunter in the mountains - 
           not &apos;hike! &apos; Do you know the origin of that word saunter? It&apos;s a 
           beautiful word. Back in the Middle Ages, people used to go on 
           pilgrimages to the Holy Land, and when people in the villages 
