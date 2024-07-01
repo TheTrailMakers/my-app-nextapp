@@ -116,7 +116,7 @@ function page() {
           Discover Bhrigu Lake Trek: A Beginner&apos;s Alpine Adventure Worth Exploring!
         </h2>
 
-        <div className='p-8 max-w-[95%] md:pr-0 leading-7 text-stone-300 text-lg font-light'>
+        <div className='py-8 pl-6 max-w-[95%] pr-0 leading-7 text-stone-300 text-lg font-light'>
             <p>
             So, ever thought about going on an Alpine trek? Let me tell you 
             about this gem called the Bhrigu Lake Trek. It&apos;s like a hidden 
@@ -194,7 +194,7 @@ function page() {
 
       <section className='flex flex-col rounded-3xl bg-white text-black m-4 my-24 md:mx-[calc((100vw-600px)/2)]'>
         <h3 className='text-5xl font-bold uppercase m-4 mb-0 max-w-[50%]'>Brief Itinerary</h3>
-        <div className='m-4 font-mono text-lg font-semibold'>
+        <div className='m-4 font-mono md:text-lg font-semibold'>
           <ul>
             <li className='my-4 pl-0'>
               <div>Day1 : Manali [Introduction]</div>
@@ -225,7 +225,7 @@ function page() {
 {/* ////////////////////////////////////////Image Gallery//////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
       <section> 
-        <div className="p-4 my-24  flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
+        <div className="p-4 my-24 flex fle overflow-x-auto snap-x snap-mandatory no-scrollbar">
           {mockdata.map((treks) => <GalleryImage {...treks} key={treks.Index} />)}
         </div>
       </section>
@@ -234,8 +234,7 @@ function page() {
 {/* ///////////////////////////////////////Trek In Details/////////////////////////////////////////////////////////////////////////////////////// */}
 
 
-      <section className='bg-emerald-100 m-4 text-orange-950  
-      lg:text-lg text-lg  rounded-t-[4rem] md:px-[calc((100vw-600px)/2)]'>
+      <section className='bg-emerald-100 text-orange-950 lg:text-lg text-lg md:px-[calc((100vw-600px)/2)]'>
         <h3 className='text-5xl text-lime-800 font-extrabold pr-6 pl-4 py-20 text-right uppercase'>
           Each Day of Bhrigu Lake Trek in Details
         </h3>
@@ -324,7 +323,7 @@ function page() {
               className="object-cover w-full object-[0%_90%]  my-12">
           </Image>
 
-          <div className='leading-7 text-sm'>
+          <div className='leading-7 text-base'>
             <p>
             <span className='font-bold'>Preparation: </span>First things first, freshen up and double-check your gear. Raincoat? Torch? 
             It&apos;s the little things that count, so make sure you&apos;ve got everything you need. Pro tip: 
@@ -441,7 +440,7 @@ function page() {
               className="object-cover w-full object-[0%_90%] my-12">
           </Image>
 
-          <div className='leading-7'>
+          <div className='leading-7 text-base'>
             <p>
             You&apos;re at the end of your trip, packing 
             up your stuff all careful-like. Now, I know those downward slopes are 
@@ -507,7 +506,7 @@ function page() {
     </section>
 
 
-{/* ////////////////////////////////////// Alternate Bhrigu Lake Trek///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+{/* ////////////////////////////////////// Alternate Route Bhrigu Lake Trek///////////////////////////////////////////////////////////////////////////////////////////////////// */}
     
 
 <section className='bg-emerald-900 py-20 md:px-[calc((100vw-600px)/2)]'>
@@ -635,7 +634,7 @@ function page() {
           <h6 className='w-[70%]'>There is <strong className='text-amber-200'>no bad weather</strong> only bad clothing</h6>
       </div>
 
-      <div className='flex flex-col md:grid md:grid-cols-2 font-extralight mx-4 my-10 tracking-wide'>  
+      <div className='flex flex-col md:grid md:grid-cols-2 font-light mx-4 my-10 tracking-wide'>  
                                                                   
                                                                   {/* Add How to Choose/ Guide Links to all Items */}
 
@@ -731,7 +730,7 @@ function page() {
   <div className='flex flex-col p-4 justify-evenly '>
       <section className='flex flex-col my-6'>
         <h4 className='text-3xl below-xs:text-xl font-medium mb-4'>Inclusions</h4>
-          <ul className='flex flex-col text-lg font-light gap-1'>
+          <ul className='flex flex-col text-base font-light gap-1'>
             <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Day 1 Manali Stay in Homestay</li>
             <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2 '/>Stay in Tent During Trek [ 3 Sharing basis ]</li>
             <br/>
@@ -761,7 +760,7 @@ function page() {
 
       <section className='flex flex-col my-6'>
         <h4 className='text-3xl below-xs:text-xl  font-medium mb-4'>Exclusions</h4>
-            <ul className='flex flex-col text-lg font-light -ml-1'>
+            <ul className='flex flex-col text-base font-light -ml-1'>
               <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Insurance Fees</li>
               <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Camera charges or, any similar fees</li>
               <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Any Specially ordered meal, except the inclusions</li>
