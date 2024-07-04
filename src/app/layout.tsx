@@ -4,12 +4,6 @@ import Footer from "@/components/footer";
 import { Poppins } from 'next/font/google';
 import type { Metadata } from 'next';
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-poppins',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
-});
 
 
 export const metadata: Metadata = {
@@ -21,8 +15,8 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 
 
   return (
-    <html lang="en" className={`${poppins.variable}`}>
-      <body className="poppins">
+    <html lang="en">
+      <body>
         <Navbar />
         {children}
         <Footer />

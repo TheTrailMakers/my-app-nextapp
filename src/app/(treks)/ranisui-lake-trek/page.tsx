@@ -15,10 +15,10 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { RiNewspaperFill } from 'react-icons/ri';
 
 import Accordion from '@/components/accordion';
-import AllCard from '@/components/allcards';
 import Article from '@/components/article';
 import GalleryImage from '@/components/galleryImage';
 import JoinDate from '@/components/joinDate';
+import Scrollables from '@/components/scrollables';
 
 
 export const metadata = {
@@ -682,7 +682,7 @@ function page() {
         <div className="px-4 py-4 flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
           {mockdata
           .filter(trek => trek.Index === 102 || trek.Index === 110)
-          .map((treks) => (<AllCard {...treks} key={treks.Index} />))}
+          .map((treks) => (<Scrollables {...treks} key={treks.Index} />))}
         </div>
       </div>
 
@@ -699,7 +699,7 @@ function page() {
         .map(ranisuiTrek => 
             mockdata
             .filter(trek => trek.State === ranisuiTrek.State)
-            .map((treks) => (<AllCard {...treks} key={treks.Index} />))
+            .map((treks) => (<Scrollables {...treks} key={treks.Index} />))
         )}
         </div>
       </div>

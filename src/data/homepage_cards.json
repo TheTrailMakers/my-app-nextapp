@@ -44,7 +44,8 @@
         "Cost": "10,500",
         "Info": "transport included",
         "PageLink": null,
-        "Date": ["28th May, 2024", "24th June, 2024", "24th June, 2024"]      },
+        "Date": ["28th May, 2024", "24th June, 2024", "24th June, 2024"]      
+      },
       
       {
         "Index": 104,
@@ -138,7 +139,7 @@
         "Difficulty": 2,
         "Cost": "8,500",
         "Info": "stay included",
-        "PageLink": null,
+        "PageLink": "/beas-kund-trek",
         "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
       },
 

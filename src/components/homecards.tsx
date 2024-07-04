@@ -34,7 +34,7 @@ export default function TrekCard({Name, Img, State, Description, Distance, Durat
                             <h6 className=" text-cyan-300 font-medium">{Distance}</h6></div>
                         <div className="">
                             <h4 className="text-xs text-cyan-300">Duration</h4>
-                            <h6 className=" text-cyan-300 font-medium">{Duration}</h6></div>
+                            <h6 className=" text-cyan-300 font-medium">{Duration} Days</h6></div>
                         <div className="">
                             <h4 className="text-xs text-cyan-300">Difficulty</h4>
                             <h6 className=" text-cyan-300 font-medium">{Difficulty}</h6></div>

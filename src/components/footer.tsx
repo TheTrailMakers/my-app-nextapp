@@ -82,12 +82,12 @@ function Footer() {
           <div className='p-4'>
             <h5 className='font-bold'>Treks by Difficulty</h5>
             <div className='font-extralight'>
-              <div className='pt-1'>Grade 1</div>
-              <div className='pt-1'>Grade 2</div>
-              <div className='pt-1'>Grade 3</div>
-              <div className='pt-1'>Grade 4</div>
-              <div className='pt-1'>Grade 5</div>
-              <div className='pt-1'>Grade 5+</div>
+              <div className='pt-1'>First Timers</div>
+              <div className='pt-1'>Beginners</div>
+              <div className='pt-1'>Learners 1</div>
+              <div className='pt-1'>Learners 2</div>
+              <div className='pt-1'>Skilled</div>
+              <div className='pt-1'>Expert</div>
               <div className='pt-1'>Technical Treks</div>
               <div className='pt-1'>Exploratory Trek</div>
             </div>
