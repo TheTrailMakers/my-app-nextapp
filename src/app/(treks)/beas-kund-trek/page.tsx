@@ -36,6 +36,8 @@ import { GiCardRandom } from "react-icons/gi";
 
 import { RiNewspaperFill } from "react-icons/ri";
 
+
+
 import Scrollables from '@/components/scrollables'
 
 
@@ -44,30 +46,29 @@ import Scrollables from '@/components/scrollables'
 
 
 export const metadata = {
-  title: "Bhrigu Lake Trek 2024 - Explore the Himalayan High Altitude(14,100ft) | The Trail Makers",
-  description: "Discover an unforgettable alpine adventure with The Trail Makers. Experience the stunning beauty of Himachal Pradesh on the Bhrigu Lake Trek. Whether it's exploring a hidden trail, chasing sunsets, or simply getting lost in the beauty of nature, it'll be an epic adventure.",
-  keywords: "Bhrigu Lake Trek, Himachal Pradesh trekking, Himalayan treks, adventure travel, Manali, Hike, Panduropa, hiking in India, trekking expeditions, scenic landscapes, outdoor adventures, Raulikholi, Baithardhar, Gulaba, Kulang, Moridugh, Khanora Nala"
+  title: "Beas Kund Trek 2024 - Easiest High Altitude Trek in Himachal(12,700ft) | The Trail Makers",
+  description: "Experience the awe-inspiring beauty of the Beas Kund Trek, set amidst the majestic Himalayas. This moderate trek unfolds panoramic vistas of snow-capped peaks, pristine glacial lakes, and verdant meadows. Whether you're a novice or an experienced trekker, Beas Kund Trek promises a soul-rejuvenating journey immersed in the tranquility of nature's grandeur. Discover this hidden gem for an unforgettable adventure in Himachal Pradesh.",
+  keywords: "Beas kund Trek, Himachal Pradesh trekking, The Trail Makers, Himalayan treks, adventure travel, Manali, Hike, hiking in India, trekking expeditions, Trekking in Manali, scenic landscapes, outdoor adventures, Ledy Leg, Bakkar Thach, Dhundi, solang, Hanuman Tibba, Lohali Thach, Palchani Thach, Beas Kund Glacier"
 };
 
 function page() {
 
   return (
-    <main className="min-h-screen bg-neutral-900 text-white no-scrollbar relative">
+    <main className="min-h-screen bg-neutral-900 pattern-topography-amber-700/50 text-white no-scrollbar relative">
 
       <div className='bg-gradient-to-b from-black to-50% to-white h-[80vh] relative'>
 
-        <Image src="https://res.cloudinary.com/thetrail/image/upload/v1714141883/Bhrigu-Lake-Trek/bhrigu-lake-winter-climb.jpg"
-        className='object-cover object-[25%] w-full md:object-bottom  mix-blend-multiply absolute'
+        <Image src="https://res.cloudinary.com/thetrail/image/upload/v1719835688/Beas-Kund-Trek/beas_kund_banner.jpg"
+        className='object-cover object-[0%,90%] w-full md:object-  mix-blend-multiply absolute'
         style={{ width: "100%", height: "80vh"}}
         height={400}
         width={800} 
-        sizes="(max-width: 768px) 100vw, 100vw"
-        alt="Climbing towards bhrigu lake"
-        srcSet="https://res.cloudinary.com/thetrail/image/upload/v1714145641/Bhrigu-Lake-Trek/bhrigu_lake_banner.jpg 1280w"></Image>
+        sizes="(max-width: 768px) 80vw, 100vw"
+        alt="Beas Kund with Hanuman Tibba"></Image>
 
         <div className='absolute p-16 flex flex-col justify-center items-center w-full '>
           <h1 className='text-[20vw] md:text-[15vw] leading-[1] lg:text-[10rem] xl:px-40
-           text-center font-bold uppercase'>Bhrigu Lake Trek</h1>
+           text-center font-bold uppercase'>Beas Kund Trek</h1>
         </div>
       </div>
 
@@ -83,7 +84,7 @@ function page() {
 
       <div className='flex flex-col justify-center items-center p-2'>
         <MdOutlineNetworkCell className='size-8 my-1 lg:size-12'/>
-        <p className='font-semibold lg:text-lg'>Easy-Moderate</p>
+        <p className='font-semibold lg:text-lg'>Easy</p>
         <h3 className='font-extralight text-lg lg:text-xl leading-5'>Difficulty</h3>
       </div>
       
@@ -95,13 +96,13 @@ function page() {
       
       <div className='flex flex-col justify-center items-center p-2'>
         <FaThinkPeaks className='size-8 my-1 lg:size-12'/>
-        <p className='font-semibold lg:text-lg'>14,100ft</p>
+        <p className='font-semibold lg:text-lg'>12,700ft</p>
         <h3 className='font-extralight text-lg lg:text-xl leading-5'>Highest Elevation</h3>
       </div>
       
       <div className='flex flex-col justify-center items-center p-2'>
         <GiPathDistance className='size-8 my-1 lg:size-12'/>
-        <p className='font-semibold lg:text-lg'>22km</p>
+        <p className='font-semibold lg:text-lg'>15km</p>
         <h3 className='font-extralight text-lg lg:text-xl leading-5'>Trail Length</h3>
       </div>
 
@@ -110,39 +111,37 @@ function page() {
 
 {/* ////////////////////////////////////////Short Intro////////////////////////////////////////////////////////////////////////////////////////// */}
 
-      <section className='bg-green-950 md:px-[calc((100vw-600px)/2)]'>
+      <section className='bg-zinc-950 md:px-[calc((100vw-600px)/2)]'>
 
-        <h2 className='text-3xl font-semibold p-8 pr-12 pb-0 max-w-[400px] lg:text-5xl md:max-w-none'>
-          Discover Bhrigu Lake Trek: A Beginner&apos;s Alpine Adventure Worth Exploring!
+        <h2 className='text-3xl font-semibold p-6 pr-12 pb-0 max-w-[400px] lg:text-5xl md:max-w-none'>
+          Discover Beas Kund Trek: A Beginner&apos;s Alpine Adventure Worth Exploring!
         </h2>
 
-        <div className='py-8 pl-6 max-w-[95%] pr-0 leading-7 text-stone-300 text-lg font-light'>
+        <div className='py-8 pl-6 max-w-[95%] pr-0 leading-8 text-stone-300  font-light'>
             <p>
-            So, ever thought about going on an Alpine trek? Let me tell you 
-            about this gem called the Bhrigu Lake Trek. It&apos;s like a hidden 
-            adventure playground, perfect for rookies like us. All you gotta 
-            do is take it easy and soak in the sights.
-            </p><br />
+            Nestled among the towering giants of the mighty Himalayas, the 
+            Beas Kund Trek unveils a hidden valley brimming with vibrant flora 
+            and fauna. This fertile land, shaped by the meandering River Beas, 
+            offers a picturesque setting for an unforgettable adventure. As 
+            you journey along the trail, the river playfully hides like a shy 
+            little girl, guiding you through narrow valleys reminiscent of 
+            bustling city streets lined with high rises.
+            </p><br/>
 
             <p>
-            Imagine this: fields of vibrant flowers, lush green grass, and 
-            those majestic snow-capped peaks in the distance. And as you hike, 
-            you might even spot some wildlife in the forests – maybe even a bear 
-            if you&apos;re lucky (or unlucky, depends on how you see it).
+            The route to Beas Kund, though cocooned within formidable mountain walls, 
+            is surprisingly accessible. Starting from Dhundi, you&apos;ll follow the river 
+            for two days, immersing yourself in the serene beauty of the landscape. 
+            The River Beas, a lifeline for many towns in Himachal Pradesh, holds 
+            immense cultural, religious, and mythological significance.
             </p><br/>
             
             <p>
-            But here&apos;s where it gets exciting – when you hit those snowfields, 
-            it&apos;s like stepping into a whole new world. Don&apos;t worry, it&apos;s not as 
-            daunting as it sounds. It&apos;s more about the thrill of the climb and 
-            the epic views you get at the top.
-            </p><br />
-
-
-            <p>
-            But fair warning – it&apos;s over way too soon. If you&apos;re craving more adrenaline, 
-            though, don&apos;t sweat it. There are plenty more treks out there waiting to be explored. 
-            So, what do you say? Ready to lace up those boots and embark on an adventure of a lifetime?
+            This trek not only offers a glimpse into the pristine natural beauty of the region 
+            but also connects you to the rich heritage of the area. Whether you&apos;re a 
+            seasoned hiker or a novice adventurer, the Beas Kund Trek promises a 
+            journey filled with awe and wonder, making it an essential experience 
+            for any nature lover.
             </p>
           
           </div>
@@ -160,7 +159,7 @@ function page() {
 
             <div className='flex justify-normal items-center gap-2'>
               <FaRupeeSign className='inline size-12 text-yellow-500'/>
-              <div className='text-5xl font-bold max-w-60 text-yellow-500'>8,500/-</div>
+              <div className='text-5xl font-bold max-w-60 text-yellow-500'>7,500/-</div>
             </div>
 
             <div className='flex justify-normal items-center gap-2'>
@@ -178,7 +177,7 @@ function page() {
         <div className='flex pl-6 items-center overflow-x-auto
           snap-x snap-mandatory no-scrollbar'>
           {mockdata.map((treks) => 
-            treks.Name.includes('Bhrigu Lake Trek')?
+            treks.Name.includes('Beas Kund Trek')?
               (treks.Date.map((dates) => 
                 <JoinDate date={dates} key={dates}/>)) : null)}
         </div>
@@ -202,19 +201,19 @@ function page() {
               <div className='text-sky-700'>Duration : Nil</div>
             </li>
             <li className='my-4 pl-0'>
-              <div>Day2 : Manali - Gulaba - Raulikholi</div>
-              <div className='text-sky-700'>Distance : 6km</div>
+              <div>Day2 : Manali - Dhundi - Bakkar Thach</div>
+              <div className='text-sky-700'>Distance : 4.5km</div>
               <div className='text-sky-700'>Duration : 3-5hrs</div>
             </li>
             <li className='p-1 pl-0'>
-              <div>Day3 : Raulikholi - Bhrigu Lake - Raulikholi</div>
-              <div className='text-sky-700'>Distance : 10km</div>
+              <div>Day3 : Bakkar Thach - Beas Kund - Bakkar Thach</div>
+              <div className='text-sky-700'>Distance : 6km</div>
               <div className='text-sky-700'>Duration : 7-8hrs</div>
             </li>
             <li className='p-1 pl-0'>
-              <div>Day4 : Raulikholi - Gulaba - Manali</div>
-              <div className='text-sky-700'>Distance : 6km</div>
-              <div className='text-sky-700'>Duration : 3-5hrs</div>
+              <div>Day4 : Bakkar Thach - Manali</div>
+              <div className='text-sky-700'>Distance : 4.5km</div>
+              <div className='text-sky-700'>Duration : 2-3hrs</div>
             </li>
           </ul>
         </div>
@@ -225,7 +224,7 @@ function page() {
 {/* ////////////////////////////////////////Image Gallery//////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
       <section> 
-        <div className="p-4 my-24 flex fle overflow-x-auto snap-x snap-mandatory no-scrollbar">
+        <div className="p-4 my-24 flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
           {mockdata.map((treks) => <GalleryImage {...treks} key={treks.Index} />)}
         </div>
       </section>
@@ -234,45 +233,52 @@ function page() {
 {/* ///////////////////////////////////////Trek In Details/////////////////////////////////////////////////////////////////////////////////////// */}
 
 
-      <section className='bg-emerald-100 text-orange-950 lg:text-lg text-lg md:px-[calc((100vw-600px)/2)]'>
-        <h3 className='text-5xl text-lime-800 font-extrabold pr-6 pl-4 py-20 text-right uppercase'>
-          Each Day of Bhrigu Lake Trek in Details
+      <section className='bg-white text-neutral-800 font-poppins font-normal lg:text-lg md:px-[calc((100vw-600px)/2)]'>
+        <h3 className='text-orange-800 pattern-autumn-rain-amber-500/50 text-4xl font-extrabold  px-10 py-20 text-center uppercase'>
+          Each Day of Beas Kund Trek in Details
         </h3>
 
-        <div className='mx-4'>
-          <div className='flex justify-between items-center mb-4 pt-8'>
-            <h4 className='text-6xl font-extrabold bg-yellow-500'>Day 1</h4>
-            <div>Manali</div>
+        <div className='flex justify-between items-start'>
+
+          <div className='flex flex-row gap-2'>
+            <div className='bg-yellow-500 w-3 rounded-e-full h-auto '></div>
+            <div className='flex flex-col justify-between items-start py-2'>
+              <h4 className='text-5xl font-extrabold'>Day 1</h4>
+              <div className='text-xl font-normal p-1 pt-2'> Arrival At Manali</div>
+            </div>
           </div>
 
-          <div className='pt-8 font-semibold'>
-            <div>Altitude : 6500ft</div>
-            <div>Trail Length : NIL</div>
-            <div>Duration : NIL</div>
+          <div className='font-medium p-4 pr-2 text-right text bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
+            <div>6500ft <FaThinkPeaks className='inline ml-2 size-8' /></div>
+            <div>NIL <GiPathDistance className='inline ml-2 size-8' /></div>
+            <div>NIL <GiDuration className='inline ml-2 size-8' /></div>
           </div>
+        </div>
 
-          <Image  src="https://res.cloudinary.com/thetrail/image/upload/ar_2:1,c_auto,h_320/v1715146119/PahadiManzil-Manali-Basecamp.jpg"
+          <Image  src="https://res.cloudinary.com/thetrail/image/upload/ar_3:2,c_auto,h_320/v1715146119/PahadiManzil-Manali-Basecamp.jpg"
               height={250}
               width={400}
-              alt="The Trail Makers" sizes="(max-width: 768px) 400px, 800px" 
-              className="object-cover w-full object-[0%_90%] my-12">
+              alt="The Trail Makers" 
+              sizes="(max-width: 768px) 400px, 800px" 
+              className="object-cover w-full my-12">
           </Image>
 
-          <div className='leading-7 text-base'>
+          <div className='leading-7 text-base font-medium mx-4 text-neutral-700'>
+
+
             <p>
-            <span className='font-bold'>Getting Here: </span>Once you step off the Volvo Bus, just hop into a cab straight to our Homestay. 
-            Trust me, it&apos;s worth the journey! Surrounded by lush Apple Orchards and stunning views, you&apos;ll 
-            feel right at home.
+            As you reach our homestay in Manali in the morning, 
+            you will be greeted with welcome drinks and a delicious breakfast. Once all team members have checked 
+            in, we will embark on an easy hike in the nearby forest. This initial trek is designed to test everyone's 
+            physical fitness, helping you acclimate to the mountain environment and kick-start the acclimatization process.
             </p><br/>
 
             <p>
-            <span className='font-bold'>Meet and Greet: </span>Upon arrival, you&apos;ll meet the gang - your trekking buddies and our instructors. 
-            We&apos;ll kick things off with an easy acclimatization hike to get you warmed up for the adventures ahead.
-            </p><br />
-
-            <p>
-            <span className='font-bold'>Gear Up: </span>Need any last-minute gear? No worries! We&apos;ll hit the local market in the evening. 
-            Forgot your socks? No problem. You can also rent gear right here at the Homestay if you&apos;re in a pinch.
+            After returning from the morning hike, you can 
+            freshen up and enjoy a hearty lunch. Following lunch, we will have a discussion session with 
+            our trek leader and guides to ensure our shopping list is complete and nothing essential is 
+            overlooked. Afterward, we will visit Mall Road for shopping, ATM visits, and perhaps a stop 
+            at some local cafes.
             </p><br />
 
             <p>Don&apos;t forget to check out our handy guides:</p><br/>
@@ -283,194 +289,19 @@ function page() {
             </ul><br/>
 
             <p>
-            <span className='font-bold'>Dinner Time: </span>Get ready for a hearty dinner, served a bit earlier than usual. Yep, that&apos;s the 
-            mountain life for you - early to bed, early to rise. But hey, it&apos;s all part of the adventure, 
-            right?
-            </p><br/>
-
-            <p>
-            <span className='font-bold'>Rest Up: </span>After a satisfying meal, it&apos;s time to hit the sack. Snuggle up and get a good night&apos;s 
-            sleep. We&apos;ve got big plans for tomorrow, and you&apos;ll want to be well-rested for the journey ahead.
-            </p><br />
-
-            <p>
-            Alright, my friend, get some shut-eye and I&apos;ll catch you bright and early for more trekking fun. 
-            Sleep tight!
+            We will return to the homestay by 7 PM for a comprehensive briefing and introduction session. 
+            This session will cover essential topics such as mountain manners, the importance of time management, 
+            understanding the route, rucksack packing, hygiene, and medical considerations.
             </p><br/>
           </div>
-        </div>
 
         <div className='h-2 my-8 bg-black'></div>
-
-        <div className='mx-4'>
-          <div className='flex justify-between items-center mb-4 mt-16 gap-4 '>
-            <h4 className='text-6xl flex-shrink-0 font-extrabold bg-amber-500'>Day 2</h4>
-            <div className='text-right'>Manali - Gulaba - Raulikholi</div>
-          </div>
-
-          <div className='pt-8 font-semibold'>
-            <div>Altitude : 6500ft - 9500ft - 12,500ft</div>
-            <div>Trail Length : 6km</div>
-            <div>Duration : 3-5 hrs</div>
-          </div>
-
-          <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
-              height={200}
-              width={800}
-              alt="The Trail Makers" 
-              sizes="(max-width: 768px) 250px, 800px" 
-              style={{width: '100%',height: '160px' }} 
-              className="object-cover w-full object-[0%_90%]  my-12">
-          </Image>
-
-          <div className='leading-7 text-base'>
-            <p>
-            <span className='font-bold'>Preparation: </span>First things first, freshen up and double-check your gear. Raincoat? Torch? 
-            It&apos;s the little things that count, so make sure you&apos;ve got everything you need. Pro tip: 
-            Keeping a checklist helps avoid those &quot;oops&quot; moments!
-            </p><br />
-
-            <p>
-            <span className='font-bold'>Breakfast and Roll: </span>Fuel up with a hearty breakfast because we&apos;ve got some ground to cover. Hop into the 
-            waiting car parked outside our Homestay. Our destination? The 14th bend to Rohtang Pass, 
-            near Gulaba. Locals call it &quot;Chowda More.&quot; If you&apos;re here in autumn, get ready for a scenic 
-            drive adorned with golden leaves. Picture-perfect, just like those European road trip movies!
-            </p><br />
-
-            <p>
-            <span className='font-bold'>The Climb Begins: </span>From Gulaba to Raulikholi, it&apos;s a 6km trek with a 3000ft altitude gain. Brace yourself 
-            for the challenge! Despite our creature comforts, there&apos;s something about the call of 
-            the wild that draws us in. Embrace the discomfort and let the adventure unfold.
-            </p><br />
-
-            <p>
-            <span className='font-bold'>Slow and Steady: </span>Remember, this isn&apos;t a race. Take it slow and steady as you tackle 
-            the moderately steep sections. Enjoy the journey; you&apos;re here to unwind, after all. 
-            Along the way, you&apos;ll stumble upon &apos;BaitharDhar,&apos; a quaint dhaba crafted by local 
-            nomadic travelers known as Gaddis. Take a breather before the final stretch to Raulikholi.
-            </p><br />
-
-            <p>
-            <span className='font-bold'>Campsite Charm: </span>Raulikholi awaits, less than an hour from BaitharDhar. Prepare to be 
-            enchanted by its natural beauty, though it can get a tad damp at times. The soothing 
-            melody of &apos;Khanora Nala&apos; fills the air, lulling tired souls to rest. Dinner will be 
-            served earlier than back in Manali, so you can refuel and recharge for the adventures 
-            yet to come.</p><br/>
-          </div>
-        </div>
-
-        
-        <div className='h-2 my-8  bg-black'></div>
-
-        <div className='m-4'>
-          <div className='flex justify-between items-center mb-4 mt-16 gap-4'>
-            <h4 className='text-6xl shrink-0 font-extrabold bg-amber-500'>Day 3</h4>
-            <div className='text-right'>Raulikholi - Bhrigu Lake- Raulikholi</div>
-          </div>
-
-          <div className='pt-8 font-semibold'>
-            <div>Altitude : 12500ft - 14,090ft - 12,500ft</div>
-            <div>Trail Length : 10km</div>
-            <div>Duration : 6-8 hrs</div>
-          </div>
-
-          <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
-              height={200}
-              width={800}
-              alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
-              style={{width: '100%',height: '160px' }} 
-              className="object-cover w-full object-[0%_90%] my-12">
-          </Image>
-
-          <div className='leading-7 text-base'>
-            <p>
-            <span className='font-bold'>Picture this: </span>as the morning sun kisses those peaks, it&apos;s like 
-            a scene from a dream. Today&apos;s the big one – an early start to 
-            cross the Khanora Nala and begin our ascent. Snow&apos;s a whole different 
-            ballgame, but trust me, once you get the hang of it, you&apos;ll be 
-            cruising. Sure, the initial climb is steep, but soon enough, 
-            it evens out, and bam – there&apos;s the mythical lake, unfolding 
-            before your eyes.
-            </p><br />
-
-            <p>
-            But here&apos;s the kicker – the real magic isn&apos;t just the lake. 
-            It&apos;s the view from up there. Standing tall at 14,000ft, it&apos;s 
-            like the whole world&apos;s at our feet. And that feeling? 
-            Man, it&apos;s indescribable.
-            </p><br/>
-
-            <p>
-            But alas, all good things must come to an end. We&apos;ve gotta make 
-            our way back before the sun sets. The journey down&apos;s no walk in 
-            the park, especially for us rookies. But hey, every slip and 
-            slide is just part of the adventure, right?
-            </p><br/>
-
-            <p>
-            By the time you&apos;re back at camp, you&apos;re practically one with the 
-            mountain. Laughing, goofing around – it&apos;s all part of the experience. 
-            Quick tip: don&apos;t miss that sunset – it&apos;s pure magic from up here.
-            </p><br />
-
-          </div>
-        </div>
-
-        
-        <div className='h-2 my-8 bg-black'></div>
-
-        <div className='mx-4'>
-          <div className='flex justify-between items-center mb-4 mt-16 gap-4 '>
-            <h4 className='text-6xl flex-shrink-0 font-extrabold bg-amber-500'>Day 4</h4>
-            <div className='text-right'>Raulikholi - Gulaba - Manali</div>
-          </div>
-
-          <div className='pt-8 font-semibold'>
-            <div>Altitude : 12,500ft - 9500ft - 6500ft</div>
-            <div>Trail Length : 6km</div>
-            <div>Duration : 2-4 hrs</div>
-          </div>
-
-
-          <Image  src="https://res.cloudinary.com/thetrail/image/upload/v1714145641/bhrigu_lake_banner.jpg"
-              height={200}
-              width={800}
-              alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" 
-              style={{width: '100%',height: '160px' }} 
-              className="object-cover w-full object-[0%_90%] my-12">
-          </Image>
-
-          <div className='leading-7 text-base'>
-            <p>
-            You&apos;re at the end of your trip, packing 
-            up your stuff all careful-like. Now, I know those downward slopes are 
-            calling your name, but hold up a sec! It&apos;s smart to get the hang of 
-            the controls first before you go zooming down. Believe it or not, 
-            most accidents happen when folks get a little too excited and make 
-            risky moves on the way down.
-            </p><br />
-
-            <p>
-            But don&apos;t worry, the descent won&apos;t take long, and your ride will 
-            be waiting for you at the road head. Adios Amigos!
-            </p><br />
-
-            <p>
-            Oh, and before you head out, make sure to check out all the awesome 
-            cafes and restaurants along Manali Mall Road while you wait for your 
-            evening bus. Trust me, you won&apos;t want to miss it!
-            </p><br />
-          </div>
-        </div>
-
-        <div className='py-12 pb-16'>
-        <GiTreasureMap className='size-36 text-stone-500 mx-auto'/>
-        </div>
-      </section>
+  </section>
+  
 
 
 
-{/* ////////////////////////////////////// Peaks from Bhrigu Lake Trek///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+{/* ////////////////////////////////////// Peaks from Beas Kund Trek///////////////////////////////////////////////////////////////////////////////////////////////////// */}
     
 
 <section className='bg-slate-200  py-20 text-cyan-950 md:px-[calc((100vw-600px)/2)]'>
@@ -505,7 +336,8 @@ function page() {
 
     </section>
 
-
+    <div className='pb-2 bg-gradient-to-b from-black to-transparent'></div>
+<div className='p-4 h-2 bg-gradient-to-t from-black to-transparent'></div>
 {/* ////////////////////////////////////// Alternate Route Bhrigu Lake Trek///////////////////////////////////////////////////////////////////////////////////////////////////// */}
     
 
@@ -558,7 +390,8 @@ function page() {
 
     </section>
 
-
+<div className='pb-2 bg-gradient-to-b from-black to-transparent'></div>
+<div className='p-4 h-2 bg-gradient-to-t from-black to-transparent'></div>
 {/* ////////////////////////////////////// FAQ ///////////////////////////////////////////////////////////////////////////// */}
 
 
@@ -621,6 +454,9 @@ function page() {
 
 
 {/* ////////////////////////////////////// What to Pack///////////////////////////////////////////////////////////////////////////////////////////////////// */}
+    
+<div className='pb-2 bg-gradient-to-b from-black to-transparent'></div>
+<div className='p-4 h-2 bg-gradient-to-t from-black to-transparent'></div>
     
     <section className='bg-red-600 py-4 md:px-[calc((100vw-600px)/2)]'>
 
@@ -713,24 +549,20 @@ function page() {
         Strong Garbage Bags. Carry Extra Garbage Bags for Garbage Disposal.</strong></div>
       <div className='text-xs mx-10 text-center py-2 text-white'>
         (The checklist may differ a little for Indivisuals, going to do the trek on your own, so procceed carefully)</div>
-
+ 
     </section>
 
+    <div className='pb-2 bg-gradient-to-b from-black to-transparent'></div>
 
 {/* ////////////////////////////////////// Inclusion & Exclusions //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-
+    <div className='p-4 h-2 bg-gradient-to-t from-black to-transparent'></div>
   <section className='bg-sky-700 md:px-[calc((100vw-600px)/2)]'>
 
-  <div className='flex items-center justify-items-start gap-2 bg-sky-900 pr-2'>
-    <h3 className='text-3xl below-xs:text-xl font-bold p-4 max-w-60'> Inclusions & Exclusions</h3>
-    <FaCheck className='size-16 text-amber-400'/>
-    <ImCross className='size-16 text-red-700'/>
-  </div>
-
-  <div className='flex flex-col p-4 justify-evenly '>
-      <section className='flex flex-col my-6'>
-        <h4 className='text-3xl below-xs:text-xl font-medium mb-4'>Inclusions</h4>
-          <ul className='flex flex-col text-base font-light gap-1'>
+ 
+  <div className='flex flex-col py-8 justify-evenly '>
+      <section className='flex flex-col p-4'>
+        <h4 className='text-3xl below-xs:text-xl text-yellow-400 font-semibold mb-4 ml-6'>Inclusions</h4>
+          <ul className='flex flex-col text-sm font-light gap-1'>
             <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2'/>Day 1 Manali Stay in Homestay</li>
             <li className='flex'><GiCheckMark className='size-5 text-yellow-400 min-w-5 mr-2 '/>Stay in Tent During Trek [ 3 Sharing basis ]</li>
             <br/>
@@ -756,37 +588,23 @@ function page() {
           </ul>
       </section>
 
-      <div className='h-[3px] rounded-full bg-white mx-2'></div>
+      <div className='h-[3px] rounded-full -rotate-12 bg-gradient-to-r from-white from-45% to-50% to-red-600 mx-2'></div>
 
-      <section className='flex flex-col my-6'>
-        <h4 className='text-3xl below-xs:text-xl  font-medium mb-4'>Exclusions</h4>
-            <ul className='flex flex-col text-base font-light -ml-1'>
-              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Insurance Fees</li>
-              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Camera charges or, any similar fees</li>
-              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Any Specially ordered meal, except the inclusions</li>
-              <li className='flex'><IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/>Anything not mentioned in Inclusions</li>
+      <section className='flex flex-col my-6 text-right p-4'>
+        <h4 className='text-3xl below-xs:text-xl text-red-600 font-semibold mb-4 pr-2'>Exclusions</h4>
+            <ul className='flex flex-col items-end text-sm font-light '>
+              <li className='flex'>Insurance Fees<IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/></li>
+              <li className='flex'>Camera charges or, any similar fees <IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/></li>
+              <li className='flex'>Any Specially ordered meal, except the inclusions<IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/></li>
+              <li className='flex'>Anything not mentioned in Inclusions<IoCloseOutline className='size-7 text-red-500 max-w-7 min-w-7  inline-block'/></li>
             </ul>
       </section>
 
     </div>
     </section> 
 
-{/* ///////////////////////////////////Read About other Treks///////////////////////////////////////////////////////////////////////////////////////////////////// */}
-
-<section className='flex justify-between bg-sky-700 font-serif py-4'>
-<Link href={mockdata.find(trek => trek.Index === ((mockdata.find(trek => trek.PageLink === "/bhrigu-lake-trek")?.Index ?? 0) - 1))?.PageLink ?? '/'}>
-  <div className='bg-amber-500 p-1'>
-    <h6 className='text-lg max-w-24 font-bold text-left text-amber-950'>Previous</h6>
-  </div>
-  </Link>
-
-  <Link href={mockdata.find(trek => trek.Index === ((mockdata.find(trek => trek.PageLink === "/bhrigu-lake-trek")?.Index ?? 0) + 1))?.PageLink ?? '/'}>
-  <div className='bg-amber-500 p-1'>
-    <h6 className='text-lg max-w-24 font-bold text-left text-white'>Up Next</h6>
-  </div>
-  </Link>
-
-</section>
+    <div className='pb-2 bg-gradient-to-b from-black to-transparent'></div>
+    <div className='p-4 h-2 bg-gradient-to-t from-black to-transparent'></div>
 {/* ///////////////////////////////////Similar Activities/////////////////////////////////////////////////////////////////////////////////////////////// */}
 
     <section className=' bg-black py-16'>

@@ -10,7 +10,7 @@ import Button from "./button";
 const navLinks = [
     {name: "Home", href:"/"},
     {name: "Expeditions", href:"/Expeditions"},
-    {name: "Trekkings", href:"/Trekkings"},
+    {name: "Trekkings", href:"/all"},
     {name: "Courses", href:"/Courses"},
     {name: "Mountain Lessons", href:"/Mountain-Lessons"},
     {name: "FAQs", href:"/FAQs"},
@@ -54,6 +54,13 @@ export default function Navbar () {
         
         <header className="top-0 left-0 right-0 flex 
         items-center justify-end gap-4 bg-black h-16"> 
+
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com"  />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+                    rel="stylesheet"
+                />
 
             <Link href='/' className="mr-auto"><Image  className="pl-4 " src="/TTM.png" alt="The Trail Makers Logo" width={80} height={80}/></Link>
             

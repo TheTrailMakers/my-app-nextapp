@@ -3,8 +3,8 @@
 import TrekCard from '@/components/homecards'
 import React from 'react'
 import mockdata from '@/data/homepage_cards.json'
-import AllCard from '@/components/allcards'
 import { useState } from 'react'
+import Scrollables from '@/components/scrollables'
 
 
 function All() {
@@ -24,7 +24,7 @@ function All() {
             <section className='bg-yellow-600 p-2 md:p-6'>
                 <h2 className='text-4xl font-semibold'>Hikes</h2>
                 <div className="mt-8 flex flex-wrap">
-                    {mockdata.map((trek) => trek.tag.includes('hike')? <AllCard {...trek} key={trek.Index}/>:null)}
+                    {mockdata.map((trek) => trek.tag.includes('hike')? <Scrollables {...trek} key={trek.Index}/>:null)}
                 </div>
             </section>
 
@@ -52,7 +52,7 @@ function All() {
                         }
                         return 0;
                     })
-                    .map((treks) => (<AllCard {...treks} key={treks.Index} />))}
+                    .map((treks) => (<Scrollables {...treks} key={treks.Index} />))}
             </div>
             </section>
 
@@ -61,21 +61,21 @@ function All() {
                 <div className="mt-8 flex flex-wrap">
                 {mockdata
                 .filter(trek => trek.tag.includes('expedition'))
-                .sort((a, b) => a.Difficulty - b.Difficulty).map((treks) => (<AllCard {...treks} key={treks.Index} />))}
+                .sort((a, b) => a.Difficulty - b.Difficulty).map((treks) => (<Scrollables {...treks} key={treks.Index} />))}
                 </div>
             </section>
 
             <section className='bg-red-300 pl-2 p-6 md:p-6'>
                 <h2 className='text-4xl font-semibold'>Camps</h2>
                 <div className="mt-8 flex flex-wrap">
-                    {mockdata.map((trek) => trek.tag.includes('camp')? <AllCard {...trek} key={trek.Index}/>:null)}
+                    {mockdata.map((trek) => trek.tag.includes('camp')? <Scrollables {...trek} key={trek.Index}/>:null)}
                 </div>
             </section>
 
             <section className='bg-orange-300 pl-2 p-6 md:p-6'>
                 <h2 className='text-4xl font-semibold'>Week-End Plans</h2>
                 <div className="mt-8 flex flex-wrap">
-                    {mockdata.map((trek) => trek.tag.includes('weekend-plan')? <AllCard {...trek} key={trek.Index}/>:null)}
+                    {mockdata.map((trek) => trek.tag.includes('weekend-plan')? <Scrollables {...trek} key={trek.Index}/>:null)}
                 </div>
             </section>
 
