@@ -140,7 +140,16 @@
         "Cost": "8,500",
         "Info": "stay included",
         "PageLink": "/beas-kund-trek",
-        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"]
+        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"],
+        "ImageLinks": ["https://res.cloudinary.com/thetrail/image/upload/c_scale,w_500/f_auto/v1719835688/Beas-Kund-Trek/beas_kund_banner.jpg", 
+        "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_800/f_auto/v1720148261/Beas-Kund-Trek/Bakkar_thach_Beas_kund_trek.jpg", 
+        "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_500/f_auto/v1720152163/Beas-Kund-Trek/bakkar_thach_nightscape_beas_kund.jpg", 
+        "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_800/f_auto/v1720152179/Beas-Kund-Trek/pir_panjal_beas_kund.jpg", 
+        "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_500/f_auto/v1720152190/Beas-Kund-Trek/dhauladhar_beas_kund.jpg", 
+        "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_800/f_auto/v1720152200/Beas-Kund-Trek/seven_sisters_beas_kund.jpg", 
+        "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_500/f_auto/v1720152217/Beas-Kund-Trek/beas_kund_closeup.jpg", 
+        "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_800/f_auto/v1720152247/Beas-Kund-Trek/snowy_peaks_beas_kund_trek_dhauladhar.jpg"
+        ]
       },
 
       

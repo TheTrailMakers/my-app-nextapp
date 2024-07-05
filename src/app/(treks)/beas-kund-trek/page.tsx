@@ -36,6 +36,9 @@ import { GiCardRandom } from "react-icons/gi";
 
 import { RiNewspaperFill } from "react-icons/ri";
 
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
+
+
 
 
 import Scrollables from '@/components/scrollables'
@@ -223,11 +226,18 @@ function page() {
 
 {/* ////////////////////////////////////////Image Gallery//////////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
-      <section> 
-        <div className="p-4 my-24 flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
-          {mockdata.map((treks) => <GalleryImage {...treks} key={treks.Index} />)}
-        </div>
-      </section>
+<section> 
+  <div className="p-4 my-24 flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
+    {mockdata.map((treks, index) => {
+      if (treks.Name.includes('Beas Kund Trek') && Array.isArray(treks.ImageLinks)) {
+        return treks.ImageLinks.map((links, i) => (
+          <GalleryImage ImageLinks={links} key={`${index}-${i}`} />
+        ));
+      }
+      return null;
+    })}
+  </div>
+</section>
 
 
 {/* ///////////////////////////////////////Trek In Details/////////////////////////////////////////////////////////////////////////////////////// */}
@@ -244,14 +254,14 @@ function page() {
               <div className='bg-yellow-500 w-3 rounded-e-full h-auto '></div>
               <div className='flex flex-col justify-between items-start py-2'>
                 <h4 className='text-5xl font-extrabold'>Day 1</h4>
-                <div className='text-xl font-normal p-1 pt-2'> Arrival At Manali</div>
+                <div className='text-lg font-normal p-1 pt-2'> Arrival At Manali</div>
               </div>
             </div>
 
-            <div className='font-medium p-4 pr-2 text-right text bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
-              <div>6500ft <FaThinkPeaks className='inline ml-2 size-8' /></div>
-              <div>NIL <GiPathDistance className='inline ml-2 size-8' /></div>
-              <div>NIL <GiDuration className='inline ml-2 size-8' /></div>
+            <div className='font-medium p-4 pr-2 text-sm text-right bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
+              <div>6500ft <FaThinkPeaks className='inline ml-2 size-6' /></div>
+              <div>NIL <GiPathDistance className='inline ml-2 size-6' /></div>
+              <div>NIL <GiDuration className='inline ml-2 size-6' /></div>
             </div>
           </div>
 
@@ -305,14 +315,14 @@ function page() {
               <div className='bg-yellow-500 w-3 rounded-e-full h-auto '></div>
               <div className='flex flex-col justify-between items-start py-2'>
                 <h4 className='text-5xl font-extrabold'>Day 2</h4>
-                <div className='text-xl font-normal p-1 pt-2'> Manali --- Bakkar Thach</div>
+                <div className='text-lg font-normal p-1 pt-2'> Manali --- Bakkar Thach</div>
               </div>
             </div>
 
-            <div className='font-medium p-4 pr-2 text-right text bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
-              <div>10,880ft <FaThinkPeaks className='inline ml-2 size-8' /></div>
-              <div>4km <GiPathDistance className='inline ml-2 size-8' /></div>
-              <div>4-5hrs <GiDuration className='inline ml-2 size-8' /></div>
+            <div className='font-medium text-sm p-4 pr-2 text-right text bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
+              <div>10,880ft <FaThinkPeaks className='inline ml-2 size-6' /></div>
+              <div>4km <GiPathDistance className='inline ml-2 size-6' /></div>
+              <div>4-5hrs <GiDuration className='inline ml-2 size-6' /></div>
             </div>
           </div>
 
@@ -435,11 +445,13 @@ function page() {
               from start of May, before the Gulaba-Raulikholi Route.
             </p>
           </div>
+
+          <div className='mt-16 h-[3px] rounded-full -rotate-12 bg-yellow-500'></div>
           
-          <div className='mt-16'>
-          <div className='flex items-center'>
-              <FaCircle className='size-3 mr-2 text-yellow-500 '/>
+          <div className='mt-16 text-right'>
+          <div className='flex items-center justify-end'>
               <h5 className='text-xl font-semibold'>Path 2</h5>
+              <FaCircle className='size-3 ml-2 text-yellow-500 '/>
             </div>
             <h6 className='text-lg font-extralight'>Vashisht-Moridugh-Vashisht</h6>
             <p className='mt-4'>Almost the same Route, only difference is the first Day. Vashisht to Moridugh, 
@@ -533,76 +545,155 @@ function page() {
           <h6 className='w-[70%]'>There is <strong className='text-amber-200'>no bad weather</strong> only bad clothing</h6>
       </div>
 
-      <div className='flex flex-col md:grid md:grid-cols-2 font-light mx-4 my-10 tracking-wide'>  
+      <div className='flex flex-col md:grid md:grid-cols-2 font-light mx-4 my-10 tracking-wide text-sm'>  
                                                                   
                                                                   {/* Add How to Choose/ Guide Links to all Items */}
 
           <div className='my-4'>
             <div className='uppercase text-3xl font-extrabold'>Packs</div>
-            <ul className='p-1'>
-              <li>Rucksack with Raincover (40L+)</li>
-              <li>Knapsack/small day bag (10L)</li>
+            <ul className=''>
+              <li className='flex  items-center'>
+                <MdCheckBoxOutlineBlank className='inline mr-2'/>
+                Rucksack with Raincover (40L+)
+              </li>
+              <li className='flex  items-center'>
+                <MdCheckBoxOutlineBlank className='inline mr-2'/>
+                Knapsack/small day bag (10L)
+              </li>
             </ul>
           </div>
 
           <div className='my-4'>
             <div className='uppercase text-3xl font-extrabold'>Footware</div>
-            <ul className='p-1'>
-              <li>Trekking Specific Shoe/Boot</li>
-              <li>Lightweight Sandal</li>
+            <ul className=''>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Trekking Specific Shoe/Boot
+            </li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Lightweight Sandal
+            </li>
             </ul>
           </div>
 
           <div className='my-4'>
             <div className='uppercase text-3xl font-extrabold'>Clothing</div>
-            <ul className='p-1'>
-              <li>SunCap</li>
-              <li>WoolenCap</li>
-              <li>Balaclava/Buff</li>
-              <br/>
-              <li>Full Sleeve Tshirt (2)</li>
-              <li>Half Sleeve Tshirt (2)</li>
-              <li>Trek Pant Full (2)</li>
-              <li>Trek Pant Half (1)</li>
-              <br/>
-              <li>Fleece (1)</li>
-              <li>Down/Feather/Synthetic Jacket (1)</li>
-              <br/>
-              <li>Waterproof Jacket/Raincoat/Poncho (1)</li>
-              <li>Rain Pant (1)</li>
-              <br/>
-              <li>Gloves Inner (1)</li>
-              <li>Trekking Gloves (1)</li>
-              <br/>
-              <li>Cotton Socks (2)</li>
-              <li>Woolen Socks (2)</li>
+            <ul className=''>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>SunCap</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>WoolenCap</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>Balaclava/Buff</li>
+            
+            <br/>
+
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Full Sleeve Tshirt (2)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Half Sleeve Tshirt (2)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Trek Pant Full (2)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Trek Pant Half (1)</li>
+
+            <br/>
+
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Fleece (1)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Down/Feather/Synthetic Jacket (1)</li>
+
+            <br/>
+
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Waterproof Jacket/Raincoat/Poncho (1)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Rain Pant (1)</li>
+
+            <br/>
+
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Gloves Inner (1)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Trekking Gloves (1)</li>
+
+            <br/>
+
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Cotton Socks (2)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Woolen Socks (2)</li>
             </ul>
           </div>
           
           <div className='my-4'>
             <div className='uppercase text-3xl font-extrabold'>Accesories</div>
-            <ul className='p-1'>
-              <li>Sunglass (cat 3, Side Protection)</li>
-              <li>Head Torch (with Extra Batteries)</li>
-              <li>Water Bottles (2L)</li>
-              <li>Trekking Poles</li>
-              <li>Power Bank</li>
-              <li>Light weight Towel</li>
-              <li>Lunch Box with Lid</li>
-              <li>Mug & Spoon</li>
+            <ul className=''>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Sunglass (cat 3, Side Protection)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Head Torch (with Extra Batteries)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Water Bottles (2L)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Trekking Poles</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Power Bank</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Light weight Towel</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Lunch Box with Lid</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Mug & Spoon</li>
             </ul>
           </div>
           
           <div className='my-4'>
             <div className='uppercase text-3xl font-extrabold'>Personal Items</div>
-            <ul className='p-1'>
-              <li>Sunscreen (Spf 50+)</li>
-              <li>Toothbrush, Toothpaste/Mouthfreshner</li>
-              <li>Paper soap/Sanitizer</li>
-              <li>Lip Balm</li>
-              <li>Toilet Paper</li>
-              <li>Personal Medicines</li>
-              <li>Simple FirstAid Kit</li>
+            <ul className=''>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Sunscreen (Spf 50+)</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Toothbrush, Toothpaste/Mouthfreshner</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Paper soap/Sanitizer</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Lip Balm</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Toilet Paper</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Personal Medicines</li>
+            <li className='flex  items-center'>
+              <MdCheckBoxOutlineBlank className='inline mr-2'/>
+              Simple FirstAid Kit</li>
             </ul>
           </div>
 
@@ -674,7 +765,7 @@ function page() {
 
       <div>
         <div className='flex px-8 items-center justify-start'>
-          <h3 className='text-5xl below-xs:text-2xl text-left font-extrabold uppercase'>
+          <h3 className='text-4xl below-xs:text-2xl text-left font-extrabold uppercase'>
             Similar Treks
           </h3>
           <GiCardRandom className='text-sky-400 size-24 shrink-0'/>
@@ -688,7 +779,7 @@ function page() {
 
     <div className='py-8'>
         <div className='flex px-8  items-center justify-start'>
-          <h3 className='text-5xl below-xs:text-2xl text-left font-extrabold uppercase'>
+          <h3 className='text-4xl below-xs:text-2xl text-left font-extrabold uppercase'>
             All {mockdata.filter(treks => treks.Name === 'Ranisui Lake Trek').map(trek => trek.State)} Plans
           </h3>
           <GiCardRandom className='text-sky-400 size-24 shrink-0'/>
