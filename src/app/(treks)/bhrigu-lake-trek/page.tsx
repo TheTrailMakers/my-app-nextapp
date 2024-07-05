@@ -62,8 +62,7 @@ function page() {
         height={400}
         width={800} 
         sizes="(max-width: 768px) 100vw, 100vw"
-        alt="Climbing towards bhrigu lake"
-        srcSet="https://res.cloudinary.com/thetrail/image/upload/v1714145641/Bhrigu-Lake-Trek/bhrigu_lake_banner.jpg 1280w"></Image>
+        alt="Climbing towards bhrigu lake"></Image>
 
         <div className='absolute p-16 flex flex-col justify-center items-center w-full '>
           <h1 className='text-[20vw] md:text-[15vw] leading-[1] lg:text-[10rem] xl:px-40

@@ -238,22 +238,22 @@ function page() {
           Each Day of Beas Kund Trek in Details
         </h3>
 
-        <div className='flex justify-between items-start'>
+          <div className='flex justify-between items-start'>
 
-          <div className='flex flex-row gap-2'>
-            <div className='bg-yellow-500 w-3 rounded-e-full h-auto '></div>
-            <div className='flex flex-col justify-between items-start py-2'>
-              <h4 className='text-5xl font-extrabold'>Day 1</h4>
-              <div className='text-xl font-normal p-1 pt-2'> Arrival At Manali</div>
+            <div className='flex flex-row gap-2'>
+              <div className='bg-yellow-500 w-3 rounded-e-full h-auto '></div>
+              <div className='flex flex-col justify-between items-start py-2'>
+                <h4 className='text-5xl font-extrabold'>Day 1</h4>
+                <div className='text-xl font-normal p-1 pt-2'> Arrival At Manali</div>
+              </div>
+            </div>
+
+            <div className='font-medium p-4 pr-2 text-right text bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
+              <div>6500ft <FaThinkPeaks className='inline ml-2 size-8' /></div>
+              <div>NIL <GiPathDistance className='inline ml-2 size-8' /></div>
+              <div>NIL <GiDuration className='inline ml-2 size-8' /></div>
             </div>
           </div>
-
-          <div className='font-medium p-4 pr-2 text-right text bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
-            <div>6500ft <FaThinkPeaks className='inline ml-2 size-8' /></div>
-            <div>NIL <GiPathDistance className='inline ml-2 size-8' /></div>
-            <div>NIL <GiDuration className='inline ml-2 size-8' /></div>
-          </div>
-        </div>
 
           <Image  src="https://res.cloudinary.com/thetrail/image/upload/ar_3:2,c_auto,h_320/v1715146119/PahadiManzil-Manali-Basecamp.jpg"
               height={250}
@@ -269,7 +269,68 @@ function page() {
             <p>
             As you reach our homestay in Manali in the morning, 
             you will be greeted with welcome drinks and a delicious breakfast. Once all team members have checked 
-            in, we will embark on an easy hike in the nearby forest. This initial trek is designed to test everyone's 
+            in, we will embark on an easy hike in the nearby forest. This initial trek is designed to test everyone&apos;s 
+            physical fitness, helping you acclimate to the mountain environment and kick-start the acclimatization process.
+            </p><br/>
+
+            <p>
+            After returning from the morning hike, you can 
+            freshen up and enjoy a hearty lunch. Following lunch, we will have a discussion session with 
+            our trek leader and guides to ensure our shopping list is complete and nothing essential is 
+            overlooked. Afterward, we will visit Mall Road for shopping, ATM visits, and perhaps a stop 
+            at some local cafes.
+            </p><br />
+
+            <p>Don&apos;t forget to check out our handy guides:</p><br/>
+            
+            <ul className='list-disc ml-6'>
+            <li><Link href={"/contact"} className='text-sky-500'>Where to snag adventure gear in Manali?</Link></li>
+            <li><Link href={"/contact"} className='text-sky-500'>Cool spots to explore in Manali on foot</Link></li>
+            </ul><br/>
+
+            <p>
+            We will return to the homestay by 7 PM for a comprehensive briefing and introduction session. 
+            This session will cover essential topics such as mountain manners, the importance of time management, 
+            understanding the route, rucksack packing, hygiene, and medical considerations.
+            </p><br/>
+          </div>
+
+
+          <div className='h-20'></div>
+
+
+          <div className='flex justify-between items-start'>
+
+            <div className='flex flex-row gap-2'>
+              <div className='bg-yellow-500 w-3 rounded-e-full h-auto '></div>
+              <div className='flex flex-col justify-between items-start py-2'>
+                <h4 className='text-5xl font-extrabold'>Day 2</h4>
+                <div className='text-xl font-normal p-1 pt-2'> Manali --- Bakkar Thach</div>
+              </div>
+            </div>
+
+            <div className='font-medium p-4 pr-2 text-right text bg-neutral-800 shadow-slate-800 shadow-2xl text-white rounded-s-3xl'>
+              <div>10,880ft <FaThinkPeaks className='inline ml-2 size-8' /></div>
+              <div>4km <GiPathDistance className='inline ml-2 size-8' /></div>
+              <div>4-5hrs <GiDuration className='inline ml-2 size-8' /></div>
+            </div>
+          </div>
+
+          <Image  src="https://res.cloudinary.com/thetrail/image/upload/ar_3:2,c_auto,h_480/v1720148261/Beas-Kund-Trek/Bakkar_thach_Beas_kund_trek.jpg"
+              height={250}
+              width={400}
+              alt="The Trail Makers" 
+              sizes="(max-width: 768px) 400px, 800px" 
+              className="object-cover w-full my-12">
+          </Image>
+
+          <div className='leading-7 text-base font-medium mx-4 text-neutral-700'>
+
+
+            <p>
+            As you reach our homestay in Manali in the morning, 
+            you will be greeted with welcome drinks and a delicious breakfast. Once all team members have checked 
+            in, we will embark on an easy hike in the nearby forest. This initial trek is designed to test everyone&apos;s 
             physical fitness, helping you acclimate to the mountain environment and kick-start the acclimatization process.
             </p><br/>
 
@@ -297,6 +358,8 @@ function page() {
 
         <div className='h-2 my-8 bg-black'></div>
   </section>
+
+    
   
 
 
@@ -553,9 +616,9 @@ function page() {
     </section>
 
     <div className='pb-2 bg-gradient-to-b from-black to-transparent'></div>
+    <div className='p-4 h-2 bg-gradient-to-t from-black to-transparent'></div>
 
 {/* ////////////////////////////////////// Inclusion & Exclusions //////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-    <div className='p-4 h-2 bg-gradient-to-t from-black to-transparent'></div>
   <section className='bg-sky-700 md:px-[calc((100vw-600px)/2)]'>
 
  
