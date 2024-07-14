@@ -5,13 +5,13 @@ import Link from 'next/link'
 function page() {
   return (
     <main className='min-h-screen px-[calc((100vw-600px)/2)]'>
-      <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_4:5,c_auto,h_640/v1715240575/blogs/Difference-between-hiking-and-trekking.png" 
+      <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_4:5,c_auto,h_640/v1720928981/Kashmir-Great-Lakes-Trek/hands-widespread-nichnai-pass.jpg" 
         alt="The Trail Makers"
         width={400}
         height={500}
         sizes="(max-width: 768px) 400px, 800px" 
         className="object-cover w-full"
-        blurDataURL='https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto,h_30/v1715240575/blogs/Difference-between-hiking-and-trekking.png'
+        blurDataURL='https://res.cloudinary.com/thetrail/image/upload/ar_4:5,c_auto,h_30/v1720928981/Kashmir-Great-Lakes-Trek/hands-widespread-nichnai-pass.jpg'
         placeholder='blur'
         priority>
       </Image>
