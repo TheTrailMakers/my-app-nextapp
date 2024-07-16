@@ -16,9 +16,9 @@ function  Scrollables({Name, Img, PageLink} : any) {
                 <Image src={Img || default_Image} height={320} width={240} alt={Name} className="h-40 w-full object-cover rounded-xl" 
                 sizes="(max-width: 768px) 250px, 400px"></Image>
 
-                <div className='absolute w-full h-full z-10 bg-gradient-to-b from-black to-transparent to-50% border-t-2 border-t-blue-600 border-e-blue-600 rounded-xl'></div>
+                <div className='absolute w-full h-full  bg-gradient-to-b from-black to-transparent to-50% border-t-2 border-t-blue-600 border-e-blue-600 rounded-xl'></div>
 
-                <h4 className='absolute z-20 top-2 text-base uppercase text-center leading-5 px-2 font-semibold'>{Name}</h4>
+                <h4 className='absolute top-2 text-base uppercase text-center leading-5 px-2 font-semibold'>{Name}</h4>
             
             </div>
         </Link>
