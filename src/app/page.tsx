@@ -48,7 +48,7 @@ const {hamburgerOpen} = useStore((state:any) => {
         A Life With Nature, Is A Life Well Lived.
       </div>
 
-      <div className=" m-6 pt-10 pr-6 mb-20 text-base font-medium text-neutral-500 
+      <div className=" m-6 pt-10 pr-6 mb-20 text-base font-medium text-neutral-300 
                         md:w-[50vw] md:m-auto md:pl-8 md:mb-20
                          lg:text-lg">
         As people moved from agarian society to Industrial society, individuals started to become specialised in single persuits. Same stuff everyday broke the back, while as a human they aren’t meant to do so, they kept them alive, but never let live.

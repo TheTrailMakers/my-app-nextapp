@@ -15,7 +15,7 @@ function Footer() {
       {/* <div className='flex flex-wrap justify-between lg:justify-center gap-8 text-sm'> */}
 
         <div className=' text-sm font-light grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-[calc((100vw-1280px)/2)] mx-4'>
-          <div className='p-4'>
+          <div className='p-4 px-2'>
             <h5 className='font-medium text-base'>Treks by Season</h5>
             <div className='font-extralight'>
               <div className='pt-1'>Summer</div>
@@ -26,9 +26,9 @@ function Footer() {
             </div>
           </div>
 
-          <div className='p-4'>
+          <div className='p-4 px-2'>
             <h5 className='font-medium text-base'>Treks by Months</h5>
-            <div className='font-extralight flex flex-wrap gap-6'>
+            <div className='font-extralight flex flex-wrap gap-4'>
               <div className=''>
                 <p className='pt-1'>January</p>
                 <p className='pt-1'>February</p>
@@ -50,7 +50,7 @@ function Footer() {
           
 
 
-          <div className='p-4'>
+          <div className='p-4 px-2'>
             <h5 className='font-medium text-base'>Treks by Duration</h5>
             <div className='font-extralight'>
             <div className='pt-1'>2 Days</div>
@@ -64,7 +64,7 @@ function Footer() {
           </div>
 
 
-          <div className='p-4'>
+          <div className='p-4 px-2'>
             <h5 className='font-medium text-base'>Treks by Region</h5>
             <div className='font-extralight'>
               <div className='pt-1'>Himachal</div>
@@ -79,7 +79,7 @@ function Footer() {
 
 
               
-          <div className='p-4'>
+          <div className='p-4 px-2'>
             <h5 className='font-medium text-base'>Treks by Difficulty</h5>
             <div className='font-extralight'>
               <div className='pt-1'>First Timers</div>
@@ -93,7 +93,7 @@ function Footer() {
             </div>
           </div>
               
-          <div className='p-4'>
+          <div className='p-4 px-2'>
             <h5 className='font-medium text-base'>Popular Articles</h5>
             <div className='font-extralight'>
               <Link href={"/blog/The-Only-Difference-Between-Trekking-And-Hiking"} className='text-sky-300'><div className='pt-1'>The-Only-Difference-Between-Trekking-And-Hiking</div></Link>

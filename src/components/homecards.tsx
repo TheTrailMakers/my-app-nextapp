@@ -12,7 +12,13 @@ export default function TrekCard({Name, Img, State, Description, Distance, Durat
                         from-black to-gray-900 w-80 flex-shrink-0 rounded-3xl font">
 
                 <Link href={PageLink || "/contact"}>
-                  <Image src={Img || default_Image} alt={Name} width={320} height={192} className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 768px) 250px, 800px"></Image>
+                    <Image 
+                        src={Img || default_Image} 
+                        alt={Name} 
+                        width={320} 
+                        height={192} 
+                        className="object-cover w-80 h-48 rounded-t-3xl p-2" sizes="(max-width: 768px) 320px, 320px">
+                    </Image>
                 </Link>
 
             <div className="border-b-[1px] border-yellow-500 p-2 min-h-40">

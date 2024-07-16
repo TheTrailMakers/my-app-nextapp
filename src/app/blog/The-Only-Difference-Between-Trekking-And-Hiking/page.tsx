@@ -1,23 +1,33 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { FaBookOpen } from "react-icons/fa6";
+
 
 function page() {
   return (
-    <main className='min-h-screen px-[calc((100vw-600px)/2)]'>
-      <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_4:5,c_auto,h_640/v1720928981/Kashmir-Great-Lakes-Trek/hands-widespread-nichnai-pass.jpg" 
-        alt="The Trail Makers"
-        width={400}
-        height={500}
-        sizes="(max-width: 768px) 400px, 800px" 
-        className="object-cover w-full"
-        blurDataURL='https://res.cloudinary.com/thetrail/image/upload/ar_4:5,c_auto,h_30/v1720928981/Kashmir-Great-Lakes-Trek/hands-widespread-nichnai-pass.jpg'
-        placeholder='blur'
-        priority>
-      </Image>
+    <main className='min-h-screen'>
+      <div className='bg-gradient-to-b from-black to-50% to-white h-[70svh] relative'>
+        <Image src="https://res.cloudinary.com/thetrail/image/upload/g_auto,c_fill,ar_4:5,c_auto/v1720152200/Beas-Kund-Trek/seven_sisters_beas_kund.jpg" 
+          alt="The Trail Makers"
+          width={400}
+          height={500}
+          sizes="(max-width: 768px) 400px, 1200px" 
+          className="object-cover h-[70svh]  w-full mix-blend-multiply absolute"
+          blurDataURL='https://res.cloudinary.com/thetrail/image/upload/g_auto,c_fill,ar_4:5,c_auto,h_30/v1720928981/Kashmir-Great-Lakes-Trek/hands-widespread-nichnai-pass.jpg'
+          placeholder='blur'
+          priority>
+        </Image>
+        <div className='absolute w-full flex items-center justify-end p-2'>
+          <h4 className='text-white pr-2 text-lg'>Learning</h4>
+          <FaBookOpen className='text-white'/>
+        </div>
+      </div>
+
+      <div className='lg: px-[calc((100vw-800px)/2)]'>
 
       <div className='p-3'>
-        <h1 className='text-3xl text-neutral-800 font-bold py-2'>Hiking vs Trekking: What&apos;s the Difference</h1>
+        <h1 className='text-4xl text-neutral-800 font-extrabold py-2'>Hiking vs Trekking: What&apos;s the REAL Difference<div className=' inline font-normal text-2xl'> &#40;Historically Verfied&#41;</div> </h1>
         <h3 className='uppercase text-neutral-500 text-sm inline font-medium'>By Pritam Bera</h3>
         <span className='px-1'>|</span>
         <h3 className='uppercase text-neutral-500 text-sm inline font-semibold'>9th May, 2024</h3>
@@ -130,7 +140,7 @@ function page() {
           <Link href={"https://www.etymologynerd.com/blog/take-a-hike"} className='block text-sky-700'>https://www.etymologynerd.com/blog/take-a-hike</Link>
           </p>
           </div>
-
+          </div>
       </div>
     </main>
   )
