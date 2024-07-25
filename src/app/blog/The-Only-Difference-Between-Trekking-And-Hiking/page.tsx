@@ -27,7 +27,7 @@ function page() {
       <div className='lg: px-[calc((100vw-800px)/2)]'>
 
       <div className='p-3'>
-        <h1 className='text-4xl text-neutral-800 font-extrabold py-2'>Hiking vs Trekking: What&apos;s the REAL Difference<div className=' inline font-normal text-2xl'> &#40;Historically Verfied&#41;</div> </h1>
+        <h1 className='text-4xl text-neutral-800   font-extrabold py-2'>Hiking vs Trekking: What&apos;s the REAL Difference<div className=' inline font-normal text-2xl'> &#40;Historically Verfied&#41;</div> </h1>
         <h3 className='uppercase text-neutral-500 text-sm inline font-medium'>By Pritam Bera</h3>
         <span className='px-1'>|</span>
         <h3 className='uppercase text-neutral-500 text-sm inline font-semibold'>9th May, 2024</h3>
