@@ -97,7 +97,7 @@ function Footer() {
             <h5 className='font-medium text-base'>Popular Articles</h5>
             <div className='font-extralight'>
               <Link href={"/blog/The-Only-Difference-Between-Trekking-And-Hiking"} className='text-sky-300'><div className='pt-1'>The-Only-Difference-Between-Trekking-And-Hiking</div></Link>
-
+              <Link href={"/blog/Understanding-The-Layering-System"} className='text-sky-300'><div className='pt-1'>Understanding-The-Layering-System</div></Link>
             </div>
           </div>
 

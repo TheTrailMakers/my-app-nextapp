@@ -16,6 +16,16 @@ const config: Config = {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },
+      keyframes: {
+      "slide-left" : {
+        from: { "transform" : "translateX(0px)"},
+        to: {"transform" : "translateX(-3000px)"}
+        }
+      },
+      animation: {
+        "slide-left" : "slide-left 60s linear 2s infinite  alternate"
+      },
+      
     },
 
 
