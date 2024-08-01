@@ -362,7 +362,7 @@ function page() {
             </p><br/>
 
             <h5 className='font-semibold text-neutral-700 pb-4'>Trek to Bakkar Thach:</h5>
-            <p>
+        
             <ol className='list-decimal list-inside '>
               <li  className='font-semibold text-neutral-700 pl-2 pb-2'>Starting from Dhundi
                 <ul className='font-medium list-disc list-inside pl-2'>
@@ -408,7 +408,7 @@ function page() {
               </li>
 
             </ol>
-            </p><br/>
+          <br/>
 
             <p>From Bakkar Thach, enjoy views of Friendship Peak, the Seven Sisters, and 
               the majestic Hanuman Tibba. This beautiful campsite can get crowded as AVIMAS 

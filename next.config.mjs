@@ -20,8 +20,24 @@ const nextConfig = {
           pathname: '**',
         },
 
+        {
+          protocol: 'https',
+          hostname: 'www.thegreatoutdoorsmag.com',
+          pathname: '**',
+        },
 
-        
+        {
+          protocol: 'https',
+          hostname: 'alpkit.com',
+          pathname: '**',
+        },
+
+        {
+          protocol: 'https',
+          hostname: 'assets.icebreaker.com',
+          pathname: '**',
+        },
+
       ],
     },
 

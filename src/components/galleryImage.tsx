@@ -1,12 +1,15 @@
+
 import React from 'react'
 import Image from 'next/image'
+
 
 function GalleryImage({ImageLinks} : any) {
 
   const default_Image = "https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg"
-  
+
+
   return (
-    <div className='snap-center mx-2 h-96 flex-shrink-0'>
+    <div className="snap-center mx-2 h-96 flex-shrink-0">
       <div className='relative h-96'>
         <Image
           src={ImageLinks || default_Image}
