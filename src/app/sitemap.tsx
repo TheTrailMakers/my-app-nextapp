@@ -30,6 +30,11 @@ export default async function sitemap() {
       lastModified: new Date()
     },
 
+    {
+      url: 'https://thetrailmakers.in/blog/Understanding-The-Layering-System',
+      lastModified: new Date()
+    },
+
   ]
 }
 
