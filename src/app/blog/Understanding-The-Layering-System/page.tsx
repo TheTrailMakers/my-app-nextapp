@@ -5,10 +5,11 @@ import { FaBookOpen } from "react-icons/fa6";
 
 
 export const metadata = {
-  title: "Understanding The Layering System : How to Dress for Trekking , Mountaineering & Hiking",
-  description: "There is no Bad Weather only Bad Clothing. With good understanding of the Layering system, you can be the most comfortable guy/gal on the trail and it can make difference between a great trip and a not so good Trip.So, Take your time to read about each Layer.",
-  keywords: "Layering System, basic concept of Layering, 3 Layer Rule, extreme cold clothing, trekking in summer, summer clothing, cotton kills, base layer, thermal layer, insulation layer, shell layer, hard shell layer, soft shell layer, fleece, merino wool, thermal undergarments, clothing for snow, DWR, mid later, outer layer, 5 layer, 6 layer"
+  title: "Ultimate Guide to the Layering System: Dressing for Trekking, Mountaineering, and Hiking",
+  description: "Unlock the secrets to perfect outdoor clothing with our ultimate guide to the layering system. Learn how to dress for trekking, mountaineering, and hiking to stay comfortable in any weather. Remember, 'there's no bad weather, only bad clothing.' Discover essential tips on base layers, thermal wear, insulation, and shell layers. Understand the importance of materials like merino wool, fleece, and waterproofing to ensure you’re prepared for extreme cold, summer treks, and snow conditions. Master the art of layering for optimal performance and comfort on the trail.",
+  keywords: "layering system for hiking, trekking clothing guide, mountaineering clothing tips, best base layer for cold weather, thermal clothing for trekking, insulation layers for hiking, shell layers for outdoor activities, hard shell vs soft shell jackets, fleece vs merino wool, waterproof outdoor clothing, extreme cold weather gear, summer trekking outfits, outdoor layering techniques, DWR treated clothing, 3 layer system, 5 layer system, 6 layer system, optimal layering for hiking, outdoor clothing for snow"
 };
+
 
 function page() {
   return (
