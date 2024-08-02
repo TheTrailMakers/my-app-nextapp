@@ -4,6 +4,12 @@ import Link from 'next/link'
 import { FaBookOpen } from "react-icons/fa6";
 
 
+export const metadata = {
+  title: "Understanding The Layering System : How to Dress for Trekking , Mountaineering & Hiking",
+  description: "There is no Bad Weather only Bad Clothing. With good understanding of the Layering system, you can be the most comfortable guy/gal on the trail and it can make difference between a great trip and a not so good Trip.So, Take your time to read about each Layer.",
+  keywords: "Layering System, basic concept of Layering, 3 Layer Rule, extreme cold clothing, trekking in summer, summer clothing, cotton kills, base layer, thermal layer, insulation layer, shell layer, hard shell layer, soft shell layer, fleece, merino wool, thermal undergarments, clothing for snow, DWR, mid later, outer layer, 5 layer, 6 layer"
+};
+
 function page() {
   return (
     <main className='min-h-screen'>
