@@ -4,6 +4,14 @@ import Link from 'next/link'
 import { FaBookOpen } from "react-icons/fa6";
 
 
+
+export const metadata = {
+  title: "Hiking vs. Trekking: Unveiling the Real Historical Differences",
+  description: "Explore the nuanced differences between hiking and trekking with our historically verified guide. Learn about the origins, evolution, and unique characteristics of each activity. Whether you're a seasoned adventurer or a curious beginner, understand the distinctions and enrich your outdoor experiences.",
+  keywords: "hiking vs trekking, hiking differences, trekking vs hiking, historical differences hiking trekking, outdoor activities, adventure travel, hiking guide, trekking guide, history of hiking, history of trekking, hiking vs trekking differences, hiking terminology, trekking definitions, outdoor hiking tips, trekking adventures, hiking and trekking comparison, historical hiking facts, historical trekking facts, adventure sports, outdoor activities comparison, hiking and trekking benefits, best hiking trails, trekking challenges, beginner hiking tips"
+};
+
+
 function page() {
   return (
     <main className='min-h-screen'>
