@@ -62,6 +62,18 @@ const nextConfig = {
           pathname: '**',
         },
 
+        {
+          protocol: 'https',
+          hostname: 'cdn2.apstatic.com',
+          pathname: '**',
+        },
+
+        {
+          protocol: 'https',
+          hostname: 's3.us-east-1.amazonaws.com',
+          pathname: '**',
+        },
+
       ],
     },
 
