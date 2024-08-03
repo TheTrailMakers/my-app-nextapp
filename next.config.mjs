@@ -38,6 +38,12 @@ const nextConfig = {
           pathname: '**',
         },
 
+        {
+          protocol: 'https',
+          hostname: 'images.ctfassets.net',
+          pathname: '**',
+        },
+
       ],
     },
 

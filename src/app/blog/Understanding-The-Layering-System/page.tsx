@@ -2,11 +2,15 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaBookOpen } from "react-icons/fa6";
+import { BsFilePersonFill } from "react-icons/bs";
+import { TbCalendarMonth } from "react-icons/tb";
+
+
 
 
 export const metadata = {
   title: "Ultimate Guide to the Layering System: Dressing for Trekking, Mountaineering, and Hiking",
-  description: "Unlock the secrets to perfect outdoor clothing with our ultimate guide to the layering system. Learn how to dress for trekking, mountaineering, and hiking to stay comfortable in any weather. Remember, 'there's no bad weather, only bad clothing.' Discover essential tips on base layers, thermal wear, insulation, and shell layers. Understand the importance of materials like merino wool, fleece, and waterproofing to ensure you’re prepared for extreme cold, summer treks, and snow conditions. Master the art of layering for optimal performance and comfort on the trail.",
+  description: "Master outdoor layering with our ultimate guide. Learn base layers, insulation, and waterproofing for trekking, hiking, and mountaineering in any weather.",
   keywords: "layering system for hiking, trekking clothing guide, mountaineering clothing tips, best base layer for cold weather, thermal clothing for trekking, insulation layers for hiking, shell layers for outdoor activities, hard shell vs soft shell jackets, fleece vs merino wool, waterproof outdoor clothing, extreme cold weather gear, summer trekking outfits, outdoor layering techniques, DWR treated clothing, 3 layer system, 5 layer system, 6 layer system, optimal layering for hiking, outdoor clothing for snow"
 };
 
@@ -31,17 +35,28 @@ function page() {
         </div>
       </div> */}
 
-      <div className='h-[70svh] bg-red-500 flex w-full items-center justify-center'>
-          <h1 className='px-8 text-4xl font-bold text-white uppercase'>Understanding The Layering System : <span className=' block py-2 text-xl font-normal'>How to Dress for Trekking , Mountaineering & Hiking</span></h1>
+      <div className='h-[40svh] bg-red-500 flex flex-col w-full items-center justify-center text-white'>
+          <h1 className='px-12 text-4xl font-bold uppercase text-center'>Understanding The Layering System</h1>
+          <h2 className='px-12 py-2 text-lg font-normal text-center'>How to Dress for Trekking, Mountaineering & Hiking</h2>
+          <div className='flex items-center justify-center text-white text-xs font-light py-6'>       
+            <BsFilePersonFill className='inline mr-1 size-4'/>
+            <div className='mr-8'>By Pritam Bera</div>
+            <TbCalendarMonth className='inline mr-1 size-5'/>
+            <div>27th July, 2024</div>
+          </div>
       </div>
-
+      <Image src="https://images.ctfassets.net/r7p9m4b1iqbp/4somOgGKzOpsR0uNNWQT0l/427c742f9337fc30b0e4a9eee6e5e9b0/women-s-hiking-clothes-thumbnail-image.jpg?w=600&q=85&fm=jpg&fl=progressive" 
+            alt="Trekkers Trying to find Route in Rain, Bad Weather"
+            width={400}
+            height={300}
+            sizes="(max-width: 768px) 400px, 800px" 
+            className="h-[300px] object-cover w-full pb-2 rounded-lg"
+            priority>
+      </Image>
+      
       <div className='lg: px-[calc((100vw-800px)/2)]'>
 
-      <div className='py-3 px-6'>
-        <div className='uppercase text-neutral-500 text-sm inline font-medium'>By Pritam Bera</div>
-        <span className='px-1'>|</span>
-        <div className='uppercase text-neutral-500 text-sm inline font-semibold'>27th July, 2024</div>
-      </div>
+ 
      
 
         <div className='leading-8'>
@@ -96,7 +111,7 @@ function page() {
           </ol><br/>
 
           <p className='px-3'>
-          Any Mountain visit must have these three layers, the obvious exception 
+          Do not go in Mountains without these three layers, the obvious exception 
           is the hot, desert mountains or, similar.
           </p><br/>
 
