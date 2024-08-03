@@ -41,10 +41,8 @@ function page() {
       <div className='lg: px-[calc((100vw-800px)/2)]'>
 
  
-     
-
         <div className='leading-8'>
-          <p className='font-medium text-lg leading-6 px-3'>
+          <p className='font-medium text-lg leading-6 px-3 pt-4'>
           <span className='text-8xl font-medium mr-3 float-left'>T</span>wo Layers of thin is 
           warmer than one layer of thick. The Principle you&apos;ve 
           learned in the high school with the murky face is still the driving idea 
@@ -114,7 +112,7 @@ function page() {
               width={400}
               height={300}
               sizes="(max-width: 768px) 400px, 800px" 
-              className="object-cover w-full pt-8 pb-2 rounded-lg"
+              className="object-cover w-full pb-2 rounded-lg"
               priority>
             </Image>
 
@@ -215,6 +213,23 @@ function page() {
           <h2 className='px-3 pr-[10vw] font-bold text-stone-700 text-2xl'>
           2. The Mid Layer [Insulation Layers]
           </h2><br/>
+
+                              
+          <div>
+            <Image src="https://cdn2.apstatic.com/forum/91743.jpg" 
+              alt="Gitl Wearing Down Jacket in Winter Snow"
+              width={400}
+              height={300}
+              sizes="(max-width: 768px) 400px, 800px" 
+              className="object-cover w-full pt-8 pb-2 rounded-lg"
+              priority>
+            </Image>
+
+            <div className='max-w-80 mx-auto pb-8 text-center text-sm'>
+               Mid Insulation Layer | 
+              <Link href={"https://cdn2.apstatic.com/"} className=' text-blue-600 hover:text-blue-800 visited:text-purple-600'>Down Jacket</Link>
+            </div>
+          </div>
                  
           <p className='px-3'>
           The way insulation Layers work is by trapping the warm air 
@@ -398,11 +413,11 @@ function page() {
           fabric which is most of the time treated with Durable Water Resistant(DWR) Coating.
           </p><br/>
 
-          <p className='px-3'>
+          <p className='px-3 font-medium'>
           In Comparison to Fleece, insulated Jackets provide more loft to the weight, so more warm. But here are something to note.
           </p><br/>
 
-          <ol className='pl-5 pr-3 list-decimal list-inside'>
+          <ol className='pl-5 pr-3 list-decimal list-inside font-medium'>
             <li>Down or, Synthetic Jackets can not be repeated, due to the 
               synthetic shell fabric, which is water resistant or, repellant, 
               will stop the moisture to pass further.
@@ -434,7 +449,24 @@ function page() {
 
           <h2 className='px-3 pr-[10vw] font-bold text-stone-700 text-2xl'>
           3. The Outer Layer [Protection Layer]
-          </h2><br/>
+          </h2>
+
+          
+          <div>
+            <Image src="https://s3.us-east-1.amazonaws.com/images.gearjunkie.com/uploads/2023/04/DSC7325-scaled.jpeg" 
+              alt="Guy wearing Yellow Hard Shell Jacket in snow"
+              width={400}
+              height={300}
+              sizes="(max-width: 768px) 400px, 800px" 
+              className="object-cover w-full pt-8 pb-2 rounded-lg"
+              priority>
+            </Image>
+
+            <div className='max-w-80 mx-auto pb-8 text-center text-sm'>
+              Hard Shell Jacket | 
+              <Link href={"https://gearjunkie.com/apparel/best-hardshell-jackets"} className=' text-blue-600 hover:text-blue-800 visited:text-purple-600'>gearjunkie.com</Link>
+            </div>
+          </div>
 
                     
           <p className='px-3'>
@@ -498,10 +530,11 @@ function page() {
           You may want to include Rain Pant in your List if your pant do not offer 
           light waterproofing. And also if you are going on a trek in a monsoon make 
           sure to carry it.
-          </p><br/><br/>
+          </p><br/>
 
           {/* ---------------------------------------------------------------------------- */}
 
+          <section className='bg-rose-50 py-4'><br/>
           <h2 className='text-xl font-extrabold text-orange-500 px-3 uppercase'>Season wise Layering Tip : 
           </h2><br/>
           
@@ -521,10 +554,11 @@ function page() {
           <h4 className='text-lg font-semibold text-green-600 float-left pl-5 pr-2'>Rain : </h4>
           <p className='pl-5 pr-3'>
           A Base Layer, Fleece, Soft Shell Layer and A Hard Shell Layer. A rain Pant for the lower.
-          </p><br/><br/>
+          </p><br/>
+          </section>
 
           {/* -------------------------------------------------------------------------------- */}
-
+          <section className='bg-green-50 py-6'>
           <h2 className='text-xl font-extrabold text-rose-500 px-3 uppercase'>More Tips : 
           </h2><br/>
 
@@ -546,9 +580,9 @@ function page() {
               Though this need little expertise.
             </li>
           </ol>
+          </section>
 
-
-          <div className='p-3'>
+          <div className='p-3 pt-0'>
           <h5 className='font-semibold text-lg pt-20 pb-4'>Source :</h5>
           <p className='text-sm flex flex-col gap-2'>
           <Link href={"https://andrewskurka.com/"} className='block text-sky-700'>https://andrewskurka.com/</Link>
