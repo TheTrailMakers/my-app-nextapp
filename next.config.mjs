@@ -44,6 +44,24 @@ const nextConfig = {
           pathname: '**',
         },
 
+        {
+          protocol: 'https',
+          hostname: 'www.plasticsoupfoundation.org',
+          pathname: '**',
+        },
+
+        {
+          protocol: 'https',
+          hostname: 'cdn11.bigcommerce.com',
+          pathname: '**',
+        },
+
+        {
+          protocol: 'https',
+          hostname: 'marmotau.com',
+          pathname: '**',
+        },
+
       ],
     },
 

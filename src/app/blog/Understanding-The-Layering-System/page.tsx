@@ -18,24 +18,8 @@ export const metadata = {
 function page() {
   return (
     <main className='min-h-screen'>
-      {/* <div className='bg-gradient-to-b from-black to-white to-90% h-[70svh] relative'>
-        <Image src="https://res.cloudinary.com/thetrail/image/upload/g_auto,c_fill,ar_4:5,c_auto/v1720152200/Beas-Kund-Trek/seven_sisters_beas_kund.jpg" 
-          alt="The Trail Makers"
-          width={400}
-          height={500}
-          sizes="(max-width: 768px) 400px, 1200px" 
-          className="object-cover h-[70svh]  w-full mix-blend-multiply absolute"
-          blurDataURL='https://res.cloudinary.com/thetrail/image/upload/g_auto,c_fill,ar_4:5,c_auto,h_30/v1720928981/Kashmir-Great-Lakes-Trek/hands-widespread-nichnai-pass.jpg'
-          placeholder='blur'
-          priority>
-        </Image>
-        <div className='absolute w-full flex items-center justify-center '>
-          <h1 className='p-8 m-8 mt-[60%] text-4xl text-white font-extrabold uppercase 
-                        bg-red-500 bg-opacity-75 backdrop-blur shadow-lg shadow-sky-600'>Understanding The Layering System : <span className=' block text-xl font-normal'>How to Dress for Trekking , Mountaineering & Hiking</span></h1>
-        </div>
-      </div> */}
 
-      <div className='h-[40svh] bg-red-500 flex flex-col w-full items-center justify-center text-white'>
+      <div className='bg-red-500 flex flex-col w-full items-center justify-center text-white pt-12 pb-8'>
           <h1 className='px-12 text-4xl font-bold uppercase text-center'>Understanding The Layering System</h1>
           <h2 className='px-12 py-2 text-lg font-normal text-center'>How to Dress for Trekking, Mountaineering & Hiking</h2>
           <div className='flex items-center justify-center text-white text-xs font-light py-6'>       
@@ -50,7 +34,7 @@ function page() {
             width={400}
             height={300}
             sizes="(max-width: 768px) 400px, 800px" 
-            className="h-[300px] object-cover w-full pb-2 rounded-lg"
+            className=" lg: px-[calc((100vw-800px)/2)] object-cover w-full pb-2 rounded-lg"
             priority>
       </Image>
       
@@ -60,17 +44,30 @@ function page() {
      
 
         <div className='leading-8'>
-          <p className='font-semibold text-lg leading-6 px-3'>
+          <p className='font-medium text-lg leading-6 px-3'>
           <span className='text-8xl font-medium mr-3 float-left'>T</span>wo Layers of thin is 
           warmer than one layer of thick. The Principle you&apos;ve 
           learned in the high school with the murky face is still the driving idea 
           behind the Clothing System in the Trekking, Hiking and Mountaineering World.
           </p><br/>
 
-          <p className='italic px-3'>
-          <strong className='font-normal'>There is no bad weather only bad clothing.</strong>
-          </p>
+          <p className='italic text-lg px-3'>
+          <strong className='font-normal'>	&quot;There is no bad weather only bad clothing.	&quot;</strong>
+          </p><br/>
 
+          <p className='px-3'>
+          Be it raining, Snowing or, you are on a summit push on a super cold 
+          windy morning in a narrow valley, with proper layerings you can beat the weather and can be  
+          the most comfortable guy out there.
+          </p><br/>
+
+          <p className='px-3'>
+
+          To understand layering system during Backpacking, it is important to 
+          understand what&apos;s the function of each layer and also you must know a little about the 
+          materials they are made of (so, that you can shop better). At the end we will learn other variations 
+          of Layering System.
+          </p><br/>
           <div className='py-4'>
             <Image src="https://www.thegreatoutdoorsmag.com/wp-content/uploads/sites/15/TGO-BERGHAUS-Jessie_Leong-H68A5904.jpg" 
             alt="Trekkers Trying to find Route in Rain, Bad Weather"
@@ -87,19 +84,6 @@ function page() {
             </div>
           </div>
 
-          <p className='px-3'>
-          Be it raining, Snowing or, you are on a summit push on a super cold 
-          windy morning in a narrow valley, with proper layerings you can be 
-          the most comfortable guy out there.
-          </p><br/>
-
-          <p className='px-3'>
-          To understand layering system during Backpacking, it is important to 
-          understand what is the function of each layer and also about the 
-          materials they are made of. At the end we will learn other variations 
-          of Layering System.
-          </p><br/>
-
           <p className='px-3 text-lg font-medium'>
           The Standard Layering System Consists of 3 Layers :
           </p><br/>
@@ -111,7 +95,7 @@ function page() {
           </ol><br/>
 
           <p className='px-3'>
-          Do not go in Mountains without these three layers, the obvious exception 
+          Do not go in Mountains without these three layers,for sure the obvious exception 
           is the hot, desert mountains or, similar.
           </p><br/>
 
@@ -143,7 +127,7 @@ function page() {
 
           <p className='px-3'>
           The primary function of the Base Layer is to let the 
-          moisture pass through it and be comfortable to skin. It 
+          moisture(your sweat) pass through it and it should be comfortable to skin(everyone hates that itchy feeling). It 
           must be stretchable enough to let the body have full 
           range of motion.
           </p><br/>
@@ -160,9 +144,9 @@ function page() {
           cotton and many more newly engineered materials. Between 
           these Merino Wool is the Favorite choice. It absorbs 
           very less water, dries quickly, even when it&apos;s wet it 
-          doesn&apos;t weight a ton like cotton, and the best perk is 
+          doesn&apos;t weigh a ton like cotton, and the best perk is 
           it doesn&apos;t feel cold or soggy to skin like other 
-          materials. Merino wool can have its own different chapter 
+          materials when wet. Merino wool can have its own different chapter 
           to talk about. 
           </p><br/>
 
@@ -260,6 +244,23 @@ function page() {
           Currently they sell this under Polartec Brand name.
           </p><br/>
 
+                    
+          <div>
+            <Image src="https://www.plasticsoupfoundation.org/wp-content/uploads/2020/02/tania-melnyczuk-sU1TmkMUZgg-unsplash.jpg" 
+              alt="Two Fleece Mid Layers, which are recycled"
+              width={400}
+              height={300}
+              sizes="(max-width: 768px) 400px, 800px" 
+              className="object-cover w-full pt-8 pb-2 rounded-lg"
+              priority>
+            </Image>
+
+            <div className='max-w-80 mx-auto pb-8 text-center text-sm'>
+              Recycled Fleece Mid Layer | 
+              <Link href={"https://www.plasticsoupfoundation.org/"} className=' text-blue-600 hover:text-blue-800 visited:text-purple-600'> www.plasticsoupfoundation.org</Link>
+            </div>
+          </div>
+
           <p className='px-3'>
           it&apos;s cheapness, durability, lightweight, ability to stay warm 
           when wet, made fleece world wide popular. We generally add 
@@ -295,6 +296,24 @@ function page() {
           will need fill powers more than that.
           </p><br/>
 
+          <div>
+            <Image src="https://cdn11.bigcommerce.com/s-jfajlc8n/product_images/uploaded_images/the-difference-between-feather-and-down.jpg" 
+              alt="Two Fleece Mid Layers, which are recycled"
+              width={400}
+              height={300}
+              sizes="(max-width: 768px) 400px, 800px" 
+              className="object-cover w-full pt-8 pb-2 rounded-lg"
+              priority>
+            </Image>
+
+            <div className='max-w-80 mx-auto pb-8 text-center text-sm'>
+              The differnce between Down and Feather | 
+              <Link href={"https://www.verolinens.com/there-is-a-difference-between-down-feather/"} className=' text-blue-600 hover:text-blue-800 visited:text-purple-600'> www.verolinens.com</Link>
+            </div>
+          </div>
+
+          
+
           <p className='px-3 italic'>
             What is down exactly?
           </p><br/>
@@ -310,7 +329,7 @@ function page() {
           The Natural Down is hydrophobic when attached to the Duck 
           or, Goose, cause they naturally secret a oil to keep themselves 
           waterproof. But after harvest the waterproof ability is gone. 
-          IT has to be artificially treated.
+          It has to be artificially treated.
           </p><br/>
 
           <p className='px-3'>
@@ -333,19 +352,45 @@ function page() {
           <p className='px-3'>
           The next budget option to Down will be synthetics. 
           Every year research is being done to create more 
-          loft and hydrophobic to the synthetic Jackets. They 
+          loft and waterproof synthetic Jackets. They 
           doesn&apos;t compress well like the down. So, it&apos;s little 
           on heavier side compared to the warmth given.
           </p><br/>
 
+          
+          <div>
+            <Image src="https://marmotau.com/cdn/shop/collections/Marmot_NZ_Mens_Down_and_Insulated_Jackets_2048x2048.png?v=1621475028" 
+              alt="A hiker wearing a insulated synthetic Jacket"
+              width={400}
+              height={300}
+              sizes="(max-width: 768px) 400px, 800px" 
+              className="object-cover w-full pt-8 pb-2 rounded-lg"
+              priority>
+            </Image>
+
+            <div className='max-w-80 mx-auto pb-8 text-center text-sm'>
+              Synthetic Insulated Jackets | 
+              <Link href={"https://marmotau.com/"} className=' text-blue-600 hover:text-blue-800 visited:text-purple-600'> marmotau.com</Link>
+            </div>
+          </div>
+
+
           <p className='px-3'>
-          But the plus point is it's easier to use in moisty environment or, 
+          Current innovations like Primaloft, Thinsulate, Thermoball, Polertech, 
+          Cirrus, Coreloft are fore front of insulation technology, developed by companies like 
+          The North Face, Rab, Arc&apos;teryx and many others. Some of them almost mimic down, but with some obvious 
+          pros and cons,
+          </p><br/>
+
+          <p className='px-3'>
+          The plus point are it's easier to use in moisty environment or, 
           in  rain. It&apos;s still usable after a slight drizzle. Dries faster 
           than a Down Jacket. also easy to repair than Down Jacket. But the 
           major difference which makes people to choose synthetic instead of 
-          Down is the maintenance. Synthetic JAckets can be tossed in for the 
+          Down is the maintenance. Synthetic Jackets can be tossed in for the 
           laundry but with Down you need to follow step by step cleaning 
-          process, otherwise you will loose the specialty of Down overtime.
+          process, otherwise you will loose the specialty of Down overtime. 
+          though if maintained properly down may serve you longer time
           </p><br/>
 
           <p className='px-3'>
@@ -362,7 +407,7 @@ function page() {
               synthetic shell fabric, which is water resistant or, repellant, 
               will stop the moisture to pass further.
             </li>
-            <li>Down or, synthetic Jackets i contact with similar materials 
+            <li>Down or, synthetic Jackets in contact with similar materials 
               can be noisy.  While two fleece won&apos;t be.
             </li>
             <li>Fleece is highly inexpensive, compared to the Jackets.
@@ -370,19 +415,19 @@ function page() {
             <li>Fleece doesn&apos;t need extra care like down jacket. even a 
               small tear can make you expensive gear unusable. Even you 
               may need to throw it out in some cases, fleece on the other 
-              side is durable.
+              side is durable, you can surely use it even after tears and wears.
             </li>
             <li>The overall warmth provide by a really good quality down 
               jacket is just incomparable, to the packing and weight of it. 
-              Expedition in really cold climate is hard to complete with 
+              Expedition in really cold climate is hard with 
               out a good down jacket.
             </li>
           </ol><br/>
 
           
           <p className='px-3'>
-          A Fleece and a Down Jacket on it is People&apos;s favorite combination.  
-          If tpp warm you can just compress down the Down Jacket and stuff 
+          A Fleece then a Down Jacket on it, is People&apos;s favorite combination.  
+          If too warm you can just compress down the Down Jacket and stuff 
           back in your Rucksack.
           </p><br/>
 
@@ -405,7 +450,7 @@ function page() {
           <ol className='pl-5 pr-3 list-decimal list-inside'>
             <li>Hard Shell Jacket</li>
             <li>Soft Shell Jacket</li>
-          </ol>
+          </ol><br/>
 
           <p className='px-3'>
           Hard Shell Jackets are more weather resistant. Practically 
@@ -504,8 +549,8 @@ function page() {
 
 
           <div className='p-3'>
-          <h5 className='font-semibold text-lg pt-20'>Source :</h5>
-          <p className='text-sm'>
+          <h5 className='font-semibold text-lg pt-20 pb-4'>Source :</h5>
+          <p className='text-sm flex flex-col gap-2'>
           <Link href={"https://andrewskurka.com/"} className='block text-sky-700'>https://andrewskurka.com/</Link>
           <Link href={"https://www.woolmark.com/"} className='block text-sky-700'>https://www.woolmark.com/</Link>
           <Link href={"https://www.treelinereview.com/"} className='block text-sky-700'>https://www.treelinereview.com/</Link>
