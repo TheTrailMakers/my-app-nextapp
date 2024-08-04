@@ -36,7 +36,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 
   return (
 
-    <main className="min-h-screen bg-black text-white no-scrollbar pattern-topography-slate-900/40">
+    <main className="min-h-screen bg-black text-white no-scrollbar pattern-topography-slate-900/70">
 
       <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto/v1713186783/Ranisui_manali_speedhike.jpg" 
       alt="trail running to lamadugh"
