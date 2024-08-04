@@ -10,6 +10,9 @@ import Link from "next/link";
 import Scrollables from "@/components/scrollables";
 import TrekCard from "@/components/homecards";
 
+import { GiChestnutLeaf } from "react-icons/gi";
+
+
 
 interface Trek {
   Index: number;
@@ -33,7 +36,7 @@ const {hamburgerOpen} = useStore((state:any) => {
 
   return (
 
-    <main className="min-h-screen bg-black text-white no-scrollbar">
+    <main className="min-h-screen bg-black text-white no-scrollbar pattern-topography-slate-900/40">
 
       <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_3:4,c_auto/v1713186783/Ranisui_manali_speedhike.jpg" 
       alt="trail running to lamadugh"
@@ -82,43 +85,41 @@ const {hamburgerOpen} = useStore((state:any) => {
         <h2 className="uppercase">How Trekking can change life</h2>
       </div>
 
-<div className="md:mx-[20vw] lg:mx-[25vw] xl:mx-[30vw]">
+<section className="md:mx-[20vw] lg:mx-[25vw] xl:mx-[30vw]">
 
-      <section className="my-20">
+      <div className="my-20">
         <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_2:1,c_auto,h_320/v1715052583/Ranisui-Lake-Trek/lamadugh_dog_chhotapathhar.jpg" 
-        alt="The Trail Makers"
-        width={250}
-        height={400}
-        sizes="(max-width: 768px) 400px, 800px" 
-        className="h-40 object-cover w-full object-[0%_70%]"></Image>
-        <div className="mx-4 pt-6 pb-4 flex items-center">
-          <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
-          </svg>
-          <h3 className="mx-1 font-bold text-center">Through Type II fun</h3>
-        </div>
-        <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
-            which are not fun at the time but after 
-            you look back at the experience as fun. 
-            These type of activities can be incredibly 
-            beneficial and I have found that it has 
-            benefitted me in so many ways.
-        </p>
-      </section>
+          alt="The Trail Makers"
+          width={250}
+          height={400}
+          sizes="(max-width: 768px) 400px, 800px" 
+          className="object-cover w-full object-[0%_70%]">
+        </Image>
 
-      <section className="my-20">
+        <div className="mx-4 pt-6 pb-4 flex items-center">
+          <GiChestnutLeaf className="size-8 text-yellow-400 mr-2"/>
+          <h3 className="mx-1 font-bold text-center text-lg">Through Type II fun</h3>
+        </div>
+
+        <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
+            which are not fun at the time but after you look back at the experience as fun. These type of 
+            activities can be incredibly beneficial and I have found that it has benefitted me in so many ways.
+        </p>
+      </div>
+
+      <div className="my-20">
         <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_2:1,c_auto,h_320/v1715052618/Downloaded/camfire.jpg" 
         alt="The Trail Makers"
         width={250}
         height={400} 
         sizes="(max-width: 768px) 400px, 800px" 
-        className="h-40 object-cover w-full object-[0%_50%]"></Image>
+        className="object-cover w-full object-[0%_50%]"></Image>
+
         <div className="mx-4 pt-6 pb-4 flex items-center">
-          <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
-          </svg>
-          <h3 className="mx-1 font-bold text-center">Carry less, worry less, have fun</h3>
+          <GiChestnutLeaf className="size-8 text-yellow-400 mr-2"/>
+          <h3 className="mx-1 font-bold text-center text-lg">Carry less, worry less, have fun</h3>
         </div>
+
         <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
             which are not fun at the time but after 
             you look back at the experience as fun. 
@@ -126,41 +127,31 @@ const {hamburgerOpen} = useStore((state:any) => {
             beneficial and I have found that it has 
             benefitted me in so many ways.
         </p>
-      </section>
+      </div>
 
-      <section className="my-20">
-
+      <div className="my-20">
         <Image src="https://res.cloudinary.com/thetrail/image/upload/ar_2:1,c_auto,h_320/v1715052575/Ranisui-Lake-Trek/lamadugh_cows.jpg" 
         alt="The Trail Makers" 
         width={250}
         height={400}
         sizes="(max-width: 768px) 400px, 800px" 
         className="object-cover w-full object-[0%_60%]"></Image>
-        {/* <Image src={lamadughGroupImg} alt="The Trail Makers" sizes="(max-width: 768px) 250px, 800px" style={{width: '100%',height: '160px' }} className="object-cover w-full object-[0%_70%]" placeholder="blur"></Image> */}
         
         <div className="mx-4 pt-6 pb-4 flex items-center">
-          <svg className="" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="8" cy="8" r="4" fill="rgb(251 191 36)"/>
-          </svg>
-          <h3 className="mx-1 font-bold text-left">Goals and rules are important, So are COMRADES</h3>
+          <GiChestnutLeaf className="size-8 text-yellow-400 mr-2"/>
+          <h3 className="mx-1 font-bold text-left text-lg">Goals and rules are important, So are COMRADES</h3>
         </div>
+
         <p className="mx-4 pr-6 text-neutral-400 leading-6"> Type two fun is activities you undertake 
-            Once when my life had no adventure, I 
-            always thought about leaving all life, all 
-            my people and all my rights and duties 
-            aside just because I was attracted to 
-            nature and less motivated by people. 
-            But after two to three years of life 
-            nurtured through traveling, hiking, 
-            trekking amidst of nature, I started 
-            respecting nature. And in return, I 
-            learned one gem of my learnings not 
-            to ignore people and how to live with 
-            people with whom I have been most of 
-            my life
+            Once when my life had no adventure, I always thought about leaving all life, all 
+            my people and all my rights and duties aside just because I was attracted to 
+            nature and less motivated by people. But after two to three years of life 
+            nurtured through traveling, hiking, trekking amidst of nature, I started 
+            respecting nature. And in return, I learned one gem of my learnings not 
+            to ignore people and how to live with people with whom I have been most of my life
         </p>
-      </section>
-</div>
+      </div>
+</section>
       <div className=" mx-auto pt-24 border-b-2 w-3/5 border-yellow-500"></div>
 
   
