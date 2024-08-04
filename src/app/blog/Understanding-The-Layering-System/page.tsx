@@ -582,13 +582,13 @@ function page() {
           </ol>
           </section>
 
-          <div className='p-3 pt-0'>
-          <h5 className='font-semibold text-lg pt-20 pb-4'>Source :</h5>
-          <p className='text-sm flex flex-col gap-2'>
-          <Link href={"https://andrewskurka.com/"} className='block text-sky-700'>https://andrewskurka.com/</Link>
-          <Link href={"https://www.woolmark.com/"} className='block text-sky-700'>https://www.woolmark.com/</Link>
-          <Link href={"https://www.treelinereview.com/"} className='block text-sky-700'>https://www.treelinereview.com/</Link>
-          </p>
+          <div className='px-3 py-8'>
+          <h5 className='font-semibold text-lg'>Sources :</h5>
+          <ol className='text-sm list-decimal pl-6 py-2'>
+            <li><Link href={"https://andrewskurka.com/"} className='block text-sky-700'>https://andrewskurka.com/</Link></li>  
+            <li><Link href={"https://www.woolmark.com/"} className='block text-sky-700'>https://www.woolmark.com/</Link></li>  
+            <li><Link href={"https://www.treelinereview.com/"} className='block text-sky-700'>https://www.treelinereview.com/</Link></li>  
+          </ol>
           </div>
         </div>
       </div>
