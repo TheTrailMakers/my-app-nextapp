@@ -9,9 +9,9 @@ import { TbCalendarMonth } from "react-icons/tb";
 
 
 export const metadata = {
-  title: "Ultimate Guide to the Layering System: Dressing for Trekking, Mountaineering, and Hiking",
-  description: "Master outdoor layering with our ultimate guide. Learn base layers, insulation, and waterproofing for trekking, hiking, and mountaineering in any weather.",
-  keywords: "layering system for hiking, trekking clothing guide, mountaineering clothing tips, best base layer for cold weather, thermal clothing for trekking, insulation layers for hiking, shell layers for outdoor activities, hard shell vs soft shell jackets, fleece vs merino wool, waterproof outdoor clothing, extreme cold weather gear, summer trekking outfits, outdoor layering techniques, DWR treated clothing, 3 layer system, 5 layer system, 6 layer system, optimal layering for hiking, outdoor clothing for snow"
+  title: "10 Best Treks in Himachal Pradesh | The Trail Makers",
+  description: "Explore the 10 best treks in Himachal Pradesh with The Trail Makers. From Hampta Pass to Great Himalayan National Park, discover breathtaking landscapes and unforgettable adventures. Join us for an unforgettable trekking experience in the heart of the Himalayas.",
+  keywords: "Hampta Pass trek, Beas Kund trek, Bhrigu Lake trek, Pin Parvati Pass trek, Kheerganga trek, Indrahar Pass trek, Triund trek, Prashar Lake trek, Great Himalayan National Park trek, Serolsar Lake trek, Manali treks, Barshaini, Jibhi, Kasol, Dharamshala, Mcleodganj, Tirthan Valley, Himachal Pradesh trekking, best treks Himachal, The Trail Maker treks"
 };
 
 
@@ -20,13 +20,14 @@ function page() {
     <main className='min-h-screen'>
 
       <div className='bg-red-500 flex flex-col w-full items-center justify-center text-white pt-12 pb-8'>
-          <h1 className='px-12 text-4xl font-bold uppercase text-center'>Understanding The Layering System</h1>
-          <h2 className='px-12 py-2 text-base font-normal text-center'>How to Dress for Trekking, Mountaineering & Hiking</h2>
+          <h1 className='px-12 text-4xl font-bold uppercase text-center'>10 Best Treks in Himachal Pradesh</h1>
+          <h2 className='px-12 py-2 text-base font-normal text-center'>There are nearly 50 different treks in Himachal Pradesh. Having too many choices is great,
+          but also confusing, isn’t it? We feel you.</h2>
           <div className='flex items-center justify-center text-white text-xs font-light py-6'>       
             <BsFilePersonFill className='inline mr-1 size-4'/>
-            <div className='mr-8'>By Pritam Bera</div>
+            <div className='mr-8'>By Shamik Majumder</div>
             <TbCalendarMonth className='inline mr-1 size-5'/>
-            <div>27th July, 2024</div>
+            <div>1st June, 2025</div>
           </div>
       </div>
       <Image src="https://images.ctfassets.net/r7p9m4b1iqbp/4somOgGKzOpsR0uNNWQT0l/427c742f9337fc30b0e4a9eee6e5e9b0/women-s-hiking-clothes-thumbnail-image.jpg?w=600&q=85&fm=jpg&fl=progressive" 
