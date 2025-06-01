@@ -20,7 +20,7 @@ function page() {
     <main className='min-h-screen'>
 
       <div className='bg-red-500 flex flex-col w-full items-center justify-center text-white pt-12 pb-8'>
-          <h1 className='px-12 text-4xl font-bold uppercase text-center'>10 Best Treks in Himachal Pradesh</h1>
+          <h1 className='px-12 text-4xl font-bold uppercase text-center'>The 10 Best Treks in Himachal Pradesh</h1>
           <h2 className='px-12 py-2 text-base font-normal text-center'>There are nearly 50 different treks in Himachal Pradesh. Having too many choices is great,
           but also confusing, isn’t it? We feel you.</h2>
           <div className='flex items-center justify-center text-white text-xs font-light py-6'>       
@@ -30,8 +30,8 @@ function page() {
             <div>1st June, 2025</div>
           </div>
       </div>
-      <Image src="https://images.ctfassets.net/r7p9m4b1iqbp/4somOgGKzOpsR0uNNWQT0l/427c742f9337fc30b0e4a9eee6e5e9b0/women-s-hiking-clothes-thumbnail-image.jpg?w=600&q=85&fm=jpg&fl=progressive" 
-            alt="Trekkers Trying to find Route in Rain, Bad Weather"
+      <Image src="https://images.unsplash.com/photo-1580389915862-938106f05197?q=80&w=2091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            alt="Camp by a small stream"
             width={400}
             height={300}
             sizes="(max-width: 768px) 400px, 800px" 
@@ -44,14 +44,14 @@ function page() {
  
         <div className='leading-8'>
           <p className='font-medium text-lg leading-6 px-3 pt-4'>
-          <span className='text-8xl font-medium mr-3 float-left'>T</span>wo Layers of thin is 
-          warmer than one layer of thick. The Principle you&apos;ve 
-          learned in the high school with the murky face is still the driving idea 
-          behind the Clothing System in the Trekking, Hiking and Mountaineering World.
+          <span className='text-8xl font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
+been studying for months on end for that research or exam, and your bheja (brain) is fried!
+You want to escape this mundane routine, do something that makes you feel alive again,
+experience something that is at the same time exhilarating and relieving.
           </p><br/>
 
           <p className='italic text-lg px-3'>
-          <strong className='font-normal'>	&quot;There is no bad weather only bad clothing.	&quot;</strong>
+          <strong className='font-normal'>	The correct answer is: &quot;Trekking!&quot;</strong>
           </p><br/>
 
           <p className='px-3'>
