@@ -30,21 +30,24 @@ function page() {
             <div>1st June, 2025</div>
           </div>
       </div>
-      <Image src="https://images.unsplash.com/photo-1580389915862-938106f05197?q=80&w=2091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-            alt="Camp by a small stream"
+
+     
+      <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/v1748872412/_1300603_irbeaq.jpg" 
+            alt="Our founders by the Gephan Lake, sissu, himachal pradesh"
             width={400}
             height={300}
             sizes="(max-width: 768px) 400px, 800px" 
-            className=" lg: px-[calc((100vw-800px)/2)] object-cover w-full py-6 rounded-lg"
+            className=" lg: px-[calc((100vw-800px)/2)] rounded-4xl object-cover w-full py-6"
             priority>
       </Image>
+    
       
 
 
 
       <div className='lg: px-[calc((100vw-800px)/2)]'>
 
-      <section className='leading-4'>
+      <section className='leading-5'>
 
               <p className='font-medium text-lg leading-6 px-3 pt-4'>
               <span className='text-8xl bg-amber-500 text-white font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
@@ -106,7 +109,7 @@ function page() {
 
 
 
-        <section className='leading-4'>
+        <section className='leading-5'>
 
           <h4 className='text-5xl font-medium px-3'>
           <strong className='font-bold'>Best Treks in Himachal Pradesh</strong>
@@ -136,27 +139,26 @@ function page() {
 
 {/* Beas Kund Trek*/}
 
-            <h6 className='italic text-xl font-medium px-3'>
-            <strong className='font-extrabold'>BEAS KUND</strong>
+            <h6 className='text-2xl pt-8 font-medium px-3 text-sky-700 leading-3'>
+            <strong className='font-extrabold'>1. BEAS KUND</strong>
             </h6><br/>
 
-                <Image src="https://images.unsplash.com/photo-1580389915862-938106f05197?q=80&w=2091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Camp by a small stream"
+                <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/IMG_20231022_102433_wggaqi.jpg" 
+                  alt="View of Beas Kund with Hanuman Tibba in the background" 
                   width={400}
                   height={300}
                   sizes="(max-width: 768px) 400px, 800px" 
-                  className=" lg: px-[calc((100vw-800px)/2)] object-cover w-full py-6 rounded-lg"
+                  className="lg:max-h-96 object-cover w-full"
                   priority>
                 </Image>
 
-                <ul className='px-3 grid-cols-2'>
+                <ul className='px-5 py-10 grid grid-cols-2 list-disc gap-x-4 text-xs list-inside font-medium'>
                       <li className='list-disc'>Duration: 4 Days</li>
                       <li className='list-disc'>Difficulty Level: Easy</li>
+                      <li className='list-disc'>Highest Altitude: Approx 12,500 feet (3,800 metres)</li>
                       <li className='list-disc'>Distance: 18 km</li>
                       <li className='list-disc'>Best Time to Visit: May to October</li>
                       <li className='list-disc'>Starting Point: Manali</li>
-                      <li className='list-disc'>Nearest Airport: Kullu-Manali Airport (Bhuntar)</li>
-                      <li className='list-disc'>Nearest Railway Station: Joginder Nagar Railway Station</li>  
                 </ul>
 
                 <p className='px-3'>
@@ -177,42 +179,42 @@ function page() {
 
       {/* Hampta Pass Trek */}
 
-                <h6 className='italic text-xl font-medium px-3'>
-                <strong className='font-extrabold'>BEAS KUND</strong>
-                </h6><br/>
+            <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+            <strong className='font-extrabold'>2. HAMPTA PASS TREK</strong>
+            </h6><br/>
 
-                <Image src="https://images.unsplash.com/photo-1580389915862-938106f05197?q=80&w=2091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  alt="Camp by a small stream"
+                <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
+                  alt="Camp by a small stream" 
                   width={400}
                   height={300}
                   sizes="(max-width: 768px) 400px, 800px" 
-                  className=" lg: px-[calc((100vw-800px)/2)] object-cover w-full py-6 rounded-lg"
+                  className="lg:max-h-96 object-cover w-full"
                   priority>
-            </Image>
+                </Image>
 
-            <ul className='px-3 grid-cols-2'>
-                  <li className='list-disc'>Duration: 4 Days</li>
-                  <li className='list-disc'>Difficulty Level: Easy</li>
-                  <li className='list-disc'>Distance: 18 km</li>
-                  <li className='list-disc'>Best Time to Visit: May to October</li>
-                  <li className='list-disc'>Starting Point: Manali</li>
-                  <li className='list-disc'>Nearest Airport: Kullu-Manali Airport (Bhuntar)</li>
-                  <li className='list-disc'>Nearest Railway Station: Joginder Nagar Railway Station</li>  
-            </ul>
+                <ul className='px-5 py-10 grid grid-cols-2 list-disc gap-x-4 text-xs list-inside font-medium'>
+                      <li className='list-disc'>Duration: 6 Days</li>
+                      <li className='list-disc'>Difficulty Level: Easy-Moderate</li>
+                      <li className='list-disc'>Highest Altitude: Approx 14,100 feet (4,300 metres)</li>
+                      <li className='list-disc'>Distance: 29 km</li>
+                      <li className='list-disc'>Best Time to Visit: June to September</li>
+                      <li className='list-disc'>Starting Point: Manali</li>  
+                </ul>
 
                 <p className='px-3'>
-                One of the best summer treks for beginners near Manali, Beas Kund offers the perfect blend
-      of nature and adventure, with a slight tinge of mythology. Starting in the backyard of our
-      <span className='font-semibold'> “Pahadi Manzil”</span>, you’ll cross numerous glacial streams, 
-      walk under the covers of Pine and
-      Walnut, and camp in mesmerising meadows during this four-day trek. This 18-kilometre trek
-      will take you to Beas Kund, the pristine blue alpine lake, which is the source of the River Beas.
-      As per the legends, the lake is named after Rishi Vyas, who had composed the epic
-      Mahabharata. It is said that the sage meditated and bathed in this very lake in ancient times.
-      That’s not all, though, as the Beas Kund Trek offers the majestic views of snow-covered
-      Himalayan peaks like the Pin Pranjal Range, Dhauladhar Range, Friendship Peak, Deo Tibba,
-      Hanuman Tibba, and Ladakhi Peak, amongst others.
+                If you’re someone who wants to experience the perfect blend of everything that Himachal treks
+                have to offer, the Hampta Pass Trek has to be your go-to choice. This 25-kilometre trek starts
+                from <span className='font-semibold'> “Pahadi Manzil” </span>and ascends to over 14,000 feet in a matter of days. Often considered
+                the best beginner-friendly crossover trek in the Himalayas, Hampta Pass offers a journey
+                through the lush meadows of Kullu Valley and the barren beauty of Lahaul. All-engulfing
+                forests, panoramic views of snow-clad mountains, and rocky trails, this trek offers it all. Then
+                there are the scenic campsites under the star-studded night sky and the thrill of a lifetime as
+                you cross not one but two glacial streams. While the view from the Pass is a memory worth
+                cherishing in itself, the beauty of the crescent-shaped Chandratal Lake cannot be described
+                in words, only experienced by being there. Although physically challenging, believe us when
+                we say, “Every drop of sweat is worth it!”.
                 </p><br/>
+
           </section>
 
         </div>
