@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -11,8 +12,9 @@ function Footer() {
                 sizes="(max-width: 768px) 100px, 100px" 
                 className='w-20 lg:w-40' 
                 priority></Image>
-        <h4 className='uppercase font-bold bg-amber-500 text-xl text-white
-         p-2 px-6 rounded-2xl text-right flex-shrink max-w-40 mr-2 leading-5'>Newly Explored Routes</h4>
+        <Link href="https://wa.me/7980426832" className='uppercase font-bold bg-amber-500 text-xl text-white
+         p-1 px-6 rounded-2xl text-right flex flex-row max-w-72 mr-2 my-auto'><FaWhatsapp className='size-6 m-auto pr-2'/>Whatsapp
+        </Link>
       </div>
 
       {/* <div className='flex flex-wrap justify-between lg:justify-center gap-8 text-sm'> */}

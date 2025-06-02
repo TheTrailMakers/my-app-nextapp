@@ -47,63 +47,63 @@ function page() {
 
       <div className='lg: px-[calc((100vw-800px)/2)]'>
 
-      <section className='leading-5'>
+        <section className='leading-5'>
 
-              <p className='font-medium text-lg leading-6 px-3 pt-4'>
-              <span className='text-8xl bg-amber-500 text-white font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
-              been studying for months on end for that research or exam, and your bheja (brain) is fried!
-              You want to escape this mundane routine, do something that makes you feel alive again,
-              experience something that is at the same time exhilarating and relieving.
-              </p><br/>
-
-          <p className='italic text-lg font-medium px-3'>
-          <strong className='font-semibold'>But What?</strong>
-          </p><br/>
-
-              <p className='italic text-lg px-3'>
-              <strong className='font-normal'>	The correct answer is: &quot;Trekking!&quot;</strong>
-              </p><br/>
-
-          <p className='italic text-lg font-medium px-3'>
-          <strong className='font-semibold'>Why Trekking?</strong>
-          </p><br/>
-
-                <p className='px-3'>
-                Because it disconnects you from the mundaneness of urban life and connects you to the most
-                majestic and magnificent part of nature: <span className='font-semibold'>Mountains!</span> Treks offer you a unique blend of
-                adventure, adrenaline rush, awe-inspiring natural beauty, and peaceful serenity that you can’t
-                get anywhere else. Sweet, isn't it? The cherry on top? You can go on treks alone, with friends,
-                and even with family.
+                <p className='font-medium text-lg leading-6 px-3 pt-4'>
+                <span className='text-8xl bg-amber-500 text-white font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
+                been studying for months on end for that research or exam, and your bheja (brain) is fried!
+                You want to escape this mundane routine, do something that makes you feel alive again,
+                experience something that is at the same time exhilarating and relieving.
                 </p><br/>
 
-          <p className='italic text-lg font-medium px-3'>
-          <strong className='font-semibold'>But Where?</strong>
-          </p><br/>
+            <p className='italic text-lg font-medium px-3'>
+            <strong className='font-semibold'>But What?</strong>
+            </p><br/>
 
-                <p className='px-3'>
-                Where else but the ‘Land of the Snow-Clad Mountains’ or, as we endearingly call it, 
-                <span className='font-semibold'>Himachal Pradesh</span>. Cradled amongst the Western Himalayan range, Himachal has treks in all shapes
-                and sizes that you can choose from. From treks lasting between a day to a week, from easy
-                treks to expert-level ones, snow-capped mountains to lush green grasslands, pine forests to
-                slithering rivers, hostile mountains to friendly villages - you name it, treks in Himachal have it!
+                <p className='italic text-lg px-3'>
+                <strong className='font-normal'>	The correct answer is: &quot;Trekking!&quot;</strong>
                 </p><br/>
 
-          <p className='italic text-lg font-medium px-3'>
-          <strong className='font-semibold'>But how?</strong>
-          </p><br/>
+            <p className='italic text-lg font-medium px-3'>
+            <strong className='font-semibold'>Why Trekking?</strong>
+            </p><br/>
 
-                <p className='px-3'>
-                You’ve decided you want to go on a trek in Himachal. Great! But wait a second. Do you know
-                where to start your trek from? More importantly, do you remember the trail you’d have to follow
-                on the trek by heart because Google Maps isn’t going to be of any help up in the Himalayas?
-                No? Well, you don’t have to worry because <span className='font-semibold'>“The Trail Makers”</span> have you covered. Led by a
-                team of experienced trekkers, ‘The Trail Makers’ know every peak and valley in all Himachal
-                treks, enabling you to experience the trek that suits you best in the best possible way.
-                One last thing. You’d need a place to relax before you depart on that exhilarating trek and also
-                to rejuvenate yourself when you’ve completed it. Basically, you need a ‘Home Away from
-                Home’, or as we call it <span className='font-semibold'>“Pahadi Manzil”</span>. That’s it, you’re all set to depart on your dream
-                Himachal trek
-                </p><br/>
+                  <p className='px-3'>
+                  Because it disconnects you from the mundaneness of urban life and connects you to the most
+                  majestic and magnificent part of nature: <span className='font-semibold'>Mountains!</span> Treks offer you a unique blend of
+                  adventure, adrenaline rush, awe-inspiring natural beauty, and peaceful serenity that you can’t
+                  get anywhere else. Sweet, isn't it? The cherry on top? You can go on treks alone, with friends,
+                  and even with family.
+                  </p><br/>
+
+            <p className='italic text-lg font-medium px-3'>
+            <strong className='font-semibold'>But Where?</strong>
+            </p><br/>
+
+                  <p className='px-3'>
+                  Where else but the ‘Land of the Snow-Clad Mountains’ or, as we endearingly call it, 
+                  <span className='font-semibold'>Himachal Pradesh</span>. Cradled amongst the Western Himalayan range, Himachal has treks in all shapes
+                  and sizes that you can choose from. From treks lasting between a day to a week, from easy
+                  treks to expert-level ones, snow-capped mountains to lush green grasslands, pine forests to
+                  slithering rivers, hostile mountains to friendly villages - you name it, treks in Himachal have it!
+                  </p><br/>
+
+            <p className='italic text-lg font-medium px-3'>
+            <strong className='font-semibold'>But how?</strong>
+            </p><br/>
+
+                  <p className='px-3'>
+                  You’ve decided you want to go on a trek in Himachal. Great! But wait a second. Do you know
+                  where to start your trek from? More importantly, do you remember the trail you’d have to follow
+                  on the trek by heart because Google Maps isn’t going to be of any help up in the Himalayas?
+                  No? Well, you don’t have to worry because <span className='font-semibold'>“The Trail Makers”</span> have you covered. Led by a
+                  team of experienced trekkers, ‘The Trail Makers’ know every peak and valley in all Himachal
+                  treks, enabling you to experience the trek that suits you best in the best possible way.
+                  One last thing. You’d need a place to relax before you depart on that exhilarating trek and also
+                  to rejuvenate yourself when you’ve completed it. Basically, you need a ‘Home Away from
+                  Home’, or as we call it <span className='font-semibold'>“Pahadi Manzil”</span>. That’s it, you’re all set to depart on your dream
+                  Himachal trek
+                  </p><br/>
         </section>
 
 
@@ -138,7 +138,7 @@ function page() {
 
 
 {/* Beas Kund Trek*/}
-
+          <div>
             <h6 className='text-2xl pt-8 font-medium px-3 text-sky-700 leading-3'>
             <strong className='font-extrabold'>1. BEAS KUND</strong>
             </h6><br/>
@@ -174,17 +174,17 @@ function page() {
                 Himalayan peaks like the Pin Pranjal Range, Dhauladhar Range, Friendship Peak, Deo Tibba,
                 Hanuman Tibba, and Ladakhi Peak, amongst others.
                 </p><br/>
+          </div>
 
 
-
-      {/* Hampta Pass Trek */}
-
+{/* Hampta Pass Trek */}
+          <div>
             <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
             <strong className='font-extrabold'>2. HAMPTA PASS TREK</strong>
             </h6><br/>
 
                 <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
-                  alt="Camp by a small stream" 
+                  alt="view of inderkilla from balu ka ghera camsite | The Trail Makers" 
                   width={400}
                   height={300}
                   sizes="(max-width: 768px) 400px, 800px" 
@@ -214,6 +214,127 @@ function page() {
                 in words, only experienced by being there. Although physically challenging, believe us when
                 we say, “Every drop of sweat is worth it!”.
                 </p><br/>
+          </div>
+
+
+{/* Bhrigu Lake Trek */}
+          <div>
+              <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+              <strong className='font-extrabold'>3. BHRIGU LAKE TREK</strong>
+              </h6><br/>
+
+                  <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
+                    alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
+                    width={400}
+                    height={300}
+                    sizes="(max-width: 768px) 400px, 800px" 
+                    className="lg:max-h-96 object-cover w-full"
+                    priority>
+                  </Image>
+
+                  <ul className='px-5 py-10 grid grid-cols-2 list-disc gap-x-4 text-xs list-inside font-medium'>
+                        <li className='list-disc'>Duration: 4 Days</li>
+                        <li className='list-disc'>Difficulty Level: Easy</li>
+                        <li className='list-disc'>Highest Altitude: Approx 14,100 feet (4,300 metres)</li>
+                        <li className='list-disc'>Distance: 20 km</li>
+                        <li className='list-disc'>Best Time to Visit: May to October</li>
+                        <li className='list-disc'>Starting Point: Manali</li>  
+                  </ul>
+
+                  <p className='px-3'>
+                      Another popular choice for many trekkers with limited time on hand and a desire to ascend to
+                  high altitudes of the Himalayas is the Bhrigu Lake trek. Get yourself ready at our beloved home
+                  and starting point,<span className='font-semibold'> “Pahadi Manzil” </span>, before embarking on your quest for the sacred glacial
+                  Bhrigu Lake, which sits in the middle of snow-capped peaks. Legends say that the lake got its
+                  name from one of the Saptarshis, Maharishi Bhrigu, who used to meditate next to it. However,
+                  the trek is not all about the destination but also about the journey. Most of the 20 kilometres
+                  of this trek pass through alpine meadows with the Dhauladhar and Pir Panjal amongst others
+                  in the backdrop. With increasing altitude, the lush greenery transforms into snowy terrain,
+                  allowing you to experience it all. Camping in these meadows and the occasional meeting with
+                  wild horses and sheep are additional bonuses of going on this beautiful trek.
+                  </p><br/>
+          </div>
+
+
+{/* Sar Pass Trek */}
+          <div>
+              <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+              <strong className='font-extrabold'>4. SAR PASS TREK</strong>
+              </h6><br/>
+
+                  <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
+                    alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
+                    width={400}
+                    height={300}
+                    sizes="(max-width: 768px) 400px, 800px" 
+                    className="lg:max-h-96 object-cover w-full"
+                    priority>
+                  </Image>
+
+                  <ul className='px-5 py-10 grid grid-cols-2 list-disc gap-x-4 text-xs list-inside font-medium'>
+                        <li className='list-disc'>Duration: 6 Days</li>
+                        <li className='list-disc'>Difficulty Level: Moderate</li>
+                        <li className='list-disc'>Highest Altitude: Approx 13,800 feet (4,200 metres)</li>
+                        <li className='list-disc'>Distance: 45 km</li>
+                        <li className='list-disc'>Best Time to Visit: April to July</li>
+                        <li className='list-disc'>Starting Point: Kasol</li>  
+                  </ul>
+
+                  <p className='px-3'>
+                      Another popular choice for many trekkers with limited time on hand and a desire to ascend to
+                  high altitudes of the Himalayas is the Bhrigu Lake trek. Get yourself ready at our beloved home
+                  and starting point,<span className='font-semibold'> “Pahadi Manzil” </span>, before embarking on your quest for the sacred glacial
+                  Bhrigu Lake, which sits in the middle of snow-capped peaks. Legends say that the lake got its
+                  name from one of the Saptarshis, Maharishi Bhrigu, who used to meditate next to it. However,
+                  the trek is not all about the destination but also about the journey. Most of the 20 kilometres
+                  of this trek pass through alpine meadows with the Dhauladhar and Pir Panjal amongst others
+                  in the backdrop. With increasing altitude, the lush greenery transforms into snowy terrain,
+                  allowing you to experience it all. Camping in these meadows and the occasional meeting with
+                  wild horses and sheep are additional bonuses of going on this beautiful trek.
+                  </p><br/>
+          </div>
+
+
+{/* Buran Ghanti Trek */}
+          <div>
+              <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+              <strong className='font-extrabold'>5. BURAN GHANTI TREK</strong>
+              </h6><br/>
+
+                  <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
+                    alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
+                    width={400}
+                    height={300}
+                    sizes="(max-width: 768px) 400px, 800px" 
+                    className="lg:max-h-96 object-cover w-full"
+                    priority>
+                  </Image>
+
+                  <ul className='px-5 py-10 grid grid-cols-2 list-disc gap-x-4 text-xs list-inside font-medium'>
+                        <li className='list-disc'>Duration: 8 Days</li>
+                        <li className='list-disc'>Difficulty Level: Moderate</li>
+                        <li className='list-disc'>Highest Altitude: Approx 15,000 feet (4,500 metres)</li>
+                        <li className='list-disc'>Distance: 30km</li>
+                        <li className='list-disc'>Best Time to Visit: May to September</li>
+                        <li className='list-disc'>Starting Point: Shimla</li>  
+                  </ul>
+
+                  <p className='px-3'>
+                    With more than 30 kilometres to trek over 8 days and reaching the altitude of nearly 15,000
+                  feet, the Buran Ghanti trek is definitely the most challenging amongst the Famous Five. But
+                  with great challenges come great rewards, and Buran Ghati rewards you with an adventure
+                  for life. If you want meadows, it will give you Dayara; if you want villages, this trail will give you
+                  Barua and Janglik; if you want mountains, it offers the Dhauladhar Range; if you want lakes,
+                  it will give you the Chandranahan Lake. If you seek forests, the trail will lead you through pine,
+                  oak, maple, and birch. To receive these rewards, though, you have to cross the Buran Ghati
+                  Pass, which will need some skilled manoeuvring and several streams and rivers. Nothing to
+                  be worried about, though, with our experts from “The Trail Makers” guiding you through these
+                  challenging bits. For those seeking an extra thrill, embark on this trek before June to
+                  experience rappelling down an ice wall.
+                  </p><br/>
+          </div>
+
+
 
           </section>
 
