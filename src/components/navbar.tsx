@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import useStore from "@/./store/store";
 import Button from "./button";
+import { FaWhatsapp } from 'react-icons/fa';
 
 const navLinks = [
     {name: "Home", href:"/"},
@@ -65,8 +66,10 @@ export default function Navbar () {
             <Link href='/' className="mr-auto"><Image  className="pl-4 " src="/TTM.png" alt="The Trail Makers Logo" width={80} height={80}/></Link>
             
             
-            <Link href="/contact"><Button text="Sign Up" bgcolor="bg-yellow-400" txtcolor="text-black" ></Button></Link>
-            <Link href="/contact"><Button text="Log In" bgcolor="bg-white" txtcolor="text-black" ></Button></Link>
+            <Link href="https://wa.me/7980426832" className="flex items-center justify-center gap-2">
+            <div className='bg-amber-400 p-2 rounded-xl'><FaWhatsapp className='size-4 mx-auto' /></div>
+            <div className="text-white font-semibold">+91 7980426832</div>
+            </Link>
 
             <nav className={`font-mono uppercase bg-neutral-950 text-white
                             fixed h-full w-80 max-w-[calc(100%-3rem)] top-0 right-0
