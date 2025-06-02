@@ -6,7 +6,11 @@ function Footer() {
   return (
     <footer className='bg-neutral-800 pb-4 pt-2 text-white'>
       <div className='flex justify-between flex-wrap items-center p-4 lg:mx-28'>
-        <Image src="../../public/TTM.png" alt="The Trail Makers Logo" sizes="(max-width: 768px) 100px, 100px" className='w-20 lg:w-40' priority></Image>
+        <Image  src="/TTM.png" alt="The Trail Makers Logo" 
+                width={100} height={100}
+                sizes="(max-width: 768px) 100px, 100px" 
+                className='w-20 lg:w-40' 
+                priority></Image>
         <h4 className='uppercase font-bold bg-amber-500 text-xl text-white
          p-2 px-6 rounded-2xl text-right flex-shrink max-w-40 mr-2 leading-5'>Newly Explored Routes</h4>
       </div>
