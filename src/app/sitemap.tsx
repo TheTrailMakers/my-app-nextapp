@@ -35,6 +35,11 @@ export default async function sitemap() {
       lastModified: new Date()
     },
 
+    {
+      url: 'https://thetrailmakers.in/blog/10-Best-Treks-in-Himachal-Pradesh',
+      lastModified: new Date()
+    },
+
   ]
 }
 
