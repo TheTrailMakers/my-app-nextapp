@@ -39,109 +39,181 @@ function page() {
             priority>
       </Image>
       
+
+
+
       <div className='lg: px-[calc((100vw-800px)/2)]'>
 
-      <section className='leading-8'>
-          <p className='font-medium text-lg leading-6 px-3 pt-4'>
-          <span className='text-8xl font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
-been studying for months on end for that research or exam, and your bheja (brain) is fried!
-You want to escape this mundane routine, do something that makes you feel alive again,
-experience something that is at the same time exhilarating and relieving.
-          </p><br/>
+      <section className='leading-4'>
+
+              <p className='font-medium text-lg leading-6 px-3 pt-4'>
+              <span className='text-8xl bg-amber-500 text-white font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
+              been studying for months on end for that research or exam, and your bheja (brain) is fried!
+              You want to escape this mundane routine, do something that makes you feel alive again,
+              experience something that is at the same time exhilarating and relieving.
+              </p><br/>
 
           <p className='italic text-lg font-medium px-3'>
           <strong className='font-semibold'>But What?</strong>
           </p><br/>
 
-          <p className='italic text-lg px-3'>
-          <strong className='font-normal'>	The correct answer is: &quot;Trekking!&quot;</strong>
-          </p><br/>
+              <p className='italic text-lg px-3'>
+              <strong className='font-normal'>	The correct answer is: &quot;Trekking!&quot;</strong>
+              </p><br/>
 
           <p className='italic text-lg font-medium px-3'>
           <strong className='font-semibold'>Why Trekking?</strong>
           </p><br/>
 
-          <p className='px-3'>
-          Because it disconnects you from the mundaneness of urban life and connects you to the most
-majestic and magnificent part of nature: <span className='font-semibold'>Mountains!</span> Treks offer you a unique blend of
-adventure, adrenaline rush, awe-inspiring natural beauty, and peaceful serenity that you can’t
-get anywhere else. Sweet, isn't it? The cherry on top? You can go on treks alone, with friends,
-and even with family.
-          </p><br/>
+                <p className='px-3'>
+                Because it disconnects you from the mundaneness of urban life and connects you to the most
+                majestic and magnificent part of nature: <span className='font-semibold'>Mountains!</span> Treks offer you a unique blend of
+                adventure, adrenaline rush, awe-inspiring natural beauty, and peaceful serenity that you can’t
+                get anywhere else. Sweet, isn't it? The cherry on top? You can go on treks alone, with friends,
+                and even with family.
+                </p><br/>
 
           <p className='italic text-lg font-medium px-3'>
           <strong className='font-semibold'>But Where?</strong>
           </p><br/>
 
-          <p className='px-3'>
-          Where else but the ‘Land of the Snow-Clad Mountains’ or, as we endearingly call it, 
-          <span className='font-semibold'>Himachal Pradesh</span>. Cradled amongst the Western Himalayan range, Himachal has treks in all shapes
-and sizes that you can choose from. From treks lasting between a day to a week, from easy
-treks to expert-level ones, snow-capped mountains to lush green grasslands, pine forests to
-slithering rivers, hostile mountains to friendly villages - you name it, treks in Himachal have it!
-          </p><br/>
+                <p className='px-3'>
+                Where else but the ‘Land of the Snow-Clad Mountains’ or, as we endearingly call it, 
+                <span className='font-semibold'>Himachal Pradesh</span>. Cradled amongst the Western Himalayan range, Himachal has treks in all shapes
+                and sizes that you can choose from. From treks lasting between a day to a week, from easy
+                treks to expert-level ones, snow-capped mountains to lush green grasslands, pine forests to
+                slithering rivers, hostile mountains to friendly villages - you name it, treks in Himachal have it!
+                </p><br/>
 
           <p className='italic text-lg font-medium px-3'>
           <strong className='font-semibold'>But how?</strong>
           </p><br/>
 
-          <p className='px-3'>
-          You’ve decided you want to go on a trek in Himachal. Great! But wait a second. Do you know
-where to start your trek from? More importantly, do you remember the trail you’d have to follow
-on the trek by heart because Google Maps isn’t going to be of any help up in the Himalayas?
-No? Well, you don’t have to worry because <span className='font-semibold'>“The Trail Makers”</span> have you covered. Led by a
-team of experienced trekkers, ‘The Trail Makers’ know every peak and valley in all Himachal
-treks, enabling you to experience the trek that suits you best in the best possible way.
-One last thing. You’d need a place to relax before you depart on that exhilarating trek and also
-to rejuvenate yourself when you’ve completed it. Basically, you need a ‘Home Away from
-Home’, or as we call it <span className='font-semibold'>“Pahadi Manzil”</span>. That’s it, you’re all set to depart on your dream
-Himachal trek
-          </p><br/>
-          </section>
+                <p className='px-3'>
+                You’ve decided you want to go on a trek in Himachal. Great! But wait a second. Do you know
+                where to start your trek from? More importantly, do you remember the trail you’d have to follow
+                on the trek by heart because Google Maps isn’t going to be of any help up in the Himalayas?
+                No? Well, you don’t have to worry because <span className='font-semibold'>“The Trail Makers”</span> have you covered. Led by a
+                team of experienced trekkers, ‘The Trail Makers’ know every peak and valley in all Himachal
+                treks, enabling you to experience the trek that suits you best in the best possible way.
+                One last thing. You’d need a place to relax before you depart on that exhilarating trek and also
+                to rejuvenate yourself when you’ve completed it. Basically, you need a ‘Home Away from
+                Home’, or as we call it <span className='font-semibold'>“Pahadi Manzil”</span>. That’s it, you’re all set to depart on your dream
+                Himachal trek
+                </p><br/>
+        </section>
 
-        <section>
-          <p className='text-5xl font-medium px-3'>
+
+
+
+        <section className='leading-4'>
+
+          <h4 className='text-5xl font-medium px-3'>
           <strong className='font-bold'>Best Treks in Himachal Pradesh</strong>
-          </p><br/>
+          </h4><br/>
 
-          <p className='px-3'>
-          There are nearly 50 different treks in Himachal Pradesh. Having too many choices is great,
-but also confusing, isn’t it? We feel you. As we said, Himachal has treks for everyone. But do
-you know which trek is the best for you? ‘The Trail Makers’ can help you with it. To make
-things easier, we’ve compiled a list of the 10 Best Treks in Himachal Pradesh (with a few
-honorary mentions). See whether you can find the one that matches your requirements and
-catches your heart here.
-          </p><br/>
+                <p className='px-3'>
+                There are nearly 50 different treks in Himachal Pradesh. Having too many choices is great,
+                but also confusing, isn’t it? We feel you. As we said, Himachal has treks for everyone. But do
+                you know which trek is the best for you? ‘The Trail Makers’ can help you with it. To make
+                things easier, we’ve compiled a list of the 10 Best Treks in Himachal Pradesh (with a few
+                honorary mentions). See whether you can find the one that matches your requirements and
+                catches your heart here.
+                </p><br/>
 
           <h5 className='italic text-2xl font-medium px-3'>
           <strong className='font-bold italic'>The Famous Five: Most Popular Treks</strong>
           </h5><br/>
 
-          <p className='px-3'>
-          If your urge for trekking started after watching a viral trekking reel on Instagram, and you want
-to walk down one of those “Himachal treks that you can’t miss”, these five are for you. The
-Famous Five are the most popular treks in the Himachal region and attract the most footfall.
-If you love socialising or have a chronic case of FOMO, these are the ones to go for.
-          </p><br/>
+                <p className='px-3'>
+                  If your urge for trekking started after watching a viral trekking reel on Instagram, and you want
+                  to walk down one of those “Himachal treks that you can’t miss”, these five are for you. The
+                  Famous Five are the most popular treks in the Himachal region and attract the most footfall.
+                  If you love socialising or have a chronic case of FOMO, these are the ones to go for.
+                </p><br/>
 
-          <h6 className='italic text-lg font-medium px-3'>
-          <strong className='font-bold italic'>BEAS KUND</strong>
-          </h6><br/>
 
-          <p className='px-3'>
-          One of the best summer treks for beginners near Manali, Beas Kund offers the perfect blend
-of nature and adventure, with a slight tinge of mythology. Starting in the backyard of our 
-<span className='font-semibold'>“Pahadi Manzil”</span>, you’ll cross numerous glacial streams, 
-walk under the covers of Pine and
-Walnut, and camp in mesmerising meadows during this four-day trek. This 18-kilometre trek
-will take you to Beas Kund, the pristine blue alpine lake, which is the source of the River Beas.
-As per the legends, the lake is named after Rishi Vyas, who had composed the epic
-Mahabharata. It is said that the sage meditated and bathed in this very lake in ancient times.
-That’s not all, though, as the Beas Kund Trek offers the majestic views of snow-covered
-Himalayan peaks like the Pin Pranjal Range, Dhauladhar Range, Friendship Peak, Deo Tibba,
-Hanuman Tibba, and Ladakhi Peak, amongst others
-          </p><br/>
-        </section>
+
+{/* Beas Kund Trek*/}
+
+            <h6 className='italic text-xl font-medium px-3'>
+            <strong className='font-extrabold'>BEAS KUND</strong>
+            </h6><br/>
+
+                <Image src="https://images.unsplash.com/photo-1580389915862-938106f05197?q=80&w=2091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                  alt="Camp by a small stream"
+                  width={400}
+                  height={300}
+                  sizes="(max-width: 768px) 400px, 800px" 
+                  className=" lg: px-[calc((100vw-800px)/2)] object-cover w-full py-6 rounded-lg"
+                  priority>
+                </Image>
+
+                <ul className='px-3 grid-cols-2'>
+                      <li className='list-disc'>Duration: 4 Days</li>
+                      <li className='list-disc'>Difficulty Level: Easy</li>
+                      <li className='list-disc'>Distance: 18 km</li>
+                      <li className='list-disc'>Best Time to Visit: May to October</li>
+                      <li className='list-disc'>Starting Point: Manali</li>
+                      <li className='list-disc'>Nearest Airport: Kullu-Manali Airport (Bhuntar)</li>
+                      <li className='list-disc'>Nearest Railway Station: Joginder Nagar Railway Station</li>  
+                </ul>
+
+                <p className='px-3'>
+                One of the best summer treks for beginners near Manali, Beas Kund offers the perfect blend
+                of nature and adventure, with a slight tinge of mythology. Starting in the backyard of our
+                <span className='font-semibold'> “Pahadi Manzil”</span>, you’ll cross numerous glacial streams, 
+                walk under the covers of Pine and
+                Walnut, and camp in mesmerising meadows during this four-day trek. This 18-kilometre trek
+                will take you to Beas Kund, the pristine blue alpine lake, which is the source of the River Beas.
+                As per the legends, the lake is named after Rishi Vyas, who had composed the epic
+                Mahabharata. It is said that the sage meditated and bathed in this very lake in ancient times.
+                That’s not all, though, as the Beas Kund Trek offers the majestic views of snow-covered
+                Himalayan peaks like the Pin Pranjal Range, Dhauladhar Range, Friendship Peak, Deo Tibba,
+                Hanuman Tibba, and Ladakhi Peak, amongst others.
+                </p><br/>
+
+
+
+      {/* Hampta Pass Trek */}
+
+                <h6 className='italic text-xl font-medium px-3'>
+                <strong className='font-extrabold'>BEAS KUND</strong>
+                </h6><br/>
+
+                <Image src="https://images.unsplash.com/photo-1580389915862-938106f05197?q=80&w=2091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                  alt="Camp by a small stream"
+                  width={400}
+                  height={300}
+                  sizes="(max-width: 768px) 400px, 800px" 
+                  className=" lg: px-[calc((100vw-800px)/2)] object-cover w-full py-6 rounded-lg"
+                  priority>
+            </Image>
+
+            <ul className='px-3 grid-cols-2'>
+                  <li className='list-disc'>Duration: 4 Days</li>
+                  <li className='list-disc'>Difficulty Level: Easy</li>
+                  <li className='list-disc'>Distance: 18 km</li>
+                  <li className='list-disc'>Best Time to Visit: May to October</li>
+                  <li className='list-disc'>Starting Point: Manali</li>
+                  <li className='list-disc'>Nearest Airport: Kullu-Manali Airport (Bhuntar)</li>
+                  <li className='list-disc'>Nearest Railway Station: Joginder Nagar Railway Station</li>  
+            </ul>
+
+                <p className='px-3'>
+                One of the best summer treks for beginners near Manali, Beas Kund offers the perfect blend
+      of nature and adventure, with a slight tinge of mythology. Starting in the backyard of our
+      <span className='font-semibold'> “Pahadi Manzil”</span>, you’ll cross numerous glacial streams, 
+      walk under the covers of Pine and
+      Walnut, and camp in mesmerising meadows during this four-day trek. This 18-kilometre trek
+      will take you to Beas Kund, the pristine blue alpine lake, which is the source of the River Beas.
+      As per the legends, the lake is named after Rishi Vyas, who had composed the epic
+      Mahabharata. It is said that the sage meditated and bathed in this very lake in ancient times.
+      That’s not all, though, as the Beas Kund Trek offers the majestic views of snow-covered
+      Himalayan peaks like the Pin Pranjal Range, Dhauladhar Range, Friendship Peak, Deo Tibba,
+      Hanuman Tibba, and Ladakhi Peak, amongst others.
+                </p><br/>
+          </section>
 
         </div>
     </main>
