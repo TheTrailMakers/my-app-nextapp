@@ -1,5 +1,4 @@
 import React from 'react'
-import TTMLogo from "../../public/TTM.png"
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -7,7 +6,7 @@ function Footer() {
   return (
     <footer className='bg-neutral-800 pb-4 pt-2 text-white'>
       <div className='flex justify-between flex-wrap items-center p-4 lg:mx-28'>
-        <Image src={TTMLogo} alt="The Trail Makers Logo" sizes="(max-width: 768px) 100px, 100px" className='w-20 lg:w-40' priority></Image>
+        <Image src="../../public/TTM.png" alt="The Trail Makers Logo" sizes="(max-width: 768px) 100px, 100px" className='w-20 lg:w-40' priority></Image>
         <h4 className='uppercase font-bold bg-amber-500 text-xl text-white
          p-2 px-6 rounded-2xl text-right flex-shrink max-w-40 mr-2 leading-5'>Newly Explored Routes</h4>
       </div>
@@ -98,6 +97,7 @@ function Footer() {
             <div className='font-extralight'>
               <Link href={"/blog/The-Only-Difference-Between-Trekking-And-Hiking"} className='text-sky-300'><div className='pt-1'>The-Only-Difference-Between-Trekking-And-Hiking</div></Link>
               <Link href={"/blog/Understanding-The-Layering-System"} className='text-sky-300'><div className='pt-1'>Understanding-The-Layering-System</div></Link>
+              <Link href={"/blog/10-Best-Treks-in-Himachal-Pradesh"} className='text-sky-300'><div className='pt-1'>10-Best-Treks-in-Himachal-Pradesh</div></Link>
             </div>
           </div>
 
