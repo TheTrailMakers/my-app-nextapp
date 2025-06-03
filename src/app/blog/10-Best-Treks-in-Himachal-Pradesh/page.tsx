@@ -38,7 +38,7 @@ function page() {
             width={400}
             height={300}
             sizes="(max-width: 768px) 400px, 800px" 
-            className=" lg: px-[calc((100vw-800px)/2)] rounded-4xl object-cover w-full py-6"
+            className=" lg: px-[calc((100vw-800px)/2)] rounded-4xl object-cover w-full "
             priority>
       </Image>
     
@@ -50,24 +50,24 @@ function page() {
 
         <section className='leading-5'>
 
-                <p className='font-medium text-lg leading-6 px-3 pt-4'>
+                <p className='text-base tracking-wide font-bold leading-6 px-3 pt-4'>
                 <span className='text-8xl bg-amber-500 text-white font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
                 been studying for months on end for that research or exam, and your bheja (brain) is fried!
                 You want to escape this mundane routine, do something that makes you feel alive again,
                 experience something that is at the same time exhilarating and relieving.
                 </p><br/>
 
-            <p className='italic text-lg font-medium px-3'>
-            <strong className='font-semibold'>But What?</strong>
-            </p><br/>
+            <h5 className='italic text-lg font-medium mx-3 mb-2'>
+            <strong className='font-semibold bg-sky-700 text-white rounded-full px-3'>But What?</strong>
+            </h5>
 
-                <p className='italic text-lg px-3'>
-                <strong className='font-normal'>	The correct answer is: &quot;Trekking!&quot;</strong>
+                <p className='px-3'>
+                <strong className='font-normal'>	The correct answer is: <span className='font-semibold'>&quot;Trekking!&quot;</span></strong>
                 </p><br/>
 
-            <p className='italic text-lg font-medium px-3'>
-            <strong className='font-semibold'>Why Trekking?</strong>
-            </p><br/>
+            <h5 className='italic text-lg font-medium px-3 mb-2'>
+            <strong className='font-semibold bg-sky-700 text-white rounded-full px-3'>Why Trekking?</strong>
+            </h5>
 
                   <p className='px-3'>
                   Because it disconnects you from the mundaneness of urban life and connects you to the most
@@ -77,9 +77,9 @@ function page() {
                   and even with family.
                   </p><br/>
 
-            <p className='italic text-lg font-medium px-3'>
-            <strong className='font-semibold'>But Where?</strong>
-            </p><br/>
+            <h5 className='italic text-lg font-medium px-3 mb-2'>
+            <strong className='font-semibold bg-sky-700 text-white rounded-full px-3'>But Where?</strong>
+            </h5>
 
                   <p className='px-3'>
                   Where else but the ‘Land of the Snow-Clad Mountains’ or, as we endearingly call it, 
@@ -89,22 +89,32 @@ function page() {
                   slithering rivers, hostile mountains to friendly villages - you name it, treks in Himachal have it!
                   </p><br/>
 
-            <p className='italic text-lg font-medium px-3'>
-            <strong className='font-semibold'>But how?</strong>
-            </p><br/>
+            <h5 className='italic text-lg font-medium px-3 mb-2'>
+            <strong className='font-semibold bg-sky-700 text-white rounded-full px-3'>But how?</strong>
+            </h5>
 
-                  <p className='px-3'>
+                  <div  className='px-3'>
+                  <p>
                   You’ve decided you want to go on a trek in Himachal. Great! But wait a second. Do you know
                   where to start your trek from? More importantly, do you remember the trail you’d have to follow
                   on the trek by heart because Google Maps isn’t going to be of any help up in the Himalayas?
-                  No? Well, you don’t have to worry because <span className='font-semibold'>“The Trail Makers”</span> have you covered. Led by a
-                  team of experienced trekkers, ‘The Trail Makers’ know every peak and valley in all Himachal
+                  </p><br/>
+
+                  <p>No? Well, you don’t have to worry because <span className='font-semibold'>“The Trail Makers”</span> have you covered.
+                   Led by a team of experienced Mountaineers, ‘The Trail Makers’ know every peak and valley in all Himachal
                   treks, enabling you to experience the trek that suits you best in the best possible way.
+                  </p><br/>
+
+                  <p>
                   One last thing. You’d need a place to relax before you depart on that exhilarating trek and also
                   to rejuvenate yourself when you’ve completed it. Basically, you need a ‘Home Away from
-                  Home’, or as we call it <span className='font-semibold'>“Pahadi Manzil”</span>. That’s it, you’re all set to depart on your dream
-                  Himachal trek
+                  Home’, or as we call it <span className='font-semibold'>“Pahadi Manzil”</span>. 
                   </p><br/>
+
+                  <p>
+                  That’s it, you’re all set to depart on your dreamHimachal trek.
+                  </p>
+                  </div><br/>
         </section>
 
 
@@ -112,9 +122,9 @@ function page() {
 
         <section className='leading-5'>
 
-          <h4 className='text-5xl font-medium px-3'>
+          <h3 className='text-5xl font-medium px-3'>
           <strong className='font-bold'>Best Treks in Himachal Pradesh</strong>
-          </h4><br/>
+          </h3><br/>
 
                 <p className='px-3'>
                 There are nearly 50 different treks in Himachal Pradesh. Having too many choices is great,
@@ -125,9 +135,9 @@ function page() {
                 catches your heart here.
                 </p><br/>
 
-          <h5 className='italic text-2xl font-medium px-3'>
+          <h4 className='italic text-2xl font-medium px-3'>
           <strong className='font-bold italic'>The Famous Five: Most Popular Treks</strong>
-          </h5><br/>
+          </h4><br/>
 
                 <p className='px-3'>
                   If your urge for trekking started after watching a viral trekking reel on Instagram, and you want
@@ -140,9 +150,9 @@ function page() {
 
                 {/* Beas Kund Trek*/}
                 <div>
-                  <h6 className='text-2xl pt-8 font-medium px-3 text-sky-700 leading-3'>
+                  <h5 className='text-2xl pt-8 font-medium px-3 text-sky-700 leading-3'>
                   <strong className='font-extrabold'>1. BEAS KUND</strong>
-                  </h6><br/>
+                  </h5><br/>
 
                       <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/IMG_20231022_102433_wggaqi.jpg" 
                         alt="View of Beas Kund with Hanuman Tibba in the background" 
@@ -180,9 +190,9 @@ function page() {
 
                 {/* Hampta Pass Trek */}
                 <div>
-                  <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                  <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                   <strong className='font-extrabold'>2. HAMPTA PASS TREK</strong>
-                  </h6><br/>
+                  </h5><br/>
 
                       <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                         alt="view of inderkilla from balu ka ghera camsite | The Trail Makers" 
@@ -220,9 +230,9 @@ function page() {
 
                 {/* Bhrigu Lake Trek */}
                 <div>
-                    <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                    <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                     <strong className='font-extrabold'>3. BHRIGU LAKE TREK</strong>
-                    </h6><br/>
+                    </h5><br/>
 
                         <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                           alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -259,9 +269,9 @@ function page() {
 
                 {/* Sar Pass Trek */}
                 <div>
-                    <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                    <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                     <strong className='font-extrabold'>4. SAR PASS TREK</strong>
-                    </h6><br/>
+                    </h5><br/>
 
                         <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                           alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -298,9 +308,9 @@ function page() {
 
                 {/* Buran Ghanti Trek */}
                 <div>
-                    <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                    <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                     <strong className='font-extrabold'>5. BURAN GHANTI TREK</strong>
-                    </h6><br/>
+                    </h5><br/>
 
                         <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                           alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -336,9 +346,9 @@ function page() {
                 </div>
 
 
-          <h5 className='italic text-2xl font-medium px-3'>
+          <h4 className='italic text-2xl font-medium px-3 mt-8'>
           <strong className='font-bold italic'>The One Day Wonder: Day Trek</strong>
-          </h5><br/>
+          </h4><br/>
 
                 <p className='px-3'>
                   You may have made up your mind about going on your first trek, but the moment you see their
@@ -351,9 +361,9 @@ function page() {
 
                         {/* Kheerganga Trek */}
                         <div>
-                            <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                            <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                             <strong className='font-extrabold'>6. KHEERGANGA TREK</strong>
-                            </h6><br/>
+                            </h5><br/>
 
                                 <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                                   alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -387,9 +397,9 @@ function page() {
                         </div>
 
 
-          <h5 className='italic text-2xl font-medium px-3'>
+          <h4 className='italic text-2xl font-medium px-3'>
           <strong className='font-bold italic'>The Quiet Quartet: Underrated Offbeat Treks</strong>
-          </h5><br/>
+          </h4><br/>
 
                 <p className='px-3'>
                 Not everyone likes the popular places, especially because of the crowd. Some (including us)
@@ -403,9 +413,9 @@ function page() {
 
                     {/* Miyar Valley Trek */}
                           <div>
-                                  <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                                  <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                                   <strong className='font-extrabold'>7. MIYAR VALLEY TREK</strong>
-                                  </h6><br/>
+                                  </h5><br/>
 
                                       <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                                         alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -443,9 +453,9 @@ function page() {
 
                     {/* Kalihani Pass Trek */}
                           <div>
-                                  <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                                  <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                                   <strong className='font-extrabold'>8. KALIHANI PASS TREK</strong>
-                                  </h6><br/>
+                                  </h5><br/>
 
                                       <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                                         alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -483,9 +493,9 @@ function page() {
 
                     {/* Ghepan Lake Trek */}
                           <div>
-                                  <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                                  <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                                   <strong className='font-extrabold'>9. GHEPAN LAKE TREK</strong>
-                                  </h6><br/>
+                                  </h5><br/>
 
                                       <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                                         alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -521,9 +531,9 @@ function page() {
 
                     {/* Deo Tibba Basecamp Trek */}
                           <div>
-                                  <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                                  <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                                   <strong className='font-extrabold'>10. DEO TIBBA BASECAMP TREK</strong>
-                                  </h6><br/>
+                                  </h5><br/>
 
                                       <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                                         alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -560,9 +570,9 @@ function page() {
 
 
 
-          <h5 className='italic text-2xl font-medium px-3'>
+          <h4 className='italic text-2xl font-medium px-3'>
           <strong className='font-bold italic'>The Daunting : Most Challenging Treks</strong>
-          </h5><br/>
+          </h4><br/>
 
                 <p className='px-3'>
                 It was a daunting task to choose the top ten treks in Himachal, and it involved several tough
@@ -574,9 +584,9 @@ function page() {
                 
                       {/* Pin Parvati Trek */}
                       <div>
-                          <h6 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
+                          <h5 className='text-2xl pt-8 px-3 font-medium text-sky-700 leading-3'>
                           <strong className='font-extrabold'>11. PIN PARVATI TREK</strong>
-                          </h6><br/>
+                          </h5><br/>
 
                               <Image src="https://res.cloudinary.com/dyz0zzyv8/image/upload/w_800,h_600,c_fill,f_auto,g_south/v1748871389/IMG_20240919_174959_yylylx.jpg" 
                                 alt="view of bhrigu lake with snow capped mountains in the background | The Trail Makers" 
@@ -615,16 +625,16 @@ function page() {
           </section>
 
           <section className='bg-amber-400 py-6 mt-4 rounded-2xl px-2 mx-2'>
-            <p className='text-4xl uppercase font-medium px-3'>
+            <h4 className='text-4xl uppercase font-medium px-3'>
             <strong className='font-semibold'>The Treks we have missed mentioning</strong>
-            </p><br/>
+            </h4><br/>
 
                 <p className='text-lg px-3'>
                 While we have tried to cover the best of the best treks in Himachal Pradesh, there are still
                 several other treks that are equally beautiful and adventurous. 
                 Treks like <span className='italic font-medium'>Kinnaur Kailash,
-                Rupin Pass, Pin Bhaba, Kinnaur Kailash, Yulla Kanda, Churdhar, Patalsu, Chanderkhani Pass, Thamsar Pass, 
-                Bara Bangal, Sara Umga La, Animal Pass, and many more</span>.
+                Rupin Pass, Pin Bhaba, Yulla Kanda, Churdhar, Patalsu, Chanderkhani Pass, Thamsar Pass, 
+                Bara Bangal, Sara Umga La, Animal Pass, Parang La and many more</span>.
                 </p><br/>
 
                 <p className='text-lg px-3'>For the full list visit our 
@@ -633,9 +643,9 @@ function page() {
           </section>
           
           <section>
-            <p className='italic text-lg font-medium px-3 mt-8'>
+            <h4 className='italic text-lg font-medium px-3 mt-8'>
             <strong className='font-semibold'>In Conclusion…</strong>
-            </p><br/>
+            </h4><br/>
 
                 <p className='italic text-base px-3'>
                 No matter your age or your experience, if you have the desire to trek, Himachal Pradesh is
