@@ -614,7 +614,7 @@ function page() {
 
           </section>
 
-          <section className='bg-amber-400 py-6 mt-4 rounded-2xl px-2'>
+          <section className='bg-amber-400 py-6 mt-4 rounded-2xl px-2 mx-2'>
             <p className='text-4xl uppercase font-medium px-3'>
             <strong className='font-semibold'>The Treks we have missed mentioning</strong>
             </p><br/>
