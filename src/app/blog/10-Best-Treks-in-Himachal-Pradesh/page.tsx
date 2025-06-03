@@ -26,7 +26,7 @@ function page() {
           but also confusing, isn’t it? We feel you.</h2>
           <div className='flex items-center justify-center text-white text-xs font-light py-6'>       
             <BsFilePersonFill className='inline mr-1 size-4'/>
-            <div className='mr-8'>By Shamik Majumder</div>
+            <div className='mr-8'>By Shamik Mazumder</div>
             <TbCalendarMonth className='inline mr-1 size-5'/>
             <div>1st June, 2025</div>
           </div>
