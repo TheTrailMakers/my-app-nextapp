@@ -166,7 +166,7 @@ function page() {
 
             <div className='flex justify-normal items-center gap-2'>
               <FaRupeeSign className='inline size-12 text-white  '/>
-              <div className='text-5xl font-bold max-w-60 text-white'>7,500/-</div>
+              <div className='text-5xl font-bold max-w-60 text-white'>8,500/-</div>
             </div>
 
             <div className='flex justify-normal items-center gap-2'>
@@ -182,7 +182,7 @@ function page() {
           </div>
         </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 justify-items-center m-8 mx-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 justify-items-center m-8 mx-8 ">
         {mockdata.map((trek) => 
           trek.Name.includes('Beas Kund Trek') ? (
             trek.Date.map((monthData, index) => (
