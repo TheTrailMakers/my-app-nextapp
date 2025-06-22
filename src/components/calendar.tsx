@@ -13,7 +13,7 @@ function Calendar({ month, batches }: { month: string; batches: Batch[] }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="my-2 min-w-[30px] flex-col w-full bg-amber-500 rounded-lg">
+    <div className="my-2 flex-col w-full bg-amber-500 rounded-lg">
       <button onClick={() => setOpen(!open)} className="flex justify-between items-center w-full px-2 py-1 font-semibold">
         <span className="text-stone-900 text-left">{month}</span>
         <span className="text-2xl leading-4">{open ? '-' : '+'}</span>
