@@ -18,7 +18,7 @@ export const metadata = {
 
 function page() {
   return (
-    <main className='min-h-screen'>
+    <main className='min-h-screen leading-relaxed text-stone-800 bg-lime-50'>
 
       <div className='bg-red-500 flex flex-col w-full items-center justify-center text-white pt-12 pb-8'>
           <h1 className='px-12 text-4xl font-bold uppercase text-center'>The 10 Best Treks in Himachal Pradesh</h1>
@@ -50,7 +50,7 @@ function page() {
 
         <section className='leading-5'>
 
-                <p className='text-base tracking-wide font-bold leading-6 px-3 pt-4'>
+                <p className='text-base tracking-wide font-medium leading-6 px-3 pt-4'>
                 <span className='text-8xl bg-amber-500 text-white font-medium mr-3 float-left'>S</span>o, you’ve been working inside your cubicle in some glass and concrete skyscraper, or you’ve
                 been studying for months on end for that research or exam, and your bheja (brain) is fried!
                 You want to escape this mundane routine, do something that makes you feel alive again,

@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Accordion from '@/components/accordion'
+import Calendar from '@/components/calendar'
 import Article from '@/components/article'
 import articleData from '@/data/articles.json'
 import mockdata from '@/data/homepage_cards.json'
@@ -55,6 +56,9 @@ export const metadata = {
 };
 
 function page() {
+
+  const trek = mockdata.find(trek => trek.Name === "Beas Kund Trek");
+
 
   return (
     <main className="min-h-screen bg-neutral-900 pattern-topography-amber-700/50 text-white no-scrollbar relative">
@@ -157,33 +161,44 @@ function page() {
         <h3 className='text-5xl uppercase font-bold m-8'>Join The Team</h3>
         <div className='m-8 my-12'>
           <div className='text-3xl max-w-[80%] font-light'>Trek Cost with The Trail Makers</div>
-          <div className='flex flex-col bg-gradient-to-r from-red-500 from-10% via-black via-60% to-white to-100%
+          <div className='flex flex-col bg-slate-500
                           rounded-2xl p-2 py-6 my-12 gap-4'>
 
             <div className='flex justify-normal items-center gap-2'>
-              <FaRupeeSign className='inline size-12 text-yellow-500'/>
-              <div className='text-5xl font-bold max-w-60 text-yellow-500'>7,500/-</div>
+              <FaRupeeSign className='inline size-12 text-white  '/>
+              <div className='text-5xl font-bold max-w-60 text-white'>7,500/-</div>
             </div>
 
             <div className='flex justify-normal items-center gap-2'>
               <MdAddHomeWork className='inline size-12 text-sky-400'/>
-              <div className='text-xl max-w-60 text-sky-500 font-light'> Stay & Fooding at Manali Included</div>
+              <div className='text-xl max-w-60 text-white font-light'> Stay & Fooding at Manali Included</div>
             </div>
 
             <div className='flex justify-normal items-center gap-2'>
-              <FaCarOn className='inline size-12 text-white'/>
-              <div className='text-xl max-w-60 text-sky-500 font-light'> Manali to Manali Transport Included</div>
+              <FaCarOn className='inline size-12 text-sky-500'/>
+              <div className='text-xl max-w-60 text-white font-light'> Manali to Manali Transport Included</div>
             </div>
             
           </div>
         </div>
-        <div className='flex pl-6 items-center overflow-x-auto
-          snap-x snap-mandatory no-scrollbar'>
-          {mockdata.map((treks) => 
-            treks.Name.includes('Beas Kund Trek')?
-              (treks.Date.map((dates) => 
-                <JoinDate date={dates} key={dates}/>)) : null)}
-        </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-2 justify-items-center m-8 mx-auto">
+        {mockdata.map((trek) => 
+          trek.Name.includes('Beas Kund Trek') ? (
+            trek.Date.map((monthData, index) => (
+              typeof monthData === 'object' && monthData !== null && 'month' in monthData && 'batches' in monthData ? (
+                <Calendar 
+                  month={monthData.month} 
+                  batches={monthData.batches} 
+                  key={`${trek.Index}-${index}`}
+                />
+              ) : null
+            ))
+    ) : null
+  )}
+</div>
+
+        
         <div className='m-8 text-sm'>
         <span className='font-bold'>To Create Your Own Group.</span>
         <span className='text-yellow-500 font-bold'> Click Here.</span>

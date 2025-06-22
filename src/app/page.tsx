@@ -60,7 +60,7 @@ const {hamburgerOpen} = useStore((state:any) => {
         <br/><br/>
         So today we have bunch of young people, who by mind and body are depresssed, frustrated, living inside a cubicle.
         <br/><br/>
-        The Trail Makers works as a gateway to see the world as it is, inspire and encourage people to solve the knots of society in their own way.
+        Our Mission is to make the extreme outdoor accessible. The Trail Makers works as a gateway to see the world as it is, inspire and encourage people to solve the knots of society in their own way.
       </div>
 
            
