@@ -151,27 +151,27 @@
                       },
                       {
                         "day": "Aug 29, Friday",
-                        "batchSize": 30,
-                        "available": 0
+                        "batchSize": 15,
+                        "available": 10
                       }
                     ]
-                  },
-                  
-            {
-              "month": "February 2025",
-              "batches": [
-                {
-                  "day": "Monday, Feb 3",
-                  "batchSize": 28,
-                  "available": 5
-                },
-                {
-                  "day": "Thursday, Feb 6",
-                  "batchSize": 32,
-                  "available": 12
-                }
+                  }, 
+                  {
+                    "month": "September 2025",
+                    "batches": [
+                      {
+                        "day": "Sep 5, Friday",
+                        "batchSize": 15,
+                        "available": 10
+                      },
+                      {
+                        "day": "Sep 19, Friday",
+                        "batchSize": 15,
+                        "available": 12
+                      }
                     ]
-            }
+                  }
+
         ],
         "ImageLinks": ["https://res.cloudinary.com/thetrail/image/upload/c_scale,w_500/f_auto/v1719835688/Beas-Kund-Trek/beas_kund_banner.jpg", 
         "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_800/f_auto/v1720148261/Beas-Kund-Trek/Bakkar_thach_Beas_kund_trek.jpg", 
