@@ -12,7 +12,8 @@
         "Cost": "9,500",
         "Info": "stay included",
         "PageLink": "/ranisui-lake-trek",
-        "Date": ["29th May, 2024", "8th July, 2024"]
+        "Date": ["28th May, 2024", "25th June, 2024", "16th July, 2024"]
+
       },
 
       {
@@ -140,7 +141,38 @@
         "Cost": "8,500",
         "Info": "stay included",
         "PageLink": "/beas-kund-trek",
-        "Date": ["24th June, 2024", "24th June, 2024", "24th June, 2024"],
+        "Date": [{
+                    "month": "August 2025",
+                    "batches": [
+                      {
+                        "day": "Aug 8, Friday",
+                        "batchSize": 15,
+                        "available": 6
+                      },
+                      {
+                        "day": "Aug 29, Friday",
+                        "batchSize": 30,
+                        "available": 0
+                      }
+                    ]
+                  },
+                  
+            {
+              "month": "February 2025",
+              "batches": [
+                {
+                  "day": "Monday, Feb 3",
+                  "batchSize": 28,
+                  "available": 5
+                },
+                {
+                  "day": "Thursday, Feb 6",
+                  "batchSize": 32,
+                  "available": 12
+                }
+                    ]
+            }
+        ],
         "ImageLinks": ["https://res.cloudinary.com/thetrail/image/upload/c_scale,w_500/f_auto/v1719835688/Beas-Kund-Trek/beas_kund_banner.jpg", 
         "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_800/f_auto/v1720148261/Beas-Kund-Trek/Bakkar_thach_Beas_kund_trek.jpg", 
         "https://res.cloudinary.com/thetrail/image/upload/c_scale,w_500/f_auto/v1720152163/Beas-Kund-Trek/bakkar_thach_nightscape_beas_kund.jpg", 
