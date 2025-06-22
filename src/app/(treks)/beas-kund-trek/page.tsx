@@ -182,7 +182,7 @@ function page() {
           </div>
         </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2  gap-2 justify-items-center m-8 mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 justify-items-center m-8 mx-4">
         {mockdata.map((trek) => 
           trek.Name.includes('Beas Kund Trek') ? (
             trek.Date.map((monthData, index) => (
