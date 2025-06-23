@@ -104,7 +104,7 @@ function Footer() {
               <Link href={"/blog/The-Only-Difference-Between-Trekking-And-Hiking"} className='text-sky-300'><div className='pt-1'>The-Only-Difference-Between-Trekking-And-Hiking</div></Link>
               <Link href={"/blog/Understanding-The-Layering-System"} className='text-sky-300'><div className='pt-1'>Understanding-The-Layering-System</div></Link>
               <Link href={"/blog/10-Best-Treks-in-Himachal-Pradesh"} className='text-sky-300'><div className='pt-1'>10-Best-Treks-in-Himachal-Pradesh</div></Link>
-              <Link href={"/blog/10-Best-Treks-in-Himachal-Pradesh"} className='text-sky-300'><div className='pt-1'>Why-I-would-do-Sandakphu-Trek-atleast-once</div></Link>
+              <Link href={"/blog/Why-I-would-do-Sandakphu-Trek-atleast-once"} className='text-sky-300'><div className='pt-1'>Why-I-would-do-Sandakphu-Trek-atleast-once</div></Link>
             </div>
           </div>
 
