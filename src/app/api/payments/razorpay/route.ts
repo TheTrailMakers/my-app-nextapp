@@ -17,6 +17,7 @@ function getRazorpayClient() {
 
 export async function POST(request: NextRequest) {
   try {
+    const razorpay = getRazorpayClient();
     const session = await getServerSession(authOptions);
     const userId = (session?.user as { id?: string })?.id;
     if (!userId) {
@@ -74,7 +75,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Razorpay order
-    const order = await Razorpay.orders.create({
+   const order = await razorpay.orders.create({
       amount: amountNum,
       currency: "INR",
       receipt: bookingId,
