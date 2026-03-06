@@ -1,0 +1,265 @@
+{
+  "trek_slug": "phalut-trek",
+  "name": "Phalut Trek",
+  "state": "West Bengal",
+  "difficulty": "MODERATE",
+  "duration": 4,
+  "distance": 40,
+  "maxAltitude": 3600,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Phalut Trek is a well-known trek in West Bengal.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Sandakphu to Phalut",
+      "startPoint": "Sandakphu Village",
+      "endPoint": "Phalut Village",
+      "altitudeStart": 3500,
+      "altitudeEnd": 3600,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Camping at Phalut, sunrise views of the Himalayas",
+      "camp": "Phalut High Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Phalut to High Camp",
+      "startPoint": "Phalut Village",
+      "endPoint": "High Camp",
+      "altitudeStart": 3600,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "3-4 hours",
+      "highlights": "Climbing to High Camp, scenic views of the surrounding landscape",
+      "camp": "High Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: High Camp to Riverside Camp",
+      "startPoint": "High Camp",
+      "endPoint": "Riverside Camp",
+      "altitudeStart": 3600,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Camping by the river, relaxing and rejuvenating",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 4,
+      "title": "Day 4: Riverside Camp to Sandakphu",
+      "startPoint": "Riverside Camp",
+      "endPoint": "Sandakphu Village",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": 40,
+      "walkingHours": "5-6 hours",
+      "highlights": "Descending to Sandakphu, reflection on the trek experience",
+      "camp": null
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "MODERATE",
+    "justification": "The Phalut Trek offers a moderate level of difficulty due to its distance and altitude gain. While the terrain can be challenging, especially in the higher elevations, the trek is considered more accessible than extremely difficult treks.",
+    "altitudeSicknessRisk": "Low",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain with moderate elevation gain.",
+    "priorExperience": "Previous experience with multi-day treks and ability to handle altitude is recommended.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Oct-May",
+    "offSeason": "Jun-Sep",
+    "months": {
+      "January": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, occasional rain",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild, occasional rain",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm, occasional heatwaves",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Hot, dry",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Hot, dry",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Hot, dry",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm, occasional rain",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Mild, occasional rain",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "Comfortable temperatures, fewer crowds, lower prices",
+    "peakSeasonCons": "Higher risk of landslides and rockfalls due to increased rainfall",
+    "offSeasonPros": "Lower costs, fewer crowds, unique landscapes due to snowfall",
+    "offSeasonCons": "Harsh weather conditions, reduced accessibility"
+  },
+  "gettingThere": {
+    "nearestAirport": "Bagdogra Airport (IXB) and Darjeeling Airport (VIE), approximately 100-150 km from Phalut base village",
+    "nearestRailway": "New Jalpaiguri Railway Station (NJP), approximately 120-140 km from Phalut base village",
+    "fromDelhi": "Take a flight to Bagdogra Airport, then take a taxi or bus to Phalut base village (approx. 4-5 hours)",
+    "fromMumbai": "",
+    "localTransport": "Local transport options include shared jeeps and taxis from nearby villages",
+    "baseVillage": "Phalut Village",
+    "summary": "To reach Phalut, fly to Bagdogra Airport or take a train to New Jalpaiguri Railway Station. From there, take a taxi or bus to the base village of Phalut Village, approximately 4-5 hours away."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "District Forest Office, West Bengal",
+        "notes": "Required for treks in protected areas"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": "Entry fee applicable (approx. INR 50-100)",
+    "restrictions": "Photography allowed only with prior permission from the forest office",
+    "summary": "Permits required for treks in protected areas, entry fees apply to national parks"
+  },
+  "gearChecklist": {
+    "essential": [
+      "Hiking boots - sturdy, waterproof, and insulated for high altitude",
+      "Warm layers (fleece, down jacket) - for cold nights at 3600m",
+      "Waterproof jacket and pants - for unpredictable mountain weather",
+      "Insulated sleeping bag - rated to -20°C or lower",
+      "Trekking poles - optional but recommended for stability"
+    ],
+    "clothing": [
+      "Moisture-wicking base layers (top and bottom) - for temperature regulation",
+      "Quick-drying trekking pants - for comfort during physical activity",
+      "Warm hat and gloves - for cold mornings and evenings",
+      "Scarf or neck warmer - to protect against wind chill"
+    ],
+    "doNotCarry": [
+      "Valuables (jewelry, cash) - leave at home for safety",
+      "Personal electronics (phone, camera) - consider loaning or leaving behind",
+      "Non-essential clothing items - pack light and prioritize warmth"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "Is the Phalut Trek suitable for beginners?",
+      "answer": "The trek is considered moderate in difficulty, making it accessible to those with some hiking experience. However, it's essential to assess your physical fitness level and prepare accordingly."
+    },
+    {
+      "question": "What is the best time to visit the Phalut Trek?"
+    },
+    {
+      "question": "Is altitude sickness a risk on this trek?",
+      "answer": "Yes, altitude sickness is a potential risk at 3600m. It's crucial to ascend gradually, drink plenty of water, and monitor your body's response."
+    },
+    {
+      "question": "What can I expect on the trail in terms of terrain and scenery?"
+    },
+    {
+      "question": "Will I have access to proper accommodation and food during the trek?",
+      "answer": "Trekking Makers provides basic camping facilities, including tents, sleeping bags, and cooking equipment. Meals are typically simple but nourishing, with options for vegetarian and non-vegetarian diets."
+    },
+    {
+      "question": "Do I need to obtain any permits or pay a fee for the trek?"
+    },
+    {
+      "question": "What specific challenges can I expect on this trek?"
+    },
+    {
+      "question": "Is the Phalut Trek a solo-friendly trek, or is it better suited for groups?"
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Phalut Trek – Moderate Adventure in West Bengal",
+    "description": "Explore Phalut Trek, a 4-day moderate adventure in West Bengal, ideal for October to May. Book now!",
+    "keywords": [
+      "Phalut Trek",
+      "West Bengal trekking",
+      "moderate treks",
+      "Indian trekking",
+      "trekking adventures",
+      "4-day treks"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Phalut Trek",
+      "description": "A moderate 4-day trek in West Bengal, suitable for October to May.",
+      "url": "https://thetrailmakers.in/treks/phalut-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": null,
+        "longitude": null
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "West Bengal",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T01:43:32.108Z",
+  "sourcesUsed": [],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Conquer West Bengal's hidden gem, where ridges meet breathtaking views\",\n  \"aboutText\": \"Hey fellow trekkers! Are you ready for an adventure in the heart of West Bengal? The Phalut Tre"
+  ],
+  "flaggedForReview": false
+}

@@ -1,0 +1,285 @@
+{
+  "trek_slug": "sandakphu-trek",
+  "name": "Sandakphu Trek",
+  "state": "West Bengal",
+  "difficulty": "MODERATE",
+  "duration": 4,
+  "distance": 45,
+  "maxAltitude": 3636,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Why I would do Sandakphu Trek at least once - one of the few places where you can see both Everest and Kanchenjunga.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: New Jalpaiguri to Phalke Bari",
+      "startPoint": "New Jalpaiguri",
+      "endPoint": "Phalke Bari",
+      "altitudeStart": null,
+      "altitudeEnd": 3636,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Begin your trek from New Jalpaiguri and drive to Phalke Bari, the starting point of the Singalila Ridge. The scenic views of the surrounding hills will get you excited for the journey ahead.",
+      "camp": "Phalke Bari Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Phalke Bari to Kumbhavati",
+      "startPoint": "Phalke Bari",
+      "endPoint": "Kumbhavati",
+      "altitudeStart": 3636,
+      "altitudeEnd": null,
+      "distance": 10,
+      "walkingHours": "5-6 hours",
+      "highlights": "Follow the Singalila Ridge and trek through the lush forests of oak, birch, and rhododendron. The views of the surrounding mountains will be breathtaking.",
+      "camp": "Kumbhavati Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Kumbhavati to Sandakphu",
+      "startPoint": "Kumbhavati",
+      "endPoint": "Sandakphu",
+      "altitudeStart": 3636,
+      "altitudeEnd": null,
+      "distance": 10,
+      "walkingHours": "4-5 hours",
+      "highlights": "Trek to the summit of Sandakphu, the highest point on the Singalila Ridge. The views of Everest and Kanchenjunga will be awe-inspiring.",
+      "camp": "Sandakphu Camp"
+    },
+    {
+      "day": 4,
+      "title": "Day 4: Sandakphu to New Jalpaiguri",
+      "startPoint": "Sandakphu",
+      "endPoint": "New Jalpaiguri",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": 45,
+      "walkingHours": "8-10 hours",
+      "highlights": "Descend from Sandakphu and drive back to New Jalpaiguri, bringing back memories of your trek.",
+      "camp": "Riverside Camp"
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "MODERATE",
+    "justification": "The Sandakphu Trek offers a moderate level of physical challenge due to its steep inclines and uneven terrain, but the scenic views and relatively short duration make it accessible to most trekkers.",
+    "altitudeSicknessRisk": "Low - The trek reaches an altitude of 3636m, which is considered low for altitude sickness risk. However, acclimatization is still essential.",
+    "fitnessRequirement": "Must be able to walk 4-6 hours daily on uneven terrain and handle moderate inclines.",
+    "priorExperience": "Prior experience with high-altitude treks or trekking in the Himalayas is recommended but not required.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Oct-May",
+    "offSeason": "Jun-Sep",
+    "months": {
+      "January": {
+        "weather": "Cold, frosty mornings with clear skies",
+        "trailCondition": "Difficult due to snow and ice",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Still cold with occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild temperatures, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Warm and sunny, ideal for trekking",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Hot and humid, monsoon season begins",
+        "trailCondition": "Closed due to landslides and flooding",
+        "recommended": false
+      },
+      "June": {
+        "weather": "Monsoon season, heavy rainfall and landslides",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Heavy monsoon rains, trekkers advised not to venture out",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Rainfall decreases, but trails are still muddy and slippery",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm temperatures return, ideal for trekking",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Cooler temperatures, clear skies",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Mild temperatures, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "December": {
+        "weather": "Cold and frosty mornings with clear skies",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The best time to visit Sandakphu Trek is during the autumn season (October-May) when the weather is generally clear and sunny, making it ideal for trekking. The temperatures are mild, and the trails are open, allowing trekkers to enjoy the scenic views of the Kangchenjunga Range.",
+    "peakSeasonCons": "However, this is also the peak tourist season, which means higher prices for accommodations and transportation, as well as larger crowds on the trails.",
+    "offSeasonPros": "On the other hand, trekking during the monsoon season (June-September) can be a unique experience. The lush green landscapes and fewer tourists make it an ideal time for those looking for solitude and adventure.",
+    "offSeasonCons": "However, the heavy rainfall and landslides during this period make it challenging and even dangerous for trekkers. It's essential to exercise extreme caution and plan carefully before embarking on a trek during this season."
+  },
+  "gettingThere": {
+    "nearestAirport": "Bagdogra Airport (IXB) - approximately 130 km, 4-5 hours from base village",
+    "nearestRailway": "New Jalpaiguri Railway Station (NJP) - approximately 120 km, 3-4 hours from base village",
+    "fromDelhi": "Take a flight from Delhi to Bagdogra Airport, then hire a taxi or bus to the base village. Estimated travel time: 2.5-3.5 hours",
+    "fromMumbai": "",
+    "localTransport": "Shared jeeps and taxis available from nearby towns like Darjeeling and Mirik to the base village",
+    "baseVillage": "Tibbari (also known as Sandakphu Village) - a small village at an altitude of approximately 3,500 m",
+    "summary": "Reach Bagdogra Airport or New Jalpaiguri Railway Station by air or train, then hire a taxi or bus to the base village. Shared jeeps and taxis are available from nearby towns for a more scenic journey."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Protected Area Permit",
+        "cost": "Free",
+        "where": "District Administration, Darjeeling"
+      },
+      {
+        "name": "Forest Permit",
+        "cost": "INR 50-100",
+        "where": "Forest Department Office"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": "INR 20-30 per person",
+    "restrictions": "No photography in protected areas, camping only allowed with permit",
+    "summary": "A Protected Area Permit is required for the Sandakphu Trek, while a Forest Permit may be needed for certain sections of the trek."
+  },
+  "gearChecklist": {
+    "essential": [
+      {
+        "Item name": "Sturdy Trekking Boots",
+        "brief note on why/spec": "Good grip and ankle support for high-altitude trekking"
+      },
+      {
+        "Item name": "Insulated Jacket",
+        "brief note on why/spec": "For colder mornings and evenings at high altitude"
+      },
+      {
+        "Item name": "Base Layers",
+        "brief note on why/spec": "Moisture-wicking layers for comfort in changing weather conditions"
+      }
+    ],
+    "clothing": [
+      {
+        "Clothing item": "Warm Socks"
+      },
+      {
+        "Clothing item": "Thermal Underwear"
+      }
+    ],
+    "doNotCarry": [
+      {
+        "Item to avoid and why": "Valuables, as risk of theft is higher in rural areas"
+      }
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the expected level of physical fitness required for this trek?",
+      "answer": "The Sandakphu Trek is considered moderate, requiring a good level of cardiovascular fitness and endurance. Trekkers should be comfortable with regular walking and ascending steep paths."
+    },
+    {
+      "question": "When is the best time to visit the Sandakphu Trek?",
+      "answer": "The best season for the Sandakphu Trek is from October to May, as the weather is generally clear and mild during this period."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, altitude sickness is a risk at high altitudes. Trekkers should be aware of the symptoms and take necessary precautions to acclimatize properly."
+    },
+    {
+      "question": "What can trekkers expect in terms of scenic views and trail conditions?",
+      "answer": "The Sandakphu Trek offers breathtaking views of the Himalayas, including Kanchenjunga. The trail is generally well-maintained but can be steep and rocky at times."
+    },
+    {
+      "question": "What kind of accommodation and food can trekkers expect on this trek?",
+      "answer": "Trekking camps and tea houses provide basic accommodation and meals, which are simple but nutritious. Trekkers should be prepared for shared facilities and limited options."
+    },
+    {
+      "question": "Do I need a permit to undertake the Sandakphu Trek?",
+      "answer": "Yes, a permit is required for this trek. Trail Makers will assist with the necessary arrangements."
+    },
+    {
+      "question": "What are some specific challenges that trekkers may face on this trek?",
+      "answer": "The Sandakphu Trek involves steep ascents and descents, which can be challenging. Trekkers should also be prepared for unpredictable weather conditions and potential snowfall during the winter months."
+    },
+    {
+      "question": "Is the Sandakphu Trek suitable for beginners?",
+      "answer": "While the trek is considered moderate, it may not be suitable for complete beginners due to its high altitude and steep terrain. Trekkers should have some experience with long-distance walking and high-altitude treks before undertaking this challenge."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "First-time trekkers, Adventure seekers, fitness enthusiasts",
+  "inclusions": [
+    "Homestays",
+    "Meals",
+    "Guide"
+  ],
+  "exclusions": [
+    "Travel costs"
+  ],
+  "seo": {
+    "title": "Sandakphu Trek – Experience the Himalayas with Trail Makers",
+    "description": "Trek to Sandakphu, West Bengal, for a moderate adventure with breathtaking views.",
+    "keywords": [
+      "Sandakphu Trek",
+      "West Bengal trekking",
+      "Himalayan treks",
+      "4-day treks",
+      "Moderate difficulty treks",
+      "Best season: Oct-May"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Sandakphu Trek",
+      "description": "Trek to Sandakphu, West Bengal, for a moderate adventure with breathtaking views.",
+      "url": "https://thetrailmakers.in/treks/sandakphu-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.10583333,
+        "longitude": 88.00166667
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "West Bengal",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T02:34:07.025Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Sandakphu"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Witness Kanchenjunga's majesty at sunrise from West Bengal's highest peak\",\n  \"aboutText\": \"Hey fellow adventurer, are you ready for a trek like no other? The Sandakphu Trek is an expe"
+  ],
+  "flaggedForReview": false
+}

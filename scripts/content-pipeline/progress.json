@@ -1,0 +1,90 @@
+{
+  "lastProcessedIndex": 47,
+  "completed": [
+    "hampta-pass-trek",
+    "annapurna-base-camp-trek",
+    "bajredara-trek",
+    "barafsar-lake-trek",
+    "beas-kund-trek",
+    "bhrigu-lake-trek",
+    "brahmtal-trek",
+    "chadar-trek",
+    "chandrashila-trek",
+    "chehni-kund-trek",
+    "dayara-bugyal-trek",
+    "deoriatal-chandrashila-trek",
+    "dzongri-trek",
+    "gadsar-lake-trek",
+    "goecha-la-trek",
+    "great-himalayan-national-park-trek",
+    "har-ki-dun-trek",
+    "hilley-versey-trek",
+    "indrahara-pass-trek",
+    "kafni-glacier-trek",
+    "kareri-lake-trek",
+    "kashmir-great-lakes-trek",
+    "kedarkantha-trek",
+    "kedarnath-trek",
+    "kheerganga-trek",
+    "kinnaur-kailash-trek",
+    "kuari-pass-trek",
+    "markha-valley-trek",
+    "miyar-valley-trek",
+    "nag-tibba-trek",
+    "nanda-devi-base-trek",
+    "phalut-trek",
+    "pin-parvati-pass-trek",
+    "pindari-glacier-trek",
+    "prashar-lake-trek",
+    "ranisui-lake-trek",
+    "ranthan-kharak-trek",
+    "roopkund-trek",
+    "rupin-pass-trek",
+    "sandakphu-trek",
+    "serolsar-lake-trek",
+    "shrikhand-mahadev-trek",
+    "spiti-valley-trek",
+    "stok-kangri-trek",
+    "tarsar-marsar-trek",
+    "triund-trek",
+    "tungnath-deoriatal-trek",
+    "valley-of-flowers-trek"
+  ],
+  "failed": [],
+  "flagged": [
+    {
+      "slug": "bajredara-trek",
+      "reason": "Insufficient web data found"
+    },
+    {
+      "slug": "barafsar-lake-trek",
+      "reason": "Insufficient web data found"
+    },
+    {
+      "slug": "brahmtal-trek",
+      "reason": "Insufficient web data found"
+    },
+    {
+      "slug": "chehni-kund-trek",
+      "reason": "Insufficient web data found"
+    },
+    {
+      "slug": "hilley-versey-trek",
+      "reason": "Insufficient web data found"
+    },
+    {
+      "slug": "phalut-trek",
+      "reason": "Insufficient web data found"
+    },
+    {
+      "slug": "ranisui-lake-trek",
+      "reason": "Insufficient web data found"
+    },
+    {
+      "slug": "ranthan-kharak-trek",
+      "reason": "Insufficient web data found"
+    }
+  ],
+  "startedAt": "2026-02-27T16:49:55.687Z",
+  "lastSavedAt": "2026-02-28T03:25:59.412Z"
+}

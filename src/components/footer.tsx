@@ -1,119 +1,202 @@
-import React from 'react'
-import { FaWhatsapp } from 'react-icons/fa';
-import Image from 'next/image'
-import Link from 'next/link'
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className='bg-neutral-800 pb-4 pt-2 text-white'>
-      <div className='flex justify-between flex-wrap items-center p-4 lg:mx-28'>
-        <Image  src="/TTM.png" alt="The Trail Makers Logo" 
-                width={100} height={100}
-                sizes="(max-width: 768px) 100px, 100px" 
-                className='w-20 lg:w-40' 
-                priority></Image>
-        <Link href="https://wa.me/7980426832" className='uppercase font-bold bg-amber-500 text-xl text-white
-         p-1 px-6 rounded-2xl text-right flex flex-row max-w-72 mr-2 my-auto'><FaWhatsapp className='size-6 m-auto pr-2'/>Whatsapp
-        </Link>
-      </div>
+    <footer className="bg-black border-t border-gray-800 text-gray-300">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-16 pb-12">
+        {/* Logo and Brand */}
+        <div className="mb-12">
+          <Image
+            src="/TTM.png"
+            alt="The Trail Makers Logo"
+            width={100}
+            height={100}
+            sizes="100px"
+            className="w-20 md:w-24 lg:w-32"
+            priority
+          />
+        </div>
 
-      {/* <div className='flex flex-wrap justify-between lg:justify-center gap-8 text-sm'> */}
-
-        <div className=' text-sm font-light grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-[calc((100vw-1280px)/2)] mx-4'>
-          <div className='p-4 px-2'>
-            <h5 className='font-medium text-base'>Treks by Season</h5>
-            <div className='font-extralight'>
-              <div className='pt-1'>Summer</div>
-              <div className='pt-1'>Monsoon</div>
-              <div className='pt-1'>Autumn</div>
-              <div className='pt-1'>Winter</div>
-              <div className='pt-1'>Spring</div>
-            </div>
-          </div>
-
-          <div className='p-4 px-2'>
-            <h5 className='font-medium text-base'>Treks by Months</h5>
-            <div className='font-extralight flex flex-wrap gap-4'>
-              <div className=''>
-                <p className='pt-1'>January</p>
-                <p className='pt-1'>February</p>
-                <p className='pt-1'>March</p>
-                <p className='pt-1'>April</p>
-                <p className='pt-1'>May</p>
-                <p className='pt-1'>June</p>
+        {/* Footer Links Grid - Fully Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-10 mb-12">
+          {/* Booking */}
+          <div className="min-w-0">
+            <h5 className="font-bold text-white mb-4 text-base md:text-lg">Booking</h5>
+            <nav className="space-y-3 text-xs md:text-sm">
+              <div>
+                <Link
+                  href="/booking/my-bookings"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  My Bookings
+                </Link>
               </div>
-              <div >
-                <div className='pt-1'>July</div>
-                <div className='pt-1'>August</div>
-                <div className='pt-1'>September</div>
-                <div className='pt-1'>October</div>
-                <div className='pt-1'>November</div>
-                <div className='pt-1'>December</div>
+              <div>
+                <Link
+                  href="/booking/submit-feedback"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Submit Feedback
+                </Link>
               </div>
-            </div>
-          </div>
-          
-
-
-          <div className='p-4 px-2'>
-            <h5 className='font-medium text-base'>Treks by Duration</h5>
-            <div className='font-extralight'>
-            <div className='pt-1'>2 Days</div>
-            <div className='pt-1'>3 Days</div>
-            <div className='pt-1'>4 Days</div>
-            <div className='pt-1'>5 Days</div>
-            <div className='pt-1'>6 Days</div>
-            <div className='pt-1'>7 Days</div>
-            <div className='pt-1'>+7 Days</div>
-            </div>
-          </div>
-
-
-          <div className='p-4 px-2'>
-            <h5 className='font-medium text-base'>Treks by Region</h5>
-            <div className='font-extralight'>
-              <div className='pt-1'>Himachal</div>
-              <div className='pt-1'>Ladakh</div>
-              <div className='pt-1'>Sikkim</div>
-              <div className='pt-1'>Kashmir</div>
-              <div className='pt-1'>Uttarakhand</div>
-              <div className='pt-1'>West Bengal</div>
-            </div>
+              <div>
+                <Link
+                  href="/booking/cancellation-policy"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Cancellation Policy
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/booking/safety-standards"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Safety Standards
+                </Link>
+              </div>
+            </nav>
           </div>
 
-
-
-              
-          <div className='p-4 px-2'>
-            <h5 className='font-medium text-base'>Treks by Difficulty</h5>
-            <div className='font-extralight'>
-              <div className='pt-1'>First Timers</div>
-              <div className='pt-1'>Beginners</div>
-              <div className='pt-1'>Learners 1</div>
-              <div className='pt-1'>Learners 2</div>
-              <div className='pt-1'>Skilled</div>
-              <div className='pt-1'>Expert</div>
-              <div className='pt-1'>Technical Treks</div>
-              <div className='pt-1'>Exploratory Trek</div>
-            </div>
-          </div>
-              
-          <div className='p-4 px-2'>
-            <h5 className='font-medium text-base'>Popular Articles</h5>
-            <div className='font-extralight'>
-              <Link href={"/blog/The-Only-Difference-Between-Trekking-And-Hiking"} className='text-sky-300'><div className='pt-1'>The-Only-Difference-Between-Trekking-And-Hiking</div></Link>
-              <Link href={"/blog/Understanding-The-Layering-System"} className='text-sky-300'><div className='pt-1'>Understanding-The-Layering-System</div></Link>
-              <Link href={"/blog/10-Best-Treks-in-Himachal-Pradesh"} className='text-sky-300'><div className='pt-1'>10-Best-Treks-in-Himachal-Pradesh</div></Link>
-              <Link href={"/blog/Why-I-would-do-Sandakphu-Trek-atleast-once"} className='text-sky-300'><div className='pt-1'>Why-I-would-do-Sandakphu-Trek-atleast-once</div></Link>
-            </div>
+          {/* Company */}
+          <div className="min-w-0">
+            <h5 className="font-bold text-white mb-4 text-base md:text-lg">Company</h5>
+            <nav className="space-y-3 text-xs md:text-sm">
+              <div>
+                <Link
+                  href="/company/about-us"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  About Us
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/company/careers"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Careers
+                </Link>
+              </div>
+            </nav>
           </div>
 
+          {/* Contact */}
+          <div className="min-w-0">
+            <h5 className="font-bold text-white mb-4 text-base md:text-lg">Contact</h5>
+            <nav className="space-y-3 text-xs md:text-sm">
+              <div>
+                <Link
+                  href="/footer-pages/get-in-touch"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Get in Touch
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/footer-pages/faq"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  FAQ
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/footer-pages/reviews"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Reviews
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/footer-pages/news-room"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  News Room
+                </Link>
+              </div>
+            </nav>
+          </div>
+
+          {/* The Mission */}
+          <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 min-w-0">
+            <h5 className="font-bold text-white mb-4 text-base md:text-lg">The Mission</h5>
+            <nav className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs md:text-sm">
+              <div>
+                <Link
+                  href="/mission/next-10-years"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Next 10 Years
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/mission/next-100-years"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Next 100 Years
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/mission/people"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  People
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/mission/living-beings"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Living Beings
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/mission/planet"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Planet
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/mission/universe"
+                  className="hover:text-blue-400 transition break-words"
+                >
+                  Universe
+                </Link>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-gray-800 pt-8 mt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-xs md:text-sm text-gray-500 text-center md:text-left">
+              © {new Date().getFullYear()} Trail Makers. All rights reserved.
+            </p>
+            <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
+              <Link href="/contact" className="text-xs md:text-sm hover:text-blue-400 transition">
+                Privacy Policy
+              </Link>
+              <Link href="/contact" className="text-xs md:text-sm hover:text-blue-400 transition">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-        
-      <div className='bottom-0 text-center text-slate-500 pt-8'>© the trail makers</div>
-      <div className='text-neutral-500 text-center'>Made by Pritam Bera</div>
     </footer>
-  )
+  );
 }
 
-export default Footer 
+export default Footer; 

@@ -1,0 +1,207 @@
+{
+  "trek_slug": "prashar-lake-trek",
+  "name": "Prashar Lake Trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "EASY",
+  "duration": 3,
+  "distance": 12,
+  "maxAltitude": 2730,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Prashar Lake is famous for its mirror-like waters and the three-storey pagoda temple. The trail is peaceful and photogenic.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Reach Mandi and drive to trailhead; camp nearby",
+      "startPoint": "Mandi town",
+      "endPoint": "Trailhead camp",
+      "altitudeStart": 880,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Arrival in Mandi, drive to trailhead and set up camp nearby.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Trek to Prashar Lake, visit island temple and camp",
+      "startPoint": "Bagi village",
+      "endPoint": "Prashar Lake",
+      "altitudeStart": null,
+      "altitudeEnd": 2730,
+      "distance": null,
+      "walkingHours": "6-8 hours",
+      "highlights": "Trek to Prashar Lake, visit the island temple and set up camp.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Return to Mandi and depart",
+      "startPoint": "Prashar Lake",
+      "endPoint": "Mandi town",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Return to Mandi, concluding the trek.",
+      "camp": "Riverside Camp"
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "EASY",
+    "justification": "The Prashar Lake Trek is considered easy due to its short duration and relatively flat terrain. The trek involves a gradual incline, making it accessible to trekkers of all ages and fitness levels.",
+    "altitudeSicknessRisk": "Low",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain and handle moderate altitude changes.",
+    "priorExperience": "No prior trekking experience is required, but previous experience with similar terrain would be beneficial.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "May-Oct",
+    "offSeason": "November-May",
+    "months": {
+      "January": {
+        "weather": "Cold, frosty mornings with occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Crisp and cold, with occasional light snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild temperatures, with some snowfall in the higher altitudes",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Temperatures rise, with occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm and sunny, with some occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Hot and dry, with low humidity",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Extremely hot and dry, with high risk of heat stroke",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Hot and humid, with occasional rain showers",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm and sunny, with some occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Mild temperatures, with some snowfall in the higher altitudes",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "November": {
+        "weather": "Cold and frosty, with occasional light snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Very cold and snowy, with high risk of avalanches",
+        "trailCondition": "Closed",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The best time to visit Prashar Lake Trek is during the peak season (May-Oct) when the weather is generally clear and sunny, making it ideal for trekking. The temperatures are mild, and the trail conditions are mostly open.",
+    "peakSeasonCons": "During peak season, the trek can get crowded, and prices may be higher due to increased demand. Additionally, the heat in July-August can be extreme, posing a risk to trekkers.",
+    "offSeasonPros": "Trekking during the off-season (November-May) has its benefits, such as lower prices, fewer crowds, and a more serene experience. The scenery is also picturesque, with snow-covered landscapes and frozen lakes.",
+    "offSeasonCons": "The off-season can be challenging due to harsh weather conditions, including cold temperatures, snowfall, and high risk of avalanches. Some trails may be closed or difficult to navigate."
+  },
+  "gettingThere": {
+    "nearestAirport": "Gaggal Airport (Shimla), approximately 120 km from Mandi",
+    "nearestRailway": "Jogindernagar Railway Station, approximately 15 km from Mandi",
+    "fromDelhi": "Drive to Shimla ( approx. 7-8 hours) and then take a taxi or bus to Mandi",
+    "fromMumbai": "Fly to Chandigarh Airport (approx. 1.5 hours), then drive to Mandi (approx. 2-3 hours)",
+    "localTransport": "Regular buses and taxis are available from Mandi to the trek base, Prashar Lake",
+    "baseVillage": "Prashar Village",
+    "summary": "Reaching Mandi is relatively easy, with Gaggal Airport nearby and regular bus services. From there, take a taxi or bus to Prashar Village, the starting point of your trek."
+  },
+  "permits": {
+    "permitsRequired": false,
+    "permitTypes": [],
+    "innerLinePermit": true,
+    "innerLinePermitDetails": "Required for trekking in border areas",
+    "nationalParkFee": "Free",
+    "restrictions": "No restrictions on photography or camping",
+    "summary": "No permits required for standard treks, but Inner Line Permit is needed for border areas."
+  },
+  "gearChecklist": {
+    "essential": [],
+    "clothing": [],
+    "doNotCarry": []
+  },
+  "faqsJson": [],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "First-time trekkers, families with children",
+  "inclusions": [
+    "Camping",
+    "Meals on trek",
+    "Guide"
+  ],
+  "exclusions": [
+    "Transport to base",
+    "Permits"
+  ],
+  "seo": {
+    "title": "Prashar Lake Trek – Easy Himalayan Adventure | Trail Makers",
+    "description": "Explore Prashar Lake in Himachal Pradesh, a 3-day easy trek with breathtaking views.",
+    "keywords": [
+      "Himachal Pradesh treks",
+      "easy treks in India",
+      "Prashar Lake trekking",
+      "Himalayan treks for beginners",
+      "3-day treks in Himachal Pradesh"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Prashar Lake Trek",
+      "description": "",
+      "url": "https://thetrailmakers.in/treks/prashar-lake-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.70694444,
+        "longitude": 76.93166667
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T02:03:35.985Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Mandi%2C_Himachal_Pradesh",
+    "https://en.wikipedia.org/wiki/Prashar_Lake"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Discover serenity at Prashar Lake, where nature's beauty meets ancient charm\",\n  \"aboutText\": \"Hey there, fellow trekker! If you're looking for a short and sweet adventure in the Himal",
+    "gearFaqs: Failed to parse JSON: Unexpected non-whitespace character after JSON at position 2521\nText: {\"gearChecklist\": {\"essential\": [\"Hiking boots - for stability and grip at high altitude\", \"Waterproof jacket - to protect against sudden rain showers\", \"Insulated layers - for cold nights at 2730m\", \"First aid kit - with essentials like painkillers, bandages, etc.\", \"Headlamp/flashlight - for navig"
+  ],
+  "flaggedForReview": false
+}

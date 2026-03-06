@@ -1,0 +1,284 @@
+{
+  "trek_slug": "kuari-pass-trek",
+  "name": "Kuari Pass Trek",
+  "state": "Uttarakhand",
+  "difficulty": "EASY_MODERATE",
+  "duration": 5,
+  "distance": 28,
+  "maxAltitude": 3800,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Also known as Curzon Trail, offering stunning views of Nanda Devi, Trishul, and other major peaks.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Drive to Auli/Khullara and trek to Gorson Bugyal",
+      "startPoint": "Auli/Khullara",
+      "endPoint": "Gorson Bugyal",
+      "altitudeStart": null,
+      "altitudeEnd": 2800,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Explore the beautiful Gorson Bugyal meadow, home to over 520 species of high-altitude plants.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Trek across Gorson Bugyal towards Khulara/Kuari approach",
+      "startPoint": "Gorson Bugyal",
+      "endPoint": null,
+      "altitudeStart": 2800,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "5-6 hours",
+      "highlights": "Continue trekking through the stunning Gorson Bugyal landscape.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Trek to Kuari Pass and enjoy panoramic views",
+      "startPoint": null,
+      "endPoint": null,
+      "altitudeStart": null,
+      "altitudeEnd": 3800,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Reach the summit of Kuari Pass for breathtaking panoramic views.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 4,
+      "title": "Day 4: Descend to Gorson and return route",
+      "startPoint": null,
+      "endPoint": "Gorson Bugyal",
+      "altitudeStart": 3800,
+      "altitudeEnd": 2800,
+      "distance": null,
+      "walkingHours": "5-6 hours",
+      "highlights": "Begin the descent back to Gorson Bugyal, taking in the scenery along the way.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 5,
+      "title": "Day 5: Drive back to base",
+      "startPoint": "Gorson Bugyal",
+      "endPoint": null,
+      "altitudeStart": 2800,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": null,
+      "highlights": "Return to the starting point, concluding an unforgettable trek.",
+      "camp": null
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "EASY_MODERATE",
+    "justification": "The Kuari Pass Trek offers a moderate level of difficulty due to its gradual incline and scenic views. While the trek is not extremely challenging, it requires some physical effort to cover the 28km distance over five days.",
+    "altitudeSicknessRisk": "Low",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain with regular breaks.",
+    "priorExperience": "Previous trekking experience is recommended but not essential.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Mar-Jun, Sep-Nov",
+    "offSeason": "Dec-Feb",
+    "months": {
+      "January": {
+        "weather": "Cold, snowy",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, icy",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild, sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm, dry",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Hot, humid",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Scorching hot",
+        "trailCondition": "Closed due to landslides",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Scorching hot",
+        "trailCondition": "Closed due to landslides",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm, sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Mild, sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Cool, sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "December": {
+        "weather": "Cold, snowy",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "Better weather conditions, more daylight hours, and a wider range of trekking options.",
+    "peakSeasonCons": "Higher prices for accommodations and guides, larger crowds, and potential landslides due to heavy rainfall.",
+    "offSeasonPros": "Lower prices, fewer crowds, and a serene atmosphere.",
+    "offSeasonCons": "Unpredictable weather conditions, possible trail closures, and limited daylight hours."
+  },
+  "gettingThere": {
+    "nearestAirport": "Jolly Grant Airport (Dehradun) - 45 km, 1 hour",
+    "nearestRailway": "Haridwar Junction Railway Station - 70 km, 2-3 hours",
+    "fromDelhi": "Drive to Haridwar Junction via NH44 and NH31A, approx. 5-6 hours; or take a bus/train from Delhi's Anand Vihar ISAT (approx. 7-8 hours)",
+    "fromMumbai": "",
+    "localTransport": "Shared jeeps and taxis available from Auli to base villages",
+    "baseVillage": "Auli, Chamoli district",
+    "summary": "Reach Jolly Grant Airport or Haridwar Junction by air/rail. From Delhi, drive or take a bus/train via NH44 and NH31A. In Auli, shared jeeps and taxis are available for local transport"
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "District Administration Office, Chamoli",
+        "notes": "For camping and overnight stays in forest areas"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": "Yes (entry fee applies)",
+    "restrictions": "No photography restrictions, but camping is allowed only at designated campsites",
+    "summary": "A Forest Permit is required for overnight stays in forest areas, while an entry fee is applicable for national parks."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Sturdy hiking boots - Essential for high-altitude trekking",
+      "Warm layers (fleece, down jacket) - For cold mornings and evenings at high altitude",
+      "Waterproof gear (jacket, pants) - To protect against rain and wind",
+      "Insulated water bottle or hydration bladder - To stay hydrated in cold conditions",
+      "First aid kit - A basic kit should include items for treating altitude sickness, blisters, and other trekking injuries",
+      "Headlamp and extra batteries - In case you're out late on the trail",
+      "Toilet paper and hand sanitizer - For personal hygiene"
+    ],
+    "clothing": [
+      "Base layers (top and bottom) - Moisture-wicking fabrics for comfort",
+      "Mid-layers (fleece, wool) - For warmth on cold days",
+      "Outer shell jacket and pants - Waterproof and breathable for rain and wind",
+      "Warm hat and gloves - For colder mornings and evenings"
+    ],
+    "doNotCarry": [
+      "Valuables or irreplaceable items - Leave them at home to minimize risk of loss or damage",
+      "Electronics (except phone and portable charger) - Avoid unnecessary distractions and weight",
+      "Perishable food items - Stick to non-perishable snacks and plan for meals at lodges"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "Is the Kuari Pass Trek suitable for beginners?",
+      "answer": "The trek is considered EASY_MODERATE, making it a great option for those with some hiking experience. However, it's essential to be in good physical condition and acclimatize well to high altitude."
+    },
+    {
+      "question": "What are the best months to visit the Kuari Pass Trek?",
+      "answer": "The best time to visit is during Mar-Jun and Sep-Nov, when the weather is generally clear and mild. Avoid visiting during monsoon season (Jul-Aug) due to heavy rainfall and landslides."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, altitude sickness is a risk at high altitudes above 3500m. Be sure to acclimatize well, drink plenty of water, and monitor your body's response to the altitude."
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The Kuari Pass Trek offers stunning views of the Garhwal Himalayas, including the famous Kuari Pass. The trail is generally well-marked and maintained, but be prepared for uneven terrain and potential river crossings."
+    },
+    {
+      "question": "What kind of accommodation and food can I expect?",
+      "answer": "Lodges and tea houses are available along the trek, offering basic to mid-range accommodations and meals. Be sure to book in advance, especially during peak season."
+    },
+    {
+      "question": "Do I need a permit to undertake this trek?",
+      "answer": "Yes, a permit is required for this trek. Our company will assist with arranging permits and other logistics. Please note that costs vary depending on the time of year and availability."
+    },
+    {
+      "question": "What are some specific challenges of this trek?",
+      "answer": "The Kuari Pass Trek can be challenging due to its high altitude, uneven terrain, and potential river crossings. Be prepared for changing weather conditions and take necessary precautions to stay safe."
+    },
+    {
+      "question": "How long does the trek typically take?",
+      "answer": "The Kuari Pass Trek typically takes 5 days to complete, depending on your pace and acclimatization schedule."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "First-time trekkers, families with kids",
+  "inclusions": [
+    "Meals",
+    "Guide",
+    "Camping"
+  ],
+  "exclusions": [
+    "Transport"
+  ],
+  "seo": {
+    "title": "Kuari Pass Trek – Explore Uttarakhand’s Hidden Gem",
+    "description": "5-day easy-moderate trek in Uttarakhand, ₹150 base price | Book now",
+    "keywords": [
+      "Kuari Pass Trek",
+      "Uttarakhand treks",
+      "easy-moderate treks",
+      "Indian Himalayas"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Kuari Pass Trek",
+      "description": "A scenic trek in the Indian Himalayas, offering breathtaking views.",
+      "url": "https://thetrailmakers.in/treks/kuari-pass-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.52892,
+        "longitude": 79.57026
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Uttarakhand",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T19:31:53.929Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Auli%2C_India"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Experience breathtaking Himalayan vistas in Uttarakhand's hidden meadow\",\n  \"aboutText\": \"The Kuari Pass Trek is an easy-to-moderate adventure that offers stunning views of the Himalay"
+  ],
+  "flaggedForReview": false
+}

@@ -1,0 +1,313 @@
+{
+  "trek_slug": "spiti-valley-trek",
+  "name": "Spiti Valley Trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "MODERATE",
+  "duration": 6,
+  "distance": 80,
+  "maxAltitude": 4500,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Spiti Valley Trek is a well-known trek in Himachal Pradesh.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Village to Riverside Camp",
+      "startPoint": "Village at Spiti Valley Entrance",
+      "endPoint": "Riverside Camp near Spiti River",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Arrival in Spiti Valley, set up camp by the river and explore nearby village.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Riverside Camp to High Camp",
+      "startPoint": "Riverside Camp",
+      "endPoint": "High Camp at 3500m",
+      "altitudeStart": null,
+      "altitudeEnd": 3500,
+      "distance": null,
+      "walkingHours": "5-6 hours",
+      "highlights": "Climb to the high camp, enjoy breathtaking views of Spiti Valley.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: High Camp",
+      "startPoint": "High Camp",
+      "endPoint": null,
+      "altitudeStart": 3500,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "Rest day, acclimatize to high altitude.",
+      "highlights": "Take a rest day at the high camp and enjoy the serene surroundings.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 4,
+      "title": "Day 4: High Camp to Pin Valley",
+      "startPoint": "High Camp",
+      "endPoint": "Pin Valley",
+      "altitudeStart": 3500,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "6-7 hours",
+      "highlights": "Descend from the high camp and trek to Pin Valley, known for its stunning landscapes.",
+      "camp": "Pin Valley Camp"
+    },
+    {
+      "day": 5,
+      "title": "Day 5: Pin Valley",
+      "startPoint": "Pin Valley",
+      "endPoint": null,
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Explore the scenic Pin Valley, spot local wildlife, and enjoy the tranquil atmosphere.",
+      "camp": "Pin Valley Camp"
+    },
+    {
+      "day": 6,
+      "title": "Day 6: Return to Village",
+      "startPoint": "Pin Valley",
+      "endPoint": "Village at Spiti Valley Entrance",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Return to the village, reflect on the experiences and memories made during the trek.",
+      "camp": null
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "MODERATE",
+    "justification": "The Spiti Valley Trek offers a moderate level of physical challenge due to its long distance and high altitude. However, the terrain is generally well-marked and easy to navigate, making it accessible to those with some trekking experience.",
+    "altitudeSicknessRisk": "Low - Due to the gradual ascent and acclimatization days built into the itinerary, the risk of altitude sickness is relatively low for most trekkers.",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain and handle cold desert conditions.",
+    "priorExperience": "Previous trekking experience in high-altitude regions or cold climates is recommended but not essential.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Jun-Sep",
+    "offSeason": "Nov-May",
+    "months": {
+      "January": {
+        "weather": "Cold, dry",
+        "trailCondition": "Open",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, dry",
+        "trailCondition": "Open",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, cold mornings",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Cool, occasional rain",
+        "trailCondition": "Difficult",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm, occasional rain",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "June": {
+        "weather": "Hot, dry",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Scorching hot",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Very hot",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm, occasional rain",
+        "trailCondition": "Difficult",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Cool, occasional rain",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "November": {
+        "weather": "Cold, dry",
+        "trailCondition": "Open",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, dry",
+        "trailCondition": "Open",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The best time to visit Spiti Valley Trek is from June to September. The weather is warm and sunny, making it ideal for photography and outdoor activities. The trails are generally open, allowing for a smooth trekking experience.",
+    "peakSeasonCons": "Peak season (June to September) can be crowded and expensive. Expect higher prices for accommodations and guided tours, as well as larger crowds of trekkers.",
+    "offSeasonPros": "Trekking in the off-season (November to May) offers a serene and peaceful experience. The weather is generally cold and dry, making it ideal for those who prefer fewer tourists and lower costs.",
+    "offSeasonCons": "The trails may be closed due to snow and ice during the winter months, making trekking more challenging. Additionally, some accommodations and services may not be available or may have limited hours."
+  },
+  "gettingThere": {
+    "nearestAirport": "Gaggal Airport, Chandigarh (approx. 340 km, 6-8 hours from base village)",
+    "nearestRailway": "Pathankot railway station (approx. 270 km, 5-7 hours from base village)",
+    "fromDelhi": "Drive to Chandigarh (approx. 560 km, 8-10 hours) or take a flight to Chandigarh and then drive to the trek base.",
+    "fromMumbai": "No direct route available; fly to Chandigarh and then drive to the trek base.",
+    "localTransport": "Shared jeeps and buses are available from Pathankot and nearby towns to the trek base.",
+    "baseVillage": "Keywo or Kibber (approx. 15-20 km from Spiti Valley Trek starting point)",
+    "summary": "Reach Gaggal Airport in Chandigarh or Pathankot railway station, then drive or take a bus/shared jeep to the trek base village of Keywo or Kibber."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "District Administration Office, Kullu or Lahaul Valley District Headquarter, Manali",
+        "notes": "For trekking in protected areas"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": true,
+    "restrictions": "No photography in restricted areas, camping is allowed only in designated zones",
+    "summary": "A forest permit is required for standard treks in the Spiti Valley Trek area, and a national park fee applies to enter protected areas."
+  },
+  "gearChecklist": {
+    "essential": [
+      {
+        "Item name": "Hiking boots",
+        "why/spec": "Good grip and ankle support for high-altitude terrain"
+      },
+      {
+        "Item name": "Warm layers (fleece, down jacket)",
+        "why/spec": "Temperature drops significantly at high altitudes"
+      },
+      {
+        "Item name": "Insulated water bottle or hydration system",
+        "why/spec": "Prevents freezing in cold temperatures"
+      }
+    ],
+    "clothing": [
+      {
+        "Clothing item": "Moisture-wicking base layers"
+      },
+      {
+        "Clothing item": "Water-resistant jacket and pants"
+      },
+      {
+        "Clothing item": "Warm hat and gloves"
+      }
+    ],
+    "doNotCarry": [
+      {
+        "Item to avoid": "Valuables in large quantities",
+        "why": "Risk of theft or loss on the trail"
+      },
+      {
+        "Item to avoid": "Non-insulated shoes",
+        "why": "Inadequate protection for high-altitude terrain"
+      }
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the expected level of physical fitness required for this trek?",
+      "answer": "The Spiti Valley Trek is considered moderate in difficulty. Hikers should be comfortable with daily hikes of 5-7 hours and have a good level of cardiovascular endurance."
+    },
+    {
+      "question": "When is the best time to visit the Spiti Valley Trek?",
+      "answer": "The best season for this trek is June to September, when temperatures are mild and the landscape is lush green. Avoid visiting during monsoon season (July-August) as some trails may be closed."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, altitude sickness is a risk at high altitudes above 4000m. Hikers should acclimatize gradually and monitor their bodies for signs of altitude sickness, such as headaches or fatigue."
+    },
+    {
+      "question": "What can I expect on the trail in terms of terrain and scenery?",
+      "answer": "The Spiti Valley Trek offers breathtaking scenery, including high-altitude lakes, meadows, and snow-capped peaks. The trail passes through a variety of terrains, including rocky outcrops, grasslands, and forests."
+    },
+    {
+      "question": "What kind of accommodation and food can I expect on the trek?",
+      "answer": "Hikers typically stay in basic tea houses or campsites with shared facilities. Meals are usually simple but hearty, consisting of local specialties such as thukpa, momos, and chowmein."
+    },
+    {
+      "question": "Do I need a permit to undertake this trek?",
+      "answer": "Yes, a permit is required for the Spiti Valley Trek. Trail Makers can arrange the necessary permits and logistics on behalf of hikers."
+    },
+    {
+      "question": "What are some specific challenges that hikers may face on this trek?",
+      "answer": "Hikers should be prepared for challenging weather conditions, including snowstorms and high winds. Additionally, the remote location of the Spiti Valley Trek means that medical facilities are limited, so it's essential to be well-prepared and aware of emergency procedures."
+    },
+    {
+      "question": "How do I prepare my body for the physical demands of this trek?",
+      "answer": "Hikers should start training at least 2-3 months prior to the trek, focusing on cardiovascular endurance, strength, and flexibility. It's also essential to acclimatize gradually to high altitudes by taking shorter hikes with regular breaks."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Spiti Valley Trek – Explore India’s Hidden Gem",
+    "description": "Experience the breathtaking beauty of Spiti Valley, Himachal Pradesh with Trail Makers.",
+    "keywords": [
+      "Spiti Valley Trek",
+      "Himachal Pradesh trekking",
+      "Indian treks",
+      "Moderate difficulty treks",
+      "6-day treks",
+      "Best season: Jun-Sep"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Spiti Valley Trek",
+      "description": "A 6-day moderate difficulty trek in Spiti Valley, Himachal Pradesh.",
+      "url": "https://thetrailmakers.in/treks/spiti-valley-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 32.24694444,
+        "longitude": 78.05222222
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T02:52:29.407Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Spiti"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Explore the untouched beauty of India's high-altitude desert landscapes\",\n  \"aboutText\": \"Imagine trekking through a cold desert landscape that stretches as far as the eye can see, wit"
+  ],
+  "flaggedForReview": false
+}

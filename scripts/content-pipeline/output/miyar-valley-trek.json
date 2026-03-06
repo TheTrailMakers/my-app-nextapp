@@ -1,0 +1,230 @@
+{
+  "trek_slug": "miyar-valley-trek",
+  "name": "Miyar Valley Trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "MODERATE",
+  "duration": 8,
+  "distance": 35,
+  "maxAltitude": 4250,
+  "basePrice": 1800000,
+  "tagline": "",
+  "aboutText": "Miyar Valley is one of the most remote treks in the Indian Himalayas, known for its untouched beauty and challenging terrain.",
+  "itineraryJson": [],
+  "difficultyDetails": {
+    "overall": "MODERATE",
+    "justification": "The Miyar Valley Trek is considered moderate due to its remote location and challenging terrain. Participants should be prepared for uneven trails and potential glacier crossings.",
+    "altitudeSicknessRisk": "Low - Altitude sickness risk is low, but participants with pre-existing conditions may need to take extra precautions.",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain and carry a backpack weighing up to 10kg.",
+    "priorExperience": "Previous high-altitude trekking experience (above 3500m) is recommended, but not required.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "June-September",
+    "offSeason": "October-May",
+    "months": {
+      "January": {
+        "weather": "Cold, snowy",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, snowy",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, spring showers",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild, spring showers",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm, monsoon onset",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "June": {
+        "weather": "Hot, dry",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": true
+      },
+      "July": {
+        "weather": "Hot, dry",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": true
+      },
+      "August": {
+        "weather": "Hot, dry",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": true
+      },
+      "September": {
+        "weather": "Warm, monsoon end",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Mild, autumn showers",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "November": {
+        "weather": "Cold, snowy",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, snowy",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The best time to visit Miyar Valley Trek is during the summer months (June-September) when the weather is warm and dry, making it ideal for trekking. The trail conditions are generally good, and there's a wide range of flora and fauna to explore.",
+    "peakSeasonCons": "However, this is also the peak tourist season, so expect large crowds and higher costs. Accommodation and transportation options may be limited, and popular trails can get congested.",
+    "offSeasonPros": "Trekking during the off-season (October-May) offers a more peaceful experience, with fewer tourists and lower prices. The weather is still generally pleasant, with mild temperatures and occasional autumn showers.",
+    "offSeasonCons": "However, some trail sections may be closed due to snow or landslides, and the weather can be unpredictable. It's essential to check the latest trail conditions before embarking on your trek."
+  },
+  "gettingThere": {
+    "nearestAirport": "Gaggal Airport (Dehradun) - 220 km, 5-6 hours from Miyar Valley Trek base",
+    "nearestRailway": "Kullu Railway Station - 100 km, 2-3 hours from Miyar Valley Trek base",
+    "fromDelhi": "Drive to Dehradun (230 km, 7-8 hours), then drive to Kullu (140 km, 4-5 hours)",
+    "fromMumbai": "",
+    "localTransport": "Shared jeeps and taxis available from Kullu to Miyar Valley Trek base",
+    "baseVillage": "Kullu",
+    "summary": "Reach Gaggal Airport in Dehradun or Kullu Railway Station, then drive or take shared transport to Kullu. From there, trek to the base village."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "District Administration Office, Shimla or online through HP Forest Department website",
+        "notes": "Required for trekking in forested areas"
+      },
+      {
+        "name": "Inner Line Permit",
+        "cost": "INR 20 per day",
+        "where": "Border Districts of Himachal Pradesh",
+        "notes": "Required for treks in border districts"
+      }
+    ],
+    "innerLinePermit": true,
+    "innerLinePermitDetails": "Required for all treks in the Miyar Valley Trek area, can be obtained at the Border Districts of Himachal Pradesh.",
+    "nationalParkFee": null,
+    "restrictions": "Photography is allowed outside national parks, camping zones are restricted within 500 meters from water sources",
+    "summary": "A Forest Permit and Inner Line Permit are required for this trek. Permits can be obtained online or through the District Administration Office in Shimla."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Hiking boots - Waterproof, ankle-high, and insulated for high-altitude conditions",
+      "Warm layers (fleece, down jacket) - For cold mornings and evenings at high altitude",
+      "Insulated sleeping bag - Rated to -20°C or lower for comfort in high-altitude campsites",
+      "Trekking poles - Adjustable length, lightweight, and durable for support on uneven terrain"
+    ],
+    "clothing": [
+      "Base layers (top and bottom) - Moisture-wicking, breathable fabrics for temperature regulation",
+      "Waterproof jacket and pants - Breathable, wind-resistant, and water-repellent for unpredictable mountain weather",
+      "Warm hat and gloves - Insulated, waterproof, and adjustable to prevent heat loss"
+    ],
+    "doNotCarry": [
+      "Valuables - Leave them in the hotel safe or at home, as theft is common in remote areas",
+      "Irreplaceable items - Consider leaving behind personal mementos or irreplaceable items due to risk of loss or damage"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the average fitness level required for this trek?",
+      "answer": "The Miyar Valley Trek is considered moderate, with daily hikes ranging from 5-7 hours. A good level of cardiovascular fitness and flexibility are recommended, but not extreme endurance experience."
+    },
+    {
+      "question": "When is the best time to visit the Miyar Valley for optimal conditions?",
+      "answer": "The best season for the Miyar Valley Trek is June to September, when temperatures are mild (15-25°C) and trails are clear of snow. Avoid visiting during monsoon season (July-August), as some trails may be impassable."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, the Miyar Valley Trek reaches an altitude of 4250m, which can pose a risk to altitude sickness. However, most trekkers experience no issues if they acclimatize properly and follow guidelines provided by local guides."
+    },
+    {
+      "question": "What kind of terrain can I expect on the trail?",
+      "answer": "The Miyar Valley Trek features scenic valleys, rolling hills, and occasional steep inclines. The terrain is generally moderate, with some rocky sections and uneven paths."
+    },
+    {
+      "question": "Will I have access to amenities like food, lodging, and medical care during the trek?",
+      "answer": "Yes, local villages along the trail offer basic accommodations, meals, and medical assistance. However, services may be limited, and it's essential to plan accordingly and research local options."
+    },
+    {
+      "question": "Do I need a permit or pay any costs for this trek?",
+      "answer": "A permit is required for the Miyar Valley Trek, which can be obtained through the local district administration office. Costs vary depending on the time of year and group size, but expect to pay around ₹500-₹1000 per person."
+    },
+    {
+      "question": "What are some specific challenges I might face during this trek?",
+      "answer": "The Miyar Valley Trek presents several challenges, including unpredictable weather, steep inclines, and potential altitude sickness. Additionally, the trail passes through sensitive ecosystems, so it's essential to respect local environments and wildlife."
+    },
+    {
+      "question": "How long does the trek typically take to complete?",
+      "answer": "The Miyar Valley Trek usually takes 8 days to complete, depending on individual pace and acclimatization time. It's essential to plan for flexibility in your itinerary and allow time for rest and recovery."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "All meals",
+    "Expert guide",
+    "Equipment",
+    "Porter"
+  ],
+  "exclusions": [
+    "Climbing gear",
+    "Travel to base"
+  ],
+  "seo": {
+    "title": "Miyar Valley Trek – Explore Himachal’s Hidden Gem",
+    "description": "Discover the serene beauty of Miyar Valley in Himachal Pradesh, perfect for moderate trekkers. Book now!",
+    "keywords": [
+      "Miyar Valley Trek",
+      "Himachal Pradesh trekking",
+      "moderate treks",
+      "Indian trekking destinations",
+      "trekking in Himalayas",
+      "Himalayan adventure"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Miyar Valley Trek",
+      "description": "A moderate trek in Himachal Pradesh, offering breathtaking views of the valley.",
+      "url": "https://thetrailmakers.in/treks/miyar-valley-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": null,
+        "longitude": null
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T19:45:50.880Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Sport_in_India",
+    "https://en.wikipedia.org/wiki/Miyar_Valley"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Trek through pristine glacial valleys and river gorges in remote Himachal Pradesh\",\n  \"aboutText\": \"Get ready for an epic adventure in Miyar Valley Trek, a moderate 8-day journey that ",
+    "itinerary: Failed to parse JSON: Expected ',' or '}' after property value in JSON at position 573\nText: [\n  {\n    \"day\": 1,\n    \"title\": \"Day 1: Miyar Valley Expedition Begins\",\n    \"startPoint\": \"Miyar Valley Base Camp\",\n    \"endPoint\": \"Miyar Valley Base Camp\",\n    \"altitudeStart\": null,\n    \"altitudeEnd\": null,\n    \"distance\": null,\n    \"walkingHours\": \"4-5 hours\",\n    \"highlights\": \"Arrival at Miy"
+  ],
+  "flaggedForReview": false
+}

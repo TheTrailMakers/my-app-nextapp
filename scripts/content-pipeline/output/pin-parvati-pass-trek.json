@@ -1,0 +1,360 @@
+{
+  "trek_slug": "pin-parvati-pass-trek",
+  "name": "Pin Parvati Pass Trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "VERY_HARD",
+  "duration": 10,
+  "distance": 95,
+  "maxAltitude": 5320,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Pin Parvati is an advanced trek that rewards trekkers with remote landscapes, glacier crossings, and a sense of true wilderness.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Reach Barshaini and trek to Pulga",
+      "startPoint": "Barshaini",
+      "endPoint": "Pulga",
+      "altitudeStart": null,
+      "altitudeEnd": 5320,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "First day of trekking, reaching the start point and setting up camp at Pulga.",
+      "camp": "Pulga Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Trek to Mantalai",
+      "startPoint": "Pulga",
+      "endPoint": "Mantalai",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "6-7 hours",
+      "highlights": "Continuing the trek, reaching Mantalai with its scenic views.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Trek to Thakur Kuan / approach",
+      "startPoint": "Mantalai",
+      "endPoint": "Thakur Kuan / approach",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "5-6 hours",
+      "highlights": "Approaching the high camp, setting up for the night.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 4,
+      "title": "Day 4: Approach glacier sections and high camp",
+      "startPoint": "Thakur Kuan / approach",
+      "endPoint": null,
+      "altitudeStart": 5320,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Glacier sections ahead, acclimatization and high camp setup.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 5,
+      "title": "Day 5: Cross Pin Parvati Pass and descend into Pin Valley",
+      "startPoint": "High Camp",
+      "endPoint": null,
+      "altitudeStart": 5320,
+      "altitudeEnd": 5320,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Crossing the Pin Parvati Pass, entering the Pin Valley.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 6,
+      "title": "Day 6: Exit through Pin Valley villages",
+      "startPoint": null,
+      "endPoint": null,
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": 95,
+      "walkingHours": "5-6 hours",
+      "highlights": "Exiting the Pin Valley, reaching the end point.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 7,
+      "title": "Day 7: Continue trekking through Pin Valley villages",
+      "startPoint": null,
+      "endPoint": null,
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": 95,
+      "walkingHours": "5-6 hours",
+      "highlights": "Continuing the journey, exploring the Pin Valley villages.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 8,
+      "title": "Day 8: Trekking through Pin Valley villages",
+      "startPoint": null,
+      "endPoint": null,
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": 95,
+      "walkingHours": "5-6 hours",
+      "highlights": "Trekking through the scenic Pin Valley, experiencing local culture.",
+      "camp": "Riverside Camp"
+    },
+    {
+      "day": 9,
+      "title": "Day 9: Final trek to Mud village",
+      "startPoint": null,
+      "endPoint": "Mud village",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": 95,
+      "walkingHours": "5-6 hours",
+      "highlights": "Final leg of the trek, reaching Mud village.",
+      "camp": null
+    },
+    {
+      "day": 10,
+      "title": "Day 10: Departure from Mud village",
+      "startPoint": "Mud village",
+      "endPoint": null,
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": null,
+      "highlights": "Last day of the trek, departure from Mud village.",
+      "camp": null
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "VERY_HARD",
+    "justification": "The Pin Parvati Pass Trek is considered VERY HARD due to its remote location, high altitude, and challenging terrain. The trek requires a good level of physical fitness and mental toughness to navigate through the rugged landscape.",
+    "altitudeSicknessRisk": "Low - Although the trek reaches an altitude of 5320m, the risk of altitude sickness can be managed with proper acclimatization and precautions.",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain and handle high altitudes.",
+    "priorExperience": "Previous experience with high-altitude treks and trekking in remote areas is recommended.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Jul-Sep",
+    "offSeason": "Nov-May",
+    "months": {
+      "January": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, occasional snowfall",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": false
+      },
+      "April": {
+        "weather": "Warm, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Hot and dry",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Scorching hot",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "July": {
+        "weather": "Hot, occasional thunderstorms",
+        "trailCondition": "Difficult",
+        "recommended": true
+      },
+      "August": {
+        "weather": "Warm, occasional rain showers",
+        "trailCondition": "Difficult",
+        "recommended": true
+      },
+      "September": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Open/Closed/Difficult",
+        "recommended": false
+      },
+      "October": {
+        "weather": "Cool, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "November": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Very cold, heavy snowfall",
+        "trailCondition": "Closed",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The best time to visit Pin Parvati Pass Trek is during the monsoon season (July-September) when the weather is warm and sunny, making it ideal for trekking. The lush green valleys are at their peak, offering breathtaking views.",
+    "peakSeasonCons": "However, this is also the peak tourist season, which means larger crowds and higher costs. Additionally, the trails can be slippery due to the heavy rainfall.",
+    "offSeasonPros": "Trekking during the off-season (November-May) offers a serene experience with fewer crowds and lower costs. The scenery remains beautiful, albeit with some snowfall and potential trail closures.",
+    "offSeasonCons": "The weather can be quite cold and snowy, making it challenging for trekking. Some trails may be closed due to heavy snowfall or landslides."
+  },
+  "gettingThere": {
+    "nearestAirport": "Kullu Airport (also known as Bhuntar Airport), approximately 250 km from trek base",
+    "nearestRailway": "Bhuntar Railway Station, approximately 250 km from trek base",
+    "fromDelhi": "Drive or take a bus/train to Manali (approx. 550-600 km, 10-12 hours) and then hire a taxi or jeep to Mud village.",
+    "fromMumbai": "Fly to Bhuntar Airport (approximately 2 hours), then drive or take a bus/train to Mud village (approximately 250-300 km, 5-6 hours)",
+    "localTransport": "Shared jeeps and taxis available from Manali and nearby towns",
+    "baseVillage": "Mud village",
+    "summary": "Reach Kullu Airport or Bhuntar Railway Station by air or rail. From there, drive or take a bus to Mud village, the starting point of the trek."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Permit name",
+        "cost": "Free",
+        "where": "District Headquarter, Kullu",
+        "notes": "No cost, but must be obtained in advance"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": null,
+    "restrictions": "",
+    "summary": "The Pin Parvati Pass Trek does not require a permit for standard treks. However, a forest permit may be needed for certain areas."
+  },
+  "gearChecklist": {
+    "essential": [
+      {
+        "Item name": "Oxygen Mask",
+        "why/spec": "High-altitude trek; supplemental oxygen for acclimatization"
+      },
+      {
+        "Item name": "Insulated Water Bottles",
+        "why/spec": "Cold temperatures; hydration and warmth preservation"
+      },
+      {
+        "Item name": "Crampons/Ice Poles",
+        "why/spec": "Snowy terrain; stability and balance on icy surfaces"
+      }
+    ],
+    "clothing": [
+      {
+        "Clothing item": "Thermal Base Layers (top and bottom)",
+        "why/spec": "Cold temperatures; thermal insulation for comfort"
+      },
+      {
+        "Clothing item": "Waterproof Jacket and Pants",
+        "why/spec": "Rainy season; protection from elements"
+      },
+      {
+        "Clothing item": "Warm Hat and Gloves",
+        "why/spec": "High altitude; heat loss prevention"
+      }
+    ],
+    "doNotCarry": [
+      {
+        "Item to avoid": "Valuables in large amounts",
+        "why": "Remote location; risk of theft or loss"
+      }
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the average fitness level required for this trek?",
+      "answer": "This trek requires a high level of physical fitness due to its steep inclines and high altitude. Trekkers should be experienced in multi-day treks and have a good understanding of their physical limitations."
+    },
+    {
+      "question": "When is the best time to visit Pin Parvati Pass Trek?",
+      "answer": "The best time to visit Pin Parvati Pass Trek is during the monsoon season (Jul-Sep), when the weather is generally clear and the trail is less crowded."
+    },
+    {
+      "question": "What are the risks of altitude sickness on this trek?",
+      "answer": "Altitude sickness is a significant risk on this trek due to its high altitude. Trekkers should be aware of the symptoms and take necessary precautions, such as acclimatization days and oxygen supply."
+    },
+    {
+      "question": "What can I expect on the trail in terms of terrain and conditions?",
+      "answer": "The trail on Pin Parvati Pass Trek is steep and rocky, with some sections being snow-covered. Trekkers should be prepared for uneven terrain, icy patches, and potential snowstorms."
+    },
+    {
+      "question": "What kind of accommodation and food can I expect during the trek?",
+      "answer": "During the trek, trekkers can expect basic camping facilities and simple meals at designated campsites. It is recommended to bring a portable stove and cooking gear to prepare meals."
+    },
+    {
+      "question": "Do I need any special permits or costs for this trek?",
+      "answer": "Yes, a permit is required from the local authorities to undertake this trek. The cost of the permit varies depending on the season and type of trekker. It is recommended to check with Trail Makers for the latest information."
+    },
+    {
+      "question": "What are some specific challenges of this trek?",
+      "answer": "One of the significant challenges of Pin Parvati Pass Trek is its high altitude, which can cause fatigue and discomfort. Additionally, the trail can be steep and rocky, making it challenging for trekkers with mobility issues."
+    },
+    {
+      "question": "How do I prepare myself physically for this trek?",
+      "answer": "To prepare yourself physically for Pin Parvati Pass Trek, it is recommended to engage in regular cardio exercises, such as running or cycling, and strength training. Additionally, acclimatization to high altitudes can be achieved by gradually increasing altitude exposure over several weeks."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Camping and meals",
+    "Experienced high-altitude guides",
+    "Porters"
+  ],
+  "exclusions": [
+    "High-altitude personal gear",
+    "Travel to start point"
+  ],
+  "seo": {
+    "title": "Pin Parvati Pass Trek – India’s Toughest Adventure",
+    "description": "Tackle the Pin Parvati Pass Trek in Himachal Pradesh, a challenging 10-day adventure for experienced trekkers.",
+    "keywords": [
+      "Himachal Pradesh trekking",
+      "Pin Parvati Pass",
+      "India’s toughest trek",
+      "Adventure tourism",
+      "Trekking in India"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Pin Parvati Pass Trek",
+      "description": "",
+      "url": "https://thetrailmakers.in/treks/pin-parvati-pass-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.8437,
+        "longitude": 77.8421
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T01:51:10.262Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Pin_Parbati_Pass"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Trek to the Roof of India, where rugged beauty meets adventure\",\n  \"aboutText\": \"Get ready for the ultimate challenge on the Pin Parvati Pass Trek! This VERY_HARD trek takes you throug"
+  ],
+  "flaggedForReview": false
+}

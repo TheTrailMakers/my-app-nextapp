@@ -1,0 +1,265 @@
+{
+  "trek_slug": "hilley-versey-trek",
+  "name": "Hilley – Versey Trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "EASY",
+  "duration": 3,
+  "distance": 10,
+  "maxAltitude": 2700,
+  "basePrice": 950000,
+  "tagline": "",
+  "aboutText": "A serene trek perfect for spring when rhododendrons are in full bloom.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Forest walk from Hilley to Versey",
+      "startPoint": "Hilley Village",
+      "endPoint": "Versey Camp",
+      "altitudeStart": 2000,
+      "altitudeEnd": 2700,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Explore the lush forest, spotting local wildlife and flora.",
+      "camp": "Hilley Village Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Forest walk from Versey to High Camp",
+      "startPoint": "Versey Camp",
+      "endPoint": "High Camp",
+      "altitudeStart": 2700,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Reach the high camp, taking in breathtaking views of the surrounding landscape.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Forest walk from High Camp to Hilley Village",
+      "startPoint": "High Camp",
+      "endPoint": "Hilley Village",
+      "altitudeStart": null,
+      "altitudeEnd": 2000,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Descend back to Hilley village, reflecting on the day's journey.",
+      "camp": "Hilley Village Camp"
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "EASY",
+    "justification": "The Hilley – Versey Trek is a great option for beginners and families. The trek's gentle incline and smooth terrain make it an ideal choice for those looking to experience the beauty of nature without excessive physical exertion.",
+    "altitudeSicknessRisk": "Low",
+    "fitnessRequirement": "Must be able to walk 4-6 hours daily on relatively flat terrain.",
+    "priorExperience": "No prior trekking experience is required, but a basic level of fitness and comfort with uneven terrain is recommended.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Mar-May",
+    "offSeason": "Nov-Mar",
+    "months": {
+      "January": {
+        "weather": "Cold, frosty mornings with occasional snowfall",
+        "trailCondition": "Difficult due to snow and ice",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Colder than January, with more frequent snowfall",
+        "trailCondition": "Very Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Temperatures start rising, but still quite chilly",
+        "trailCondition": "Difficult",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild temperatures, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm and sunny, ideal trekking weather",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Hot and humid, monsoon season begins",
+        "trailCondition": "Difficult due to rain and landslides",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Monsoon season in full swing, heavy rainfall",
+        "trailCondition": "Very Difficult",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Heavy rainfall continues, but temperatures are mild",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Rain starts to clear, ideal time for trekking",
+        "trailCondition": "Difficult due to rain and landslides",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Temperatures rise, but still quite cool",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "November": {
+        "weather": "Cold and frosty mornings return",
+        "trailCondition": "Very Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Chilly and snowy, not ideal trekking weather",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "Mild temperatures and clear skies make for an ideal trekking experience.",
+    "peakSeasonCons": "Higher prices and crowds due to peak season popularity.",
+    "offSeasonPros": "Lower prices and fewer crowds, making it a more budget-friendly option.",
+    "offSeasonCons": "Unpredictable weather conditions and potential trail closures due to heavy rainfall."
+  },
+  "gettingThere": {
+    "nearestAirport": "Gaggal Airport, Chandigarh (approx. 220 km, 4-5 hours from trek base)",
+    "nearestRailway": "Pathankot Railway Station (approx. 140 km, 3-4 hours from trek base)",
+    "fromDelhi": "Drive to Chandigarh and then to Pathankot via NH44 (approx. 6-7 hours), or take a train from Delhi to Pathankot (approx. 8-10 hours)",
+    "fromMumbai": "Fly to Chandigarh Airport and then drive to Pathankot (approx. 4-5 hours)",
+    "localTransport": "Shared jeeps or taxis available from Pathankot to trek base",
+    "baseVillage": "Versey, Himachal Pradesh",
+    "summary": "Reach Gaggal Airport or Pathankot Railway Station and then take local transport to Versey. Drive from Delhi takes around 6-7 hours, while train journey takes 8-10 hours."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "District Forest Office, Himachal Pradesh",
+        "notes": "Required for treks in protected forest areas"
+      },
+      {
+        "name": "National Park Fee",
+        "cost": "INR 50-100",
+        "where": "National Park Entrance Counter",
+        "notes": "Applicable only to national parks within HP"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": true,
+    "restrictions": "Photography and camping restrictions may apply in protected forest areas",
+    "summary": "A forest permit is required for treks in protected forest areas, while a national park fee applies to national parks within Himachal Pradesh."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Hiking boots - for stability and grip at high altitudes",
+      "Waterproof jacket and pants - to protect against unpredictable mountain weather",
+      "Insulated layers (fleece, down) - for warmth in cold mornings and evenings",
+      "Base layers (moisture-wicking tops and leggings) - for comfort during physical activity",
+      "Sun protection (sunscreen, sunglasses, hat) - for safe trekking during the day",
+      "First aid kit - with essentials like pain relievers, bandages, and blister care",
+      "Headlamp or flashlight - in case you're out late on your last night's campsite"
+    ],
+    "clothing": [
+      "Warm socks - for colder mornings and evenings at high altitudes",
+      "Quick-drying trekking pants - for comfort during physical activity",
+      "Breathable, moisture-wicking shirts - for hot days on the trail",
+      "Gaiters and gators - to keep debris out of your boots"
+    ],
+    "doNotCarry": [
+      "Valuables (jewelry, cash) - to minimize risk of loss or theft during the trek",
+      "Electronics (phones, cameras) - unless absolutely necessary for documentation purposes",
+      "Non-essential clothing items - to keep pack weight down and stay focused on the trail"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "Is this trek suitable for beginners?",
+      "answer": "While it's considered an easy trek, Hilley – Versey Trek still involves some steep inclines and uneven terrain. It's recommended that you have some hiking experience before embarking on this journey."
+    },
+    {
+      "question": "What is the best time to visit Hilley – Versey Trek?",
+      "answer": "The best season for this trek is March to May, when the weather is generally clear and mild, with average temperatures ranging from 10°C to 20°C (50°F to 68°F)."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, there is a risk of altitude sickness at high altitudes. However, most trekkers experience no issues as long as they ascend gradually and drink plenty of water."
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The Hilley – Versey Trek takes you through scenic forests and meadows, with stunning views of the surrounding mountains. The trail is generally well-marked and maintained, but be prepared for some uneven terrain and potential river crossings."
+    },
+    {
+      "question": "What kind of accommodation can I expect?",
+      "answer": "You'll be camping at designated campsites along the trail, which are equipped with basic facilities like toilets and water sources. Some sections may also offer basic lodges or tea houses for overnight stays."
+    },
+    {
+      "question": "Do I need a permit to trek in this region?",
+      "answer": "Yes, you'll need to obtain a permit from the local authorities before embarking on your trek. Our guides will help facilitate the process and ensure that all necessary permits are in order."
+    },
+    {
+      "question": "What are some specific challenges of this trek?",
+      "answer": "One challenge is navigating through dense forests, which can be particularly difficult during the monsoon season. Another challenge is managing your water supply, as there may be limited access to clean drinking water along certain sections of the trail."
+    },
+    {
+      "question": "Is the trek dog-friendly?",
+      "answer": "Unfortunately, dogs are not allowed on this trek due to concerns about disturbing wildlife and other trekkers. However, our guides can provide information on nearby dog-friendly trails if you're interested in exploring those options."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "First-time trekkers, families with children",
+  "inclusions": [
+    "Accommodation",
+    "Meals"
+  ],
+  "exclusions": [
+    "Transport"
+  ],
+  "seo": {
+    "title": "Hilley – Versey Trek, Himachal Pradesh | Easy 3-Day Adventure",
+    "description": "Explore the scenic Hilley – Versey Trek in Himachal Pradesh with Trail Makers",
+    "keywords": [
+      "Easy treks in Himachal Pradesh",
+      "Himachal Pradesh trekking",
+      "3-day adventure treks",
+      "Easy treks for beginners",
+      "Trekking in India",
+      "Himachal Pradesh tourism"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Hilley – Versey Trek",
+      "description": "A 3-day easy trek in Himachal Pradesh with scenic views and adventure activities.",
+      "url": "https://thetrailmakers.in/treks/hilley-versey-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": null,
+        "longitude": null
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T18:38:34.654Z",
+  "sourcesUsed": [],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Discover the serenity of Hilley – Versey Trek amidst oak and rhododendron forests\",\n  \"aboutText\": \"Hey fellow trekkers! If you're looking for an easy yet breathtaking trek, look no fu"
+  ],
+  "flaggedForReview": false
+}

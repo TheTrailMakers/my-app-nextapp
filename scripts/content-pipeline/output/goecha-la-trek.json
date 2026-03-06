@@ -1,0 +1,209 @@
+{
+  "trek_slug": "goecha-la-trek",
+  "name": "Goecha La Trek",
+  "state": "Sikkim",
+  "difficulty": "MODERATE",
+  "duration": 7,
+  "distance": 70,
+  "maxAltitude": 4940,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Goecha La Trek is a well-known trek in Sikkim.",
+  "itineraryJson": [],
+  "difficultyDetails": {
+    "overall": "MODERATE",
+    "justification": "The Goecha La Trek offers a moderate level of difficulty due to its steady incline and uneven terrain, but the scenic views and relatively shorter distance make it accessible to most trekkers.",
+    "altitudeSicknessRisk": "Low",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain and handle altitude changes of up to 2000m within a short span.",
+    "priorExperience": "Previous trekking experience in high-altitude regions is recommended, but not required.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Apr-Jun, Sep-Nov",
+    "offSeason": "Dec-Mar",
+    "months": {
+      "January": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, occasional snowfall",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Hot, dry",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "July": {
+        "weather": "Hot, dry",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "August": {
+        "weather": "Hot, occasional rain showers",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm, occasional rain showers",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "October": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Cool, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The best time to visit Goecha La Trek is during the spring (Apr-Jun) and autumn (Sep-Nov) when the weather is mild and the trail conditions are optimal.",
+    "peakSeasonCons": "Peak season can be crowded and expensive, with higher prices for accommodations and treks.",
+    "offSeasonPros": "The off-season (Dec-Mar) offers a serene and peaceful trekking experience, with lower prices and fewer crowds.",
+    "offSeasonCons": "The off-season can be harsh due to heavy snowfall and freezing temperatures, making the trek more challenging."
+  },
+  "gettingThere": {
+    "nearestAirport": "Bagdogra Airport (IXB), approximately 120 km from Gyalshing",
+    "nearestRailway": "New Jalpaiguri Junction Railway Station (NJP) or New Bongaigaon Railway Station (NBG), approximately 100-150 km from Gyalshing",
+    "fromDelhi": "Fly to Bagdogra Airport, then hire a taxi or bus to Gyalshing (approximately 4-5 hours)",
+    "fromMumbai": "Fly to Bagdogra Airport, then hire a taxi or bus to Gyalshing (approximately 6-7 hours with layovers)",
+    "localTransport": "Shared jeeps and buses are available from Gyalshing to Tinklevilla and other villages along the trek route",
+    "baseVillage": "Tinklevilla is the base village where the trek starts",
+    "summary": "Reach Bagdogra Airport or New Jalpaiguri Junction Railway Station, then hire a taxi or bus to Gyalshing. From there, take local transport to Tinklevilla, the starting point of the Goecha La Trek."
+  },
+  "permits": {
+    "permitsRequired": false,
+    "summary": "Check with local authorities"
+  },
+  "gearChecklist": {
+    "essential": [
+      "Hiking boots - Waterproof and insulated for high altitude",
+      "Warm layers (fleece, down jacket) - For cold nights at high altitude",
+      "Insulated sleeping bag - Rated to -20°C for comfort",
+      "Trekking poles - Adjustable length and sturdy for steep inclines",
+      "First aid kit - Including essentials like painkillers, bandages, and blister care"
+    ],
+    "clothing": [
+      "Moisture-wicking base layers - For temperature regulation during physical activity",
+      "Waterproof jacket and pants - For rain and wind protection",
+      "Warm hat and gloves - For cold weather conditions",
+      "Gaiters and gators - To keep snow out of boots"
+    ],
+    "doNotCarry": [
+      "Valuables - Leave them at home to minimize risk of loss or theft",
+      "Non-essential electronics - No need for luxury items on this trek",
+      "Perishable food items - Stick to non-perishable snacks and meals",
+      "Single-use plastics - Opt for reusable water bottles, bags, and utensils"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the difficulty level of the Goecha La Trek?",
+      "answer": "The Goecha La Trek is considered moderate in difficulty. It involves steep inclines, uneven terrain, and high altitude, but with proper acclimatization and preparation, most trekkers can handle it."
+    },
+    {
+      "question": "When is the best time to visit the Goecha La Trek?",
+      "answer": "The best time to visit the Goecha La Trek is during the spring (April-June) or autumn (September-November) seasons. These periods offer mild weather, clear skies, and lush green landscapes."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, there is a risk of altitude sickness on the Goecha La Trek. The highest point, Goecha La, reaches an altitude of 4940m. To minimize this risk, it's essential to acclimatize gradually and stay hydrated."
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The trail takes you through a variety of landscapes, including rhododendron forests, alpine meadows, and rocky outcrops. You'll also encounter traditional villages and scenic viewpoints along the way."
+    },
+    {
+      "question": "Will I have access to accommodation and food on the trek?",
+      "answer": "Yes, most campsites and lodges offer basic accommodation and meals. However, options may be limited in remote areas. It's a good idea to plan ahead and book accommodations in advance, especially during peak season."
+    },
+    {
+      "question": "Do I need any special permits or costs for this trek?",
+      "answer": "Yes, you'll need to obtain a permit from the Sikkim Tourism Department. The cost of the permit varies depending on the time of year and type of accommodation. Be sure to check with your tour operator for more information."
+    },
+    {
+      "question": "What are some specific challenges I should be aware of on this trek?",
+      "answer": "One challenge is navigating steep and uneven terrain, especially in wet conditions. Another is dealing with high altitude and potential altitude sickness. Additionally, the trail can be quite rocky and exposed, requiring careful footing and attention to your surroundings."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Goecha La Trek – Experience Sikkim's Best | Trail Makers",
+    "description": "7-day moderate trek to Goecha La (4940m) in Sikkim, book now",
+    "keywords": [
+      "Sikkim treks",
+      "moderate treks",
+      "Indian trekking",
+      "Goecha La Trek",
+      "Sikkim adventure"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Goecha La Trek",
+      "description": "",
+      "url": "https://thetrailmakers.in/treks/goecha-la-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.60777778,
+        "longitude": 88.18694444
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Sikkim",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T18:19:28.407Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Goecha_La"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Witness the breathtaking view of Kanchenjunga's majestic southeast face\",\n  \"aboutText\": \"The Goecha La Trek is an exhilarating adventure in Sikkim, India, that offers a unique blend o",
+    "itinerary: Failed to parse JSON: Expected ',' or '}' after property value in JSON at position 568\nText: [\n  {\n    \"day\": 1,\n    \"title\": \"Day 1: Village/Trekker's Base to Dzongri\",\n    \"startPoint\": \"Village/Trekker's Base\",\n    \"endPoint\": \"Dzongri\",\n    \"altitudeStart\": null,\n    \"altitudeEnd\": 3740,\n    \"distance\": null,\n    \"walkingHours\": \"4-5 hours\",\n    \"highlights\": \"Arrival at Dzongri, acclim",
+    "permits: Failed to parse JSON: Expected ',' or ']' after array element in JSON at position 160\nText: {\"permitsRequired\": true, \"permitTypes\": [{\"name\": \"Protected Area Permit\", \"cost\": \"Free\", \"where\": \"District Administration, South Sikkim\"}, \"innerLinePermit\": false, \"innerLinePermitDetails\": null, \"nationalParkFee\": \"Entry fee required for national parks\", \"restrictions\": \"Photography and campin"
+  ],
+  "flaggedForReview": false
+}

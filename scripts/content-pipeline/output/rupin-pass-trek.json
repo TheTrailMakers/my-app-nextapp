@@ -1,0 +1,235 @@
+{
+  "trek_slug": "rupin-pass-trek",
+  "name": "Rupin Pass Trek",
+  "state": "Himachal Pradesh/Uttarakhand",
+  "difficulty": "HARD",
+  "duration": 8,
+  "distance": 90,
+  "maxAltitude": 4300,
+  "basePrice": 0,
+  "tagline": "Conquer the majestic Rupin Pass, where Himalayan grandeur meets ancient secrets",
+  "aboutText": "Get ready for an adventure of a lifetime on the Rupin Pass Trek! This challenging yet rewarding journey takes you through some of the most breathtaking landscapes in the Himalayas. Starting from Dhaula in Uttarakhand and ending in Sangla, Himachal Pradesh, this 90km trek will push your limits and leave you awestruck. The path itself is a traditional shepherd's route, winding its way across mostly uninhabited areas at an elevation of approximately 15,250 ft (4,650m) above sea level. As you ascend, the scenery shifts from lush green forests to snow-capped peaks, with the majestic Rupin Pass standing tall at 4,650m. But what makes this trek truly unique is its connection to ancient history and culture. The Sarasvati Glacier, located at the pass, has been identified as the possible origin of the paleo-river Sarasvati, which once flowed through various parts of India before turning into icy waters. This trek is not for the faint of heart, but for those who dare to venture into the unknown, it promises an experience like no other. So, lace up your boots and get ready to conquer the Rupin Pass!",
+  "itineraryJson": [],
+  "difficultyDetails": {
+    "overall": "HARD",
+    "justification": "The Rupin Pass Trek is considered hard due to its high altitude and challenging terrain, requiring experienced trekkers.",
+    "altitudeSicknessRisk": "Low - Altitude sickness risk is low due to gradual ascent and acclimatization days built into the trek.",
+    "fitnessRequirement": "Must be able to walk 8-10 hours daily on uneven terrain and handle high altitude conditions.",
+    "priorExperience": "Previous experience with high-altitude treks and glacier crossings is recommended.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "May-Oct",
+    "offSeason": "Nov-April",
+    "months": {
+      "January": {
+        "weather": "Cold, snowy conditions",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Open/Closed",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Cool, occasional rain showers",
+        "trailCondition": "Open/Closed",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Mild, pleasant conditions",
+        "trailCondition": "Open/Closed",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Warm, monsoon season approaching",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Hot, monsoon season in full swing",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Hot, occasional rain showers",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm, pleasant conditions",
+        "trailCondition": "Open/Closed",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Cool, pleasant conditions",
+        "trailCondition": "Open/Closed",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, snowy conditions",
+        "trailCondition": "Closed/Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "Best time to see the Himalayas in full glory, pleasant weather, and fewer crowds",
+    "peakSeasonCons": "Higher costs due to increased demand, potential landslides and snowfall on the trails",
+    "offSeasonPros": "Lower costs, fewer crowds, and a more serene trekking experience",
+    "offSeasonCons": "Some sections of the trail may be closed or difficult due to snow and ice"
+  },
+  "gettingThere": {
+    "nearestAirport": "Jolly Grant Airport (Dehradun), approximately 250 km, 5-6 hours from trek base",
+    "nearestRailway": "Haridwar Junction railway station, approximately 220 km, 4-5 hours from trek base",
+    "fromDelhi": "Drive to Haridwar via NH44 and NH10, or take a bus/train from Delhi to Haridwar (approx. 7-8 hours)",
+    "fromMumbai": "No direct route available; drive to Delhi, then follow Delhi to Haridwar route",
+    "localTransport": "Shared jeeps and buses available from Sangla and Dhaula to trek base",
+    "baseVillage": "Dhaula (Uttarakhand) or Sangla (Himachal Pradesh)",
+    "summary": "Reach Haridwar by air/rail, then drive to Dhaula/Sangla for the trek. Local transport options are available from these towns."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "District Administration Office, Kinnaur District"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": "Yes, for entry into national parks such as Narkanda National Park",
+    "restrictions": "No specific restrictions mentioned, but photography and camping may be subject to local regulations",
+    "summary": "A forest permit is required for the Rupin Pass Trek, which can usually be obtained free of charge from the District Administration Office in Kinnaur District. Additionally, a national park fee applies for entry into designated national parks along the trek route."
+  },
+  "gearChecklist": {
+    "essential": [
+      {
+        "Item name": "First aid kit",
+        "why/spec": "To treat altitude-related issues and minor injuries"
+      },
+      {
+        "Item name": "Insulated jacket",
+        "why/spec": "For warmth at high altitudes"
+      },
+      {
+        "Item name": "Oxygen mask",
+        "why/spec": "In case of severe altitude sickness"
+      }
+    ],
+    "clothing": [
+      {
+        "Clothing item": "Thermal base layers"
+      },
+      {
+        "Clothing item": "Waterproof pants"
+      },
+      {
+        "Clothing item": "Warm hat and gloves"
+      }
+    ],
+    "doNotCarry": [
+      {
+        "Item to avoid": "Valuables",
+        "why": "To minimize risk of loss or theft"
+      },
+      {
+        "Item to avoid": "Non-essential electronics",
+        "why": "To conserve battery life and reduce weight"
+      }
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "Is the Rupin Pass Trek suitable for beginners?",
+      "answer": "No, this trek is not recommended for beginners due to its high altitude and challenging terrain."
+    },
+    {
+      "question": "What is the best time to visit the Rupin Pass Trek?",
+      "answer": "The best time to visit the Rupin Pass Trek is from May to October, when the weather is clear and temperatures are mild."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, there is a risk of altitude sickness due to the high altitude of 4300m. It's essential to acclimatize properly and take necessary precautions."
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The trail takes you through dense forests, meadows, and rocky terrain, with breathtaking views of the surrounding mountains. Be prepared for steep inclines and uneven terrain."
+    },
+    {
+      "question": "Will I have access to accommodation and food during the trek?",
+      "answer": "Yes, there are basic tea houses and campsites along the trail where you can find accommodation and food. However, options may be limited in some areas."
+    },
+    {
+      "question": "Do I need a permit to undertake the Rupin Pass Trek?",
+      "answer": "No, a permit is not required for this trek. However, it's essential to register with the local authorities and obtain any necessary permissions before embarking on your journey."
+    },
+    {
+      "question": "What are some specific challenges of this trek?",
+      "answer": "One of the main challenges is the steep inclines and uneven terrain, which can be physically demanding. Additionally, the high altitude can cause fatigue, headaches, and nausea. It's essential to stay hydrated and take regular breaks."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Rupin Pass Trek – Experience the Thrill of Himalayas",
+    "description": "Embark on an 8-day adventure trek in Himachal Pradesh/Uttrakhand, suitable for hard-core trekkers",
+    "keywords": [
+      "Rupin Pass Trek",
+      "Himachal Pradesh trekking",
+      "Hard core trekking",
+      "Himalayan adventure",
+      "Trekking in India",
+      "Adventure tourism"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Rupin Pass Trek",
+      "description": "A challenging trek in the Himalayas with breathtaking views",
+      "url": "https://thetrailmakers.in/treks/rupin-pass-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.344722,
+        "longitude": 78.164444
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh/Uttarakhand",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T02:27:29.103Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Rupin_Pass"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "itinerary: Failed to parse JSON: Expected ',' or '}' after property value in JSON at position 482\nText: [\n  {\n    \"day\": 1,\n    \"title\": \"Day 1: Reach Dhaula\",\n    \"startPoint\": \"Dhaula\",\n    \"endPoint\": \"Dhaula\",\n    \"altitudeStart\": null,\n    \"altitudeEnd\": null,\n    \"distance\": null,\n    \"walkingHours\": \"4-5 hours\",\n    \"highlights\": \"Arrival at the trek start point, acclimatization day.\",\n    \"cam"
+  ],
+  "flaggedForReview": false
+}

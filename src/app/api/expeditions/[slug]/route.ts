@@ -1,0 +1,45 @@
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+export async function GET(
+  request: Request,
+  { params }: { params: { slug: string } }
+) {
+  try {
+    const expedition = await (prisma as any).expedition.findUnique({
+      where: {
+        slug: params.slug
+      },
+      include: {
+        sessions: {
+          where: {
+            startDate: {
+              gte: new Date()
+            }
+          },
+          orderBy: {
+            startDate: 'asc'
+          }
+        }
+      }
+    });
+
+    if (!expedition) {
+      return NextResponse.json(
+        { error: 'Expedition not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      expedition
+    });
+  } catch (error) {
+    console.error('Error fetching expedition:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch expedition' },
+      { status: 500 }
+    );
+  }
+}

@@ -1,21 +1,22 @@
 "use client"
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useStore from "@/./store/store";
 import Button from "./button";
-import { FaWhatsapp } from 'react-icons/fa';
+import { useSession, signOut } from "next-auth/react";
+import { FiSearch, FiX } from "react-icons/fi";
 
 const navLinks = [
     {name: "Home", href:"/"},
-    {name: "Expeditions", href:"/Expeditions"},
+    {name: "Expeditions", href:"/expeditions"},
     {name: "Trekkings", href:"/all"},
-    {name: "Courses", href:"/Courses"},
-    {name: "Mountain Lessons", href:"/Mountain-Lessons"},
-    {name: "FAQs", href:"/FAQs"},
-    {name: "Enquire", href:"/Enquire"}
+    {name: "Courses", href:"/courses"},
+    {name: "Lessons", href:"/lessons"},
+    {name: "FAQs", href:"/faq"},
+    {name: "Contact Us", href:"/contact"}
 ]
 
 
@@ -26,8 +27,7 @@ function Hamburger () {
       })
 
     return (
-        <div className="w-8 h-8 mr-4 flex flex-col
-                        justify-around flex-nowrap">
+        <div className="w-8 h-8 flex flex-col justify-around flex-nowrap">
             <div className={`w-8 h-1 rounded-lg bg-white duration-500
                            ${hamburgerOpen ? 'rotate-45 translate-y-[11px]' : 'rotate-0'}`}></div>
             <div className={`w-8 h-1 rounded-lg bg-white duration-500
@@ -46,61 +46,199 @@ export default function Navbar () {
       })
 
       const pathname = usePathname()
+      const router = useRouter()
+      const { data: session } = useSession()
+      const [searchOpen, setSearchOpen] = useState(false)
+      const [searchQuery, setSearchQuery] = useState("")
 
     useEffect(() => {
         document.body.style.overflow = hamburgerOpen ? 'hidden' : 'auto';
         }, [hamburgerOpen]);
 
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault()
+        if (searchQuery.trim()) {
+            router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
+            setSearchQuery("")
+            setSearchOpen(false)
+        }
+    }
+
     return(
-        
-        <header className="top-0 left-0 right-0 flex 
-        items-center justify-end gap-4 bg-black h-16"> 
+        <header className="sticky top-0 left-0 right-0 bg-black border-b border-slate-800 z-50">
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+                rel="stylesheet"
+            />
 
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com"  />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
-                    rel="stylesheet"
-                />
+            <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+                {/* Logo */}
+                <Link href='/' className="flex-shrink-0">
+                    <Image src="/TTM.png" alt="The Trail Makers Logo" width={60} height={60}/>
+                </Link>
 
-            <Link href='/' className="mr-auto"><Image  className="pl-4 " src="/TTM.png" alt="The Trail Makers Logo" width={80} height={80}/></Link>
-            
-            
-            <Link href="https://wa.me/7980426832" className="flex items-center justify-center gap-2">
-            <div className='bg-amber-400 p-2 rounded-xl'><FaWhatsapp className='size-4 mx-auto' /></div>
-            <div className="text-white font-semibold">+91 7980426832</div>
-            </Link>
+                {/* Desktop Menu */}
+                <nav className="hidden lg:flex items-center gap-8 flex-1 ml-8">
+                    <ul className="flex items-center gap-6">
+                        {navLinks.map(({name, href}) => (
+                            <li key={href}>
+                                <Link  
+                                    href={href || "/contact"}
+                                    className={`text-sm font-medium transition duration-300 ${
+                                        pathname === href 
+                                            ? "text-blue-400 border-b-2 border-blue-400 pb-1" 
+                                            : "text-slate-300 hover:text-white"
+                                    }`}
+                                >
+                                    {name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
 
-            <nav className={`font-mono uppercase bg-neutral-950 text-white
-                            fixed h-full w-80 max-w-[calc(100%-3rem)] top-0 right-0
-                            z-10 transition-transform
-                            flex flex-col pt-28 items-end 
-                            ${hamburgerOpen?'translate-x-0':'translate-x-full'} `}>
+                {/* Desktop Search Bar */}
+                <form onSubmit={handleSearch} className="hidden lg:flex items-center bg-gray-800 rounded-lg px-3 py-2 w-64 mx-4">
+                    <input
+                        type="text"
+                        placeholder="Search treks, lessons, FAQs..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="bg-gray-800 text-white placeholder-gray-500 outline-none flex-1 text-sm"
+                    />
+                    <button type="submit" className="text-gray-400 hover:text-white transition">
+                        <FiSearch className="w-4 h-4" />
+                    </button>
+                </form>
 
-
-                <ul>
-                    {navLinks.map(({name, href}) => (
-                        <li key={href} className="pr-4 pb-4 text-2xl">
-                            <Link  
-                                href={href || "/contact"}
-                                className={`${pathname === href ? "text-sky-500" : "text-white"}`}
-                            >
-                                {name}
+                {/* Desktop Auth Buttons */}
+                <div className="hidden lg:flex items-center gap-4">
+                    {!session ? (
+                        <div className="flex items-center gap-3">
+                            <Link href="/login">
+                                <button className="text-sm font-medium text-slate-300 hover:text-white transition">
+                                    Login
+                                </button>
                             </Link>
-                        </li>
-                    ))}
+                            <Link href="/signup">
+                                <button className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition">
+                                    Sign Up
+                                </button>
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="flex items-center gap-3">
+                            <Link href="/dashboard">
+                                <button className="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition">
+                                    Dashboard
+                                </button>
+                            </Link>
+                            <button
+                                onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
+                                className="text-sm font-medium text-slate-300 hover:text-red-400 transition"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    )}
+                </div>
 
-                </ul>
-
-            </nav>
-
-
-            
-            <div className="z-20" onClick={toggleHamburger}>
-                <Hamburger/>
+                {/* Mobile Hamburger & Search */}
+                <div className="lg:hidden flex items-center gap-3">
+                    <button 
+                        onClick={() => setSearchOpen(!searchOpen)}
+                        className="z-20 p-2 text-slate-300 hover:text-white transition"
+                    >
+                        {searchOpen ? <FiX className="w-6 h-6" /> : <FiSearch className="w-6 h-6" />}
+                    </button>
+                    <button className="z-20 p-2" onClick={toggleHamburger}>
+                        <Hamburger/>
+                    </button>
+                </div>
             </div>
-            
-            
+
+            {/* Mobile Search Bar */}
+            {searchOpen && (
+                <div className="lg:hidden border-t border-slate-800 p-3">
+                    <form onSubmit={handleSearch} className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            autoFocus
+                            className="bg-gray-800 text-white placeholder-gray-500 outline-none flex-1 text-sm"
+                        />
+                        <button type="submit" className="text-gray-400 hover:text-white transition">
+                            <FiSearch className="w-4 h-4" />
+                        </button>
+                    </form>
+                </div>
+            )}
+
+            {/* Mobile Menu */}
+            <nav className={`lg:hidden fixed h-screen w-full top-16 left-0 bg-black border-t border-slate-800
+                            transition-all duration-300 overflow-y-auto
+                            ${hamburgerOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+
+                <div className="p-6 flex flex-col gap-6">
+                    {/* Mobile Links */}
+                    <ul className="flex flex-col gap-4">
+                        {navLinks.map(({name, href}) => (
+                            <li key={href}>
+                                <Link  
+                                    href={href || "/contact"}
+                                    onClick={() => toggleHamburger()}
+                                    className={`block text-lg font-medium transition duration-300 ${
+                                        pathname === href 
+                                            ? "text-blue-400" 
+                                            : "text-slate-300 hover:text-white"
+                                    }`}
+                                >
+                                    {name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className="w-full h-px bg-slate-700"></div>
+
+                    {/* Mobile Auth Buttons */}
+                    {!session ? (
+                        <div className="flex flex-col gap-3">
+                            <Link href="/login" onClick={() => toggleHamburger()}>
+                                <button className="w-full text-center text-lg font-medium text-slate-300 hover:text-white transition py-2">
+                                    Login
+                                </button>
+                            </Link>
+                            <Link href="/signup" onClick={() => toggleHamburger()}>
+                                <button className="w-full text-center text-lg font-medium bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition">
+                                    Sign Up
+                                </button>
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-3">
+                            <Link href="/dashboard" onClick={() => toggleHamburger()}>
+                                <button className="w-full text-center text-lg font-medium bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition">
+                                    Dashboard
+                                </button>
+                            </Link>
+                            <button
+                                onClick={() => {
+                                    signOut({ redirect: true, callbackUrl: "/" });
+                                    toggleHamburger();
+                                }}
+                                className="w-full text-center text-lg font-medium text-red-400 hover:text-red-300 transition py-2"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </nav>
         </header>
     )
 }

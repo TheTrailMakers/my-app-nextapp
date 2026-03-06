@@ -1,0 +1,177 @@
+{
+  "trek_slug": "kedarnath-trek",
+  "name": "Kedarnath Trek",
+  "state": "Uttarakhand",
+  "difficulty": "EASY_MODERATE",
+  "duration": 2,
+  "distance": 22,
+  "maxAltitude": 3580,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Kedarnath Trek is a well-known trek in Uttarakhand.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Gaurikuṇḍa to Kedarnath Shrine",
+      "startPoint": "Gaurikuṇḍa",
+      "endPoint": "Kedarnath Shrine",
+      "altitudeStart": 0,
+      "altitudeEnd": 3580,
+      "distance": null,
+      "walkingHours": "17 kilometres (11 mi) uphill trek",
+      "highlights": "Trek to the Kēdāranātha Temple, one of the twelve jyotirlinga of Śiva. Witness the stunning views of the Garhwal Himalayan range.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Kedarnath Shrine to Gaurikuṇḍa",
+      "startPoint": "Kedarnath Shrine",
+      "endPoint": "Gaurikuṇḍa",
+      "altitudeStart": 3580,
+      "altitudeEnd": 0,
+      "distance": null,
+      "walkingHours": "4-5 hours downhill trek",
+      "highlights": "Descend from the Kēdāranātha Temple and return to Gaurikuṇḍa. Reflect on the spiritual significance of this trek.",
+      "camp": "Riverside Camp"
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "EASY_MODERATE",
+    "justification": "The Kedarnath Trek is considered easy to moderate due to its relatively short duration and distance. However, the trek still requires a good level of fitness and endurance, especially at high altitudes.",
+    "altitudeSicknessRisk": "Low",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain, with regular stops for rest and acclimatization.",
+    "priorExperience": "Prior trekking experience is recommended, but not essential. Guided tours are also available for those who are new to high-altitude treks.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "May-Nov"
+  },
+  "gettingThere": {
+    "summary": "Located in Uttarakhand"
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "District Administration Office, Rudraprayag"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": "Yes (Uttarkashi and Chamoli districts)",
+    "restrictions": "No photography in protected areas",
+    "summary": "A permit is required for the Kedarnath Trek, with a forest permit being necessary. Entry fees apply to national parks within the trekking area."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Sturdy hiking boots - suitable for high-altitude terrain",
+      "Warm and layered clothing (base, insulating, waterproof) - to combat cold temperatures",
+      "Sunscreen and sun hat - to protect against UV rays",
+      "Personal first aid kit - with essentials like pain relievers, band-aids, etc.",
+      "Water bottle or hydration bladder - to stay hydrated throughout the trek",
+      "Headlamp or torch - for navigating in the dark",
+      "Sleeping bag rated to -10°C or lower - for cold nights at high altitude"
+    ],
+    "clothing": [
+      "Insulating layers (fleece, down) - for colder mornings and evenings",
+      "Waterproof jacket and pants - to keep dry in case of rain",
+      "Warm hat and gloves - for added warmth on the mountain",
+      "Quick-drying trekking socks - to prevent blisters"
+    ],
+    "doNotCarry": [
+      "Valuables or irreplaceable items - due to risk of loss or theft",
+      "Perishable food items - as they may spoil during the trek",
+      "Single-use plastics - to minimize environmental impact"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the typical fitness level required for this trek?",
+      "answer": "The Kedarnath Trek is considered moderate in difficulty, with most trekkers completing it within 2 days. However, it's essential to be relatively fit and acclimatized to high altitudes before embarking on this trek."
+    },
+    {
+      "question": "When is the best time to visit the Kedarnath Trek?",
+      "answer": "The best season for the Kedarnath Trek is from May to November, with June to September being the peak tourist season. This period offers pleasant weather and clear skies, making it ideal for trekking."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, altitude sickness is a risk on the Kedarnath Trek due to its high altitude. It's crucial to ascend gradually, stay hydrated, and monitor your body's response to the altitude."
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The Kedarnath Trek offers breathtaking views of the Garhwal Himalayas, with lush green forests, sparkling streams, and picturesque villages along the way. The trek also passes through several sacred sites, including the Kedarnath temple."
+    },
+    {
+      "question": "What kind of accommodation and food can I expect on the trek?",
+      "answer": "Accommodation on the Kedarnath Trek ranges from basic guesthouses to luxury resorts, depending on your budget. Food options are limited but delicious, with a focus on local cuisine like dal, roti, and vegetables."
+    },
+    {
+      "question": "Do I need any permits or pay any costs for this trek?",
+      "answer": "Yes, you'll need to obtain a permit from the Uttarakhand government, which can be arranged through your trekking company. There may also be some costs associated with transportation, accommodation, and guides."
+    },
+    {
+      "question": "What are some specific challenges I should be aware of on this trek?",
+      "answer": "One of the biggest challenges on the Kedarnath Trek is navigating the steep and rocky terrain, especially during the early stages. Additionally, the high altitude can cause fatigue, so it's essential to pace yourself and take regular breaks."
+    },
+    {
+      "question": "Is the trek suitable for beginners?",
+      "answer": "While the Kedarnath Trek is considered moderate in difficulty, it may not be suitable for complete beginners. It's recommended that you have some trekking experience and are relatively fit before embarking on this trek."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Kedarnath Trek – Easy Adventure in Uttarakhand",
+    "description": "Explore the scenic Kedarnath Trek in Uttarakhand, India, a 2-day easy to moderate trek for adventure seekers.",
+    "keywords": [
+      "Kedarnath Trek",
+      "Uttarakhand treks",
+      "easy treks in India",
+      "adventure tourism"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Kedarnath Trek",
+      "description": "A scenic trek to the Kedarnath temple in Uttarakhand, India.",
+      "url": "https://thetrailmakers.in/treks/kedarnath-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.73,
+        "longitude": 79.07
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Uttarakhand",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T19:13:50.152Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Kedarnath_Temple",
+    "https://en.wikipedia.org/wiki/Kedarnath"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Discover the sacred temple of Kedarnath, hidden in the Garhwal Himalayas\",\n  \"aboutText\": \"Get ready for an unforgettable adventure on the Kedarnath Trek, one of India's most revered p",
+    "bestTime: Failed to parse JSON: Unexpected non-whitespace character after JSON at position 1246\nText: {\"peakSeason\":\"May-Nov\",\"offSeason\":\"December-April\",\"months\":{\"January\":{\"weather\":\"Cold, Snowy\",\"trailCondition\":\"Difficult\",\"recommended\":false},\"February\":{\"weather\":\"Cold, Snowy\",\"trailCondition\":\"Difficult\",\"recommended\":false},\"March\":{\"weather\":\"Mild, Spring\",\"trailCondition\":\"Open\",\"recomme",
+    "gettingThere: No valid JSON found in response: {\n  \"nearestAirport\": \"Jolly Grant Airport, Dehradun (approx. 220 km, 4-5 hours from base village)\",\n  \"nearestRailway\": \"Haridwar Junction Railway Station (approx. 100 km, 2-3 hours from base village"
+  ],
+  "flaggedForReview": false
+}

@@ -1,0 +1,295 @@
+{
+  "trek_slug": "roopkund-trek",
+  "name": "Roopkund Trek",
+  "state": "Uttarakhand",
+  "difficulty": "HARD",
+  "duration": 6,
+  "distance": 55,
+  "maxAltitude": 4700,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Roopkund Trek is a well-known trek in Uttarakhand.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Drive to Lohajung and trek to Lohajung camp",
+      "startPoint": "Lohajung",
+      "endPoint": "Lohajung camp",
+      "altitudeStart": null,
+      "altitudeEnd": 4700,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Arrival at Lohajung, setting up base camp for the trek ahead.",
+      "camp": "Lohajung camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Trek to Wan/Patangini area",
+      "startPoint": "Lohajung camp",
+      "endPoint": "Wan/Patangini area",
+      "altitudeStart": 4700,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "6-7 hours",
+      "highlights": "Trekking through scenic trails to reach the Wan/Patangini area.",
+      "camp": "Wan/Patangini camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Approach to Didna/Patangini and alpine meadows",
+      "startPoint": "Wan/Patangini area",
+      "endPoint": "Didna/Patangini and alpine meadows",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "5-6 hours",
+      "highlights": "Exploring the Didna/Patangini area and its surrounding alpine meadows.",
+      "camp": "High Camp"
+    },
+    {
+      "day": 4,
+      "title": "Day 4: Trek across Bedni Bugyal towards Roopkund base",
+      "startPoint": "Didna/Patangini and alpine meadows",
+      "endPoint": "Roopkund base",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "6-7 hours",
+      "highlights": "Trekking across Bedni Bugyal to reach the Roopkund base.",
+      "camp": "Roopkund Base Camp"
+    },
+    {
+      "day": 5,
+      "title": "Day 5: Visit Roopkund (the skeletal lake) and return to Wan",
+      "startPoint": "Roopkund base",
+      "endPoint": "Wan",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Exploring Roopkund, the skeletal lake, and its mysterious history.",
+      "camp": "Wan/Patangini camp"
+    },
+    {
+      "day": 6,
+      "title": "Day 6: Trek out and drive back to Rishikesh/exit point",
+      "startPoint": "Wan/Patangini area",
+      "endPoint": null,
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Trekking out of the trekking trail and driving back to Rishikesh.",
+      "camp": null
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "HARD",
+    "justification": "The Roopkund Trek is considered hard due to its challenging terrain, steep inclines, and unpredictable weather conditions. The trek requires a good level of physical fitness and mental toughness. The high altitude also poses risks if not managed properly.",
+    "altitudeSicknessRisk": "Low - The trek does not involve extreme elevation gain or loss, but the high altitude still poses some risk of altitude sickness, especially for those who are not acclimatized.",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain and handle steep inclines. The trek also involves moderate levels of physical exertion.",
+    "priorExperience": "Previous experience with high-altitude treks or similar terrain is recommended. However, beginners can still attempt the trek if they are well-prepared and have a good level of physical fitness.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "May-October",
+    "offSeason": "November-April",
+    "months": {
+      "January": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Cool, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm, occasional rain showers",
+        "trailCondition": "Easy",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Hot, dry",
+        "trailCondition": "Easy",
+        "recommended": true
+      },
+      "July": {
+        "weather": "Hot, dry",
+        "trailCondition": "Easy",
+        "recommended": true
+      },
+      "August": {
+        "weather": "Hot, occasional rain showers",
+        "trailCondition": "Easy",
+        "recommended": true
+      },
+      "September": {
+        "weather": "Warm, occasional rain showers",
+        "trailCondition": "Easy",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Cool, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, snowfall possible",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "Mild weather, clear trails, and fewer crowds make it ideal for trekking.",
+    "peakSeasonCons": "Higher costs due to increased demand and potential crowds.",
+    "offSeasonPros": "Lower costs, fewer crowds, and a serene atmosphere make it an excellent time for those who prefer solitude.",
+    "offSeasonCons": "Potential snowstorms and icy trails can be challenging."
+  },
+  "gettingThere": {
+    "nearestAirport": "Jolly Grant Airport (Dehradun) - approximately 290 km, 5-6 hours from base village",
+    "nearestRailway": "Haridwar Junction Railway Station - approximately 220 km, 4-5 hours from base village",
+    "fromDelhi": "Take a bus or taxi from Delhi to Haridwar (approx. 230-260 km, 7-8 hours) and then take another bus or taxi to Sarnoli (base village)",
+    "fromMumbai": "No direct transportation available; take a flight from Mumbai to Dehradun and then proceed as above",
+    "localTransport": "Local transport options include shared jeeps and buses from Haridwar Junction Railway Station to Sarnoli base village",
+    "baseVillage": "Sarnoli",
+    "summary": "Reach Jolly Grant Airport or Haridwar Junction Railway Station by flight or train, then take a bus or taxi to Sarnoli for the Roopkund Trek"
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Uttarakhand Trekking Permit",
+        "cost": "Free",
+        "where": "District Administration Office, Chamoli District",
+        "notes": "Must be obtained at least 7 days prior to the trek"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": "Yes",
+    "restrictions": "No photography in Nanda Devi National Park",
+    "summary": "A valid Uttarakhand Trekking Permit is required for most treks, including Roopkund. A fee must be paid at the District Administration Office, Chamoli District, and photography is restricted within Nanda Devi National Park."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Sturdy hiking boots - Essential for high-altitude trekking",
+      "Thermos and warm clothing - To stay warm at high altitudes",
+      "Oxygen mask and regulator (optional) - For acclimatization at extreme heights",
+      "Sunscreen and sunglasses - Protection from harsh UV rays",
+      "First aid kit - Basic medical supplies for emergencies"
+    ],
+    "clothing": [
+      "Insulated jacket and pants - For cold mornings and evenings",
+      "Base layers and mid-layers - To regulate body temperature",
+      "Warm hat and gloves - To prevent heat loss at high altitudes",
+      "Sleeping bag rated to -20°C or lower - For camping in extreme cold"
+    ],
+    "doNotCarry": [
+      "Valuables and irreplaceable items - Leave them behind for safety",
+      "Perishable food items - They may spoil during the trek"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "Is the Roopkund Trek suitable for beginners?",
+      "answer": "No, due to its high altitude and challenging terrain, it's recommended for experienced trekkers only"
+    },
+    {
+      "question": "What is the best time to visit the Roopkund Lake?",
+      "answer": "The trek is best done during May-October when the weather is clear and temperatures are mild"
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, due to its high altitude (4700m), there is a risk of altitude sickness. It's essential to acclimatize properly and monitor your body's response"
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The trek involves steep inclines, rocky terrain, and uneven paths. Be prepared for physical challenges and potentially unpredictable weather conditions"
+    },
+    {
+      "question": "Will I have access to accommodation and food during the trek?",
+      "answer": "There are basic campsites with shared facilities, but you'll need to bring your own food and cooking gear. There are also some villages along the way where you can purchase supplies or find local eateries"
+    },
+    {
+      "question": "Do I need a permit to undertake this trek?",
+      "answer": "Yes, you'll need to obtain a permit from the Uttarakhand Tourism Department before embarking on your journey. Costs vary depending on the season and type of permit required"
+    },
+    {
+      "question": "What are some specific challenges of this trek?",
+      "answer": "One of the biggest challenges is navigating the high-altitude terrain, which can be exposed to harsh winds and unpredictable weather patterns. Additionally, the trek involves a significant amount of physical effort and requires good cardiovascular fitness"
+    },
+    {
+      "question": "How difficult is the Roopkund Trek?",
+      "answer": "The trek is classified as HARD due to its high altitude, challenging terrain, and potential for altitude sickness. It's essential to assess your physical abilities and experience before embarking on this journey"
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Roopkund Trek – India's Hidden Lake Adventure",
+    "description": "Explore the mystical Roopkund Lake in Uttarakhand, a challenging yet rewarding trek for adventure seekers.",
+    "keywords": [
+      "Roopkund Trek",
+      "Uttarakhand treks",
+      "India trekking",
+      "high-altitude treks",
+      "challenging treks",
+      "adventure treks"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Roopkund Trek",
+      "description": "A challenging trek to a mystical lake in the Indian Himalayas.",
+      "url": "https://thetrailmakers.in/treks/roopkund-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.26222222,
+        "longitude": 79.73166667
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Uttarakhand",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T02:21:07.246Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Roopkund"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Unravel the mystery of Roopkund's eerie skeletons\",\n  \"aboutText\": \"Roopkund Trek is an otherworldly experience that will leave you awestruck. Located in the Chamoli District of Uttara"
+  ],
+  "flaggedForReview": false
+}

@@ -1,0 +1,241 @@
+{
+  "trek_slug": "chehni-kund-trek",
+  "name": "Chehni Kundo / local trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "EASY",
+  "duration": 2,
+  "distance": 12,
+  "maxAltitude": 3000,
+  "basePrice": 0,
+  "tagline": "Easy Himalayan trek in Himachal Pradesh",
+  "aboutText": "Imagine a trek that's as easy as it is breathtaking - that's what the Chehni Kundo / local trek in Himachal Pradesh has to offer. This 2-day trek is perfect for those looking for a short, yet fulfilling adventure in the Himalayas. With a maximum altitude of 3000m, the trek is suitable for beginners and experienced trekkers alike. The 12km trail takes you through some of the most beautiful landscapes in the region, with stunning views of the surrounding mountains. The best part? You can attempt this trek between April and November, making it an ideal getaway during the spring, summer, or autumn months. As an easy and short trek, it's a great option for those who want to experience the thrill of trekking without committing to a long, arduous journey. Whether you're a local or just visiting Himachal Pradesh, this trek is definitely worth considering. So why not give it a try and experience the beauty of the Himalayas for yourself?",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Village Trail to Meadow Camp",
+      "startPoint": "Local Village",
+      "endPoint": "Meadow Camp",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Trek through picturesque village trails and meadows, experiencing the local culture and scenic beauty of Himachal Pradesh.",
+      "camp": "Meadow Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Meadow Camp to End Point",
+      "startPoint": "Meadow Camp",
+      "endPoint": "Local Village",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Continue through the beautiful meadows and village trails, taking in the stunning views of the surrounding landscape before returning to the local village.",
+      "camp": null
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "EASY",
+    "justification": "The Chehni Kundo trek is rated as EASY due to its relatively short duration of 2 days and short distance of 12km. The maximum altitude of 3000m is also not excessively high, reducing the risk of severe altitude sickness. This makes it accessible to trekkers who are new to high-altitude hiking or looking for a quick, easy adventure in the beautiful state of Himachal Pradesh.",
+    "altitudeSicknessRisk": "Low - The risk of altitude sickness is low on this trek since the maximum altitude is 3000m, which is considered relatively moderate and allows for easier acclimatization.",
+    "fitnessRequirement": "Must be able to walk approximately 6km daily on uneven terrain for 2 consecutive days",
+    "priorExperience": "No prior trekking experience is required, but being comfortable with walking on uneven terrain is recommended",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "April-November",
+    "offSeason": "December-March",
+    "months": {
+      "January": {
+        "weather": "Cold and snowy",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold and icy",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mildly cold",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "April": {
+        "weather": "Mild and pleasant",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm and sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Warm and sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "July": {
+        "weather": "Warm with occasional rain",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "August": {
+        "weather": "Warm with occasional rain",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "September": {
+        "weather": "Mild and pleasant",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Cool and sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Cool and sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "December": {
+        "weather": "Cold and snowy",
+        "trailCondition": "Closed",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The peak season offers pleasant weather, clear trails, and breathtaking views, making it ideal for trekking.",
+    "peakSeasonCons": "The peak season can be crowded, and the cost of accommodations and services may be higher.",
+    "offSeasonPros": "Trekking during the off-season can be more peaceful, with lower costs and a more serene experience.",
+    "offSeasonCons": "The off-season brings harsh weather conditions, closed trails, and limited access to amenities, making it challenging for trekkers."
+  },
+  "gettingThere": {
+    "nearestAirport": "Bhuntar Airport, approximately 50-70 km from trek base",
+    "nearestRailway": "Chandigarh Railway Station, approximately 200-250 km from trek base",
+    "fromDelhi": "Take NH 44 and NH 3 via Chandigarh, estimated travel time 8-10 hours",
+    "fromMumbai": "Not a common route, but can be taken via Delhi or Chandigarh, estimated travel time around 24-30 hours with layovers",
+    "localTransport": "Local buses, taxis, and shared jeeps are available from Bhuntar or Chandigarh to the base village",
+    "baseVillage": "Not specified, but typically a small village in the Kullu district of Himachal Pradesh",
+    "summary": "To reach the Chehni Kundo trek, fly to Bhuntar Airport or take a train to Chandigarh Railway Station, then take local transport to the base village. The journey from Delhi takes around 8-10 hours, while from Mumbai it's around 24-30 hours with layovers. Local buses, taxis, and shared jeeps are available for the final leg of the journey."
+  },
+  "permits": {
+    "permitsRequired": false,
+    "permitTypes": [],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": null,
+    "restrictions": "No specific restrictions known, but general forest rules apply",
+    "summary": "No permits are typically required for this trek in Himachal Pradesh, but it's always a good idea to check with local authorities for any specific regulations."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Waterproof jacket - to protect against unexpected rain showers",
+      "Insulated jacket - for cooler evenings at high altitude",
+      "Sturdy trekking boots - for uneven terrain",
+      "First aid kit - for basic medical needs",
+      "Headlamp - for navigating in the dark",
+      "Water bottle/hydration pack - to stay hydrated"
+    ],
+    "clothing": [
+      "Base layers (top and bottom) for cooler mornings and evenings",
+      "Quick-drying trekking pants",
+      "Moisture-wicking shirts",
+      "Warm hat and gloves for colder periods",
+      "Extra socks and underwear"
+    ],
+    "doNotCarry": [
+      "Valuables (jewelry, large amounts of cash) - to minimize loss or damage risk",
+      "Non-biodegradable items - to protect the environment",
+      "High-heeled shoes - not suitable for trekking"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the fitness level required for the Chehni Kundo trek?",
+      "answer": "The Chehni Kundo trek is classified as easy, making it accessible to trekkers with basic fitness levels. However, it's still important to be in good physical shape to enjoy the trek. If you're new to trekking, consider starting with shorter, easier trails to build up your endurance."
+    },
+    {
+      "question": "What is the best time to visit the Chehni Kundo trek?",
+      "answer": "The best time to visit the Chehni Kundo trek is from April to November, when the weather is generally mild and pleasant. This period offers the best conditions for trekking, with clear skies and comfortable temperatures."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on the Chehni Kundo trek?",
+      "answer": "The Chehni Kundo trek reaches a maximum altitude of 3000m, which is considered relatively low. While altitude sickness is still possible, the risk is lower compared to higher-altitude treks. It's still essential to ascend gradually, stay hydrated, and monitor your body for any signs of altitude sickness."
+    },
+    {
+      "question": "What can I expect on the trail during the Chehni Kundo trek?",
+      "answer": "The Chehni Kundo trek offers scenic views of the surrounding landscape, with trails that wind through forests and villages. You can expect to see local flora and fauna, and possibly interact with local villagers. The trail conditions are generally well-maintained, but be prepared for some uneven terrain and potential rain showers."
+    },
+    {
+      "question": "What are the accommodation options like on the Chehni Kundo trek?",
+      "answer": "Accommodation options on the Chehni Kundo trek are basic, with homestays or camping available. Be prepared for simple amenities and limited access to luxury facilities. Food is typically local and hearty, with options like dal, rice, and vegetables."
+    },
+    {
+      "question": "Do I need any permits or special permissions for the Chehni Kundo trek?",
+      "answer": "While specific permit requirements may vary, it's generally recommended to check with local authorities or trekking organizations for the latest information. Some treks in Himachal Pradesh may require permits or have specific regulations, so it's essential to plan ahead and research the requirements."
+    },
+    {
+      "question": "What are the specific challenges of the Chehni Kundo trek?",
+      "answer": "The Chehni Kundo trek is considered easy, but it's not without its challenges. Be prepared for potential rain showers, uneven terrain, and basic accommodation options. Additionally, the trek's remote location may limit access to medical facilities or other amenities, so it's essential to be self-sufficient and prepared for emergencies."
+    },
+    {
+      "question": "How much does the Chehni Kundo trek cost?",
+      "answer": "The cost of the Chehni Kundo trek can vary depending on factors like accommodation options, food, and guide services. While exact costs are not available, expect to pay around the average cost for a 2-day trek in Himachal Pradesh, which can range from approximately Rs. 5,000 to Rs. 10,000 per person, depending on the services included."
+    }
+  ],
+  "accommodationType": "Homestay / Tent",
+  "pickupTime": "Varies by departure",
+  "dropoffTime": "Varies by departure",
+  "bestFor": "18-50 years, moderate fitness",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Chehni Kundo – Easy Trek",
+    "description": "Chehni Kundo trek in Himachal, 2 days, easy. Book now",
+    "keywords": [
+      "Chehni Kundo Trek",
+      "Himachal Trek",
+      "Easy Treks",
+      "Short Treks",
+      "Indian Treks",
+      "Trekking in Himachal",
+      "Chehni Kundo",
+      "Local Trek"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Chehni Kundo / local trek",
+      "description": "A 2-day easy trek in Himachal Pradesh",
+      "url": "https://thetrailmakers.in/treks/chehni-kund-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": null,
+        "longitude": null
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T16:59:50.168Z",
+  "sourcesUsed": [],
+  "conflicts": [],
+  "generationErrors": [],
+  "flaggedForReview": false
+}

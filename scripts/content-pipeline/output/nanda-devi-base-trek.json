@@ -1,0 +1,220 @@
+{
+  "trek_slug": "nanda-devi-base-trek",
+  "name": "Nanda Devi Basecamp Trek",
+  "state": "Uttarakhand",
+  "difficulty": "HARD",
+  "duration": 6,
+  "distance": 60,
+  "maxAltitude": 3700,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Nanda Devi Basecamp Trek is a well-known trek in Uttarakhand.",
+  "itineraryJson": [],
+  "difficultyDetails": {
+    "overall": "HARD",
+    "justification": "The Nanda Devi Basecamp Trek is considered hard due to its high altitude and challenging terrain. Trekkers must be physically fit and prepared for steep inclines and uneven paths.",
+    "altitudeSicknessRisk": "Low - Altitude sickness is a risk at high altitudes, but with proper acclimatization and precautions, it can be managed.",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain and carry a backpack weighing up to 10kg.",
+    "priorExperience": "Previous trekking experience in the Himalayas or similar high-altitude treks is recommended.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "May-Jun, Sep-Oct",
+    "offSeason": "Nov-April",
+    "months": {
+      "January": {
+        "weather": "Cold, Snowy",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, Snowy",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, Spring",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild, Spring",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Warm, Summer",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Hot, Summer",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "July": {
+        "weather": "Hot, Summer",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "August": {
+        "weather": "Hot, Summer",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "September": {
+        "weather": "Warm, Autumn",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Cool, Autumn",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Cold, Winter",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, Snowy",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "Better weather conditions, more daylight hours, and a wider range of trekking options make the peak season ideal for trekkers.",
+    "peakSeasonCons": "Higher costs, larger crowds, and limited accommodation options are downsides to visiting during peak season.",
+    "offSeasonPros": "Lower costs, fewer crowds, and lower prices for accommodations make off-season trekking a more budget-friendly option.",
+    "offSeasonCons": "Harsh weather conditions, shorter daylight hours, and potential trail closures can make off-season trekking challenging."
+  },
+  "gettingThere": {
+    "nearestAirport": "Pantnagar Airport (PGH), approximately 140 km from base village",
+    "nearestRailway": "Ramgarh Srinagar Railway Station, approximately 120 km from base village",
+    "fromDelhi": "Drive to Pantnagar Airport (approx. 7-8 hours) or take a bus/train to Ramgarh Srinagar Railway Station (approx. 9-10 hours)",
+    "fromMumbai": "No direct route available, drive to Delhi and then proceed as above",
+    "localTransport": "Shared jeeps and buses are available from Ramgarh Srinagar Railway Station to base village",
+    "baseVillage": "Lohajung",
+    "summary": "Reach Pantnagar Airport or Ramgarh Srinagar Railway Station in Uttarakhand, then take a shared jeep or bus to Lohajung for the Nanda Devi Basecamp Trek."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Permit name",
+        "cost": "Free",
+        "where": "District Administration Office, Chamoli",
+        "notes": "No cost for Indian citizens"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": "None required",
+    "nationalParkFee": 100,
+    "restrictions": "Photography and camping allowed outside national park boundaries",
+    "summary": "Indian citizens do not need permits, but must pay a fee to enter Nanda Devi National Park."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Trekking poles - for stability and support at high altitudes",
+      "Insulated water bottles or hydration bladder - to stay hydrated in cold weather",
+      "Warm layers (fleece, down jacket) - for temperature regulation at high elevations",
+      "Sleeping bag rated to -20°C - for comfort during cold nights"
+    ],
+    "clothing": [
+      "Moisture-wicking base layers - for thermal regulation and comfort",
+      "Water-resistant trekking pants - to protect against rain and wind",
+      "Breathable, quick-drying shirts - for active days on the trail",
+      "Warm hat and gloves - for cold mornings and evenings"
+    ],
+    "doNotCarry": [
+      "Valuables or irreplaceable items - due to risk of loss or theft during the trek",
+      "Perishable food items - as they may not be available at high altitudes or in remote areas"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the typical fitness level required for this trek?",
+      "answer": "The Nanda Devi Basecamp Trek is considered challenging due to its high altitude and steep terrain. Trekkers should be in good physical condition, with experience of multi-day treks and high-altitude hiking."
+    },
+    {
+      "question": "When is the best time to visit this trek?",
+      "answer": "The best time to visit the Nanda Devi Basecamp Trek is during May-June or September-October, when the weather is generally clear and mild, with average temperatures ranging from 10°C to 20°C."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, altitude sickness is a risk on this trek due to its high altitude. Trekkers should be aware of the symptoms and take necessary precautions, such as acclimatization days and monitoring their body's response."
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The trail takes you through lush forests, meadows, and rocky terrain, with stunning views of the surrounding mountains. Be prepared for uneven terrain, river crossings, and potential snow or ice in certain sections."
+    },
+    {
+      "question": "Will I have access to accommodation and food at base camps?",
+      "answer": "Yes, there are basic tea houses and lodges available at the base camps, offering simple meals and accommodation. However, options may be limited, and prices may be higher due to remote location."
+    },
+    {
+      "question": "Do I need a permit to undertake this trek?",
+      "answer": "Yes, a permit is required for this trek, which can be obtained from the Uttarakhand Tourism Department or a local trekking agency. Costs vary depending on the season and type of permit."
+    },
+    {
+      "question": "What are some specific challenges of this trek?",
+      "answer": "The Nanda Devi Basecamp Trek presents several challenges, including steep inclines, uneven terrain, and potential snow or ice in certain sections. Trekkers should also be prepared for changing weather conditions and limited access to medical facilities."
+    },
+    {
+      "question": "Is the trek suitable for beginners?",
+      "answer": "No, this trek is not recommended for beginners due to its high altitude and challenging terrain. It's essential to have prior experience of multi-day treks and high-altitude hiking before undertaking this trek."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "Adventure seekers, fitness enthusiasts, first-time trekkers",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Nanda Devi Basecamp Trek – Experience India's Highest Base Camp",
+    "description": "Embark on a 6-day, hard difficulty trek to Nanda Devi Basecamp in Uttarakhand, India. Book now!",
+    "keywords": [
+      "Nanda Devi Basecamp Trek",
+      "Uttarakhand treks",
+      "India trekking",
+      "high altitude treks"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Nanda Devi Basecamp Trek",
+      "description": "Trek to India's highest base camp, Nanda Devi.",
+      "url": "https://thetrailmakers.in/treks/nanda-devi-base-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 28.54944444,
+        "longitude": 84.56194444
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Uttarakhand",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-28T01:36:57.521Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Manaslu"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Conquer the majestic Himalayas on this challenging yet breathtaking trek\",\n  \"aboutText\": \"Get ready for an adventure of a lifetime on the Nanda Devi Basecamp Trek, set amidst the stun",
+    "itinerary: Failed to parse JSON: Expected ',' or '}' after property value in JSON at position 582\nText: [\n  {\n    \"day\": 1,\n    \"title\": \"Day 1: Drive to Lata\",\n    \"startPoint\": \"Lata\",\n    \"endPoint\": \"Lata\",\n    \"altitudeStart\": null,\n    \"altitudeEnd\": null,\n    \"distance\": null,\n    \"walkingHours\": \"4-5 hours\",\n    \"highlights\": \"Drive to the starting point of the trek, get acclimatized to the al"
+  ],
+  "flaggedForReview": false
+}

@@ -1,0 +1,232 @@
+{
+  "trek_slug": "great-himalayan-national-park-trek",
+  "name": "Great Himalayan National Park Trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "MODERATE",
+  "duration": 5,
+  "distance": 60,
+  "maxAltitude": 3500,
+  "basePrice": 0,
+  "tagline": "",
+  "aboutText": "Great Himalayan National Park Trek is a well-known trek in Himachal Pradesh.",
+  "itineraryJson": [],
+  "difficultyDetails": {
+    "overall": "MODERATE",
+    "justification": "The Great Himalayan National Park Trek is considered moderate due to its steady incline and uneven terrain, requiring a good level of physical fitness. However, the trek's scenic beauty and wildlife spotting opportunities make it an enjoyable experience for those with some prior experience.",
+    "altitudeSicknessRisk": "Low",
+    "fitnessRequirement": "Must be able to walk 6-8 hours daily on uneven terrain, with regular breaks to acclimatize to high altitude.",
+    "priorExperience": "Previous trekking experience in mountainous regions or similar treks is recommended.",
+    "technicalDifficulty": "None required"
+  },
+  "bestTimeJson": {
+    "peakSeason": "May-Oct",
+    "offSeason": "Approximately November-April, with cold winters and occasional snowfall at higher elevations",
+    "months": {
+      "January": {
+        "weather": "Cold, snowy conditions",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold, occasional snowfall",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "April": {
+        "weather": "Mild, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Mild, pleasant temperatures",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Warm, occasional thunderstorms",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "July": {
+        "weather": "Hot, dry conditions",
+        "trailCondition": "Easy",
+        "recommended": true
+      },
+      "August": {
+        "weather": "Hot, dry conditions",
+        "trailCondition": "Easy",
+        "recommended": true
+      },
+      "September": {
+        "weather": "Warm, occasional rain showers",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Mild, pleasant temperatures",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "November": {
+        "weather": "Cold, wet conditions",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold, snowy conditions",
+        "trailCondition": "Difficult",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The best time to visit the Great Himalayan National Park for optimal weather and trail conditions. Ideal for trekking and exploring the park's diverse flora and fauna.",
+    "peakSeasonCons": "Peak season can be crowded, with higher costs for accommodations and treks.",
+    "offSeasonPros": "Off-season offers a serene and peaceful experience, with fewer crowds and lower costs. However, some trails may be closed due to snow and ice.",
+    "offSeasonCons": "The off-season can be challenging due to harsh weather conditions, including cold temperatures, snowfall, and occasional avalanches."
+  },
+  "gettingThere": {
+    "nearestAirport": "Gaggal Airport (Dehra Dun) - 270 km, 6-7 hours from trek base",
+    "nearestRailway": "Kullu Railway Station - 80 km, 2-3 hours from trek base",
+    "fromDelhi": "Drive to Kullu via NH205 and NH205B, approx. 560 km, 8-10 hours; or take a flight to Bhuntar Airport and then drive to trek base",
+    "fromMumbai": "No direct route available",
+    "localTransport": "Shared jeeps and taxis available from Kullu town to trek base",
+    "baseVillage": "Brahma Gaon (also known as Rumsu) - the starting point of the trek",
+    "summary": "Reach Gaggal Airport or Kullu Railway Station, then drive or take a shared jeep/taxi to Brahma Gaon. Alternatively, fly to Bhuntar and drive from there."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Department Permit",
+        "cost": "Free",
+        "where": "Local Forest Office",
+        "notes": "For treks that enter protected forest areas"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": "20 INR per person for day entry",
+    "restrictions": "No photography within 500m of wildlife, no camping in protected zones",
+    "summary": "Forest Department Permit required for treks that enter protected forest areas, national park fee applies"
+  },
+  "gearChecklist": {
+    "essential": [
+      {
+        "Item name": "Sturdy hiking boots",
+        "why/spec": "Good grip and ankle support for high-altitude trekking"
+      },
+      {
+        "Item name": "Waterproof jacket",
+        "why/spec": "Protects against unpredictable mountain weather"
+      },
+      {
+        "Item name": "Insulated layers",
+        "why/spec": "Keeps you warm in cold temperatures"
+      }
+    ],
+    "clothing": [
+      {
+        "Clothing item": "Breathable base layers"
+      },
+      {
+        "Clothing item": "Warm hat and gloves for colder mornings and evenings"
+      }
+    ],
+    "doNotCarry": [
+      {
+        "Item to avoid": "Valuables that can be lost or damaged"
+      },
+      {
+        "Item to avoid": "Perishable food items"
+      }
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the expected level of physical fitness required for this trek?",
+      "answer": "The Great Himalayan National Park Trek is considered moderate in difficulty, requiring a good level of cardiovascular fitness and mobility. Hikers should be comfortable with regular hikes and have some experience with high-altitude trekking."
+    },
+    {
+      "question": "When is the best time to visit the Great Himalayan National Park Trek?",
+      "answer": "The best season for this trek is May to October, when the weather is generally clear and dry. This allows for optimal hiking conditions and stunning scenery."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on this trek?",
+      "answer": "Yes, altitude sickness can occur at high altitudes like 3500m. It's essential to ascend gradually, drink plenty of water, and monitor your body for signs of altitude sickness, such as headaches or fatigue."
+    },
+    {
+      "question": "What can I expect on the trail?",
+      "answer": "The Great Himalayan National Park Trek offers breathtaking scenery, including lush forests, sparkling streams, and picturesque villages. Hikers will have opportunities to spot wildlife, including Himalayan monals and other bird species."
+    },
+    {
+      "question": "Will I have access to accommodation and food along the trail?",
+      "answer": "Yes, there are several tea houses and campsites along the trail where you can rest and refuel. However, options may be limited, especially during peak season."
+    },
+    {
+      "question": "Do I need any special permits or documentation for this trek?",
+      "answer": "Yes, a permit is required for this trek, which can be arranged through our company. The cost of the permit will depend on the time of year and other factors."
+    },
+    {
+      "question": "What are some specific challenges that hikers may face on this trek?",
+      "answer": "One challenge is the unpredictable mountain weather, which can bring sudden rain or snow showers. Hikers should also be prepared for steep inclines and uneven terrain, as well as potential altitude sickness."
+    }
+  ],
+  "accommodationType": "Camping + Guesthouse",
+  "pickupTime": "06:00 AM from base village",
+  "dropoffTime": "04:00 PM at base village",
+  "bestFor": "First-time trekkers, Adventure seekers, fitness enthusiasts",
+  "inclusions": [
+    "Guide",
+    "Camping/Meals as listed"
+  ],
+  "exclusions": [
+    "Transport to start",
+    "Personal gear"
+  ],
+  "seo": {
+    "title": "Great Himalayan National Park Trek – Explore the Wilderness of Himachal Pradesh",
+    "description": "Embark on a 5-day moderate trek in Himachal Pradesh, India, with breathtaking views and diverse wildlife.",
+    "keywords": [
+      "Great Himalayan National Park Trek",
+      "Himachal Pradesh trekking",
+      "National park trek",
+      "Moderate treks in India",
+      "Wildlife trekking",
+      "Himalayan region trek"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Great Himalayan National Park Trek",
+      "description": "A 5-day moderate trek in Himachal Pradesh, India, with breathtaking views and diverse wildlife.",
+      "url": "https://thetrailmakers.in/treks/great-himalayan-national-park-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "31.73333333",
+        "longitude": "77.55"
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T18:25:34.319Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Great_Himalayan_National_Park"
+  ],
+  "conflicts": [],
+  "generationErrors": [
+    "about: No valid JSON found in response: {\n  \"tagline\": \"Unveil the secrets of the Great Himalayan wilderness\",\n  \"aboutText\": \"Imagine immersing yourself in the majestic beauty of Himachal Pradesh's Great Himalayan National Park Trek, a mod",
+    "itinerary: Failed to parse JSON: Expected ',' or '}' after property value in JSON at position 182\nText: [\n  {\n    \"day\": 1,\n    \"title\": \"Day 1: Village to Riverside Camp\",\n    \"startPoint\": \"Village\",\n    \"endPoint\": \"Riverside Camp\",\n    \"altitudeStart\": null,\n    \"altitudeEnd\": 1500m,\n    \"distance\": null,\n    \"walkingHours\": \"4-5 hours\",\n    \"highlights\": \"Introduction to the park's protected wild"
+  ],
+  "flaggedForReview": false
+}

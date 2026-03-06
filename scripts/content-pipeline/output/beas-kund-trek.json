@@ -1,0 +1,273 @@
+{
+  "trek_slug": "beas-kund-trek",
+  "name": "Beas Kund Trek",
+  "state": "Himachal Pradesh",
+  "difficulty": "EASY_MODERATE",
+  "duration": 4,
+  "distance": 18,
+  "maxAltitude": 3960,
+  "basePrice": 950000,
+  "tagline": "Trek to the source of River Beas",
+  "aboutText": "The Beas Kund Trek is a hidden gem in the Himalayas, located in the beautiful state of Himachal Pradesh. This easy to moderate trek takes you to the source of the majestic River Beas, situated at an altitude of 3960m. The trek is approximately 18km long and can be completed in 4 days. The best time to attempt this trek is between June and September, when the weather is pleasant and the landscape is at its best. What makes this trek unique is the stunning alpine landscape and the picturesque lake that you'll encounter along the way. Although the trek doesn't take you to Kareri Lake, the nearby Dhauladhar range, where Kareri Lake is located, is a testament to the region's natural beauty. As a trekker, you'll get to experience the breathtaking views of the Himalayas and the serene atmosphere of the lake. This trek is perfect for those who are looking for a moderate adventure and want to experience the beauty of the Himalayas. The trek's easy to moderate difficulty level makes it accessible to a wide range of trekkers, from beginners to experienced ones. So, if you're looking for a trek that's a mix of adventure, nature, and culture, the Beas Kund Trek is an excellent choice.",
+  "itineraryJson": [
+    {
+      "day": 1,
+      "title": "Day 1: Manali to Base Village",
+      "startPoint": "Manali",
+      "endPoint": "Base Village",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "2-3 hours",
+      "highlights": "Arrive in Manali and transfer to the base village, followed by a short acclimatisation walk to get your body ready for the trek ahead.",
+      "camp": "Base Village Camp"
+    },
+    {
+      "day": 2,
+      "title": "Day 2: Base Village to Tali Top",
+      "startPoint": "Base Village",
+      "endPoint": "Tali Top",
+      "altitudeStart": null,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "5-6 hours",
+      "highlights": "Trek through lush forests and picturesque meadows, taking in the breathtaking scenery of the Himalayas, to reach the campsite at Tali Top.",
+      "camp": "Tali Top Camp"
+    },
+    {
+      "day": 3,
+      "title": "Day 3: Tali Top to Beas Kund",
+      "startPoint": "Tali Top",
+      "endPoint": "Beas Kund",
+      "altitudeStart": null,
+      "altitudeEnd": 3960,
+      "distance": null,
+      "walkingHours": "4-5 hours",
+      "highlights": "Ascend to the stunning Beas Kund, an alpine lake surrounded by majestic mountains, and explore the surrounding ridges for panoramic views.",
+      "camp": "Beas Kund Camp"
+    },
+    {
+      "day": 4,
+      "title": "Day 4: Beas Kund to Manali",
+      "startPoint": "Beas Kund",
+      "endPoint": "Manali",
+      "altitudeStart": 3960,
+      "altitudeEnd": null,
+      "distance": null,
+      "walkingHours": "5-6 hours",
+      "highlights": "Begin the descent from Beas Kund, passing through Tali Top, and make your way back to Manali, bringing an end to the trek.",
+      "camp": null
+    }
+  ],
+  "difficultyDetails": {
+    "overall": "EASY_MODERATE",
+    "justification": "The Beas Kund Trek is rated as EASY_MODERATE due to its relatively short duration of 4 days and distance of 18km. The trek's highest point is at 3960m, which, although considerable, is still within a manageable range for most trekkers. The terrain is likely to be a mix of alpine and lake areas, which can be challenging but not excessively so.",
+    "altitudeSicknessRisk": "Moderate - due to the trek's maximum altitude of 3960m, which is high enough to pose some risk of altitude sickness but not extreme",
+    "fitnessRequirement": "Must be able to walk 4-6 hours daily on uneven terrain, with some steep inclines and potential river crossings",
+    "priorExperience": "Prior experience with high-altitude trekking is recommended, but not strictly necessary; beginners with a good level of physical fitness can also attempt this trek",
+    "technicalDifficulty": "None required, although some experience with river crossings and uneven terrain can be helpful"
+  },
+  "bestTimeJson": {
+    "peakSeason": "Jun-Sep",
+    "offSeason": "Oct-May",
+    "months": {
+      "January": {
+        "weather": "Cold and snowy",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "February": {
+        "weather": "Cold and snowy",
+        "trailCondition": "Closed",
+        "recommended": false
+      },
+      "March": {
+        "weather": "Mildly cold",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "April": {
+        "weather": "Pleasant",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "May": {
+        "weather": "Pleasant",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "June": {
+        "weather": "Mild and sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "July": {
+        "weather": "Mild and sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "August": {
+        "weather": "Mild and sunny",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "September": {
+        "weather": "Pleasant",
+        "trailCondition": "Open",
+        "recommended": true
+      },
+      "October": {
+        "weather": "Cooling down",
+        "trailCondition": "Open",
+        "recommended": false
+      },
+      "November": {
+        "weather": "Cold",
+        "trailCondition": "Difficult",
+        "recommended": false
+      },
+      "December": {
+        "weather": "Cold and snowy",
+        "trailCondition": "Closed",
+        "recommended": false
+      }
+    },
+    "peakSeasonPros": "The peak season offers pleasant weather, making it ideal for trekking. The wildflowers are in bloom, and the scenery is breathtaking.",
+    "peakSeasonCons": "The peak season can be crowded, and the cost of accommodations and services may be higher.",
+    "offSeasonPros": "Trekking during the off-season can be more peaceful, with fewer crowds and lower costs. It's also a great time for nature lovers to spot wildlife.",
+    "offSeasonCons": "The off-season can bring harsh weather conditions, including heavy snowfall, landslides, and road closures, making the trek more challenging."
+  },
+  "gettingThere": {
+    "nearestAirport": "Kangra Airport, approximately 20-30 km from Dharamsala",
+    "nearestRailway": "Pathankot Railway Station, approximately 100-150 km from Dharamsala",
+    "fromDelhi": "Take a bus or drive via NH44 and NH503, estimated travel time 10-12 hours",
+    "fromMumbai": "Not a common route, but can be reached via flight to Kangra Airport or train to Pathankot Railway Station and then local transport",
+    "localTransport": "Local buses, taxis, and shared jeeps are available from Dharamsala to the base village",
+    "baseVillage": "Dharamsala",
+    "summary": "To reach the Beas Kund Trek, fly into Kangra Airport or take a train to Pathankot Railway Station, then take local transport to Dharamsala, the base village. From Delhi, it's around a 10-12 hour drive or bus ride. Local buses, taxis, and shared jeeps are available for the final leg of the journey."
+  },
+  "permits": {
+    "permitsRequired": true,
+    "permitTypes": [
+      {
+        "name": "Forest Permit",
+        "cost": "Free",
+        "where": "Local forest office",
+        "notes": "Required for trekking in the forest areas of Himachal Pradesh"
+      }
+    ],
+    "innerLinePermit": false,
+    "innerLinePermitDetails": null,
+    "nationalParkFee": null,
+    "restrictions": "Camping and photography restrictions may apply in certain areas, please check with local authorities",
+    "summary": "A forest permit is required for the Beas Kund Trek, which can be obtained from the local forest office for free. Please check with local authorities for any additional restrictions or regulations."
+  },
+  "gearChecklist": {
+    "essential": [
+      "Waterproof jacket - to protect against unexpected rain showers at high altitude",
+      "Insulated jacket - for cold evenings at 3960m",
+      "Sturdy trekking boots - for uneven and potentially slippery terrain",
+      "First aid kit - including essentials for altitude sickness and minor injuries",
+      "Headlamp - for navigating in the dark"
+    ],
+    "clothing": [
+      "Base layers (top and bottom) for colder mornings and evenings",
+      "Quick-drying trekking pants",
+      "Warm hat and gloves",
+      "Moisture-wicking socks"
+    ],
+    "doNotCarry": [
+      "Valuables (jewelry, watches, etc.) - to minimize risk of loss or damage",
+      "Non-biodegradable items - to preserve the environment"
+    ]
+  },
+  "faqsJson": [
+    {
+      "question": "What is the difficulty level of the Beas Kund Trek and how fit do I need to be?",
+      "answer": "The Beas Kund Trek is classified as EASY_MODERATE, meaning it's suitable for trekkers with some experience. You should be in good physical shape and able to walk for several hours a day. It's essential to prepare beforehand with cardio exercises and strength training to ensure a comfortable and enjoyable trek."
+    },
+    {
+      "question": "What is the best time to visit for the Beas Kund Trek?",
+      "answer": "The best season for the Beas Kund Trek is from June to September. During this time, the weather is generally clear, and the temperatures are mild, making it ideal for trekking. However, it's always a good idea to check the weather forecast before embarking on your trek."
+    },
+    {
+      "question": "Is there a risk of altitude sickness on the Beas Kund Trek?",
+      "answer": "Yes, as the trek reaches an altitude of 3960m, there is a risk of altitude sickness. It's essential to ascend gradually, stay hydrated, and listen to your body. If you experience any symptoms such as headaches, nausea, or fatigue, inform your trek leader immediately."
+    },
+    {
+      "question": "What can I expect on the trail during the Beas Kund Trek?",
+      "answer": "The trail takes you through lush forests, meadows, and rocky terrain, offering breathtaking views of the surrounding mountains. You can expect to see diverse flora and fauna, including wildflowers, trees, and possibly some wildlife. The trail can be uneven and slippery at times, so it's crucial to wear sturdy trekking boots and use trekking poles if needed."
+    },
+    {
+      "question": "What kind of accommodation and food can I expect on the Beas Kund Trek?",
+      "answer": "Accommodation on the trek typically consists of camping in tents, with basic amenities such as toilets and washing facilities. Food is usually simple, nutritious, and locally sourced, including Indian and continental options. It's a good idea to inform your trek operator about any dietary restrictions or preferences in advance."
+    },
+    {
+      "question": "Do I need any permits or special permissions for the Beas Kund Trek?",
+      "answer": "Yes, you will need to obtain the necessary permits and permissions before embarking on the trek. Your trek operator will usually handle this process, but it's essential to check with them in advance to ensure everything is in order. Additionally, be prepared for some costs associated with permits, guide fees, and other expenses."
+    },
+    {
+      "question": "What are some specific challenges of the Beas Kund Trek?",
+      "answer": "Some specific challenges of the Beas Kund Trek include navigating uneven and rocky terrain, dealing with changing weather conditions, and managing altitude sickness. Additionally, the trek can be physically demanding, especially on the third day when you ascend to the highest point. It's crucial to stay focused, follow your trek leader's instructions, and prioritize your safety and well-being."
+    },
+    {
+      "question": "How long does the Beas Kund Trek take to complete?",
+      "answer": "The Beas Kund Trek typically takes 4 days to complete, covering a distance of approximately 26 km. However, the exact duration may vary depending on your trekking pace, weather conditions, and other factors. It's essential to stay flexible and adapt to any changes that may arise during the trek."
+    }
+  ],
+  "accommodationType": "Tent / Mixed",
+  "pickupTime": "Varies by departure",
+  "dropoffTime": "Varies by departure",
+  "bestFor": "18-50 years, moderate fitness",
+  "inclusions": [
+    "Accommodation",
+    "Meals",
+    "Guide",
+    "Permits"
+  ],
+  "exclusions": [
+    "Flights",
+    "Travel insurance"
+  ],
+  "seo": {
+    "title": "Beas Kund – Easy Trek | Trail Makers",
+    "description": "Beas Kund Trek in Himachal, 4 days, easy-moderate. Book now",
+    "keywords": [
+      "Beas Kund Trek",
+      "Himachal Pradesh Treks",
+      "Easy Treks in India",
+      "Beas Kund Lake",
+      "Trekking in Himalayas",
+      "Short Treks in Himachal",
+      "Summer Treks in India",
+      "Trail Makers Treks"
+    ],
+    "schemaMarkup": {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Beas Kund Trek",
+      "description": "A scenic trek to the source of the Beas River",
+      "url": "https://thetrailmakers.in/treks/beas-kund-trek",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 32.3256,
+        "longitude": 76.2736
+      },
+      "touristType": "Adventure tourists, trekkers",
+      "availableLanguage": "English, Hindi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Himachal Pradesh",
+        "addressCountry": "IN"
+      }
+    }
+  },
+  "contentVerified": false,
+  "contentGeneratedAt": "2026-02-27T16:56:14.208Z",
+  "sourcesUsed": [
+    "https://en.wikipedia.org/wiki/Kareri_Lake"
+  ],
+  "conflicts": [],
+  "generationErrors": [],
+  "flaggedForReview": false
+}
