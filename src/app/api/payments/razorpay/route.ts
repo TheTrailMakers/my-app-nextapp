@@ -6,10 +6,14 @@ import { prisma } from "@/lib/prisma";
 import { UnauthorizedError, NotFoundError, ValidationError } from "@/lib/errors";
 import { createErrorResponse } from "@/lib/errors";
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
+function getRazorpayClient() {
+  const key_id = process.env.RAZORPAY_KEY_ID;
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  if (!key_id || !key_secret) {
+    throw new Error("Razorpay credentials not configured");
+  }
+  return new Razorpay({ key_id, key_secret });
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -70,7 +74,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Razorpay order
-    const order = await razorpay.orders.create({
+    const order = await Razorpay.orders.create({
       amount: amountNum,
       currency: "INR",
       receipt: bookingId,
