@@ -1,16 +1,21 @@
+export const dynamic = 'force-dynamic';
 import { TrekService } from "@/lib/services/trekService";
 
 export default async function sitemap() {
   const base = "https://thetrailmakers.in";
   const lastModified = new Date();
 
-  // Fetch treks from database
-  const { treks } = await TrekService.listTreks({ page: 1, limit: 100 }, 0);
-
-  const trekUrls = treks.map((trek: { slug: string }) => ({
-    url: `${base}/treks/${trek.slug}`,
-    lastModified,
-  }));
+  // Fetch treks from database - wrapped in try/catch to prevent build failure when DB is unreachable
+  let trekUrls: Array<{ url: string; lastModified: Date }> = [];
+  try {
+    const { treks } = await TrekService.listTreks({ page: 1, limit: 100 }, 0);
+    trekUrls = treks.map((trek: { slug: string }) => ({
+      url: `${base}/treks/${trek.slug}`,
+      lastModified,
+    }));
+  } catch (error) {
+    console.warn("Skipping trek URLs in sitemap – DB unreachable during build:", error);
+  }
 
   return [
     { url: base, lastModified },
@@ -24,4 +29,3 @@ export default async function sitemap() {
 }
 
 
-  

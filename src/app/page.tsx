@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Image from "next/image";
 import Link from "next/link";
 import { TrekService } from "@/lib/services/trekService";
@@ -22,24 +24,30 @@ function formatDifficulty(difficulty: string): string {
 
 // Upcoming Adventures Table Component
 async function UpcomingAdventuresTable() {
-  const { treks: allTreks } = await TrekService.listTreks({ page: 1, limit: 50 }, 10);
+  // Wrapped in try/catch to prevent build failure when DB is unreachable
+  let sortedDepartures: any[] = [];
+  try {
+    const { treks: allTreks } = await TrekService.listTreks({ page: 1, limit: 50 }, 10);
 
-  // Flatten all departures from all treks and sort by earliest date
-  const allDepartures = allTreks.flatMap((trek: any) => 
-    (trek.departures || []).map((departure: any) => ({
-      trek,
-      departure,
-    }))
-  );
+    // Flatten all departures from all treks and sort by earliest date
+    const allDepartures = allTreks.flatMap((trek: any) => 
+      (trek.departures || []).map((departure: any) => ({
+        trek,
+        departure,
+      }))
+    );
 
-  // Sort by start date ascending (earliest first) and take top 8
-  const sortedDepartures = allDepartures
-    .sort((a: any, b: any) => {
-      const dateA = new Date(a.departure.startDate).getTime();
-      const dateB = new Date(b.departure.startDate).getTime();
-      return dateA - dateB;
-    })
-    .slice(0, 8);
+    // Sort by start date ascending (earliest first) and take top 8
+    sortedDepartures = allDepartures
+      .sort((a: any, b: any) => {
+        const dateA = new Date(a.departure.startDate).getTime();
+        const dateB = new Date(b.departure.startDate).getTime();
+        return dateA - dateB;
+      })
+      .slice(0, 8);
+  } catch (error) {
+    console.warn("Skipping UpcomingAdventuresTable – DB unreachable during build:", error);
+  }
 
   return (
     <section className="py-10 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-brand-warmwhite border-t border-white/20">
@@ -174,31 +182,38 @@ async function UpcomingAdventuresTable() {
 
 // Trek by Region Section - Server Component with Arrow Navigation
 async function TrekByRegionSection() {
-  const { treks: allTreks } = await TrekService.listTreks({ page: 1, limit: 100 }, 1);
+  // Wrapped in try/catch to prevent build failure when DB is unreachable
+  let regionStats: Record<string, { count: number; image?: string }> = {};
+  let sortedRegions: string[] = [];
+  
+  try {
+    const { treks: allTreks } = await TrekService.listTreks({ page: 1, limit: 100 }, 1);
 
-  // Get unique states and count treks in each
-  const regionStats: Record<string, { count: number; image?: string }> = {};
-  const stateImages: Record<string, string> = {
-    "Himachal Pradesh": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=800&fit=crop",
-    "Uttarakhand": "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=600&h=800&fit=crop",
-    "Jammu and Kashmir": "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&h=800&fit=crop",
-    "Sikkim": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
-    "West Bengal": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=800&fit=crop",
-  };
+    // Get unique states and count treks in each
+    const stateImages: Record<string, string> = {
+      "Himachal Pradesh": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=800&fit=crop",
+      "Uttarakhand": "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=600&h=800&fit=crop",
+      "Jammu and Kashmir": "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&h=800&fit=crop",
+      "Sikkim": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
+      "West Bengal": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=800&fit=crop",
+    };
 
-  allTreks.forEach((trek: any) => {
-    const state = trek.state || "Other";
-    if (!regionStats[state]) {
-      regionStats[state] = { 
-        count: 0, 
-        image: stateImages[state] || trek.thumbnailUrl 
-      };
-    }
-    regionStats[state].count++;
-  });
+    allTreks.forEach((trek: any) => {
+      const state = trek.state || "Other";
+      if (!regionStats[state]) {
+        regionStats[state] = { 
+          count: 0, 
+          image: stateImages[state] || trek.thumbnailUrl 
+        };
+      }
+      regionStats[state].count++;
+    });
 
-  // Sort regions alphabetically
-  const sortedRegions = Object.keys(regionStats).sort();
+    // Sort regions alphabetically
+    sortedRegions = Object.keys(regionStats).sort();
+  } catch (error) {
+    console.warn("Skipping TrekByRegionSection – DB unreachable during build:", error);
+  }
 
   return <TrekByRegionClient regions={sortedRegions} regionStats={regionStats} />;
 }
