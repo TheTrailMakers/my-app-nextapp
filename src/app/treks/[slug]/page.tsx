@@ -20,7 +20,7 @@ export async function generateStaticParams() {
     const { treks } = await TrekService.listTreks({ page: 1, limit: 50 });
     return treks.map((trek: any) => ({ slug: trek.slug }));
   } catch (error) {
-    console.error("Error generating static params:", error);
+    console.warn("Skipping generateStaticParams – DB unreachable during build:", error);
     return [];
   }
 }
