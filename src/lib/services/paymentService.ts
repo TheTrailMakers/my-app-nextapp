@@ -13,10 +13,21 @@ import {
 } from "@/lib/errors";
 import { sendBookingConfirmationEmail } from "@/lib/email";
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
+// Lazy-load Razorpay client to prevent build-time initialization errors
+let razorpayInstance: Razorpay | null = null;
+
+function getRazorpayClient(): Razorpay {
+  if (!razorpayInstance) {
+    if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+      throw new Error("Razorpay credentials are not configured");
+    }
+    razorpayInstance = new Razorpay({
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_KEY_SECRET,
+    });
+  }
+  return razorpayInstance;
+}
 
 export class PaymentService {
   /**
@@ -73,6 +84,7 @@ export class PaymentService {
 
     // Create Razorpay order
     try {
+      const razorpay = getRazorpayClient();
       const razorpayOrder = await razorpay.orders.create({
         amount: booking.totalAmount, // in paise
         currency: "INR",
@@ -291,6 +303,7 @@ export class PaymentService {
 
     try {
       // Request refund from Razorpay
+      const razorpay = getRazorpayClient();
       const refund = await razorpay.payments.refund(payment.transactionId!, {
         amount: payment.amount,
       });

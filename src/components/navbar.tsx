@@ -66,13 +66,6 @@ export default function Navbar () {
 
     return(
         <header className="sticky top-0 left-0 right-0 bg-black border-b border-slate-800 z-50">
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" />
-            <link
-                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
-                rel="stylesheet"
-            />
-
             <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
                 {/* Logo */}
                 <Link href='/' className="flex-shrink-0">

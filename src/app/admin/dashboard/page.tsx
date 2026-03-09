@@ -97,12 +97,14 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     fetchCurrentUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (currentUserRole && ['SUPER_ADMIN', 'ADMIN', 'MODERATOR'].includes(currentUserRole)) {
       loadDashboardData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUserRole, activeTab]);
 
   const fetchCurrentUser = async () => {

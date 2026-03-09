@@ -5,7 +5,11 @@ import Providers from "@/app/providers";
 import { Poppins } from 'next/font/google';
 import type { Metadata } from 'next';
 
-
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
   title: "The Trail Makers - Explore new routes in the Himalayas",
@@ -17,7 +21,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
 
   return (
     <html lang="en">
-      <body>
+      <body className={poppins.variable}>
         <Providers>
           <Navbar />
           {children}

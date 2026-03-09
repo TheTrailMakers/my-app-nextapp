@@ -33,6 +33,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetchCurrentUser();
     fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCurrentUser = async () => {
