@@ -32,9 +32,7 @@ NEXTAUTH_URL=
 NEXT_PUBLIC_SITE_URL=
 RESEND_API_KEY=
 EMAIL_FROM=
-SENTRY_DSN=
-SENTRY_ORG=
-SENTRY_PROJECT=
+NEXT_PUBLIC_SENTRY_DSN=
 RAZORPAY_KEY_ID=
 RAZORPAY_KEY_SECRET=
 UPSTASH_REDIS_REST_URL=
@@ -42,6 +40,14 @@ UPSTASH_REDIS_REST_TOKEN=
 ```
 
 `NEXT_PUBLIC_SITE_URL` should point to the canonical deployment URL and is used for metadata generation.
+
+For Sentry source map uploads during production builds, also set:
+
+```bash
+SENTRY_AUTH_TOKEN=
+SENTRY_ORG=
+SENTRY_PROJECT=
+```
 
 ## Database Workflow
 
@@ -78,4 +84,5 @@ bun run build
 ## Notes
 
 - The build is resilient when `DATABASE_URL` is missing by catching database access for static generation paths and falling back to empty collections where needed.
-- Sentry is configured through `next.config.mjs` and the `sentry.*.config.ts` files.
+- Sentry runtime configuration lives in `src/instrumentation-client.ts`, `sentry.server.config.ts`, and `sentry.edge.config.ts`.
+- The Sentry build plugin is configured in `next.config.mjs` and uses `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, and `SENTRY_PROJECT` when source maps should be uploaded.
