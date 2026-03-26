@@ -118,6 +118,7 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
           <Link href="/signup" className="text-red-500 hover:text-red-400">
             Sign Up
           </Link>
+          <button>Sign In With Google</button>
         </p>
 
         <p className="text-gray-400 text-center mt-2">
