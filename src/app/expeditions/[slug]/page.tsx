@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-import { prisma } from "@/lib/prisma";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { expedition as expeditionTable } from "@/drizzle/schema";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 import { getExpeditionBySlug } from "@/lib/services/expeditionService";
 
@@ -29,10 +31,10 @@ export async function generateStaticParams() {
   }
 
   try {
-    const expeditions = await prisma.expedition.findMany({
-      select: { slug: true },
-      orderBy: { createdAt: "desc" },
-    });
+    const expeditions = await db
+      .select({ slug: expeditionTable.slug })
+      .from(expeditionTable)
+      .orderBy(desc(expeditionTable.createdAt));
 
     return expeditions.map((expedition) => ({ slug: expedition.slug }));
   } catch (error) {

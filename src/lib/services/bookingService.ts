@@ -4,13 +4,85 @@
  * CRITICAL: Prevents race conditions in concurrent booking scenarios
  */
 
-import { prisma } from "@/lib/prisma";
+import { and, desc, eq, gte, sql } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
+import db from "@/drizzle/db";
+import {
+  auditLog,
+  booking as bookingTable,
+  departure as departureTable,
+  payment as paymentTable,
+  trek as trekTable,
+  userTable,
+} from "@/drizzle/schema";
 import {
   InsufficientSeatsError,
   DuplicateBookingError,
   NotFoundError,
   ValidationError,
 } from "@/lib/errors";
+
+function isDatabaseError(error: unknown): error is { code?: string } {
+  return Boolean(error && typeof error === "object" && "code" in error);
+}
+
+async function findBookingDetailsRow(bookingId: string) {
+  const rows = await db
+    .select({
+      booking: bookingTable,
+      user: userTable,
+      departure: departureTable,
+      trek: trekTable,
+      payment: paymentTable,
+    })
+    .from(bookingTable)
+    .innerJoin(userTable, eq(bookingTable.userId, userTable.id))
+    .innerJoin(departureTable, eq(bookingTable.departureId, departureTable.id))
+    .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+    .leftJoin(paymentTable, eq(paymentTable.bookingId, bookingTable.id))
+    .where(eq(bookingTable.id, bookingId))
+    .limit(1);
+
+  return rows[0] ?? null;
+}
+
+function mapBookingDetails(
+  row: NonNullable<Awaited<ReturnType<typeof findBookingDetailsRow>>>,
+) {
+  const { booking, user, departure, trek, payment } = row;
+
+  return {
+    ...booking,
+    user: {
+      id: user.id,
+      email: user.email,
+      username: user.username,
+    },
+    departure: {
+      ...departure,
+      trek,
+    },
+    payment,
+  };
+}
+
+function mapUserBookingRow(row: {
+  booking: typeof bookingTable.$inferSelect;
+  departure: typeof departureTable.$inferSelect;
+  trek: typeof trekTable.$inferSelect;
+  payment: typeof paymentTable.$inferSelect | null;
+}) {
+  const { booking, departure, trek, payment } = row;
+
+  return {
+    ...booking,
+    departure: {
+      ...departure,
+      trek,
+    },
+    payment,
+  };
+}
 
 export async function createBooking(
   userId: string,
@@ -21,10 +93,16 @@ export async function createBooking(
   contactEmail: string,
 ) {
   // Validate departure exists and isn't cancelled
-  const departure = await prisma.departure.findUnique({
-    where: { id: departureId },
-    include: { trek: true },
-  });
+  const departureRows = await db
+    .select({
+      departure: departureTable,
+      trek: trekTable,
+    })
+    .from(departureTable)
+    .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+    .where(eq(departureTable.id, departureId))
+    .limit(1);
+  const departure = departureRows[0]?.departure;
 
   if (!departure) {
     throw new NotFoundError("Departure not found");
@@ -40,99 +118,120 @@ export async function createBooking(
 
   // Execute booking creation in a transaction
   // This ensures atomicity: either all operations succeed or all rollback
-  const booking = await prisma.$transaction(
-    async (tx) => {
-      // Step 1: Check for duplicate booking (user already booked this departure)
-      const existingBooking = await tx.booking.findUnique({
-        where: {
-          userId_departureId: { userId, departureId },
-        },
-      });
+  let newBookingId = "";
 
-      if (existingBooking) {
-        throw new DuplicateBookingError();
-      }
+  try {
+    await db.transaction(
+      async (tx) => {
+        // Step 1: Check for duplicate booking (user already booked this departure)
+        const existingBooking = await tx
+          .select({ id: bookingTable.id })
+          .from(bookingTable)
+          .where(
+            and(
+              eq(bookingTable.userId, userId),
+              eq(bookingTable.departureId, departureId),
+            ),
+          )
+          .limit(1);
 
-      // Step 2: Re-fetch departure within transaction to get latest seatsAvailable
-      // This read happens WITHIN the transaction for consistency
-      const latestDeparture = await tx.departure.findUnique({
-        where: { id: departureId },
-      });
+        if (existingBooking.length > 0) {
+          throw new DuplicateBookingError();
+        }
 
-      if (!latestDeparture) {
-        throw new NotFoundError("Departure not found");
-      }
+        // Step 2 and 3: atomically reserve seats only if still available.
+        const updatedDeparture = await tx
+          .update(departureTable)
+          .set({
+            seatsAvailable: sql`${departureTable.seatsAvailable} - ${numberOfPeople}`,
+            updatedAt: new Date(),
+          })
+          .where(
+            and(
+              eq(departureTable.id, departureId),
+              eq(departureTable.isCancelled, false),
+              gte(departureTable.seatsAvailable, numberOfPeople),
+            ),
+          )
+          .returning({ id: departureTable.id });
 
-      if (numberOfPeople > latestDeparture.seatsAvailable) {
-        throw new InsufficientSeatsError();
-      }
+        if (updatedDeparture.length === 0) {
+          const latestDeparture = await tx
+            .select({
+              id: departureTable.id,
+              isCancelled: departureTable.isCancelled,
+              seatsAvailable: departureTable.seatsAvailable,
+            })
+            .from(departureTable)
+            .where(eq(departureTable.id, departureId))
+            .limit(1);
 
-      // Step 3: Update seats and create booking atomically
-      // Using updateMany with a WHERE clause ensures the update only succeeds
-      // if the condition is still true (optimistic locking pattern)
-      const updatedDeparture = await tx.departure.update({
-        where: { id: departureId },
-        data: {
-          seatsAvailable: {
-            decrement: numberOfPeople,
-          },
-        },
-      });
+          if (latestDeparture.length === 0) {
+            throw new NotFoundError("Departure not found");
+          }
 
-      // Step 4: Create booking record
-      const totalAmount = numberOfPeople * departure.pricePerPerson;
+          if (latestDeparture[0].isCancelled) {
+            throw new ValidationError("This trek departure has been cancelled");
+          }
 
-      const newBooking = await tx.booking.create({
-        data: {
-          userId,
-          departureId,
-          numberOfPeople,
-          totalAmount,
-          contactName,
-          contactPhone,
-          contactEmail,
-          status: "PENDING",
-        },
-        include: {
-          departure: {
-            include: { trek: true },
-          },
-          user: true,
-        },
-      });
+          throw new InsufficientSeatsError();
+        }
 
-      // Step 5: Log this action for audit trail
-      await tx.auditLog.create({
-        data: {
+        const totalAmount = numberOfPeople * departure.pricePerPerson;
+        const insertedBookings = await tx
+          .insert(bookingTable)
+          .values({
+            id: randomUUID(),
+            userId,
+            departureId,
+            numberOfPeople,
+            totalAmount,
+            contactName,
+            contactPhone,
+            contactEmail,
+            status: "PENDING",
+            updatedAt: new Date(),
+          })
+          .returning({ id: bookingTable.id });
+
+        newBookingId = insertedBookings[0]?.id ?? "";
+
+        await tx.insert(auditLog).values({
+          id: randomUUID(),
           action: "BOOKING_CREATED",
           entityType: "BOOKING",
-          entityId: newBooking.id,
+          entityId: newBookingId,
           userId,
           metadata: JSON.stringify({
             departureId,
             numberOfPeople,
             totalAmount,
           }),
-        },
-      });
+          description: `BOOKING_CREATED on BOOKING ${newBookingId}`,
+        });
+      },
+      {
+        isolationLevel: "serializable",
+      },
+    );
+  } catch (error) {
+    if (error instanceof DuplicateBookingError) {
+      throw error;
+    }
 
-      return newBooking;
-    },
-    {
-      // Transaction settings for safety
-      isolationLevel: "Serializable", // Strongest isolation level
-      timeout: 10000, // 10 second timeout
-    },
-  );
+    if (isDatabaseError(error) && error.code === "23505") {
+      throw new DuplicateBookingError();
+    }
 
-  return booking;
+    throw error;
+  }
+
+  return getBooking(newBookingId, userId);
 }
 
 export async function confirmBookingForTest(bookingId: string, userId: string) {
-  const booking = await prisma.booking.findUnique({
-    where: { id: bookingId },
-    include: { departure: { include: { trek: true } } },
-  });
+  const bookingRow = await findBookingDetailsRow(bookingId);
+  const booking = bookingRow ? mapBookingDetails(bookingRow) : null;
 
   if (!booking) {
     throw new NotFoundError("Booking not found");
@@ -146,46 +245,50 @@ export async function confirmBookingForTest(bookingId: string, userId: string) {
     throw new ValidationError("Booking is not pending");
   }
 
-  return prisma.$transaction(async (tx) => {
-    await tx.booking.update({
-      where: { id: bookingId },
-      data: { status: "CONFIRMED" },
-    });
+  const transactionId = `test_${bookingId}_${Date.now()}`;
 
-    await tx.payment.upsert({
-      where: { bookingId },
-      create: {
-        bookingId,
-        userId,
-        amount: booking.totalAmount,
-        status: "COMPLETED",
-        paymentGateway: "razorpay",
-        transactionId: `test_${bookingId}_${Date.now()}`,
-        metadata: JSON.stringify({ testMode: true }),
-      },
-      update: {
-        status: "COMPLETED",
-        transactionId: `test_${bookingId}_${Date.now()}`,
-        metadata: JSON.stringify({ testMode: true }),
-      },
-    });
+  await db.transaction(
+    async (tx) => {
+      await tx
+        .update(bookingTable)
+        .set({
+          status: "CONFIRMED",
+          updatedAt: new Date(),
+        })
+        .where(eq(bookingTable.id, bookingId));
 
-    return prisma.booking.findUniqueOrThrow({
-      where: { id: bookingId },
-      include: {
-        departure: { include: { trek: true } },
-        user: true,
-        payment: true,
-      },
-    });
-  });
+      await tx
+        .insert(paymentTable)
+        .values({
+          id: randomUUID(),
+          bookingId,
+          userId,
+          amount: booking.totalAmount,
+          status: "COMPLETED",
+          paymentGateway: "razorpay",
+          transactionId,
+          metadata: JSON.stringify({ testMode: true }),
+          updatedAt: new Date(),
+        })
+        .onConflictDoUpdate({
+          target: paymentTable.bookingId,
+          set: {
+            status: "COMPLETED",
+            transactionId,
+            metadata: JSON.stringify({ testMode: true }),
+            updatedAt: new Date(),
+          },
+        });
+    },
+    { isolationLevel: "serializable" },
+  );
+
+  return getBooking(bookingId, userId);
 }
 
 export async function cancelBooking(bookingId: string, userId: string) {
-  const booking = await prisma.booking.findUnique({
-    where: { id: bookingId },
-    include: { departure: true },
-  });
+  const bookingRow = await findBookingDetailsRow(bookingId);
+  const booking = bookingRow ? mapBookingDetails(bookingRow) : null;
 
   if (!booking) {
     throw new NotFoundError("Booking not found");
@@ -203,46 +306,53 @@ export async function cancelBooking(bookingId: string, userId: string) {
     throw new ValidationError("Cannot cancel a completed trek booking");
   }
 
-  const cancelled = await prisma.$transaction(async (tx) => {
-    // Return seats to availability
-    await tx.departure.update({
-      where: { id: booking.departureId },
-      data: {
-        seatsAvailable: {
-          increment: booking.numberOfPeople,
-        },
-      },
-    });
+  await db.transaction(
+    async (tx) => {
+      // Return seats to availability
+      await tx
+        .update(departureTable)
+        .set({
+          seatsAvailable: sql`${departureTable.seatsAvailable} + ${booking.numberOfPeople}`,
+          updatedAt: new Date(),
+        })
+        .where(eq(departureTable.id, booking.departureId));
 
-    // Update booking status
-    const updatedBooking = await tx.booking.update({
-      where: { id: bookingId },
-      data: {
-        status: "CANCELLED",
-        cancelledAt: new Date(),
-      },
-      include: { departure: true },
-    });
+      // Update booking status
+      await tx
+        .update(bookingTable)
+        .set({
+          status: "CANCELLED",
+          cancelledAt: new Date(),
+          updatedAt: new Date(),
+        })
+        .where(eq(bookingTable.id, bookingId));
 
-    // If payment was completed, mark for refund
-    const payment = await tx.payment.findUnique({
-      where: { bookingId },
-    });
+      // If payment was completed, mark for refund
+      const payment = await tx
+        .select({
+          id: paymentTable.id,
+          amount: paymentTable.amount,
+          status: paymentTable.status,
+        })
+        .from(paymentTable)
+        .where(eq(paymentTable.bookingId, bookingId))
+        .limit(1);
 
-    if (payment && payment.status === "COMPLETED") {
-      await tx.payment.update({
-        where: { id: payment.id },
-        data: {
-          status: "REFUNDED",
-          refundAmount: payment.amount,
-          refundedAt: new Date(),
-        },
-      });
-    }
+      if (payment[0] && payment[0].status === "COMPLETED") {
+        await tx
+          .update(paymentTable)
+          .set({
+            status: "REFUNDED",
+            refundAmount: payment[0].amount,
+            refundedAt: new Date(),
+            updatedAt: new Date(),
+          })
+          .where(eq(paymentTable.id, payment[0].id));
+      }
 
-    // Audit log
-    await tx.auditLog.create({
-      data: {
+      // Audit log
+      await tx.insert(auditLog).values({
+        id: randomUUID(),
         action: "BOOKING_CANCELLED",
         entityType: "BOOKING",
         entityId: bookingId,
@@ -250,44 +360,27 @@ export async function cancelBooking(bookingId: string, userId: string) {
         metadata: JSON.stringify({
           seatsReturned: booking.numberOfPeople,
         }),
-      },
-    });
+        description: `BOOKING_CANCELLED on BOOKING ${bookingId}`,
+      });
+    },
+    { isolationLevel: "serializable" },
+  );
 
-    return updatedBooking;
-  });
-
-  return cancelled;
+  return getBooking(bookingId, userId);
 }
 
 export async function getBooking(bookingId: string, userId: string) {
-  const booking = await prisma.booking.findUnique({
-    where: { id: bookingId },
-    include: {
-      user: {
-        select: {
-          id: true,
-          email: true,
-          username: true,
-        },
-      },
-      departure: {
-        include: {
-          trek: true,
-        },
-      },
-      payment: true,
-    },
-  });
+  const row = await findBookingDetailsRow(bookingId);
 
-  if (!booking) {
+  if (!row) {
     throw new NotFoundError("Booking not found");
   }
 
-  if (booking.userId !== userId) {
+  if (row.booking.userId !== userId) {
     throw new ValidationError("Cannot access someone else's booking");
   }
 
-  return booking;
+  return mapBookingDetails(row);
 }
 
 export async function getUserBookings(
@@ -297,21 +390,33 @@ export async function getUserBookings(
 ) {
   const skip = (page - 1) * limit;
 
-  const [bookings, total] = await Promise.all([
-    prisma.booking.findMany({
-      where: { userId },
-      include: {
-        departure: {
-          include: { trek: true },
-        },
-        payment: true,
-      },
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: limit,
-    }),
-    prisma.booking.count({ where: { userId } }),
+  const [rows, totalRows] = await Promise.all([
+    db
+      .select({
+        booking: bookingTable,
+        departure: departureTable,
+        trek: trekTable,
+        payment: paymentTable,
+      })
+      .from(bookingTable)
+      .innerJoin(
+        departureTable,
+        eq(bookingTable.departureId, departureTable.id),
+      )
+      .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+      .leftJoin(paymentTable, eq(paymentTable.bookingId, bookingTable.id))
+      .where(eq(bookingTable.userId, userId))
+      .orderBy(desc(bookingTable.createdAt))
+      .limit(limit)
+      .offset(skip),
+    db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(bookingTable)
+      .where(eq(bookingTable.userId, userId)),
   ]);
+
+  const bookings = rows.map(mapUserBookingRow);
+  const total = totalRows[0]?.count ?? 0;
 
   return {
     bookings,
@@ -325,18 +430,19 @@ export async function getUserBookings(
 }
 
 export async function checkAvailability(departureId: string) {
-  const departure = await prisma.departure.findUnique({
-    where: { id: departureId },
-    select: {
-      id: true,
-      totalSeats: true,
-      seatsAvailable: true,
-      isCancelled: true,
-      trek: {
-        select: { name: true },
-      },
-    },
-  });
+  const rows = await db
+    .select({
+      id: departureTable.id,
+      totalSeats: departureTable.totalSeats,
+      seatsAvailable: departureTable.seatsAvailable,
+      isCancelled: departureTable.isCancelled,
+      trekName: trekTable.name,
+    })
+    .from(departureTable)
+    .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+    .where(eq(departureTable.id, departureId))
+    .limit(1);
+  const departure = rows[0];
 
   if (!departure) {
     throw new NotFoundError("Departure not found");
@@ -344,7 +450,7 @@ export async function checkAvailability(departureId: string) {
 
   return {
     departureId,
-    trekName: departure.trek.name,
+    trekName: departure.trekName,
     totalSeats: departure.totalSeats,
     seatsAvailable: departure.seatsAvailable,
     seatsBooked: departure.totalSeats - departure.seatsAvailable,

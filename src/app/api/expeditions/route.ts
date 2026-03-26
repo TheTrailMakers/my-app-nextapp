@@ -1,17 +1,24 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { expedition as expeditionTable } from "@/drizzle/schema";
 
 export async function GET() {
   try {
-    const expeditions = await prisma.expedition.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+    const expeditions = await db
+      .select()
+      .from(expeditionTable)
+      .orderBy(desc(expeditionTable.createdAt));
 
     return NextResponse.json({
       success: true,
-      expeditions,
+      expeditions: expeditions.map((expedition) => ({
+        ...expedition,
+        tags: expedition.tags ?? [],
+        inclusions: expedition.inclusions ?? [],
+        exclusions: expedition.exclusions ?? [],
+        requirements: expedition.requirements ?? [],
+      })),
     });
   } catch (error) {
     console.error("Error fetching expeditions:", error);

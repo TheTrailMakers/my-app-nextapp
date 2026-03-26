@@ -1,164 +1,342 @@
-import { type NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@/lib/prisma";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { APIError, createAuthMiddleware } from "better-auth/api";
+import { betterAuth, type BetterAuthPlugin } from "better-auth";
+import { nextCookies } from "better-auth/next-js";
+import { and, eq } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
 import { trackFailedLogin, logAudit } from "@/lib/roleUtils";
-import bcrypt from "bcryptjs";
-import type { JWT } from "next-auth/jwt";
-import type { Session, User } from "next-auth";
+import { sendEmail } from "@/lib/email";
+import { hashAuthPassword, verifyAuthPassword } from "@/lib/auth-password";
+import db from "@/drizzle/db";
+import {
+  accountTable,
+  sessionTable,
+  userTable,
+  verificationTable,
+} from "@/drizzle/schema";
+import { userRoleValues } from "@/lib/user-role";
 
-type AuthenticatedUser = User & {
-  id: string;
-  username: string;
-  role: string;
-  isActive: boolean;
-  isLocked: boolean;
-};
+function normalizeEmail(email: string) {
+  return email.trim().toLowerCase();
+}
 
-export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
-  providers: [
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+function normalizeUsername(username: string) {
+  return username.trim();
+}
+
+function getHeaderValue(
+  ctx: {
+    headers?: Headers;
+    request?: Request;
+  },
+  name: string,
+) {
+  return ctx.headers?.get(name) ?? ctx.request?.headers.get(name) ?? null;
+}
+
+function getIpAddress(ctx: { headers?: Headers; request?: Request }) {
+  const forwarded =
+    getHeaderValue(ctx, "x-forwarded-for") ?? getHeaderValue(ctx, "x-real-ip");
+
+  return forwarded ? forwarded.split(",")[0]?.trim() || "unknown" : "unknown";
+}
+
+function getUserAgent(ctx: { headers?: Headers; request?: Request }) {
+  return getHeaderValue(ctx, "user-agent") ?? "unknown";
+}
+
+const authLifecyclePlugin = {
+  id: "trail-makers-auth-lifecycle",
+  hooks: {
+    before: [
+      {
+        matcher: (ctx) => ctx.path === "/sign-up/email",
+        handler: createAuthMiddleware(async (ctx) => {
+          const email =
+            typeof ctx.body?.email === "string"
+              ? normalizeEmail(ctx.body.email)
+              : undefined;
+          const username =
+            typeof ctx.body?.username === "string"
+              ? normalizeUsername(ctx.body.username)
+              : undefined;
+          const name =
+            typeof ctx.body?.name === "string" &&
+            ctx.body.name.trim().length > 0
+              ? ctx.body.name.trim()
+              : username;
+
+          return {
+            context: {
+              ...ctx,
+              body: {
+                ...ctx.body,
+                ...(email ? { email } : {}),
+                ...(username ? { username } : {}),
+                ...(name ? { name } : {}),
+              },
+            },
+          };
+        }),
       },
-      async authorize(credentials, req) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-
-        const normalizedEmail = credentials.email.toLowerCase();
-        const forwarded = req?.headers?.get?.("x-forwarded-for");
-        const ipAddress = forwarded
-          ? forwarded.split(",")[0].trim()
-          : "unknown";
-        const userAgent = req?.headers?.get?.("user-agent") || "unknown";
-
-        const user = await prisma.user.findUnique({
-          where: { email: normalizedEmail },
-          select: {
-            id: true,
-            email: true,
-            username: true,
-            password: true,
-            role: true,
-            isActive: true,
-            isLocked: true,
-            isDenied: true,
-            accountLockedUntil: true,
-          },
-        });
-
-        if (!user) {
-          await trackFailedLogin(normalizedEmail, ipAddress, userAgent);
-          return null;
-        }
-
-        if (user.isDenied) {
-          return null;
-        }
-
-        if (user.isLocked) {
-          if (
-            user.accountLockedUntil &&
-            new Date(user.accountLockedUntil) > new Date()
-          ) {
-            return null;
+      {
+        matcher: (ctx) => ctx.path === "/sign-in/email",
+        handler: createAuthMiddleware(async (ctx) => {
+          if (typeof ctx.body?.email !== "string") {
+            return;
           }
 
-          await prisma.user.update({
-            where: { id: user.id },
-            data: { isLocked: false, accountLockedUntil: null },
-          });
-        }
+          const email = normalizeEmail(ctx.body.email);
+          const users = await db
+            .select({
+              user: {
+                id: userTable.id,
+                password: userTable.password,
+                isActive: userTable.isActive,
+                isLocked: userTable.isLocked,
+                isDenied: userTable.isDenied,
+                accountLockedUntil: userTable.accountLockedUntil,
+              },
+            })
+            .from(userTable)
+            .where(eq(userTable.email, email))
+            .limit(1);
 
-        if (!user.isActive) {
-          return null;
-        }
+          if (!users || users.length === 0) {
+            return {
+              context: {
+                ...ctx,
+                body: {
+                  ...ctx.body,
+                  email,
+                },
+              },
+            };
+          }
+          const user = users[0].user;
 
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password,
-        );
-        if (!isPasswordValid) {
-          await trackFailedLogin(normalizedEmail, ipAddress, userAgent);
-          return null;
-        }
+          if (user.isDenied) {
+            throw new APIError("FORBIDDEN", {
+              message: "Your account does not have access.",
+            });
+          }
 
-        await prisma.user.update({
-          where: { id: user.id },
-          data: { lastLoginAt: new Date() },
-        });
-        await logAudit(
-          "USER_LOGIN",
-          "USER",
-          user.id,
-          user.id,
-          {},
-          { ipAddress, userAgent },
-        );
+          if (!user.isActive) {
+            throw new APIError("FORBIDDEN", {
+              message: "Your account is deactivated.",
+            });
+          }
 
-        return {
-          id: user.id,
-          email: user.email,
-          username: user.username,
-          role: user.role,
-          isActive: user.isActive,
-          isLocked: false,
-        } satisfies AuthenticatedUser;
+          if (user.isLocked) {
+            if (
+              user.accountLockedUntil &&
+              user.accountLockedUntil > new Date()
+            ) {
+              throw new APIError("FORBIDDEN", {
+                message: "Your account is locked.",
+              });
+            }
+
+            await db
+              .update(userTable)
+              .set({
+                isLocked: false,
+                accountLockedUntil: null,
+                updatedAt: new Date(),
+              })
+              .where(eq(userTable.id, user.id));
+          }
+
+          const credentialAccounts = await db
+            .select({
+              id: accountTable.id,
+              password: accountTable.password,
+            })
+            .from(accountTable)
+            .where(
+              and(
+                eq(accountTable.userId, user.id),
+                eq(accountTable.providerId, "credential"),
+              ),
+            )
+            .limit(1);
+          const credentialAccount = credentialAccounts[0];
+
+          if (user.password && credentialAccount?.password !== user.password) {
+            if (credentialAccount) {
+              await db
+                .update(accountTable)
+                .set({
+                  password: user.password,
+                  updatedAt: new Date(),
+                })
+                .where(eq(accountTable.id, credentialAccount.id));
+            } else {
+              await db.insert(accountTable).values({
+                id: randomUUID(),
+                accountId: user.id,
+                providerId: "credential",
+                userId: user.id,
+                password: user.password,
+                updatedAt: new Date(),
+              });
+            }
+          }
+
+          return {
+            context: {
+              ...ctx,
+              body: {
+                ...ctx.body,
+                email,
+              },
+            },
+          };
+        }),
       },
-    }),
-  ],
-  pages: {
-    signIn: "/login",
+    ],
+    after: [
+      {
+        matcher: (ctx) => ctx.path === "/sign-in/email",
+        handler: createAuthMiddleware(async (ctx) => {
+          const authContext = ctx.context as {
+            newSession?: {
+              user?: {
+                id?: string;
+              };
+            };
+          };
+
+          const userId = authContext.newSession?.user?.id;
+          if (userId) {
+            await db
+              .update(userTable)
+              .set({
+                lastLoginAt: new Date(),
+                updatedAt: new Date(),
+              })
+              .where(eq(userTable.id, userId));
+
+            await logAudit(
+              "USER_LOGIN",
+              "USER",
+              userId,
+              userId,
+              {},
+              {
+                ipAddress: getIpAddress(ctx),
+                userAgent: getUserAgent(ctx),
+              },
+            );
+            return;
+          }
+
+          if (typeof ctx.body?.email === "string") {
+            await trackFailedLogin(
+              normalizeEmail(ctx.body.email),
+              getIpAddress(ctx),
+              getUserAgent(ctx),
+            );
+          }
+        }),
+      },
+    ],
   },
-  callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: User }) {
-      if (user) {
-        token.id = user.id;
-        token.username = user.username;
-        token.role = user.role;
-        token.isActive = user.isActive;
-        token.isLocked = user.isLocked;
-        return token;
-      }
+} satisfies BetterAuthPlugin;
 
-      if (
-        (!token.role ||
-          token.isActive === undefined ||
-          token.isLocked === undefined) &&
-        token.id
-      ) {
-        const dbUser = await prisma.user.findUnique({
-          where: { id: token.id as string },
-          select: { role: true, isActive: true, isLocked: true },
-        });
-
-        if (dbUser) {
-          token.role = dbUser.role;
-          token.isActive = dbUser.isActive;
-          token.isLocked = dbUser.isLocked;
-        }
-      }
-
-      return token;
+export const auth = betterAuth({
+  appName: "Trail Makers",
+  baseURL: process.env.BETTER_AUTH_URL,
+  secret: process.env.BETTER_AUTH_SECRET,
+  database: drizzleAdapter(db, {
+    provider: "pg",
+    schema: {
+      user: userTable,
+      account: accountTable,
+      session: sessionTable,
+      verification: verificationTable,
     },
-    async session({ session, token }: { session: Session; token: JWT }) {
-      if (session.user) {
-        session.user.id = token.id;
-        session.user.username = token.username;
-        session.user.role = token.role;
-        session.user.isActive = token.isActive;
-        session.user.isLocked = token.isLocked;
-      }
-
-      return session;
+  }),
+  advanced: {
+    database: {
+      generateId: "uuid",
     },
   },
-  session: {
-    strategy: "jwt" as const,
+  user: {
+    additionalFields: {
+      username: {
+        type: "string",
+        required: true,
+      },
+      role: {
+        type: [...userRoleValues],
+        required: false,
+        defaultValue: "USER",
+        input: false,
+      },
+      isActive: {
+        type: "boolean",
+        required: false,
+        defaultValue: true,
+        input: false,
+      },
+      isLocked: {
+        type: "boolean",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      isDenied: {
+        type: "boolean",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      accountLockedUntil: {
+        type: "date",
+        required: false,
+        input: false,
+      },
+      lastLoginAt: {
+        type: "date",
+        required: false,
+        input: false,
+      },
+      passwordChangedAt: {
+        type: "date",
+        required: false,
+        input: false,
+      },
+    },
   },
-  secret: process.env.NEXTAUTH_SECRET,
-};
+  emailAndPassword: {
+    enabled: true,
+    autoSignIn: false,
+    minPasswordLength: 12,
+    password: {
+      hash: hashAuthPassword,
+      verify: verifyAuthPassword,
+    },
+    sendResetPassword: async ({ user, url }) => {
+      void sendEmail({
+        to: user.email,
+        subject: "Reset Your Trail Makers Password",
+        html: `
+          <div style="font-family: Poppins, Arial, sans-serif; background: #000; color: #fff; padding: 24px;">
+            <div style="max-width: 600px; margin: 0 auto; background: #111; border-radius: 12px; padding: 32px;">
+              <h1 style="margin: 0 0 16px;">Trail Makers</h1>
+              <p style="color: #cbd5e1; line-height: 1.6;">We received a request to reset your password.</p>
+              <p style="margin: 24px 0;">
+                <a href="${url}" style="display: inline-block; background: #2563eb; color: #fff; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">Reset Password</a>
+              </p>
+              <p style="color: #94a3b8; line-height: 1.6;">If you did not request this, you can ignore this email.</p>
+            </div>
+          </div>
+        `.trim(),
+      });
+    },
+  },
+  plugins: [nextCookies(), authLifecyclePlugin],
+});
+
+export type AuthSession = typeof auth.$Infer.Session;

@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
+import { and, desc, eq, or, sql } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { userTable } from "@/drizzle/schema";
 import { logAudit } from "@/lib/roleUtils";
-import { prisma } from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { requireApiRole } from "@/lib/apiAuth";
-import type { Prisma, UserRole } from "@prisma/client";
+import type { SQL } from "drizzle-orm";
+import type { UserRole } from "@/lib/user-role";
 
 const validUserRoles: UserRole[] = [
   "ADMIN",
@@ -35,7 +39,7 @@ export async function GET(request: Request) {
     const limit = Math.min(parseInt(searchParams.get("limit") || "50"), 100);
     const page = parseInt(searchParams.get("page") || "1");
 
-    const where: Prisma.UserWhereInput = {};
+    const conditions: SQL[] = [];
     if (requestedRole) {
       const role = parseUserRole(requestedRole);
 
@@ -46,32 +50,39 @@ export async function GET(request: Request) {
         );
       }
 
-      where.role = role;
+      conditions.push(eq(userTable.role, role));
     }
 
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
+
     const [users, total] = await Promise.all([
-      prisma.user.findMany({
-        where,
-        select: {
-          id: true,
-          email: true,
-          username: true,
-          firstName: true,
-          lastName: true,
-          role: true,
-          isActive: true,
-          isLocked: true,
-          isDenied: true,
-          accountLockedUntil: true,
-          lastLoginAt: true,
-          createdAt: true,
-        },
-        orderBy: { createdAt: "desc" },
-        skip: (page - 1) * limit,
-        take: limit,
-      }),
-      prisma.user.count({ where }),
+      db
+        .select({
+          id: userTable.id,
+          email: userTable.email,
+          username: userTable.username,
+          firstName: userTable.firstName,
+          lastName: userTable.lastName,
+          role: userTable.role,
+          isActive: userTable.isActive,
+          isLocked: userTable.isLocked,
+          isDenied: userTable.isDenied,
+          accountLockedUntil: userTable.accountLockedUntil,
+          lastLoginAt: userTable.lastLoginAt,
+          createdAt: userTable.createdAt,
+        })
+        .from(userTable)
+        .where(where)
+        .orderBy(desc(userTable.createdAt))
+        .offset((page - 1) * limit)
+        .limit(limit),
+      db
+        .select({ count: sql<number>`cast(count(*) as integer)` })
+        .from(userTable)
+        .where(where),
     ]);
+
+    const totalCount = total[0]?.count ?? 0;
 
     return NextResponse.json({
       success: true,
@@ -79,8 +90,8 @@ export async function GET(request: Request) {
       pagination: {
         page,
         limit,
-        total,
-        pages: Math.ceil(total / limit),
+        total: totalCount,
+        pages: Math.ceil(totalCount / limit),
       },
     });
   } catch (error) {
@@ -124,13 +135,13 @@ export async function POST(request: Request) {
     }
 
     // Check if user already exists
-    const existing = await prisma.user.findFirst({
-      where: {
-        OR: [{ email }, { username }],
-      },
-    });
+    const existing = await db
+      .select({ id: userTable.id })
+      .from(userTable)
+      .where(or(eq(userTable.email, email), eq(userTable.username, username)))
+      .limit(1);
 
-    if (existing) {
+    if (existing[0]) {
       return NextResponse.json(
         { error: "Email or username already exists" },
         { status: 400 },
@@ -140,28 +151,35 @@ export async function POST(request: Request) {
     // Hash password (in production, use bcrypt)
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        username,
-        password: hashedPassword,
-        firstName,
-        lastName,
-        role,
-        isActive: true,
-      },
-      select: {
-        id: true,
-        email: true,
-        username: true,
-        firstName: true,
-        lastName: true,
-        role: true,
-        createdAt: true,
-      },
+    const newUserId = randomUUID();
+
+    await db.insert(userTable).values({
+      id: newUserId,
+      email,
+      username,
+      password: hashedPassword,
+      firstName,
+      lastName,
+      role,
+      isActive: true,
+      updatedAt: new Date(),
     });
 
-    await logAudit("USER_CREATED", "USER", newUser.id, adminUser.id, {
+    const newUser = await db
+      .select({
+        id: userTable.id,
+        email: userTable.email,
+        username: userTable.username,
+        firstName: userTable.firstName,
+        lastName: userTable.lastName,
+        role: userTable.role,
+        createdAt: userTable.createdAt,
+      })
+      .from(userTable)
+      .where(eq(userTable.id, newUserId))
+      .limit(1);
+
+    await logAudit("USER_CREATED", "USER", newUserId, adminUser.id, {
       email,
       username,
       role,
@@ -170,7 +188,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: true,
-        user: newUser,
+        user: newUser[0],
       },
       { status: 201 },
     );

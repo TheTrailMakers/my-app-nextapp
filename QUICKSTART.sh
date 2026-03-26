@@ -56,32 +56,31 @@ echo "Options:"
 echo "1. Use existing PostgreSQL database"
 echo "2. Use Neon (free cloud PostgreSQL) - Recommended"
 echo "3. Use Supabase (PostgreSQL + extras)"
-echo ""
+bun run db:push
 read -p "Select option (1-3): " db_option
 
 if [ "$db_option" = "2" ]; then
   echo ""
   echo "📝 Creating Neon database:"
-  echo "1. Go to https://console.neon.tech"
+bun run db:seed
   echo "2. Create new project"
   echo "3. Copy DATABASE_URL"
   echo "4. Paste in .env.local"
   echo ""
   read -p "Press Enter when done with Neon setup"
-fi
+echo "Run: bun run dev"
 
 # Step 4: Run migrations
 echo ""
 echo "📚 Step 4: Running database migrations..."
-npx prisma db push
-
+bun run db:push
 echo ""
 echo "✅ Database schema created"
 echo ""
 
 # Step 5: Seed database
 echo "🌱 Step 5: Seeding database with sample treks..."
-npm run db:seed
+bun run db:seed
 
 echo ""
 echo "✅ Database seeded with 3 sample treks and 7 departures"
@@ -90,7 +89,7 @@ echo ""
 # Step 6: Start development server
 echo "🎯 Step 6: Starting development server..."
 echo ""
-echo "Run: npm run dev"
+echo "Run: bun run dev"
 echo ""
 echo "Then open: http://localhost:3000"
 echo ""
@@ -114,6 +113,6 @@ echo ""
 echo "📚 Documentation:"
 echo "- Architecture: ./ARCHITECTURE.md"
 echo "- Implementation: ./IMPLEMENTATION_GUIDE.md"
-echo "- Database: ./prisma/schema.prisma"
+echo "- Database: ./src/drizzle/schema.ts"
 echo ""
 echo "🚀 Ready to build and ship!"

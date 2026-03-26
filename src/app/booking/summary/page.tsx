@@ -1,6 +1,5 @@
 import BookingSummaryClient from "./booking-summary-client";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/auth-session";
 
 type BookingSummaryPageProps = {
   searchParams: Promise<{
@@ -18,7 +17,7 @@ export default async function BookingSummaryPage({
   searchParams,
 }: BookingSummaryPageProps) {
   const params = await searchParams;
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
 
   return (
     <BookingSummaryClient

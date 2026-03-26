@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { course as courseTable } from "@/drizzle/schema";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 
 interface CourseCard {
@@ -31,21 +33,21 @@ async function getCourses(): Promise<CourseCard[]> {
   }
 
   try {
-    return await prisma.course.findMany({
-      orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        name: true,
-        slug: true,
-        description: true,
-        location: true,
-        price: true,
-        difficulty: true,
-        duration: true,
-        thumbnailUrl: true,
-        imageUrl: true,
-      },
-    });
+    return await db
+      .select({
+        id: courseTable.id,
+        name: courseTable.name,
+        slug: courseTable.slug,
+        description: courseTable.description,
+        location: courseTable.location,
+        price: courseTable.price,
+        difficulty: courseTable.difficulty,
+        duration: courseTable.duration,
+        thumbnailUrl: courseTable.thumbnailUrl,
+        imageUrl: courseTable.imageUrl,
+      })
+      .from(courseTable)
+      .orderBy(desc(courseTable.createdAt));
   } catch (error) {
     console.warn("Skipping courses page data during prerender:", error);
     return [];

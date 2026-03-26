@@ -12,8 +12,7 @@ import {
 } from "@/lib/services/trekService";
 import { listTreksQuerySchema } from "@/lib/validations";
 import { createErrorResponse, NotFoundError } from "@/lib/errors";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/auth-session";
 
 export async function GET(request: NextRequest) {
   try {
@@ -65,7 +64,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getAppSession();
     if (!session || session.user.role !== "ADMIN") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

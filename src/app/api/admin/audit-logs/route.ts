@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
+import { and, desc, eq, gte, lte, sql } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { auditLog, userTable } from "@/drizzle/schema";
 import { requireApiRole } from "@/lib/apiAuth";
-import { prisma } from "@/lib/prisma";
-import type { Prisma } from "@prisma/client";
+import type { SQL } from "drizzle-orm";
 
 function parseJsonField(value: string | null) {
   if (!value) {
@@ -33,44 +35,48 @@ export async function GET(request: Request) {
     const startDate = searchParams.get("startDate");
     const endDate = searchParams.get("endDate");
 
-    const where: Prisma.AuditLogWhereInput = {};
-    if (action) where.action = action;
-    if (entityType) where.entityType = entityType;
-    if (userId) where.userId = userId;
+    const conditions: SQL[] = [];
+    if (action) conditions.push(eq(auditLog.action, action));
+    if (entityType) conditions.push(eq(auditLog.entityType, entityType));
+    if (userId) conditions.push(eq(auditLog.userId, userId));
+    if (startDate)
+      conditions.push(gte(auditLog.createdAt, new Date(startDate)));
+    if (endDate) conditions.push(lte(auditLog.createdAt, new Date(endDate)));
 
-    if (startDate || endDate) {
-      const createdAt: Prisma.DateTimeFilter<"AuditLog"> = {};
-      if (startDate) createdAt.gte = new Date(startDate);
-      if (endDate) createdAt.lte = new Date(endDate);
-      where.createdAt = createdAt;
-    }
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
 
-    const [logs, total] = await Promise.all([
-      prisma.auditLog.findMany({
-        where,
-        include: {
+    const [logs, totalRows] = await Promise.all([
+      db
+        .select({
+          log: auditLog,
           user: {
-            select: {
-              id: true,
-              email: true,
-              username: true,
-              firstName: true,
-              lastName: true,
-            },
+            id: userTable.id,
+            email: userTable.email,
+            username: userTable.username,
+            firstName: userTable.firstName,
+            lastName: userTable.lastName,
           },
-        },
-        orderBy: { createdAt: "desc" },
-        skip: (page - 1) * limit,
-        take: limit,
-      }),
-      prisma.auditLog.count({ where }),
+        })
+        .from(auditLog)
+        .leftJoin(userTable, eq(auditLog.userId, userTable.id))
+        .where(where)
+        .orderBy(desc(auditLog.createdAt))
+        .offset((page - 1) * limit)
+        .limit(limit),
+      db
+        .select({ count: sql<number>`cast(count(*) as integer)` })
+        .from(auditLog)
+        .where(where),
     ]);
 
+    const total = totalRows[0]?.count ?? 0;
+
     // Parse JSON fields
-    const parsedLogs = logs.map((log) => ({
-      ...log,
-      changes: parseJsonField(log.changes),
-      metadata: parseJsonField(log.metadata),
+    const parsedLogs = logs.map((row) => ({
+      ...row.log,
+      user: row.user?.id ? row.user : null,
+      changes: parseJsonField(row.log.changes),
+      metadata: parseJsonField(row.log.metadata),
     }));
 
     return NextResponse.json({

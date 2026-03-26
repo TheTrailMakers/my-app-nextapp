@@ -1,4 +1,9 @@
-import { prisma } from "@/lib/prisma";
+import { and, asc, eq, gte } from "drizzle-orm";
+import db from "@/drizzle/db";
+import {
+  expedition as expeditionTable,
+  expeditionSession,
+} from "@/drizzle/schema";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 import { NotFoundError } from "@/lib/errors";
 
@@ -30,6 +35,10 @@ export interface ExpeditionDetail {
   sessions: ExpeditionSessionCard[];
 }
 
+function normalizeTextList(value: string[] | null): string[] {
+  return value ?? [];
+}
+
 export async function getExpeditionBySlug(
   slug: string,
 ): Promise<ExpeditionDetail | null> {
@@ -38,47 +47,59 @@ export async function getExpeditionBySlug(
   }
 
   try {
-    const expedition = await prisma.expedition.findUnique({
-      where: { slug },
-      select: {
-        id: true,
-        slug: true,
-        name: true,
-        description: true,
-        longDescription: true,
-        state: true,
-        basePrice: true,
-        difficulty: true,
-        duration: true,
-        maxAltitude: true,
-        distance: true,
-        bestSeason: true,
-        imageUrl: true,
-        thumbnailUrl: true,
-        itinerary: true,
-        inclusions: true,
-        exclusions: true,
-        requirements: true,
-        sessions: {
-          where: {
-            startDate: { gte: new Date() },
-            isCancelled: false,
-          },
-          orderBy: { startDate: "asc" },
-          select: {
-            id: true,
-            startDate: true,
-            seatsAvailable: true,
-          },
-        },
-      },
-    });
+    const expeditions = await db
+      .select({
+        id: expeditionTable.id,
+        slug: expeditionTable.slug,
+        name: expeditionTable.name,
+        description: expeditionTable.description,
+        longDescription: expeditionTable.longDescription,
+        state: expeditionTable.state,
+        basePrice: expeditionTable.basePrice,
+        difficulty: expeditionTable.difficulty,
+        duration: expeditionTable.duration,
+        maxAltitude: expeditionTable.maxAltitude,
+        distance: expeditionTable.distance,
+        bestSeason: expeditionTable.bestSeason,
+        imageUrl: expeditionTable.imageUrl,
+        thumbnailUrl: expeditionTable.thumbnailUrl,
+        itinerary: expeditionTable.itinerary,
+        inclusions: expeditionTable.inclusions,
+        exclusions: expeditionTable.exclusions,
+        requirements: expeditionTable.requirements,
+      })
+      .from(expeditionTable)
+      .where(eq(expeditionTable.slug, slug))
+      .limit(1);
+    const expedition = expeditions[0];
 
     if (!expedition) {
       throw new NotFoundError(`Expedition "${slug}" not found`);
     }
 
-    return expedition;
+    const sessions = await db
+      .select({
+        id: expeditionSession.id,
+        startDate: expeditionSession.startDate,
+        seatsAvailable: expeditionSession.seatsAvailable,
+      })
+      .from(expeditionSession)
+      .where(
+        and(
+          eq(expeditionSession.expeditionId, expedition.id),
+          gte(expeditionSession.startDate, new Date()),
+          eq(expeditionSession.isCancelled, false),
+        ),
+      )
+      .orderBy(asc(expeditionSession.startDate));
+
+    return {
+      ...expedition,
+      inclusions: normalizeTextList(expedition.inclusions),
+      exclusions: normalizeTextList(expedition.exclusions),
+      requirements: normalizeTextList(expedition.requirements),
+      sessions,
+    };
   } catch (error) {
     if (error instanceof NotFoundError) {
       throw error;

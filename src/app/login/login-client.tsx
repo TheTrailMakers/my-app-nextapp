@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { getSession, signIn } from "@/lib/auth-client";
 
 type LoginClientProps = {
   nextPath: string | null;
@@ -22,18 +22,17 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
     setLoading(true);
 
     try {
-      const result = await signIn("credentials", {
+      const { data, error: signInError } = await signIn.email({
         email,
         password,
-        redirect: false,
       });
 
-      if (!result?.ok) {
-        const message = result?.error
-          ? /credentials/i.test(result.error)
-            ? "Invalid email or password"
-            : result.error
-          : "Invalid email or password";
+      if (signInError) {
+        const message =
+          typeof signInError.message === "string" &&
+          signInError.message.length > 0
+            ? signInError.message
+            : "Invalid email or password";
         setError(message);
         return;
       }
@@ -44,8 +43,10 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
         return;
       }
 
-      const session = await getSession();
-      const userRole = session?.user?.role;
+      const sessionResult = await getSession();
+      const userRole = (
+        sessionResult.data?.user as { role?: string } | undefined
+      )?.role;
 
       if (
         userRole === "ADMIN" ||
@@ -73,7 +74,9 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
         </h1>
 
         {error && (
-          <div className="bg-red-500 text-white p-3 rounded-sm mb-4">{error}</div>
+          <div className="bg-red-500 text-white p-3 rounded-sm mb-4">
+            {error}
+          </div>
         )}
 
         <form onSubmit={handleLogin} className="space-y-4">

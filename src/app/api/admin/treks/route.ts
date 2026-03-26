@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
+import { eq } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
+import db from "@/drizzle/db";
+import { trek as trekTable } from "@/drizzle/schema";
 import { logAudit } from "@/lib/roleUtils";
-import { prisma } from "@/lib/prisma";
 import { requireApiRole } from "@/lib/apiAuth";
 import {
   getAdminTreks,
@@ -74,9 +77,12 @@ export async function POST(request: Request) {
     } = body;
 
     // Check if slug already exists
-    const existing = await prisma.trek.findUnique({
-      where: { slug },
-    });
+    const existingTreks = await db
+      .select({ id: trekTable.id })
+      .from(trekTable)
+      .where(eq(trekTable.slug, slug))
+      .limit(1);
+    const existing = existingTreks[0];
 
     if (existing) {
       return NextResponse.json(
@@ -85,8 +91,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const trek = await prisma.trek.create({
-      data: {
+    const treks = await db
+      .insert(trekTable)
+      .values({
+        id: randomUUID(),
         slug,
         name,
         description,
@@ -105,8 +113,10 @@ export async function POST(request: Request) {
         inclusions: inclusions || [],
         exclusions: exclusions || [],
         requirements: requirements || [],
-      },
-    });
+        updatedAt: new Date(),
+      })
+      .returning();
+    const trek = treks[0];
 
     await logAudit("TREK_CREATED", "TREK", trek.id, adminUser.id, {
       name,

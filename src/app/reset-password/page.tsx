@@ -1,19 +1,23 @@
-'use client';
+"use client";
 
-import { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
-import { FiLock, FiArrowLeft, FiLoader, FiCheck, FiX } from 'react-icons/fi';
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { FiLock, FiArrowLeft, FiLoader, FiCheck, FiX } from "react-icons/fi";
+import { resetPassword } from "@/lib/auth-client";
 
 function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const token = searchParams.get('token');
+  const token = searchParams.get("token");
 
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
   const [isValidToken, setIsValidToken] = useState<boolean | null>(null);
 
   // Check if token exists
@@ -32,38 +36,50 @@ function ResetPasswordForm() {
 
     // Validate passwords match
     if (newPassword !== confirmPassword) {
-      setMessage({ type: 'error', text: 'Passwords do not match' });
+      setMessage({ type: "error", text: "Passwords do not match" });
       setLoading(false);
       return;
     }
 
     // Validate password strength
-    if (newPassword.length < 6) {
-      setMessage({ type: 'error', text: 'Password must be at least 6 characters' });
+    if (newPassword.length < 12) {
+      setMessage({
+        type: "error",
+        text: "Password must be at least 12 characters",
+      });
+      setLoading(false);
+      return;
+    }
+
+    if (!token) {
+      setMessage({ type: "error", text: "Invalid or expired reset token" });
       setLoading(false);
       return;
     }
 
     try {
-      const res = await fetch('/api/auth/reset-password', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token, newPassword }),
+      const { error } = await resetPassword({
+        token,
+        newPassword,
       });
 
-      const data = await res.json();
-
-      if (data.success) {
-        setMessage({ type: 'success', text: data.message });
+      if (!error) {
+        setMessage({
+          type: "success",
+          text: "Password reset successfully. Redirecting to login...",
+        });
         // Redirect to login after success
         setTimeout(() => {
-          router.push('/login');
+          router.push("/login");
         }, 2000);
       } else {
-        setMessage({ type: 'error', text: data.error || 'Something went wrong' });
+        setMessage({
+          type: "error",
+          text: error.message || "Something went wrong",
+        });
       }
-    } catch (error) {
-      setMessage({ type: 'error', text: 'Failed to reset password' });
+    } catch {
+      setMessage({ type: "error", text: "Failed to reset password" });
     } finally {
       setLoading(false);
     }
@@ -90,7 +106,9 @@ function ResetPasswordForm() {
             <div className="mx-auto w-16 h-16 bg-red-900/30 rounded-full flex items-center justify-center mb-4">
               <FiX className="w-8 h-8 text-red-400" />
             </div>
-            <h1 className="text-xl font-bold text-white mb-2">Invalid Reset Link</h1>
+            <h1 className="text-xl font-bold text-white mb-2">
+              Invalid Reset Link
+            </h1>
             <p className="text-gray-400 mb-6">
               This password reset link is invalid or has expired.
             </p>
@@ -112,19 +130,19 @@ function ResetPasswordForm() {
         <div className="bg-gray-900 rounded-xl border border-gray-800 p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-white mb-2">Reset Password</h1>
-            <p className="text-gray-400">
-              Enter your new password below
-            </p>
+            <h1 className="text-2xl font-bold text-white mb-2">
+              Reset Password
+            </h1>
+            <p className="text-gray-400">Enter your new password below</p>
           </div>
 
           {/* Message */}
           {message && (
             <div
               className={`mb-6 p-4 rounded-lg ${
-                message.type === 'success'
-                  ? 'bg-green-900/30 border border-green-800 text-green-400'
-                  : 'bg-red-900/30 border border-red-800 text-red-400'
+                message.type === "success"
+                  ? "bg-green-900/30 border border-green-800 text-green-400"
+                  : "bg-red-900/30 border border-red-800 text-red-400"
               }`}
             >
               {message.text}
@@ -134,7 +152,10 @@ function ResetPasswordForm() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="newPassword" className="block text-sm font-medium text-gray-300 mb-2">
+              <label
+                htmlFor="newPassword"
+                className="block text-sm font-medium text-gray-300 mb-2"
+              >
                 New Password
               </label>
               <div className="relative">
@@ -152,11 +173,16 @@ function ResetPasswordForm() {
                   placeholder="••••••••"
                 />
               </div>
-              <p className="mt-1 text-xs text-gray-500">Minimum 6 characters</p>
+              <p className="mt-1 text-xs text-gray-500">
+                Minimum 12 characters
+              </p>
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-2">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-300 mb-2"
+              >
                 Confirm New Password
               </label>
               <div className="relative">
@@ -201,7 +227,7 @@ function ResetPasswordForm() {
                   Resetting...
                 </>
               ) : (
-                'Reset Password'
+                "Reset Password"
               )}
             </button>
           </form>
@@ -224,14 +250,16 @@ function ResetPasswordForm() {
 
 export default function ResetPasswordPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-black flex items-center justify-center p-4">
-        <div className="flex items-center text-gray-400">
-          <FiLoader className="animate-spin mr-2" />
-          Loading...
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-black flex items-center justify-center p-4">
+          <div className="flex items-center text-gray-400">
+            <FiLoader className="animate-spin mr-2" />
+            Loading...
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <ResetPasswordForm />
     </Suspense>
   );

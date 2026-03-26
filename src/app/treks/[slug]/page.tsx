@@ -4,10 +4,9 @@
  */
 
 import { notFound } from "next/navigation";
-import { getServerSession } from "next-auth";
 import { cache } from "react";
 import { getTrekBySlug, listTreks } from "@/lib/services/trekService";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/auth-session";
 import TrekPageClient from "./trek-page-client";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 
@@ -72,7 +71,7 @@ export default async function TrekPage(props: PageProps) {
     notFound();
   }
 
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
 
   return (
     <TrekPageClient trek={trek} isAuthenticated={Boolean(session?.user)} />

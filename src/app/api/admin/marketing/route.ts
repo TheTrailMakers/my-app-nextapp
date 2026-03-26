@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { and, eq, gte, lt } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { marketingMetric } from "@/drizzle/schema";
 import { logAudit } from "@/lib/roleUtils";
-import { prisma } from "@/lib/prisma";
 import { requireApiRole } from "@/lib/apiAuth";
 import {
   getAdminMarketingSummary,
@@ -63,21 +65,27 @@ export async function POST(request: Request) {
     const startOfDay = new Date(metricDate.setHours(0, 0, 0, 0));
 
     // Check if metric exists for this date
-    const existing = await prisma.marketingMetric.findFirst({
-      where: {
-        date: {
-          gte: startOfDay,
-          lt: new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000),
-        },
-      },
-    });
+    const existingMetrics = await db
+      .select()
+      .from(marketingMetric)
+      .where(
+        and(
+          gte(marketingMetric.date, startOfDay),
+          lt(
+            marketingMetric.date,
+            new Date(startOfDay.getTime() + 24 * 60 * 60 * 1000),
+          ),
+        ),
+      )
+      .limit(1);
+    const existing = existingMetrics[0];
 
     let metric;
     if (existing) {
       // Update existing
-      metric = await prisma.marketingMetric.update({
-        where: { id: existing.id },
-        data: {
+      const metrics = await db
+        .update(marketingMetric)
+        .set({
           websiteVisitors: websiteVisitors ?? existing.websiteVisitors,
           websitePageViews: websitePageViews ?? existing.websitePageViews,
           conversionRate: conversionRate ?? existing.conversionRate,
@@ -90,12 +98,15 @@ export async function POST(request: Request) {
             repeatCustomerBookings ?? existing.repeatCustomerBookings,
           topTreks: topTreks ? JSON.stringify(topTreks) : existing.topTreks,
           updatedAt: new Date(),
-        },
-      });
+        })
+        .where(eq(marketingMetric.id, existing.id))
+        .returning();
+      metric = metrics[0];
     } else {
       // Create new
-      metric = await prisma.marketingMetric.create({
-        data: {
+      const metrics = await db
+        .insert(marketingMetric)
+        .values({
           id: startOfDay.toISOString(),
           date: startOfDay,
           websiteVisitors: websiteVisitors ?? 0,
@@ -108,8 +119,9 @@ export async function POST(request: Request) {
           repeatCustomerBookings: repeatCustomerBookings ?? 0,
           topTreks: topTreks ? JSON.stringify(topTreks) : null,
           updatedAt: new Date(),
-        },
-      });
+        })
+        .returning();
+      metric = metrics[0];
     }
 
     await logAudit(

@@ -1,10 +1,8 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import type { Session } from "next-auth";
-import type { UserRole } from "@prisma/client";
+import { and, eq, gte, sql } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
+import db from "@/drizzle/db";
+import { auditLog, failedLoginAttempt, userTable } from "@/drizzle/schema";
+import type { UserRole } from "@/lib/user-role";
 
 type AuthorizedUser = {
   id: string;
@@ -26,22 +24,25 @@ const roleHierarchy: Record<UserRole, number> = {
 export async function checkUserRole(
   requiredRole: "SUPER_ADMIN" | "ADMIN" | "MODERATOR" | "USER",
 ) {
-  const session = (await getServerSession(authOptions)) as Session | null;
+  const { getAppSession } = await import("@/lib/auth-session");
+  const session = await getAppSession();
 
-  if (!session?.user?.email) {
+  if (!session?.user?.id) {
     return { authorized: false, user: null };
   }
 
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
-    select: {
-      id: true,
-      role: true,
-      isActive: true,
-      isLocked: true,
-      isDenied: true,
-    },
-  });
+  const users = await db
+    .select({
+      id: userTable.id,
+      role: userTable.role,
+      isActive: userTable.isActive,
+      isLocked: userTable.isLocked,
+      isDenied: userTable.isDenied,
+    })
+    .from(userTable)
+    .where(eq(userTable.id, session.user.id))
+    .limit(1);
+  const user = users[0] ?? null;
 
   if (!user || !user.isActive || user.isLocked || user.isDenied) {
     return { authorized: false, user };
@@ -64,16 +65,15 @@ export async function logAudit(
   metadata?: Record<string, unknown>,
 ) {
   try {
-    await prisma.auditLog.create({
-      data: {
-        action,
-        entityType,
-        entityId,
-        userId: userId || null,
-        changes: changes ? JSON.stringify(changes) : null,
-        metadata: metadata ? JSON.stringify(metadata) : null,
-        description: `${action} on ${entityType} ${entityId}`,
-      },
+    await db.insert(auditLog).values({
+      id: randomUUID(),
+      action,
+      entityType,
+      entityId,
+      userId: userId ?? null,
+      changes: changes ? JSON.stringify(changes) : null,
+      metadata: metadata ? JSON.stringify(metadata) : null,
+      description: `${action} on ${entityType} ${entityId}`,
     });
   } catch (error) {
     console.error("Failed to log audit:", error);
@@ -87,39 +87,45 @@ export async function trackFailedLogin(
   userAgent?: string,
 ) {
   try {
-    const user = await prisma.user.findUnique({
-      where: { email },
-      select: { id: true },
-    });
+    const users = await db
+      .select({ id: userTable.id })
+      .from(userTable)
+      .where(eq(userTable.email, email))
+      .limit(1);
+    const user = users[0];
 
     if (user) {
-      await prisma.failedLoginAttempt.create({
-        data: {
-          userId: user.id,
-          email,
-          ipAddress,
-          userAgent,
-        },
+      await db.insert(failedLoginAttempt).values({
+        id: randomUUID(),
+        userId: user.id,
+        email,
+        ipAddress,
+        userAgent,
       });
 
       // Check if we should lock the account (more than 5 failed attempts in 1 hour)
       const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-      const recentFailures = await prisma.failedLoginAttempt.count({
-        where: {
-          userId: user.id,
-          createdAt: { gte: oneHourAgo },
-        },
-      });
+      const recentFailureCounts = await db
+        .select({ count: sql<number>`cast(count(*) as integer)` })
+        .from(failedLoginAttempt)
+        .where(
+          and(
+            eq(failedLoginAttempt.userId, user.id),
+            gte(failedLoginAttempt.createdAt, oneHourAgo),
+          ),
+        );
+      const recentFailures = recentFailureCounts[0]?.count ?? 0;
 
       if (recentFailures >= 5) {
         const lockUntil = new Date(Date.now() + 30 * 60 * 1000); // Lock for 30 minutes
-        await prisma.user.update({
-          where: { id: user.id },
-          data: {
+        await db
+          .update(userTable)
+          .set({
             isLocked: true,
             accountLockedUntil: lockUntil,
-          },
-        });
+            updatedAt: new Date(),
+          })
+          .where(eq(userTable.id, user.id));
 
         await logAudit(
           "ACCOUNT_LOCKED",
@@ -139,13 +145,14 @@ export async function trackFailedLogin(
 // Unlock user account (for admin)
 export async function unlockUserAccount(userId: string, adminId: string) {
   try {
-    await prisma.user.update({
-      where: { id: userId },
-      data: {
+    await db
+      .update(userTable)
+      .set({
         isLocked: false,
         accountLockedUntil: null,
-      },
-    });
+        updatedAt: new Date(),
+      })
+      .where(eq(userTable.id, userId));
 
     await logAudit("ACCOUNT_UNLOCKED", "USER", userId, adminId, {
       unlockedBy: adminId,

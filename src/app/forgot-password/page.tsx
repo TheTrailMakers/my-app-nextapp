@@ -1,13 +1,17 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { FiMail, FiArrowLeft, FiLoader } from 'react-icons/fi';
+import { useState } from "react";
+import Link from "next/link";
+import { FiMail, FiArrowLeft, FiLoader } from "react-icons/fi";
+import { requestPasswordReset } from "@/lib/auth-client";
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,22 +19,25 @@ export default function ForgotPasswordPage() {
     setMessage(null);
 
     try {
-      const res = await fetch('/api/auth/reset-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+      const { error } = await requestPasswordReset({
+        email,
+        redirectTo: `${window.location.origin}/reset-password`,
       });
 
-      const data = await res.json();
-
-      if (data.success) {
-        setMessage({ type: 'success', text: data.message });
-        setEmail('');
+      if (error) {
+        setMessage({
+          type: "error",
+          text: error.message || "Something went wrong",
+        });
       } else {
-        setMessage({ type: 'error', text: data.error || 'Something went wrong' });
+        setMessage({
+          type: "success",
+          text: "If an account exists with this email, check your inbox for a reset link.",
+        });
+        setEmail("");
       }
-    } catch (error) {
-      setMessage({ type: 'error', text: 'Failed to send reset email' });
+    } catch {
+      setMessage({ type: "error", text: "Failed to send reset email" });
     } finally {
       setLoading(false);
     }
@@ -42,9 +49,11 @@ export default function ForgotPasswordPage() {
         <div className="bg-gray-900 rounded-xl border border-gray-800 p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-white mb-2">Forgot Password?</h1>
+            <h1 className="text-2xl font-bold text-white mb-2">
+              Forgot Password?
+            </h1>
             <p className="text-gray-400">
-              Enter your email and we'll send you a reset link
+              Enter your email and we&apos;ll send you a reset link
             </p>
           </div>
 
@@ -52,9 +61,9 @@ export default function ForgotPasswordPage() {
           {message && (
             <div
               className={`mb-6 p-4 rounded-lg ${
-                message.type === 'success'
-                  ? 'bg-green-900/30 border border-green-800 text-green-400'
-                  : 'bg-red-900/30 border border-red-800 text-red-400'
+                message.type === "success"
+                  ? "bg-green-900/30 border border-green-800 text-green-400"
+                  : "bg-red-900/30 border border-red-800 text-red-400"
               }`}
             >
               {message.text}
@@ -64,7 +73,10 @@ export default function ForgotPasswordPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-300 mb-2"
+              >
                 Email Address
               </label>
               <div className="relative">
@@ -96,7 +108,7 @@ export default function ForgotPasswordPage() {
                   Sending...
                 </>
               ) : (
-                'Send Reset Link'
+                "Send Reset Link"
               )}
             </button>
           </form>

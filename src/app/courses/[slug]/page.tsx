@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
-import { prisma } from "@/lib/prisma";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { course as courseTable } from "@/drizzle/schema";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 import { getCourseBySlug } from "@/lib/services/courseService";
 
@@ -27,10 +29,10 @@ export async function generateStaticParams() {
   }
 
   try {
-    const courses = await prisma.course.findMany({
-      select: { slug: true },
-      orderBy: { createdAt: "desc" },
-    });
+    const courses = await db
+      .select({ slug: courseTable.slug })
+      .from(courseTable)
+      .orderBy(desc(courseTable.createdAt));
 
     return courses.map((course) => ({ slug: course.slug }));
   } catch (error) {

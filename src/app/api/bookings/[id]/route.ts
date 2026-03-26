@@ -4,10 +4,9 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { cancelBooking, getBooking } from "@/lib/services/bookingService";
 import { createErrorResponse, UnauthorizedError } from "@/lib/errors";
+import { getAppSession } from "@/lib/auth-session";
 
 type BookingResponseSource = {
   id: string;
@@ -63,7 +62,7 @@ export async function GET(
 ) {
   const params = await props.params;
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getAppSession();
     const userId = (session?.user as { id?: string })?.id;
     if (!userId) {
       throw new UnauthorizedError();
@@ -90,7 +89,7 @@ export async function PATCH(
 ) {
   const params = await props.params;
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getAppSession();
     const userId = (session?.user as { id?: string })?.id;
     if (!userId) {
       throw new UnauthorizedError();

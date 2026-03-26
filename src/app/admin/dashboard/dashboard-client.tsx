@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { UserRole } from "@prisma/client";
+import type { UserRole } from "@/lib/user-role";
 import type { DashboardStats } from "@/lib/services/adminDashboardService";
 
 interface Trek {

@@ -3,29 +3,45 @@
  * Handles all trek-related operations
  */
 
-import { prisma } from "@/lib/prisma";
+import { randomUUID } from "node:crypto";
+import { and, asc, eq, ilike, inArray, ne, or, sql } from "drizzle-orm";
+import type { InferSelectModel, SQL } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { booking, departure, trek, trekReview } from "@/drizzle/schema";
 import { NotFoundError } from "@/lib/errors";
 import { CreateTrekInput, ListTreksQuery } from "@/lib/validations";
-import type { Prisma } from "@prisma/client";
 
-const trekListSelect = {
-  id: true,
-  slug: true,
-  name: true,
-  description: true,
-  state: true,
-  basePrice: true,
-  difficulty: true,
-  duration: true,
-  distance: true,
-  thumbnailUrl: true,
-  tags: true,
+type TrekRecord = InferSelectModel<typeof trek>;
+type DepartureRecord = InferSelectModel<typeof departure>;
+type ListedDeparture = Pick<
+  DepartureRecord,
+  | "id"
+  | "seatsAvailable"
+  | "totalSeats"
+  | "startDate"
+  | "endDate"
+  | "pricePerPerson"
+>;
+type ListedTrek = Pick<
+  TrekRecord,
+  | "id"
+  | "slug"
+  | "name"
+  | "description"
+  | "state"
+  | "basePrice"
+  | "difficulty"
+  | "duration"
+  | "distance"
+  | "thumbnailUrl"
+  | "tags"
+> & {
+  departures: ListedDeparture[];
   _count: {
-    select: {
-      departures: true,
-    },
-  },
-} satisfies Prisma.TrekSelect;
+    departures: number;
+  };
+};
+type InternalListedTrek = ListedTrek & { createdAt: Date };
 
 const difficultyRank: Record<string, number> = {
   EASY: 1,
@@ -35,137 +51,181 @@ const difficultyRank: Record<string, number> = {
   VERY_HARD: 5,
 };
 
-type ListedTrek = Prisma.TrekGetPayload<{
-  select: typeof trekListSelect & {
-    departures: {
-      where: { isCancelled: false };
-      select: {
-        id: true;
-        seatsAvailable: true;
-        totalSeats: true;
-        startDate: true;
-        endDate: true;
-        pricePerPerson: true;
-      };
-      orderBy: { startDate: "asc" };
-      take: number;
-    };
+function normalizeTrekArrays<T extends TrekRecord>(record: T) {
+  return {
+    ...record,
+    tags: record.tags ?? [],
+    inclusions: record.inclusions ?? [],
+    exclusions: record.exclusions ?? [],
+    requirements: record.requirements ?? [],
+    contentSources: record.contentSources ?? [],
+    seoKeywords: record.seoKeywords ?? [],
   };
-}>;
+}
 
-function getTrekOrderBy(
-  sortBy: ListTreksQuery["sortBy"],
-  sortOrder: "asc" | "desc",
-): Prisma.TrekOrderByWithRelationInput {
-  switch (sortBy) {
-    case "popular":
-      return { departures: { _count: sortOrder } };
-    case "name":
-      return { name: sortOrder };
-    case "duration":
-      return { duration: sortOrder };
-    case "state":
-      return { state: sortOrder };
-    case "distance":
-      return { distance: sortOrder };
-    default:
-      return { createdAt: "desc" };
+async function getDepartureCountMap(trekIds: string[]) {
+  if (trekIds.length === 0) {
+    return new Map<string, number>();
   }
+
+  const counts = await db
+    .select({
+      trekId: departure.trekId,
+      count: sql<number>`cast(count(*) as integer)`,
+    })
+    .from(departure)
+    .where(inArray(departure.trekId, trekIds))
+    .groupBy(departure.trekId);
+
+  return new Map(counts.map((row) => [row.trekId, row.count]));
+}
+
+async function getActiveDepartureMap(trekIds: string[]) {
+  if (trekIds.length === 0) {
+    return new Map<string, DepartureRecord[]>();
+  }
+
+  const rows = await db
+    .select()
+    .from(departure)
+    .where(
+      and(inArray(departure.trekId, trekIds), eq(departure.isCancelled, false)),
+    )
+    .orderBy(asc(departure.startDate));
+
+  const departuresByTrek = new Map<string, DepartureRecord[]>();
+
+  for (const row of rows) {
+    const existing = departuresByTrek.get(row.trekId);
+    if (existing) {
+      existing.push(row);
+      continue;
+    }
+
+    departuresByTrek.set(row.trekId, [row]);
+  }
+
+  return departuresByTrek;
 }
 
 function compareTreks(
-  left: ListedTrek,
-  right: ListedTrek,
-  sortBy: NonNullable<ListTreksQuery["sortBy"]>,
+  left: InternalListedTrek,
+  right: InternalListedTrek,
+  sortBy: ListTreksQuery["sortBy"],
   sortOrder: "asc" | "desc",
+  activeDeparturesByTrek: Map<string, DepartureRecord[]>,
 ) {
-  const direction = sortOrder === "asc" ? 1 : -1;
-
-  if (sortBy === "difficulty") {
-    return (
-      ((difficultyRank[left.difficulty] ?? Number.MAX_SAFE_INTEGER) -
-        (difficultyRank[right.difficulty] ?? Number.MAX_SAFE_INTEGER)) *
-      direction
-    );
+  if (!sortBy) {
+    return right.createdAt.getTime() - left.createdAt.getTime();
   }
 
-  const leftEarliest =
-    left.departures[0]?.startDate?.getTime() ?? Number.MAX_SAFE_INTEGER;
-  const rightEarliest =
-    right.departures[0]?.startDate?.getTime() ?? Number.MAX_SAFE_INTEGER;
+  const direction = sortOrder === "asc" ? 1 : -1;
 
-  return (leftEarliest - rightEarliest) * direction;
+  switch (sortBy) {
+    case "popular":
+      return (left._count.departures - right._count.departures) * direction;
+    case "name":
+      return left.name.localeCompare(right.name) * direction;
+    case "duration":
+      return (left.duration - right.duration) * direction;
+    case "state":
+      return left.state.localeCompare(right.state) * direction;
+    case "distance": {
+      const leftDistance = left.distance ?? Number.MAX_SAFE_INTEGER;
+      const rightDistance = right.distance ?? Number.MAX_SAFE_INTEGER;
+      return (leftDistance - rightDistance) * direction;
+    }
+    case "difficulty":
+      return (
+        ((difficultyRank[left.difficulty] ?? Number.MAX_SAFE_INTEGER) -
+          (difficultyRank[right.difficulty] ?? Number.MAX_SAFE_INTEGER)) *
+        direction
+      );
+    case "earliest": {
+      const leftEarliest =
+        activeDeparturesByTrek.get(left.id)?.[0]?.startDate.getTime() ??
+        Number.MAX_SAFE_INTEGER;
+      const rightEarliest =
+        activeDeparturesByTrek.get(right.id)?.[0]?.startDate.getTime() ??
+        Number.MAX_SAFE_INTEGER;
+      return (leftEarliest - rightEarliest) * direction;
+    }
+    default:
+      return right.createdAt.getTime() - left.createdAt.getTime();
+  }
 }
 
 export async function createTrek(data: CreateTrekInput) {
-  const trek = await prisma.trek.create({
-    data: {
-      slug: data.slug,
-      name: data.name,
-      description: data.description,
-      longDescription: data.longDescription,
-      state: data.state,
-      basePrice: data.basePrice,
-      difficulty: data.difficulty,
-      duration: data.duration,
-      maxAltitude: data.maxAltitude,
-      distance: data.distance,
-      bestSeason: data.bestSeason,
-      imageUrl: data.imageUrl,
-      thumbnailUrl: data.thumbnailUrl,
-      tags: data.tags,
-      itinerary: data.itinerary,
-      inclusions: data.inclusions,
-      exclusions: data.exclusions,
-      requirements: data.requirements,
-    },
+  const trekId = randomUUID();
+
+  await db.insert(trek).values({
+    id: trekId,
+    slug: data.slug,
+    name: data.name,
+    description: data.description,
+    longDescription: data.longDescription,
+    state: data.state,
+    basePrice: data.basePrice,
+    difficulty: data.difficulty,
+    duration: data.duration,
+    maxAltitude: data.maxAltitude,
+    distance: data.distance,
+    bestSeason: data.bestSeason,
+    imageUrl: data.imageUrl,
+    thumbnailUrl: data.thumbnailUrl,
+    tags: data.tags,
+    itinerary: data.itinerary,
+    inclusions: data.inclusions,
+    exclusions: data.exclusions,
+    requirements: data.requirements,
+    updatedAt: new Date(),
   });
 
-  return trek;
+  const created = await db
+    .select()
+    .from(trek)
+    .where(eq(trek.id, trekId))
+    .limit(1);
+
+  return normalizeTrekArrays(created[0]!);
 }
 
 export async function getTrekBySlug(slug: string) {
-  const trek = await prisma.trek.findUnique({
-    where: { slug },
-    include: {
-      departures: {
-        where: { isCancelled: false },
-        orderBy: { startDate: "asc" },
-        select: {
-          id: true,
-          startDate: true,
-          endDate: true,
-          seatsAvailable: true,
-          totalSeats: true,
-          pricePerPerson: true,
-        },
-      },
-    },
-  });
+  const trekRow = await db
+    .select()
+    .from(trek)
+    .where(eq(trek.slug, slug))
+    .limit(1);
 
-  if (!trek) {
+  const record = trekRow[0];
+
+  if (!record) {
     throw new NotFoundError(`Trek "${slug}" not found`);
   }
 
-  return trek;
+  const activeDeparturesByTrek = await getActiveDepartureMap([record.id]);
+
+  return {
+    ...normalizeTrekArrays(record),
+    departures: activeDeparturesByTrek.get(record.id) ?? [],
+  };
 }
 
 export async function getTrekById(id: string) {
-  const trek = await prisma.trek.findUnique({
-    where: { id },
-    include: {
-      departures: {
-        where: { isCancelled: false },
-        orderBy: { startDate: "asc" },
-      },
-    },
-  });
+  const trekRow = await db.select().from(trek).where(eq(trek.id, id)).limit(1);
 
-  if (!trek) {
+  const record = trekRow[0];
+
+  if (!record) {
     throw new NotFoundError("Trek not found");
   }
 
-  return trek;
+  const activeDeparturesByTrek = await getActiveDepartureMap([record.id]);
+
+  return {
+    ...normalizeTrekArrays(record),
+    departures: activeDeparturesByTrek.get(record.id) ?? [],
+  };
 }
 
 export async function listTreks(
@@ -183,167 +243,179 @@ export async function listTreks(
     limit = 10,
   } = query;
 
-  const skip = (page - 1) * limit;
-
-  const where: Prisma.TrekWhereInput = {};
-
+  const conditions: SQL[] = [];
   if (state) {
-    where.state = { mode: "insensitive", equals: state };
+    conditions.push(ilike(trek.state, state));
   }
-
   if (difficulty) {
-    where.difficulty = difficulty;
+    conditions.push(eq(trek.difficulty, difficulty));
+  }
+  if (minPrice !== undefined) {
+    conditions.push(sql`${trek.basePrice} >= ${minPrice}`);
+  }
+  if (maxPrice !== undefined) {
+    conditions.push(sql`${trek.basePrice} <= ${maxPrice}`);
   }
 
-  if (minPrice || maxPrice) {
-    where.basePrice = {};
-    if (minPrice) where.basePrice.gte = minPrice;
-    if (maxPrice) where.basePrice.lte = maxPrice;
-  }
+  const where = conditions.length > 0 ? and(...conditions) : undefined;
 
-  const select = {
-    ...trekListSelect,
-    departures: {
-      where: { isCancelled: false },
-      select: {
-        id: true,
-        seatsAvailable: true,
-        totalSeats: true,
-        startDate: true,
-        endDate: true,
-        pricePerPerson: true,
+  const trekRows = await db
+    .select({
+      id: trek.id,
+      slug: trek.slug,
+      name: trek.name,
+      description: trek.description,
+      state: trek.state,
+      basePrice: trek.basePrice,
+      difficulty: trek.difficulty,
+      duration: trek.duration,
+      distance: trek.distance,
+      thumbnailUrl: trek.thumbnailUrl,
+      tags: trek.tags,
+      createdAt: trek.createdAt,
+    })
+    .from(trek)
+    .where(where);
+
+  if (trekRows.length === 0) {
+    return {
+      treks: [] as ListedTrek[],
+      pagination: {
+        page,
+        limit,
+        total: 0,
+        pages: 0,
       },
-      orderBy: { startDate: "asc" as const },
-      take: departuresTake,
-    },
-  };
+    };
+  }
 
-  const sortInMemory = sortBy === "difficulty" || sortBy === "earliest";
-
-  const [treks, total] = await Promise.all([
-    prisma.trek.findMany({
-      where,
-      select,
-      orderBy: getTrekOrderBy(sortBy, sortOrder),
-      ...(sortInMemory ? {} : { skip, take: limit }),
-    }),
-    prisma.trek.count({ where }),
+  const trekIds = trekRows.map((row) => row.id);
+  const [departureCountMap, activeDeparturesByTrek] = await Promise.all([
+    getDepartureCountMap(trekIds),
+    getActiveDepartureMap(trekIds),
   ]);
 
-  const paginatedTreks = sortInMemory
-    ? [...treks]
-        .sort((left, right) => compareTreks(left, right, sortBy, sortOrder))
-        .slice(skip, skip + limit)
-    : treks;
+  const listedTreks: InternalListedTrek[] = trekRows.map((row) => ({
+    ...row,
+    tags: row.tags ?? [],
+    departures:
+      departuresTake > 0
+        ? (activeDeparturesByTrek.get(row.id) ?? []).slice(0, departuresTake)
+        : [],
+    _count: {
+      departures: departureCountMap.get(row.id) ?? 0,
+    },
+  }));
+
+  const sortedTreks = [...listedTreks].sort((left, right) =>
+    compareTreks(left, right, sortBy, sortOrder, activeDeparturesByTrek),
+  );
+
+  const skip = (page - 1) * limit;
+  const paginatedTreks = sortedTreks.slice(skip, skip + limit);
 
   return {
-    treks: paginatedTreks,
+    treks: paginatedTreks.map(({ createdAt, ...listedTrek }) => listedTrek),
     pagination: {
       page,
       limit,
-      total,
-      pages: Math.ceil(total / limit),
+      total: sortedTreks.length,
+      pages: Math.ceil(sortedTreks.length / limit),
     },
   };
 }
 
 export async function getSimilarTreks(trekId: string, limit: number = 3) {
-  const trek = await getTrekById(trekId);
+  const trekRecord = await getTrekById(trekId);
 
-  const similar = await prisma.trek.findMany({
-    where: {
-      AND: [
-        { id: { not: trekId } },
-        {
-          OR: [
-            { state: trek.state },
-            { difficulty: trek.difficulty },
-            { tags: { hasSome: trek.tags } },
-          ],
-        },
-      ],
-    },
-    select: {
-      id: true,
-      slug: true,
-      name: true,
-      state: true,
-      difficulty: true,
-      basePrice: true,
-      thumbnailUrl: true,
-    },
-    take: limit,
-  });
+  const similarCandidates = await db
+    .select({
+      id: trek.id,
+      slug: trek.slug,
+      name: trek.name,
+      state: trek.state,
+      difficulty: trek.difficulty,
+      basePrice: trek.basePrice,
+      thumbnailUrl: trek.thumbnailUrl,
+      tags: trek.tags,
+    })
+    .from(trek)
+    .where(ne(trek.id, trekId));
 
-  return similar;
+  return similarCandidates
+    .filter((candidate) => {
+      const candidateTags = candidate.tags ?? [];
+
+      return (
+        candidate.state === trekRecord.state ||
+        candidate.difficulty === trekRecord.difficulty ||
+        candidateTags.some((tag) => trekRecord.tags.includes(tag))
+      );
+    })
+    .slice(0, limit)
+    .map(({ tags, ...candidate }) => candidate);
 }
 
 export async function searchTreks(searchQuery: string) {
-  const treks = await prisma.trek.findMany({
-    where: {
-      OR: [
-        {
-          name: {
-            contains: searchQuery,
-            mode: "insensitive",
-          },
-        },
-        {
-          description: {
-            contains: searchQuery,
-            mode: "insensitive",
-          },
-        },
-      ],
-    },
-    select: {
-      id: true,
-      slug: true,
-      name: true,
-      state: true,
-      difficulty: true,
-      basePrice: true,
-      thumbnailUrl: true,
-    },
-    take: 10,
-  });
+  const treks = await db
+    .select({
+      id: trek.id,
+      slug: trek.slug,
+      name: trek.name,
+      state: trek.state,
+      difficulty: trek.difficulty,
+      basePrice: trek.basePrice,
+      thumbnailUrl: trek.thumbnailUrl,
+    })
+    .from(trek)
+    .where(
+      or(
+        ilike(trek.name, `%${searchQuery}%`),
+        ilike(trek.description, `%${searchQuery}%`),
+      ),
+    )
+    .limit(10);
 
   return treks;
 }
 
 export async function getAvailableStates() {
-  const states = await prisma.trek.findMany({
-    select: { state: true },
-    distinct: ["state"],
-    orderBy: { state: "asc" },
-  });
+  const states = await db
+    .selectDistinct({ state: trek.state })
+    .from(trek)
+    .orderBy(asc(trek.state));
 
   return states.map((state) => state.state);
 }
 
 export async function getTrekStats(trekId: string) {
-  const trek = await getTrekById(trekId);
+  const trekRecord = await getTrekById(trekId);
 
-  const [totalBookings, averageRating] = await Promise.all([
-    prisma.booking.count({
-      where: {
-        departure: { trekId },
-        status: "CONFIRMED",
-      },
-    }),
-    prisma.trekReview.aggregate({
-      where: { trekId },
-      _avg: { rating: true },
-      _count: true,
-    }),
+  const [bookingStats, ratingStats] = await Promise.all([
+    db
+      .select({
+        totalBookings: sql<number>`cast(count(*) as integer)`,
+      })
+      .from(booking)
+      .innerJoin(departure, eq(booking.departureId, departure.id))
+      .where(
+        and(eq(departure.trekId, trekId), eq(booking.status, "CONFIRMED")),
+      ),
+    db
+      .select({
+        averageRating: sql<number>`coalesce(avg(${trekReview.rating})::double precision, 0)`,
+        reviewCount: sql<number>`cast(count(*) as integer)`,
+      })
+      .from(trekReview)
+      .where(eq(trekReview.trekId, trekId)),
   ]);
 
   return {
     trekId,
-    trekName: trek.name,
-    totalBookings,
-    averageRating: averageRating._avg.rating || 0,
-    reviewCount: averageRating._count || 0,
-    totalDepartures: trek.departures.length,
+    trekName: trekRecord.name,
+    totalBookings: bookingStats[0]?.totalBookings ?? 0,
+    averageRating: ratingStats[0]?.averageRating ?? 0,
+    reviewCount: ratingStats[0]?.reviewCount ?? 0,
+    totalDepartures: trekRecord.departures.length,
   };
 }

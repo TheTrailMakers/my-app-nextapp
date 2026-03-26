@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/auth-session";
 import LoginClient from "./login-client";
 
 type LoginPageProps = {
@@ -10,7 +9,7 @@ type LoginPageProps = {
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   const params = await searchParams;
   const nextPath = params.next ?? null;
 

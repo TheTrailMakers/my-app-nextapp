@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
+import { asc, eq, inArray, sql } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { adminPermission, rolePermission } from "@/drizzle/schema";
 import { requireApiRole } from "@/lib/apiAuth";
-import { prisma } from "@/lib/prisma";
-import type { UserRole } from "@prisma/client";
+import type { UserRole } from "@/lib/user-role";
 
 type PermissionRoleMap = Partial<Record<UserRole, boolean>>;
 type PermissionDefaults = Record<string, Record<string, PermissionRoleMap>>;
@@ -73,12 +75,17 @@ export async function GET() {
   }
 
   try {
-    const permissions = await prisma.adminPermission.findMany({
-      include: {
-        RolePermission: true,
-      },
-      orderBy: [{ category: "asc" }, { permission: "asc" }],
-    });
+    const permissions = await db
+      .select({
+        permission: adminPermission,
+        rolePermission: rolePermission,
+      })
+      .from(adminPermission)
+      .leftJoin(
+        rolePermission,
+        eq(rolePermission.permissionId, adminPermission.id),
+      )
+      .orderBy(asc(adminPermission.category), asc(adminPermission.permission));
 
     const grouped = permissions.reduce<
       Record<
@@ -91,24 +98,34 @@ export async function GET() {
           roles: PermissionRoleMap;
         }>
       >
-    >((acc, permission) => {
+    >((acc, row) => {
+      const permission = row.permission;
       if (!acc[permission.category]) {
         acc[permission.category] = [];
       }
 
-      acc[permission.category].push({
-        id: permission.id,
-        permission: permission.permission,
-        category: permission.category,
-        description: permission.description,
-        roles: permission.RolePermission.reduce<PermissionRoleMap>(
-          (roleMap, rolePermission) => {
-            roleMap[rolePermission.role] = rolePermission.isEnabled;
-            return roleMap;
-          },
-          {},
-        ),
-      });
+      const existingEntry = acc[permission.category].find(
+        (entry) => entry.id === permission.id,
+      );
+
+      if (!existingEntry) {
+        acc[permission.category].push({
+          id: permission.id,
+          permission: permission.permission,
+          category: permission.category,
+          description: permission.description,
+          roles: row.rolePermission?.role
+            ? { [row.rolePermission.role]: row.rolePermission.isEnabled }
+            : {},
+        });
+
+        return acc;
+      }
+
+      if (row.rolePermission?.role) {
+        existingEntry.roles[row.rolePermission.role] =
+          row.rolePermission.isEnabled;
+      }
 
       return acc;
     }, {});
@@ -134,8 +151,10 @@ export async function POST() {
   }
 
   try {
-    const existing = await prisma.adminPermission.count();
-    if (existing > 0) {
+    const existing = await db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(adminPermission);
+    if ((existing[0]?.count ?? 0) > 0) {
       return NextResponse.json({
         message: "Permissions already initialized",
       });
@@ -143,33 +162,34 @@ export async function POST() {
 
     const createdPermissions = [];
 
-    for (const [category, permissions] of Object.entries(DEFAULT_PERMISSIONS)) {
-      for (const [permission, roles] of Object.entries(permissions)) {
-        const created = await prisma.adminPermission.create({
-          data: {
+    await db.transaction(async (tx) => {
+      for (const [category, permissions] of Object.entries(
+        DEFAULT_PERMISSIONS,
+      )) {
+        for (const [permission, roles] of Object.entries(permissions)) {
+          const created = {
             id: permission,
             permission,
             category,
             description: `${permission} - ${category}`,
             updatedAt: new Date(),
-          },
-        });
+          };
 
-        createdPermissions.push(created);
+          await tx.insert(adminPermission).values(created);
+          createdPermissions.push(created);
 
-        for (const [role, isEnabled] of Object.entries(roles)) {
-          await prisma.rolePermission.create({
-            data: {
+          await tx.insert(rolePermission).values(
+            Object.entries(roles).map(([role, isEnabled]) => ({
               id: `${created.id}:${role}`,
               permissionId: created.id,
               role: role as UserRole,
               isEnabled: Boolean(isEnabled),
               updatedAt: new Date(),
-            },
-          });
+            })),
+          );
         }
       }
-    }
+    });
 
     return NextResponse.json({
       success: true,
@@ -209,37 +229,57 @@ export async function PUT(request: Request) {
       );
     }
 
-    for (const [permission, isEnabled] of Object.entries(
+    const permissionEntries = Object.entries(
       permissions as Record<string, unknown>,
-    )) {
-      const existingPermission = await prisma.adminPermission.findUnique({
-        where: { permission },
-      });
+    );
+    const existingPermissions = permissionEntries.length
+      ? await db
+          .select({
+            id: adminPermission.id,
+            permission: adminPermission.permission,
+          })
+          .from(adminPermission)
+          .where(
+            inArray(
+              adminPermission.permission,
+              permissionEntries.map(([permission]) => permission),
+            ),
+          )
+      : [];
 
-      if (!existingPermission) {
-        continue;
-      }
+    const permissionMap = new Map(
+      existingPermissions.map((permission) => [
+        permission.permission,
+        permission.id,
+      ]),
+    );
 
-      await prisma.rolePermission.upsert({
-        where: {
-          permissionId_role: {
-            permissionId: existingPermission.id,
+    await db.transaction(async (tx) => {
+      for (const [permission, isEnabled] of permissionEntries) {
+        const permissionId = permissionMap.get(permission);
+
+        if (!permissionId) {
+          continue;
+        }
+
+        await tx
+          .insert(rolePermission)
+          .values({
+            id: `${permissionId}:${role}`,
+            permissionId,
             role,
-          },
-        },
-        update: {
-          isEnabled: Boolean(isEnabled),
-          updatedAt: new Date(),
-        },
-        create: {
-          id: `${existingPermission.id}:${role}`,
-          permissionId: existingPermission.id,
-          role,
-          isEnabled: Boolean(isEnabled),
-          updatedAt: new Date(),
-        },
-      });
-    }
+            isEnabled: Boolean(isEnabled),
+            updatedAt: new Date(),
+          })
+          .onConflictDoUpdate({
+            target: [rolePermission.permissionId, rolePermission.role],
+            set: {
+              isEnabled: Boolean(isEnabled),
+              updatedAt: new Date(),
+            },
+          });
+      }
+    });
 
     return NextResponse.json({
       success: true,

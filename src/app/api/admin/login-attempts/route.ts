@@ -1,7 +1,9 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { failedLoginAttempt } from "@/drizzle/schema";
 import { requireApiRole } from "@/lib/apiAuth";
 
 export async function GET(req: Request) {
@@ -11,10 +13,11 @@ export async function GET(req: Request) {
       return response;
     }
 
-    const recent = await prisma.failedLoginAttempt.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 200,
-    });
+    const recent = await db
+      .select()
+      .from(failedLoginAttempt)
+      .orderBy(desc(failedLoginAttempt.createdAt))
+      .limit(200);
 
     return NextResponse.json({ success: true, attempts: recent });
   } catch (error) {

@@ -1,34 +1,35 @@
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import type { UserRole } from "@prisma/client";
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { userTable } from "@/drizzle/schema";
+import { getAppSession } from "@/lib/auth-session";
+import type { UserRole } from "@/lib/user-role";
 import AdminClient, { type AdminUserRecord } from "./admin-client";
 
 export const dynamic = "force-dynamic";
 
 async function getAdminUsers(): Promise<AdminUserRecord[]> {
-  return prisma.user.findMany({
-    select: {
-      id: true,
-      email: true,
-      username: true,
-      firstName: true,
-      lastName: true,
-      role: true,
-      isActive: true,
-      isLocked: true,
-      isDenied: true,
-      accountLockedUntil: true,
-      lastLoginAt: true,
-      createdAt: true,
-    },
-    orderBy: { createdAt: "desc" },
-  });
+  return db
+    .select({
+      id: userTable.id,
+      email: userTable.email,
+      username: userTable.username,
+      firstName: userTable.firstName,
+      lastName: userTable.lastName,
+      role: userTable.role,
+      isActive: userTable.isActive,
+      isLocked: userTable.isLocked,
+      isDenied: userTable.isDenied,
+      accountLockedUntil: userTable.accountLockedUntil,
+      lastLoginAt: userTable.lastLoginAt,
+      createdAt: userTable.createdAt,
+    })
+    .from(userTable)
+    .orderBy(desc(userTable.createdAt));
 }
 
 export default async function AdminPage() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
 
   if (!session?.user?.email) {
     redirect("/login");

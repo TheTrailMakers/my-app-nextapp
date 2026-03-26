@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { eq } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { userTable } from "@/drizzle/schema";
 import bcrypt from "bcryptjs";
 import { Resend } from "resend";
 import { requireApiRole } from "@/lib/apiAuth";
@@ -27,12 +29,13 @@ export async function POST(
 
     const { userId } = params;
 
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { email: true },
-    });
+    const user = await db
+      .select({ email: userTable.email })
+      .from(userTable)
+      .where(eq(userTable.id, userId))
+      .limit(1);
 
-    if (!user) {
+    if (!user[0]) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
@@ -40,10 +43,14 @@ export async function POST(
       "TempPass#" + Math.floor(Math.random() * 90000 + 10000).toString();
     const hashed = await bcrypt.hash(tempPassword, 12);
 
-    await prisma.user.update({
-      where: { id: userId },
-      data: { password: hashed, passwordChangedAt: new Date() },
-    });
+    await db
+      .update(userTable)
+      .set({
+        password: hashed,
+        passwordChangedAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .where(eq(userTable.id, userId));
 
     // Note: For security we do not return the temporary password in production. Here we return it for admin use.
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -52,7 +59,7 @@ export async function POST(
 
     await resend.emails.send({
       from: fromEmail,
-      to: user.email,
+      to: user[0].email,
       subject: "Your Trail Makers Password Has Been Reset",
       html: `
         <!DOCTYPE html>
@@ -86,7 +93,7 @@ export async function POST(
       userId,
       adminUser.id,
       {},
-      { email: user.email },
+      { email: user[0].email },
     );
 
     return NextResponse.json({

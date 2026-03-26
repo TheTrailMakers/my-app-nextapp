@@ -1,24 +1,26 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const { sql } = require("./scripts/db-client");
 
 async function checkSuperAdmin() {
   try {
-    const user = await prisma.user.findUnique({
-      where: { email: 'superadmin@trailmakers.in' },
-      select: { 
-        email: true, 
-        username: true,
-        role: true, 
-        isActive: true, 
-        isLocked: true, 
-        isDenied: true 
-      }
-    });
-    console.log('Superadmin account:', JSON.stringify(user, null, 2));
+    const users = await sql`
+      select
+        "email",
+        "username",
+        "role",
+        "isActive",
+        "isLocked",
+        "isDenied"
+      from "User"
+      where "email" = ${"superadmin@trailmakers.in"}
+      limit 1
+    `;
+
+    console.log(
+      "Superadmin account:",
+      JSON.stringify(users[0] ?? null, null, 2),
+    );
   } catch (e) {
-    console.error('Error:', e.message);
-  } finally {
-    await prisma.$disconnect();
+    console.error("Error:", e.message);
   }
 }
 

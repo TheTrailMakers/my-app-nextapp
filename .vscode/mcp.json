@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "Sentry": {
+      "url": "https://mcp.sentry.dev/mcp/sayantan-dey/my-app-nextapp",
+      "type": "http"
+    }
+  }
+}

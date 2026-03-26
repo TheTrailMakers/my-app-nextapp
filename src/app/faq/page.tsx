@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { asc } from "drizzle-orm";
 import Accordion from "@/components/accordion";
-import { prisma } from "@/lib/prisma";
+import db from "@/drizzle/db";
+import { faq } from "@/drizzle/schema";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 
 interface FAQItem {
@@ -19,16 +21,16 @@ async function getFaqs(): Promise<FAQItem[]> {
   }
 
   try {
-    return await prisma.fAQ.findMany({
-      orderBy: [{ category: "asc" }, { order: "asc" }],
-      select: {
-        id: true,
-        question: true,
-        answer: true,
-        category: true,
-        order: true,
-      },
-    });
+    return await db
+      .select({
+        id: faq.id,
+        question: faq.question,
+        answer: faq.answer,
+        category: faq.category,
+        order: faq.order,
+      })
+      .from(faq)
+      .orderBy(asc(faq.category), asc(faq.order));
   } catch (error) {
     console.warn("Skipping FAQs page data during prerender:", error);
     return [];

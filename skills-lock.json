@@ -6,6 +6,11 @@
       "sourceType": "github",
       "computedHash": "515ba75178bd44875812d9a560bdf14651f86709f89cf1d4f209638e879807f3"
     },
+    "next-cache-components": {
+      "source": "vercel-labs/next-skills",
+      "sourceType": "github",
+      "computedHash": "a94b83ddcd2ff1c30722577f693b1bfe32f2e1a83abdd6c08c2d6cc6753b53c8"
+    },
     "next-upgrade": {
       "source": "vercel-labs/next-skills",
       "sourceType": "github",
@@ -15,6 +20,11 @@
       "source": "vercel/turborepo",
       "sourceType": "github",
       "computedHash": "2174b5ef380de7df689c0c1ca95d3c0fcd75672b6ab1ba886e39358cc18296f4"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "f98931159fa9c7fed043bcd18a891a46dcf89ababa38df13a4c5b7b30dc0ce07"
     },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",

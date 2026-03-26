@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { expedition as expeditionTable } from "@/drizzle/schema";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 
 interface ExpeditionCard {
@@ -33,23 +35,23 @@ async function getExpeditions(): Promise<ExpeditionCard[]> {
   }
 
   try {
-    return await prisma.expedition.findMany({
-      orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        name: true,
-        slug: true,
-        description: true,
-        state: true,
-        basePrice: true,
-        difficulty: true,
-        duration: true,
-        maxAltitude: true,
-        distance: true,
-        thumbnailUrl: true,
-        imageUrl: true,
-      },
-    });
+    return await db
+      .select({
+        id: expeditionTable.id,
+        name: expeditionTable.name,
+        slug: expeditionTable.slug,
+        description: expeditionTable.description,
+        state: expeditionTable.state,
+        basePrice: expeditionTable.basePrice,
+        difficulty: expeditionTable.difficulty,
+        duration: expeditionTable.duration,
+        maxAltitude: expeditionTable.maxAltitude,
+        distance: expeditionTable.distance,
+        thumbnailUrl: expeditionTable.thumbnailUrl,
+        imageUrl: expeditionTable.imageUrl,
+      })
+      .from(expeditionTable)
+      .orderBy(desc(expeditionTable.createdAt));
   } catch (error) {
     console.warn("Skipping expeditions page data during prerender:", error);
     return [];

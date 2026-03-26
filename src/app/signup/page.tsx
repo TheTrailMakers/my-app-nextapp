@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { signUp } from "@/lib/auth-client";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -18,21 +19,22 @@ export default function SignUp() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, username, password }),
-      });
+      const signUpPayload = {
+        email,
+        password,
+        username,
+        name: username,
+      } as Parameters<typeof signUp.email>[0];
 
-      const data = await res.json();
+      const { error: signUpError } = await signUp.email(signUpPayload);
 
-      if (!res.ok) {
-        setError(data.error || "Signup failed");
+      if (signUpError) {
+        setError(signUpError.message || "Signup failed");
         return;
       }
 
       router.push("/login");
-    } catch (err) {
+    } catch {
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
@@ -84,7 +86,7 @@ export default function SignUp() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 bg-gray-800 text-white rounded-sm border border-gray-700 focus:border-red-500 outline-hidden"
-              placeholder="Enter password (min 6 characters)"
+              placeholder="Enter password (min 12 characters)"
               required
             />
           </div>

@@ -1,12 +1,11 @@
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { getAdminDashboardOverview } from "@/lib/services/adminDashboardService";
+import { getAppSession } from "@/lib/auth-session";
 import AdminDashboardClient from "./dashboard-client";
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
 
   if (!session?.user?.email) {
     redirect("/login");

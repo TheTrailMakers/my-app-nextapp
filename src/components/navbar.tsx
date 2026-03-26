@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import NavbarClient from "@/components/navbar-client";
+import { getAppSession } from "@/lib/auth-session";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -15,7 +14,7 @@ const navLinks = [
 ];
 
 export default async function Navbar() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   const isAuthenticated = Boolean(session?.user);
   const dashboardHref =
     session?.user?.role === "ADMIN" ||

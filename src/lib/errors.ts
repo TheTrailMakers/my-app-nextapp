@@ -9,7 +9,7 @@ export class AppError extends Error {
   constructor(
     public message: string,
     public statusCode: number = 500,
-    public code: string = "INTERNAL_ERROR"
+    public code: string = "INTERNAL_ERROR",
   ) {
     super(message);
     Object.setPrototypeOf(this, AppError.prototype);
@@ -46,7 +46,10 @@ export class ConflictError extends AppError {
 
 export class InsufficientSeatsError extends ConflictError {
   constructor() {
-    super("Not enough seats available for this departure", "INSUFFICIENT_SEATS");
+    super(
+      "Not enough seats available for this departure",
+      "INSUFFICIENT_SEATS",
+    );
     Object.setPrototypeOf(this, InsufficientSeatsError.prototype);
   }
 }
@@ -95,23 +98,6 @@ export function createErrorResponse(error: unknown) {
       error: {
         message: msg,
         code: "VALIDATION_ERROR",
-        statusCode: 400,
-      },
-    };
-  }
-
-  // Prisma errors
-  if (error && typeof error === "object" && "code" in error) {
-    const prismaError = error as { code: string; message?: string };
-    const message =
-      prismaError.code === "P2002"
-        ? "A record with this value already exists"
-        : prismaError.message || "Database error";
-    return {
-      success: false,
-      error: {
-        message,
-        code: prismaError.code,
         statusCode: 400,
       },
     };

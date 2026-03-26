@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
 import { FiSearch, FiX } from "react-icons/fi";
 import NavbarLinks, { type NavbarLink } from "@/components/navbar-links";
+import { signOut } from "@/lib/auth-client";
 
 type NavbarClientProps = {
   links: NavbarLink[];
@@ -69,8 +69,15 @@ export default function NavbarClient({
     setSearchOpen(false);
   };
 
-  const handleSignOut = () => {
-    void signOut({ redirect: true, callbackUrl: "/" });
+  const handleSignOut = async () => {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/");
+          router.refresh();
+        },
+      },
+    });
     closeMenus();
   };
 

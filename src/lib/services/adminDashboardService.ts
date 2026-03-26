@@ -1,5 +1,30 @@
-import type { Prisma } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
+import {
+  and,
+  desc,
+  eq,
+  gte,
+  ilike,
+  inArray,
+  isNotNull,
+  isNull,
+  lt,
+  lte,
+  ne,
+  or,
+  sql,
+  type SQL,
+} from "drizzle-orm";
+import db from "@/drizzle/db";
+import {
+  booking as bookingTable,
+  departure as departureTable,
+  marketingMetric,
+  payment as paymentTable,
+  trek as trekTable,
+  trekLeaderPayout,
+  trekReview,
+  userTable,
+} from "@/drizzle/schema";
 
 export type AdminFinancePeriod = "month" | "quarter" | "year" | "all";
 export type AdminMarketingPeriod = "week" | "month" | "quarter" | "year";
@@ -142,99 +167,69 @@ function getMarketingStartDate(period: AdminMarketingPeriod): Date {
   return getPeriodStartDate(period);
 }
 
-function buildParticipantWhere(
+function buildParticipantConditions(
   query: AdminParticipantsQuery,
   now: Date,
-): Prisma.BookingWhereInput {
-  const conditions: Prisma.BookingWhereInput[] = [];
+): SQL[] {
+  const conditions: SQL[] = [];
 
   if (query.filter === "upcoming") {
-    conditions.push({
-      departure: {
-        is: {
-          startDate: { gte: now },
-        },
-      },
-      status: { in: ["PENDING", "CONFIRMED"] },
-    });
+    conditions.push(
+      and(
+        gte(departureTable.startDate, now),
+        inArray(bookingTable.status, ["PENDING", "CONFIRMED"]),
+      )!,
+    );
   } else if (query.filter === "past") {
-    conditions.push({
-      departure: {
-        is: {
-          endDate: { lt: now },
-        },
-      },
-      status: "COMPLETED",
-    });
+    conditions.push(
+      and(
+        lt(departureTable.endDate, now),
+        eq(bookingTable.status, "COMPLETED"),
+      )!,
+    );
   } else if (query.filter === "repeat") {
-    conditions.push({
-      isRepeatTrekker: true,
-    });
+    conditions.push(eq(bookingTable.isRepeatTrekker, true));
   }
 
   if (query.paymentStatus === "paid") {
-    conditions.push({
-      payment: {
-        is: {
-          status: "COMPLETED",
-        },
-      },
-    });
+    conditions.push(eq(paymentTable.status, "COMPLETED"));
   } else if (query.paymentStatus === "pending") {
-    conditions.push({
-      OR: [
-        {
-          payment: {
-            is: null,
-          },
-        },
-        {
-          payment: {
-            is: {
-              status: "PENDING",
-            },
-          },
-        },
-      ],
-    });
+    conditions.push(
+      or(isNull(paymentTable.id), eq(paymentTable.status, "PENDING"))!,
+    );
   }
 
   if (query.medicalStatus === "submitted") {
-    conditions.push({ medicalFormSubmitted: true });
+    conditions.push(eq(bookingTable.medicalFormSubmitted, true));
   } else if (query.medicalStatus === "pending") {
-    conditions.push({ medicalFormSubmitted: false });
+    conditions.push(eq(bookingTable.medicalFormSubmitted, false));
   }
 
   if (query.idVerified === "true") {
-    conditions.push({ idVerified: true });
+    conditions.push(eq(bookingTable.idVerified, true));
   } else if (query.idVerified === "false") {
-    conditions.push({ idVerified: false });
+    conditions.push(eq(bookingTable.idVerified, false));
   }
 
   if (query.waiverSigned === "true") {
-    conditions.push({ waiverSigned: true });
+    conditions.push(eq(bookingTable.waiverSigned, true));
   } else if (query.waiverSigned === "false") {
-    conditions.push({ waiverSigned: false });
+    conditions.push(eq(bookingTable.waiverSigned, false));
   }
 
   if (query.search) {
-    conditions.push({
-      OR: [
-        { contactName: { contains: query.search, mode: "insensitive" } },
-        { contactEmail: { contains: query.search, mode: "insensitive" } },
-        { contactPhone: { contains: query.search, mode: "insensitive" } },
-        {
-          user: {
-            is: {
-              email: { contains: query.search, mode: "insensitive" },
-            },
-          },
-        },
-      ],
-    });
+    const searchTerm = `%${query.search}%`;
+    conditions.push(
+      or(
+        ilike(bookingTable.contactName, searchTerm),
+        ilike(bookingTable.contactEmail, searchTerm),
+        ilike(bookingTable.contactPhone, searchTerm),
+        ilike(userTable.email, searchTerm),
+      )!,
+    );
   }
 
-  return conditions.length > 0 ? { AND: conditions } : {};
+  return conditions;
 }
 
 export async function getAdminDashboardOverview(): Promise<DashboardStats> {
@@ -252,77 +247,82 @@ export async function getAdminDashboardOverview(): Promise<DashboardStats> {
     pendingRefunds,
     departures,
   ] = await Promise.all([
-    prisma.booking.count({
-      where: {
-        createdAt: {
-          gte: startOfMonth,
-          lte: endOfMonth,
-        },
-        status: { not: "CANCELLED" },
-      },
-    }),
-    prisma.payment.aggregate({
-      where: {
-        createdAt: {
-          gte: startOfMonth,
-          lte: endOfMonth,
-        },
-        status: "COMPLETED",
-      },
-      _sum: {
-        amount: true,
-      },
-    }),
-    prisma.departure.count({
-      where: {
-        startDate: {
-          gte: now,
-          lte: next30Days,
-        },
-        isCancelled: false,
-      },
-    }),
-    prisma.booking.count({
-      where: {
-        createdAt: {
-          gte: startOfMonth,
-          lte: endOfMonth,
-        },
-      },
-    }),
-    prisma.booking.count({
-      where: {
-        createdAt: {
-          gte: startOfMonth,
-          lte: endOfMonth,
-        },
-        status: "CANCELLED",
-      },
-    }),
-    prisma.payment.aggregate({
-      where: {
-        status: "REFUNDED",
-        refundedAt: {
-          gte: startOfMonth,
-          lte: endOfMonth,
-        },
-      },
-      _sum: {
-        refundAmount: true,
-      },
-    }),
-    prisma.departure.findMany({
-      where: {
-        startDate: {
-          gte: now,
-        },
-        isCancelled: false,
-      },
-      select: {
-        totalSeats: true,
-        seatsAvailable: true,
-      },
-    }),
+    db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(bookingTable)
+      .where(
+        and(
+          gte(bookingTable.createdAt, startOfMonth),
+          lte(bookingTable.createdAt, endOfMonth),
+          ne(bookingTable.status, "CANCELLED"),
+        ),
+      ),
+    db
+      .select({
+        amount: sql<number>`cast(coalesce(sum(${paymentTable.amount}), 0) as integer)`,
+      })
+      .from(paymentTable)
+      .where(
+        and(
+          gte(paymentTable.createdAt, startOfMonth),
+          lte(paymentTable.createdAt, endOfMonth),
+          eq(paymentTable.status, "COMPLETED"),
+        ),
+      ),
+    db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(departureTable)
+      .where(
+        and(
+          gte(departureTable.startDate, now),
+          lte(departureTable.startDate, next30Days),
+          eq(departureTable.isCancelled, false),
+        ),
+      ),
+    db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(bookingTable)
+      .where(
+        and(
+          gte(bookingTable.createdAt, startOfMonth),
+          lte(bookingTable.createdAt, endOfMonth),
+        ),
+      ),
+    db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(bookingTable)
+      .where(
+        and(
+          gte(bookingTable.createdAt, startOfMonth),
+          lte(bookingTable.createdAt, endOfMonth),
+          eq(bookingTable.status, "CANCELLED"),
+        ),
+      ),
+    db
+      .select({
+        refundAmount: sql<number>`cast(coalesce(sum(${paymentTable.refundAmount}), 0) as integer)`,
+      })
+      .from(paymentTable)
+      .where(
+        and(
+          eq(paymentTable.status, "REFUNDED"),
+          isNotNull(paymentTable.refundedAt),
+          gte(paymentTable.refundedAt, startOfMonth),
+          lte(paymentTable.refundedAt, endOfMonth),
+        ),
+      ),
+    db
+      .select({
+        totalSeats: departureTable.totalSeats,
+        seatsAvailable: departureTable.seatsAvailable,
+      })
+      .from(departureTable)
+      .where(
+        and(
+          gte(departureTable.startDate, now),
+          eq(departureTable.isCancelled, false),
+        ),
+      ),
   ]);
 
   const totalSeats = departures.reduce(
@@ -335,16 +335,20 @@ export async function getAdminDashboardOverview(): Promise<DashboardStats> {
   );
 
   return {
-    totalBookingsThisMonth: thisMonthBookings,
-    revenueThisMonth: thisMonthRevenue._sum.amount || 0,
-    upcomingTreksNext30Days: upcomingTreks,
+    totalBookingsThisMonth: thisMonthBookings[0]?.count ?? 0,
+    revenueThisMonth: thisMonthRevenue[0]?.amount ?? 0,
+    upcomingTreksNext30Days: upcomingTreks[0]?.count ?? 0,
     occupancyRate:
       totalSeats > 0 ? Math.round((bookedSeats / totalSeats) * 100) : 0,
     cancellationRate:
-      totalBookings > 0
-        ? Math.round((cancelledBookings / totalBookings) * 100)
+      (totalBookings[0]?.count ?? 0) > 0
+        ? Math.round(
+            ((cancelledBookings[0]?.count ?? 0) /
+              (totalBookings[0]?.count ?? 0)) *
+              100,
+          )
         : 0,
-    refundPending: pendingRefunds._sum.refundAmount || 0,
+    refundPending: pendingRefunds[0]?.refundAmount ?? 0,
   };
 }
 
@@ -355,70 +359,76 @@ export async function getAdminFinanceSummary(
 
   const [revenue, advance, balance, gst, paymentsByMethod, trekLeaderPayouts] =
     await Promise.all([
-      prisma.payment.aggregate({
-        where: {
-          status: "COMPLETED",
-          createdAt: { gte: startDate },
-        },
-        _sum: {
-          amount: true,
-        },
-      }),
-      prisma.payment.aggregate({
-        where: {
-          status: "COMPLETED",
-          advanceAmount: { not: null },
-          createdAt: { gte: startDate },
-        },
-        _sum: {
-          advanceAmount: true,
-        },
-      }),
-      prisma.payment.aggregate({
-        where: {
-          status: { in: ["PENDING", "COMPLETED"] },
-          balanceAmount: { not: null },
-          createdAt: { gte: startDate },
-        },
-        _sum: {
-          balanceAmount: true,
-        },
-      }),
-      prisma.payment.aggregate({
-        where: {
-          status: "COMPLETED",
-          gstAmount: { not: null },
-          createdAt: { gte: startDate },
-        },
-        _sum: {
-          gstAmount: true,
-        },
-      }),
-      prisma.payment.groupBy({
-        by: ["paymentMethod"],
-        where: {
-          status: "COMPLETED",
-          createdAt: { gte: startDate },
-        },
-        _sum: {
-          amount: true,
-        },
-        _count: {
-          _all: true,
-        },
-      }),
-      prisma.trekLeaderPayout.groupBy({
-        by: ["status"],
-        where: {
-          createdAt: { gte: startDate },
-        },
-        _sum: {
-          amount: true,
-        },
-        _count: {
-          _all: true,
-        },
-      }),
+      db
+        .select({
+          amount: sql<number>`cast(coalesce(sum(${paymentTable.amount}), 0) as integer)`,
+        })
+        .from(paymentTable)
+        .where(
+          and(
+            eq(paymentTable.status, "COMPLETED"),
+            gte(paymentTable.createdAt, startDate),
+          ),
+        ),
+      db
+        .select({
+          advanceAmount: sql<number>`cast(coalesce(sum(${paymentTable.advanceAmount}), 0) as integer)`,
+        })
+        .from(paymentTable)
+        .where(
+          and(
+            eq(paymentTable.status, "COMPLETED"),
+            isNotNull(paymentTable.advanceAmount),
+            gte(paymentTable.createdAt, startDate),
+          ),
+        ),
+      db
+        .select({
+          balanceAmount: sql<number>`cast(coalesce(sum(${paymentTable.balanceAmount}), 0) as integer)`,
+        })
+        .from(paymentTable)
+        .where(
+          and(
+            inArray(paymentTable.status, ["PENDING", "COMPLETED"]),
+            isNotNull(paymentTable.balanceAmount),
+            gte(paymentTable.createdAt, startDate),
+          ),
+        ),
+      db
+        .select({
+          gstAmount: sql<number>`cast(coalesce(sum(${paymentTable.gstAmount}), 0) as integer)`,
+        })
+        .from(paymentTable)
+        .where(
+          and(
+            eq(paymentTable.status, "COMPLETED"),
+            isNotNull(paymentTable.gstAmount),
+            gte(paymentTable.createdAt, startDate),
+          ),
+        ),
+      db
+        .select({
+          paymentMethod: paymentTable.paymentMethod,
+          amount: sql<number>`cast(coalesce(sum(${paymentTable.amount}), 0) as integer)`,
+          count: sql<number>`cast(count(*) as integer)`,
+        })
+        .from(paymentTable)
+        .where(
+          and(
+            eq(paymentTable.status, "COMPLETED"),
+            gte(paymentTable.createdAt, startDate),
+          ),
+        )
+        .groupBy(paymentTable.paymentMethod),
+      db
+        .select({
+          status: trekLeaderPayout.status,
+          amount: sql<number>`cast(coalesce(sum(${trekLeaderPayout.amount}), 0) as integer)`,
+          count: sql<number>`cast(count(*) as integer)`,
+        })
+        .from(trekLeaderPayout)
+        .where(gte(trekLeaderPayout.createdAt, startDate))
+        .groupBy(trekLeaderPayout.status),
     ]);
 
   const pendingPayouts = trekLeaderPayouts.find(
@@ -429,20 +439,20 @@ export async function getAdminFinanceSummary(
   );
 
   return {
-    totalRevenue: revenue._sum.amount || 0,
-    advanceCollected: advance._sum.advanceAmount || 0,
-    balancePending: balance._sum.balanceAmount || 0,
-    gstCollected: gst._sum.gstAmount || 0,
+    totalRevenue: revenue[0]?.amount ?? 0,
+    advanceCollected: advance[0]?.advanceAmount ?? 0,
+    balancePending: balance[0]?.balanceAmount ?? 0,
+    gstCollected: gst[0]?.gstAmount ?? 0,
     paymentMethodSplit: paymentsByMethod.map((payment) => ({
       method: payment.paymentMethod || "unknown",
-      amount: payment._sum.amount || 0,
-      count: payment._count._all,
+      amount: payment.amount ?? 0,
+      count: payment.count,
     })),
     trekLeaderPayouts: {
-      pending: pendingPayouts?._sum.amount || 0,
-      paid: paidPayouts?._sum.amount || 0,
-      pendingCount: pendingPayouts?._count._all || 0,
-      paidCount: paidPayouts?._count._all || 0,
+      pending: pendingPayouts?.amount || 0,
+      paid: paidPayouts?.amount || 0,
+      pendingCount: pendingPayouts?.count || 0,
+      paidCount: paidPayouts?.count || 0,
     },
   };
 }
@@ -454,72 +464,96 @@ export async function getAdminParticipants(query: AdminParticipantsQuery) {
     100,
   );
   const now = new Date();
-  const where = buildParticipantWhere(query, now);
+  const participantConditions = buildParticipantConditions(query, now);
+  const participantWhere =
+    participantConditions.length > 0
+      ? and(...participantConditions)
+      : undefined;
 
   const [participants, total, stats] = await Promise.all([
-    prisma.booking.findMany({
-      where,
-      include: {
+    db
+      .select({
+        booking: bookingTable,
         user: {
-          select: {
-            id: true,
-            email: true,
-            firstName: true,
-            lastName: true,
-            phoneNumber: true,
-          },
+          id: userTable.id,
+          email: userTable.email,
+          firstName: userTable.firstName,
+          lastName: userTable.lastName,
+          phoneNumber: userTable.phoneNumber,
         },
-        departure: {
-          include: {
-            trek: {
-              select: {
-                id: true,
-                name: true,
-                slug: true,
-              },
-            },
-          },
+        departure: departureTable,
+        trek: {
+          id: trekTable.id,
+          name: trekTable.name,
+          slug: trekTable.slug,
         },
         payment: {
-          select: {
-            id: true,
-            amount: true,
-            status: true,
-            advanceAmount: true,
-            balanceAmount: true,
-            paymentMethod: true,
-            createdAt: true,
-          },
+          id: paymentTable.id,
+          amount: paymentTable.amount,
+          status: paymentTable.status,
+          advanceAmount: paymentTable.advanceAmount,
+          balanceAmount: paymentTable.balanceAmount,
+          paymentMethod: paymentTable.paymentMethod,
+          createdAt: paymentTable.createdAt,
         },
-      },
-      orderBy: { createdAt: "desc" },
-      skip: (page - 1) * limit,
-      take: limit,
-    }),
-    prisma.booking.count({ where }),
-    prisma.booking.groupBy({
-      by: ["status"],
-      _count: {
-        _all: true,
-      },
-      where: {
-        departure: {
-          is: {
-            startDate: { gte: now },
-          },
-        },
-      },
-    }),
+      })
+      .from(bookingTable)
+      .innerJoin(userTable, eq(bookingTable.userId, userTable.id))
+      .innerJoin(
+        departureTable,
+        eq(bookingTable.departureId, departureTable.id),
+      )
+      .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+      .leftJoin(paymentTable, eq(paymentTable.bookingId, bookingTable.id))
+      .where(participantWhere)
+      .orderBy(desc(bookingTable.createdAt))
+      .limit(limit)
+      .offset((page - 1) * limit),
+    db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(bookingTable)
+      .innerJoin(userTable, eq(bookingTable.userId, userTable.id))
+      .innerJoin(
+        departureTable,
+        eq(bookingTable.departureId, departureTable.id),
+      )
+      .leftJoin(paymentTable, eq(paymentTable.bookingId, bookingTable.id))
+      .where(participantWhere),
+    db
+      .select({
+        status: bookingTable.status,
+        count: sql<number>`cast(count(*) as integer)`,
+      })
+      .from(bookingTable)
+      .innerJoin(
+        departureTable,
+        eq(bookingTable.departureId, departureTable.id),
+      )
+      .where(gte(departureTable.startDate, now))
+      .groupBy(bookingTable.status),
   ]);
 
   return {
-    participants,
-    stats,
+    participants: participants.map((participant) => ({
+      ...participant.booking,
+      user: participant.user,
+      departure: {
+        ...participant.departure,
+        trek: participant.trek,
+      },
+      payment: participant.payment?.id ? participant.payment : null,
+    })),
+    stats: stats.map((stat) => ({
+      status: stat.status,
+      _count: {
+        _all: stat.count,
+      },
+    })),
     pagination: {
       page,
       limit,
-      total,
-      pages: Math.ceil(total / limit),
+      total: total[0]?.count ?? 0,
+      pages: Math.ceil((total[0]?.count ?? 0) / limit),
     },
   };
 }
@@ -531,51 +565,91 @@ export async function getAdminTreks(query: AdminTreksQuery) {
     100,
   );
 
-  const [treks, total] = await Promise.all([
-    prisma.trek.findMany({
-      include: {
-        departures: {
-          where: {
-            startDate: { gte: new Date() },
-            isCancelled: false,
-          },
-          select: {
-            id: true,
-            startDate: true,
-            endDate: true,
-            totalSeats: true,
-            seatsAvailable: true,
-            waitlistCount: true,
-            status: true,
-            User: {
-              select: {
-                id: true,
-                firstName: true,
-                lastName: true,
-              },
-            },
-          },
-        },
-        _count: {
-          select: {
-            reviews: true,
-          },
-        },
-      },
-      orderBy: { createdAt: "desc" },
-      skip: (page - 1) * limit,
-      take: limit,
-    }),
-    prisma.trek.count(),
+  const [treks, totalRows] = await Promise.all([
+    db
+      .select()
+      .from(trekTable)
+      .orderBy(desc(trekTable.createdAt))
+      .limit(limit)
+      .offset((page - 1) * limit),
+    db
+      .select({ count: sql<number>`cast(count(*) as integer)` })
+      .from(trekTable),
   ]);
+
+  const trekIds = treks.map((trek) => trek.id);
+  const [departures, reviewCounts] = await Promise.all([
+    trekIds.length > 0
+      ? db
+          .select({
+            departure: departureTable,
+            user: {
+              id: userTable.id,
+              firstName: userTable.firstName,
+              lastName: userTable.lastName,
+            },
+          })
+          .from(departureTable)
+          .leftJoin(userTable, eq(departureTable.trekLeaderId, userTable.id))
+          .where(
+            and(
+              inArray(departureTable.trekId, trekIds),
+              gte(departureTable.startDate, new Date()),
+              eq(departureTable.isCancelled, false),
+            ),
+          )
+      : Promise.resolve([]),
+    trekIds.length > 0
+      ? db
+          .select({
+            trekId: trekReview.trekId,
+            count: sql<number>`cast(count(*) as integer)`,
+          })
+          .from(trekReview)
+          .where(inArray(trekReview.trekId, trekIds))
+          .groupBy(trekReview.trekId)
+      : Promise.resolve([]),
+  ]);
+
+  const departuresByTrekId = departures.reduce<
+    Map<
+      string,
+      Array<
+        typeof departureTable.$inferSelect & {
+          trekLeader: {
+            id: string | null;
+            firstName: string | null;
+            lastName: string | null;
+          } | null;
+        }
+      >
+    >
+  >((accumulator, row) => {
+    const existing = accumulator.get(row.departure.trekId) ?? [];
+    existing.push({
+      ...row.departure,
+      trekLeader: row.user?.id
+        ? {
+            id: row.user.id,
+            firstName: row.user.firstName,
+            lastName: row.user.lastName,
+          }
+        : null,
+    });
+    accumulator.set(row.departure.trekId, existing);
+    return accumulator;
+  }, new Map());
+
+  const reviewCountByTrekId = new Map(
+    reviewCounts.map((review) => [review.trekId, review.count]),
+  );
 
   const normalizedTreks = treks.map((trek) => ({
     ...trek,
-    departures: trek.departures.map((departure) => ({
-      ...departure,
-      trekLeader: departure.User,
-      User: undefined,
-    })),
+    departures: departuresByTrekId.get(trek.id) ?? [],
+    _count: {
+      reviews: reviewCountByTrekId.get(trek.id) ?? 0,
+    },
   }));
 
   return {
@@ -583,8 +657,8 @@ export async function getAdminTreks(query: AdminTreksQuery) {
     pagination: {
       page,
       limit,
-      total,
-      pages: Math.ceil(total / limit),
+      total: totalRows[0]?.count ?? 0,
+      pages: Math.ceil((totalRows[0]?.count ?? 0) / limit),
     },
   };
 }
@@ -595,22 +669,23 @@ export async function getAdminMarketingSummary(
   const startDate = getMarketingStartDate(period);
 
   const [metrics, topBookings] = await Promise.all([
-    prisma.marketingMetric.findMany({
-      where: {
-        date: { gte: startDate },
-      },
-      orderBy: { date: "desc" },
-    }),
-    prisma.booking.findMany({
-      where: {
-        createdAt: { gte: startDate },
-        status: { in: ["CONFIRMED", "COMPLETED"] },
-      },
-      select: {
-        departureId: true,
-        totalAmount: true,
-      },
-    }),
+    db
+      .select()
+      .from(marketingMetric)
+      .where(gte(marketingMetric.date, startDate))
+      .orderBy(desc(marketingMetric.date)),
+    db
+      .select({
+        departureId: bookingTable.departureId,
+        totalAmount: bookingTable.totalAmount,
+      })
+      .from(bookingTable)
+      .where(
+        and(
+          gte(bookingTable.createdAt, startDate),
+          inArray(bookingTable.status, ["CONFIRMED", "COMPLETED"]),
+        ),
+      ),
   ]);
 
   const aggregated = metrics.reduce<AggregatedMarketingMetrics>(
@@ -655,21 +730,19 @@ export async function getAdminMarketingSummary(
     .sort((left, right) => right.bookingCount - left.bookingCount)
     .slice(0, 10);
 
-  const departureDetails = await prisma.departure.findMany({
-    where: {
-      id: {
-        in: topTreks.map((trek) => trek.departureId),
-      },
-    },
-    include: {
-      trek: {
-        select: {
-          name: true,
-          slug: true,
-        },
-      },
-    },
-  });
+  const departureIds = topTreks.map((trek) => trek.departureId);
+  const departureDetails =
+    departureIds.length > 0
+      ? await db
+          .select({
+            id: departureTable.id,
+            trekName: trekTable.name,
+            trekSlug: trekTable.slug,
+          })
+          .from(departureTable)
+          .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+          .where(inArray(departureTable.id, departureIds))
+      : [];
 
   const departuresById = new Map(
     departureDetails.map((departure) => [departure.id, departure]),
@@ -705,8 +778,8 @@ export async function getAdminMarketingSummary(
 
       return {
         trekId: trekSummary.departureId,
-        trekName: departure?.trek?.name || "Unknown",
-        trekSlug: departure?.trek?.slug || "unknown",
+        trekName: departure?.trekName || "Unknown",
+        trekSlug: departure?.trekSlug || "unknown",
         bookingCount: trekSummary.bookingCount,
         revenue: trekSummary.revenue,
       };

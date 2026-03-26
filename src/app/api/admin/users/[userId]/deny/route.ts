@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { eq } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { userTable } from "@/drizzle/schema";
 import { logAudit } from "@/lib/roleUtils";
-import { prisma } from "@/lib/prisma";
 import { requireApiRole } from "@/lib/apiAuth";
 
 // POST: Toggle deny access (Super Admin only)
@@ -20,17 +22,25 @@ export async function POST(
   try {
     const { deny } = await request.json();
 
-    const existingUser = await prisma.user.findUnique({
-      where: { id: params.userId },
-      select: { id: true, username: true, isDenied: true, role: true },
-    });
+    const existingUser = await db
+      .select({
+        id: userTable.id,
+        username: userTable.username,
+        isDenied: userTable.isDenied,
+        role: userTable.role,
+      })
+      .from(userTable)
+      .where(eq(userTable.id, params.userId))
+      .limit(1);
 
-    if (!existingUser) {
+    const user = existingUser[0];
+
+    if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     // Prevent acting on self
-    if (existingUser.id === adminUser.id) {
+    if (user.id === adminUser.id) {
       return NextResponse.json(
         { error: "Cannot perform this action on yourself" },
         { status: 400 },
@@ -38,21 +48,17 @@ export async function POST(
     }
 
     // Prevent denying other Super Admins
-    if (
-      deny &&
-      existingUser.role === "SUPER_ADMIN" &&
-      existingUser.id !== adminUser.id
-    ) {
+    if (deny && user.role === "SUPER_ADMIN" && user.id !== adminUser.id) {
       return NextResponse.json(
         { error: "Cannot deny access to another Super Admin" },
         { status: 403 },
       );
     }
 
-    const updatedUser = await prisma.user.update({
-      where: { id: params.userId },
-      data: { isDenied: Boolean(deny) },
-    });
+    await db
+      .update(userTable)
+      .set({ isDenied: Boolean(deny), updatedAt: new Date() })
+      .where(eq(userTable.id, params.userId));
 
     // Log the action
     await logAudit(
@@ -60,15 +66,15 @@ export async function POST(
       "User",
       params.userId,
       adminUser.id,
-      { isDenied: { from: existingUser.isDenied, to: Boolean(deny) } },
-      { targetUsername: existingUser.username },
+      { isDenied: { from: user.isDenied, to: Boolean(deny) } },
+      { targetUsername: user.username },
     );
 
     return NextResponse.json({
       success: true,
       user: {
-        id: updatedUser.id,
-        isDenied: updatedUser.isDenied,
+        id: params.userId,
+        isDenied: Boolean(deny),
       },
     });
   } catch (error) {

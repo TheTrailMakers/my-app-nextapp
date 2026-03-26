@@ -5,15 +5,14 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { createBooking, getUserBookings } from "@/lib/services/bookingService";
 import { createBookingSchema } from "@/lib/validations";
 import { createErrorResponse, UnauthorizedError } from "@/lib/errors";
+import { getAppSession } from "@/lib/auth-session";
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getAppSession();
     const userId = (session?.user as { id?: string })?.id;
     if (!userId) {
       throw new UnauthorizedError("You must be logged in to book a trek");
@@ -53,7 +52,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
+    const session = await getAppSession();
     const userId = (session?.user as { id?: string })?.id;
     if (!userId) {
       throw new UnauthorizedError();

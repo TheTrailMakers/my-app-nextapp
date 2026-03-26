@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
+import { and, asc, eq, inArray, sql } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { booking, departure, trek, userTable } from "@/drizzle/schema";
 import { logAudit } from "@/lib/roleUtils";
-import { prisma } from "@/lib/prisma";
 import { requireApiRole } from "@/lib/apiAuth";
-import type { Prisma } from "@prisma/client";
+import type { SQL } from "drizzle-orm";
 
 // GET /api/admin/departures - List all departures
 export async function GET(request: Request) {
@@ -19,46 +22,68 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get("page") || "1");
     const limit = Math.min(parseInt(searchParams.get("limit") || "20"), 100);
 
-    const where: Prisma.DepartureWhereInput = {};
-    if (trekId) where.trekId = trekId;
-    if (status) where.status = status;
+    const conditions: SQL[] = [];
+    if (trekId) conditions.push(eq(departure.trekId, trekId));
+    if (status) conditions.push(eq(departure.status, status));
 
-    const departures = await prisma.departure.findMany({
-      where,
-      include: {
-        trek: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const [departures, totalRows] = await Promise.all([
+      db
+        .select({
+          departure,
+          trek: {
+            id: trek.id,
+            name: trek.name,
+            slug: trek.slug,
           },
-        },
-        User: {
-          select: {
-            id: true,
-            firstName: true,
-            lastName: true,
-            email: true,
+          trekLeader: {
+            id: userTable.id,
+            firstName: userTable.firstName,
+            lastName: userTable.lastName,
+            email: userTable.email,
           },
-        },
-        _count: {
-          select: {
-            bookings: true,
-          },
-        },
+        })
+        .from(departure)
+        .innerJoin(trek, eq(departure.trekId, trek.id))
+        .leftJoin(userTable, eq(departure.trekLeaderId, userTable.id))
+        .where(where)
+        .orderBy(asc(departure.startDate))
+        .offset((page - 1) * limit)
+        .limit(limit),
+      db
+        .select({ count: sql<number>`cast(count(*) as integer)` })
+        .from(departure)
+        .where(where),
+    ]);
+
+    const departureIds = departures.map((row) => row.departure.id);
+    const bookingCounts =
+      departureIds.length > 0
+        ? await db
+            .select({
+              departureId: booking.departureId,
+              count: sql<number>`cast(count(*) as integer)`,
+            })
+            .from(booking)
+            .where(inArray(booking.departureId, departureIds))
+            .groupBy(booking.departureId)
+        : [];
+
+    const bookingCountMap = new Map(
+      bookingCounts.map((row) => [row.departureId, row.count]),
+    );
+
+    const normalizedDepartures = departures.map((row) => ({
+      ...row.departure,
+      trek: row.trek,
+      trekLeader: row.trekLeader?.id ? row.trekLeader : null,
+      _count: {
+        bookings: bookingCountMap.get(row.departure.id) ?? 0,
       },
-      orderBy: { startDate: "asc" },
-      skip: (page - 1) * limit,
-      take: limit,
-    });
-
-    const total = await prisma.departure.count({ where });
-
-    const normalizedDepartures = departures.map((departure) => ({
-      ...departure,
-      trekLeader: departure.User,
-      User: undefined,
     }));
+
+    const total = totalRows[0]?.count ?? 0;
 
     return NextResponse.json({
       success: true,
@@ -100,50 +125,60 @@ export async function POST(request: Request) {
       maxWaitlist,
     } = body;
 
-    // Check if departure already exists for this trek and date
-    const existing = await prisma.departure.findUnique({
-      where: {
-        trekId_startDate: {
-          trekId,
-          startDate: new Date(startDate),
-        },
-      },
-    });
+    const departureStartDate = new Date(startDate);
+    const existing = await db
+      .select({ id: departure.id })
+      .from(departure)
+      .where(
+        and(
+          eq(departure.trekId, trekId),
+          eq(departure.startDate, departureStartDate),
+        ),
+      )
+      .limit(1);
 
-    if (existing) {
+    if (existing[0]) {
       return NextResponse.json(
         { error: "Departure already exists for this trek on this date" },
         { status: 400 },
       );
     }
 
-    const departure = await prisma.departure.create({
-      data: {
-        trekId,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
-        totalSeats: parseInt(totalSeats),
-        seatsAvailable: parseInt(totalSeats),
-        pricePerPerson: parseInt(pricePerPerson),
-        trekLeaderId: trekLeaderId || null,
-        trekLeaderName: trekLeaderName || null,
-        maxWaitlist: maxWaitlist ? parseInt(maxWaitlist) : 5,
-        status: "OPEN",
-      },
+    const departureId = randomUUID();
+
+    await db.insert(departure).values({
+      id: departureId,
+      trekId,
+      startDate: departureStartDate,
+      endDate: new Date(endDate),
+      totalSeats: parseInt(totalSeats),
+      seatsAvailable: parseInt(totalSeats),
+      pricePerPerson: parseInt(pricePerPerson),
+      trekLeaderId: trekLeaderId || null,
+      trekLeaderName: trekLeaderName || null,
+      maxWaitlist: maxWaitlist ? parseInt(maxWaitlist) : 5,
+      status: "OPEN",
+      updatedAt: new Date(),
     });
 
     await logAudit(
       "DEPARTURE_CREATED",
       "DEPARTURE",
-      departure.id,
+      departureId,
       adminUser.id,
       { trekId, startDate, totalSeats },
     );
 
+    const createdDeparture = await db
+      .select()
+      .from(departure)
+      .where(eq(departure.id, departureId))
+      .limit(1);
+
     return NextResponse.json(
       {
         success: true,
-        departure,
+        departure: createdDeparture[0],
       },
       { status: 201 },
     );
@@ -186,16 +221,19 @@ export async function PATCH(request: Request) {
     }
 
     // Get current departure to check booked seats
-    const current = await prisma.departure.findUnique({
-      where: { id: departureId },
-      include: {
-        _count: {
-          select: { bookings: true },
-        },
-      },
-    });
+    const current = await db
+      .select({
+        id: departure.id,
+        totalSeats: departure.totalSeats,
+        seatsAvailable: departure.seatsAvailable,
+      })
+      .from(departure)
+      .where(eq(departure.id, departureId))
+      .limit(1);
 
-    if (!current) {
+    const existingDeparture = current[0];
+
+    if (!existingDeparture) {
       return NextResponse.json(
         { error: "Departure not found" },
         { status: 404 },
@@ -203,8 +241,9 @@ export async function PATCH(request: Request) {
     }
 
     // If trying to decrease capacity, check if booked seats allow it
-    if (totalSeats && parseInt(totalSeats) < current.totalSeats) {
-      const bookedSeats = current.totalSeats - current.seatsAvailable;
+    if (totalSeats && parseInt(totalSeats) < existingDeparture.totalSeats) {
+      const bookedSeats =
+        existingDeparture.totalSeats - existingDeparture.seatsAvailable;
       if (parseInt(totalSeats) < bookedSeats) {
         return NextResponse.json(
           {
@@ -215,10 +254,24 @@ export async function PATCH(request: Request) {
       }
     }
 
-    const updateData: Prisma.DepartureUncheckedUpdateInput = {};
+    const updateData: {
+      totalSeats?: number;
+      seatsAvailable?: number;
+      pricePerPerson?: number;
+      trekLeaderId?: string | null;
+      trekLeaderName?: string | null;
+      status?: string;
+      maxWaitlist?: number;
+      isCancelled?: boolean;
+      cancellationReason?: string | null;
+      updatedAt: Date;
+    } = {
+      updatedAt: new Date(),
+    };
     if (totalSeats !== undefined) {
       const newTotal = parseInt(totalSeats);
-      const bookedSeats = current.totalSeats - current.seatsAvailable;
+      const bookedSeats =
+        existingDeparture.totalSeats - existingDeparture.seatsAvailable;
       updateData.totalSeats = newTotal;
       updateData.seatsAvailable = newTotal - bookedSeats;
     }
@@ -241,22 +294,28 @@ export async function PATCH(request: Request) {
       }
     }
 
-    const departure = await prisma.departure.update({
-      where: { id: departureId },
-      data: updateData,
-    });
+    await db
+      .update(departure)
+      .set(updateData)
+      .where(eq(departure.id, departureId));
+
+    const updatedDeparture = await db
+      .select()
+      .from(departure)
+      .where(eq(departure.id, departureId))
+      .limit(1);
 
     await logAudit(
       "DEPARTURE_UPDATED",
       "DEPARTURE",
-      departure.id,
+      departureId,
       adminUser.id,
       updateData,
     );
 
     return NextResponse.json({
       success: true,
-      departure,
+      departure: updatedDeparture[0],
     });
   } catch (error) {
     console.error("Error updating departure:", error);

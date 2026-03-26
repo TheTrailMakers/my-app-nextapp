@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { eq } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { trekLeaderPayout } from "@/drizzle/schema";
 import { requireApiRole } from "@/lib/apiAuth";
 import {
   getAdminFinanceSummary,
@@ -48,17 +50,19 @@ export async function POST(request: Request) {
 
     if (payoutId) {
       // Update existing payout
-      const payout = await prisma.trekLeaderPayout.update({
-        where: { id: payoutId },
-        data: {
+      const payouts = await db
+        .update(trekLeaderPayout)
+        .set({
           status,
           paymentMethod,
           transactionId,
           notes,
           paidAt: status === "PAID" ? new Date() : null,
           updatedAt: new Date(),
-        },
-      });
+        })
+        .where(eq(trekLeaderPayout.id, payoutId))
+        .returning();
+      const payout = payouts[0];
 
       return NextResponse.json({
         success: true,
@@ -69,8 +73,9 @@ export async function POST(request: Request) {
     // Create new payout
     const { trekLeaderId, departureId, amount } = body;
 
-    const payout = await prisma.trekLeaderPayout.create({
-      data: {
+    const payouts = await db
+      .insert(trekLeaderPayout)
+      .values({
         id: randomUUID(),
         trekLeaderId,
         departureId,
@@ -78,8 +83,9 @@ export async function POST(request: Request) {
         status: "PENDING",
         notes,
         updatedAt: new Date(),
-      },
-    });
+      })
+      .returning();
+    const payout = payouts[0];
 
     return NextResponse.json(
       {

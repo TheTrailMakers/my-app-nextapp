@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
+import { eq } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { booking as bookingTable } from "@/drizzle/schema";
 import { logAudit } from "@/lib/roleUtils";
-import { prisma } from "@/lib/prisma";
 import { requireApiRole } from "@/lib/apiAuth";
 import {
   getAdminParticipants,
   parseAdminPagination,
 } from "@/lib/services/adminDashboardService";
-import type { Prisma } from "@prisma/client";
 
 // GET /api/admin/participants - List all participants
 export async function GET(request: Request) {
@@ -75,7 +76,9 @@ export async function PATCH(request: Request) {
       );
     }
 
-    const updateData: Prisma.BookingUpdateInput = {};
+    const updateData: Record<string, unknown> = {
+      updatedAt: new Date(),
+    };
     if (medicalFormSubmitted !== undefined) {
       updateData.medicalFormSubmitted = medicalFormSubmitted;
       if (medicalFormSubmitted) {
@@ -103,10 +106,12 @@ export async function PATCH(request: Request) {
     if (emergencyContactRelation !== undefined)
       updateData.emergencyContactRelation = emergencyContactRelation;
 
-    const booking = await prisma.booking.update({
-      where: { id: bookingId },
-      data: updateData,
-    });
+    const bookings = await db
+      .update(bookingTable)
+      .set(updateData)
+      .where(eq(bookingTable.id, bookingId))
+      .returning();
+    const booking = bookings[0];
 
     await logAudit(
       "PARTICIPANT_UPDATED",

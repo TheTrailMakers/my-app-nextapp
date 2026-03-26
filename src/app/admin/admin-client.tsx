@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import type { UserRole } from "@prisma/client";
+import type { UserRole } from "@/lib/user-role";
 
 export interface AdminUserRecord {
   id: string;

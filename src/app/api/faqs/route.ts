@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { asc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { faq } from "@/drizzle/schema";
 
 export async function GET() {
   try {
-    const faqs = await prisma.fAQ.findMany({
-      orderBy: {
-        order: "asc",
-      },
-    });
+    const faqs = await db.select().from(faq).orderBy(asc(faq.order));
 
     return NextResponse.json({
       success: true,

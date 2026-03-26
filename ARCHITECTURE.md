@@ -4,7 +4,7 @@
 - Complete Architecture Documentation
 -
 - This document outlines the production-ready architecture for a trekking
-- booking platform built with Next.js, PostgreSQL, and Prisma.
+- booking platform built with Next.js, PostgreSQL, and Drizzle ORM.
   \*/
 
 # Complete Trekking Booking Platform Architecture
@@ -14,10 +14,10 @@
 - Public catalog and content routes should default to server rendering with ISR where practical.
 - Client components should be reserved for interactive islands such as booking forms, search interactions, and authenticated dashboards.
 - Route protection for this Next 16 codebase is implemented in `src/proxy.ts`.
-- API routes should use the shared Prisma singleton from `src/lib/prisma.ts` and avoid instantiating additional clients.
+- API routes and services should use the shared Drizzle client from `src/drizzle/db.ts` and avoid creating ad hoc database clients.
 - Route groups with meaningful server work should provide `loading.tsx` and `error.tsx` boundaries.
 - Shared UI primitives should expose typed props instead of `any`.
-- Prisma seed ownership is centralized through the configured Prisma seed command.
+- Database bootstrap data is seeded through the configured Drizzle-era seed script.
 
 ## 📋 Table of Contents
 
@@ -253,32 +253,41 @@ T6    |                     | Create booking      |
 The `BookingService.createBooking()` method uses PostgreSQL transactions:
 
 ```typescript
-const booking = await prisma.$transaction(
-  async (tx) => {
-    // Step 1: Prevent duplicate bookings
-    const existing = await tx.booking.findUnique({
-      where: { userId_departureId: { userId, departureId } },
-    });
-    if (existing) throw new DuplicateBookingError();
+const booking = await db.transaction(async (tx) => {
+  // Step 1: Prevent duplicate bookings
+  const existing = await tx.query.bookingTable.findFirst({
+    where: and(
+      eq(bookingTable.userId, userId),
+      eq(bookingTable.departureId, departureId),
+    ),
+  });
+  if (existing) throw new DuplicateBookingError();
 
-    // Step 2: Get latest seat count WITHIN transaction
-    const departure = await tx.departure.findUnique({
-      where: { id: departureId },
-    });
-    if (departure.seatsAvailable < numberOfPeople) {
-      throw new InsufficientSeatsError();
-    }
+  // Step 2: Get latest seat count WITHIN transaction
+  const [departureRecord] = await tx
+    .select({ seatsAvailable: departure.seatsAvailable })
+    .from(departure)
+    .where(eq(departure.id, departureId))
+    .limit(1);
+  if (!departureRecord || departureRecord.seatsAvailable < numberOfPeople) {
+    throw new InsufficientSeatsError();
+  }
 
-    // Step 3: Atomic update - decrements seats and creates booking
-    await tx.departure.update({
-      where: { id: departureId },
-      data: { seatsAvailable: { decrement: numberOfPeople } },
-    });
+  // Step 3: Atomic update - decrement seats and create booking
+  await tx
+    .update(departure)
+    .set({ seatsAvailable: departureRecord.seatsAvailable - numberOfPeople })
+    .where(eq(departure.id, departureId));
 
-    // Step 4: Create booking record
-    const booking = await tx.booking.create({
-      /* ... */
-    });
+  // Step 4: Create booking record
+  const [createdBooking] = await tx
+    .insert(bookingTable)
+    .values({ userId, departureId, numberOfPeople })
+    .returning();
+
+  return createdBooking;
+});
+```
 
     // Step 5: Audit log
     await tx.auditLog.create({
@@ -286,12 +295,14 @@ const booking = await prisma.$transaction(
     });
 
     return booking;
-  },
-  {
-    isolationLevel: "Serializable", // CRITICAL: Prevents all race conditions
-    timeout: 10000,
-  },
+
+},
+{
+isolationLevel: "Serializable", // CRITICAL: Prevents all race conditions
+timeout: 10000,
+},
 );
+
 ```
 
 ### Why This Works
@@ -309,16 +320,18 @@ const booking = await prisma.$transaction(
 ### Error Class Hierarchy
 
 ```
+
 AppError (base)
 ├── ValidationError (400)
 ├── UnauthorizedError (401)
 ├── NotFoundError (404)
 ├── ConflictError (409)
-│   ├── InsufficientSeatsError
-│   └── DuplicateBookingError
+│ ├── InsufficientSeatsError
+│ └── DuplicateBookingError
 ├── PaymentRequiredError (402)
 └── RateLimitError (429)
-```
+
+````
 
 ### Error Response Format
 
@@ -331,7 +344,7 @@ AppError (base)
     "statusCode": 400
   }
 }
-```
+````
 
 ### Example: Handling Concurrent Bookings
 
@@ -403,8 +416,12 @@ const validatedData = createBookingSchema.parse(request.body);
 ### 3. SQL Injection Prevention
 
 ```typescript
-// SAFE: Prisma parameterizes queries
-const trek = await prisma.trek.findUnique({ where: { slug } });
+// SAFE: Drizzle parameterizes queries
+const [trekRecord] = await db
+  .select()
+  .from(trek)
+  .where(eq(trek.slug, slug))
+  .limit(1);
 
 // NOT safe (don't do this):
 // SELECT * FROM treks WHERE slug = '${slug}'; // Vulnerable!
@@ -432,15 +449,15 @@ app.use(
 
 ```typescript
 // NEVER return passwords
-const user = await prisma.user.findUnique({
-  where: { id: userId },
-  select: {
-    id: true,
-    email: true,
-    username: true,
-    // password: false (implicitly excluded)
-  },
-});
+const [user] = await db
+  .select({
+    id: userTable.id,
+    email: userTable.email,
+    username: userTable.username,
+  })
+  .from(userTable)
+  .where(eq(userTable.id, userId))
+  .limit(1);
 
 // Store sensitive data encrypted
 // Passwords: bcrypt (already done)
@@ -508,8 +525,8 @@ REDIS_URL=redis://redis-prod:6379
 ### Database Migrations
 
 ```bash
-# Run migrations in production
-npx prisma migrate deploy
+# Sync schema in production
+bun run db:push
 
 # Backup before migration
 pg_dump $DATABASE_URL > backup_$(date +%Y%m%d_%H%M%S).sql
@@ -663,7 +680,19 @@ const availability = await BookingService.checkAvailability(departureId);
 
 // Cache user profile
 const user = await cache(
-  () => prisma.user.findUnique({ where: { id } }),
+  async () => {
+    const [record] = await db
+      .select({
+        id: userTable.id,
+        email: userTable.email,
+        username: userTable.username,
+      })
+      .from(userTable)
+      .where(eq(userTable.id, id))
+      .limit(1);
+
+    return record ?? null;
+  },
   ["user", id],
   { revalidate: 300 }, // 5 minutes
 );
@@ -707,7 +736,7 @@ messageQueue.consume("booking.created", async (event) => {
 DATABASE_URL =
   "postgresql://...?schema=public&poolingMode=transaction&max_pool_size=20";
 
-// Prisma handles this automatically
+// Neon + pg pooling handle this for Drizzle connections
 ```
 
 ### 6. Load Balancing
@@ -752,8 +781,10 @@ describe("BookingService", () => {
     const booking = await BookingService.createBooking(/*...*/);
     expect(booking.id).toBeDefined();
 
-    const departure = await prisma.departure.findUnique({});
-    expect(departure.seatsAvailable).toBeLessThan(initialSeats);
+    const currentDeparture = await db.query.departure.findFirst({
+      where: eq(departure.id, departureId),
+    });
+    expect(currentDeparture?.seatsAvailable).toBeLessThan(initialSeats);
   });
 
   it("should throw InsufficientSeatsError when seats full", async () => {

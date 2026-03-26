@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
 import { FiCheckCircle, FiMail, FiPhone } from "react-icons/fi";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/auth-session";
 import { getBooking } from "@/lib/services/bookingService";
 import PrintReceiptButton from "./print-receipt-button";
 
@@ -48,7 +47,7 @@ type ConfirmationPageProps = {
 async function getBookingDetails(
   bookingId: string,
 ): Promise<BookingDetails | null> {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   const userId = session?.user?.id;
 
   if (!userId) {

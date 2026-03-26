@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { eq } from "drizzle-orm";
+import db from "@/drizzle/db";
+import {
+  booking as bookingTable,
+  departure as departureTable,
+  payment as paymentTable,
+  trek as trekTable,
+} from "@/drizzle/schema";
 
 type BookingRecord = {
   id: string;
@@ -52,7 +59,7 @@ function serializeBooking(booking: BookingRecord) {
 }
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   props: { params: Promise<{ id: string }> },
 ) {
   const params = await props.params;
@@ -66,24 +73,41 @@ export async function GET(
       );
     }
 
-    const booking = await prisma.booking.findUnique({
-      where: { id: bookingId },
-      include: {
-        departure: {
-          include: {
-            trek: true,
-          },
-        },
-        user: true,
-        payment: true,
-      },
-    });
+    const rows = await db
+      .select({
+        booking: bookingTable,
+        departure: departureTable,
+        trek: trekTable,
+        payment: paymentTable,
+      })
+      .from(bookingTable)
+      .innerJoin(
+        departureTable,
+        eq(bookingTable.departureId, departureTable.id),
+      )
+      .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+      .leftJoin(paymentTable, eq(paymentTable.bookingId, bookingTable.id))
+      .where(eq(bookingTable.id, bookingId))
+      .limit(1);
+    const booking = rows[0];
 
     if (!booking) {
       return NextResponse.json({ error: "Booking not found" }, { status: 404 });
     }
 
-    const response = serializeBooking(booking as BookingRecord);
+    const response = serializeBooking({
+      ...booking.booking,
+      payment: booking.payment ? { status: booking.payment.status } : null,
+      departure: {
+        ...booking.departure,
+        trek: {
+          name: booking.trek.name,
+          description: booking.trek.description,
+          difficulty: booking.trek.difficulty,
+          duration: booking.trek.duration,
+        },
+      },
+    });
 
     return NextResponse.json(
       {

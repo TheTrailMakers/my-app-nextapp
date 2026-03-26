@@ -1,16 +1,14 @@
-import { getToken } from "next-auth/jwt";
+import { auth } from "@/lib/auth";
+import { getSessionCookie } from "better-auth/cookies";
 import { NextRequest, NextResponse } from "next/server";
-
-type AuthToken = {
-  role?: string;
-  isActive?: boolean;
-  isLocked?: boolean;
-};
 
 const adminRoles = new Set(["ADMIN", "SUPER_ADMIN"]);
 const moderatorRoles = new Set(["ADMIN", "MODERATOR", "SUPER_ADMIN"]);
 
-function hasAllowedRole(role: string | undefined, allowedRoles: Set<string>) {
+function hasAllowedRole(
+  role: string | null | undefined,
+  allowedRoles: Set<string>,
+) {
   return typeof role === "string" && allowedRoles.has(role);
 }
 
@@ -54,33 +52,38 @@ export async function proxy(request: NextRequest) {
   );
 
   if (isProtected) {
-    const token = (await getToken({
-      req: request,
-      secret: process.env.NEXTAUTH_SECRET,
-    })) as AuthToken | null;
+    const sessionToken = getSessionCookie(request.headers);
 
-    if (!token) {
+    if (!sessionToken) {
       // Redirect to login if not authenticated
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(loginUrl);
     }
 
-    // Check role-based access
-    // Allow SUPER_ADMIN to access admin routes as well
-    if (isAdmin && !hasAllowedRole(token.role, adminRoles)) {
+    const session = await auth.api.getSession({
+      headers: request.headers,
+    });
+
+    if (!session?.user) {
+      const loginUrl = new URL("/login", request.url);
+      loginUrl.searchParams.set("callbackUrl", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    if (isAdmin && !hasAllowedRole(session.user.role, adminRoles)) {
       return NextResponse.redirect(new URL("/access-denied", request.url));
     }
 
-    if (isModerator && !hasAllowedRole(token.role, moderatorRoles)) {
+    if (isModerator && !hasAllowedRole(session.user.role, moderatorRoles)) {
       return NextResponse.redirect(new URL("/access-denied", request.url));
     }
 
-    if (token.isLocked) {
+    if (session.user.isLocked) {
       return NextResponse.redirect(new URL("/account-locked", request.url));
     }
 
-    if (token.isActive === false) {
+    if (session.user.isActive === false || session.user.isDenied === true) {
       return NextResponse.redirect(
         new URL("/account-deactivated", request.url),
       );

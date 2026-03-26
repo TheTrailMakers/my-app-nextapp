@@ -6,21 +6,21 @@ Production-focused Next.js 16 application for trekking discovery, bookings, expe
 
 - Next.js 16 App Router
 - React 19
-- Prisma with PostgreSQL
-- NextAuth credentials authentication
+- Drizzle ORM with PostgreSQL
+- Better Auth
 - Tailwind CSS
 - Sentry monitoring
 
 ## Core Commands
 
 ```bash
-npm install
-npm run dev
-npm run lint
-npm run build
-npm run db:generate
-npm run db:push
-npm run db:seed
+bun install
+bun run dev
+bun run lint
+bun run build
+bun run db:generate
+bun run db:push
+bun run db:seed
 ```
 
 ## Required Environment Variables
@@ -45,11 +45,9 @@ UPSTASH_REDIS_REST_TOKEN=
 
 ## Database Workflow
 
-1. Generate the Prisma client with `npm run db:generate`.
-2. Apply the current schema with `npm run db:push`.
-3. Seed base content with `npm run db:seed`.
-
-The canonical seed entrypoint is Prisma's configured seed command, which runs `prisma/seed.ts`.
+1. Generate Drizzle SQL artifacts with `bun run db:generate`.
+2. Apply the current schema with `bun run db:push`.
+3. Seed bootstrap data with `bun run db:seed`.
 
 ## Application Areas
 
@@ -64,7 +62,7 @@ The canonical seed entrypoint is Prisma's configured seed command, which runs `p
 - Prefer server-rendered route pages for catalog and content sections.
 - Use client components only for interactive islands.
 - Route protection lives in `src/proxy.ts` for this Next 16 branch.
-- Use the shared Prisma singleton from `src/lib/prisma.ts`.
+- Use the shared Drizzle database client from `src/drizzle/db.ts`.
 - Use `next/image` for application images.
 - Add `loading.tsx` and `error.tsx` boundaries for routes with significant server work.
 
@@ -73,8 +71,8 @@ The canonical seed entrypoint is Prisma's configured seed command, which runs `p
 Before merging substantial changes, run:
 
 ```bash
-npm run lint
-npm run build
+bun run lint
+bun run build
 ```
 
 ## Notes

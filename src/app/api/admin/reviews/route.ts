@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
+import { and, desc, eq, sql } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { trek, trekReview } from "@/drizzle/schema";
 import { logAudit } from "@/lib/roleUtils";
-import { prisma } from "@/lib/prisma";
 import { requireApiRole } from "@/lib/apiAuth";
-import type { Prisma } from "@prisma/client";
+import type { SQL } from "drizzle-orm";
 
 // GET /api/admin/reviews - List all reviews
 export async function GET(request: Request) {
@@ -19,54 +21,63 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get("page") || "1");
     const limit = Math.min(parseInt(searchParams.get("limit") || "20"), 100);
 
-    const where: Prisma.TrekReviewWhereInput = {};
-    if (trekId) where.trekId = trekId;
-    if (rating) where.rating = parseInt(rating);
+    const conditions: SQL[] = [];
+    if (trekId) conditions.push(eq(trekReview.trekId, trekId));
+    if (rating) conditions.push(eq(trekReview.rating, parseInt(rating)));
 
-    const reviews = await prisma.trekReview.findMany({
-      where,
-      include: {
-        trek: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-          },
-        },
-      },
-      orderBy: { createdAt: "desc" },
-      skip: (page - 1) * limit,
-      take: limit,
-    });
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
 
-    const total = await prisma.trekReview.count({ where });
+    const [reviews, totalRows, avgRatingRows, ratingDistribution] =
+      await Promise.all([
+        db
+          .select({
+            review: trekReview,
+            trek: {
+              id: trek.id,
+              name: trek.name,
+              slug: trek.slug,
+            },
+          })
+          .from(trekReview)
+          .innerJoin(trek, eq(trekReview.trekId, trek.id))
+          .where(where)
+          .orderBy(desc(trekReview.createdAt))
+          .offset((page - 1) * limit)
+          .limit(limit),
+        db
+          .select({ count: sql<number>`cast(count(*) as integer)` })
+          .from(trekReview)
+          .where(where),
+        db
+          .select({
+            averageRating: sql<number>`coalesce(avg(${trekReview.rating})::double precision, 0)`,
+          })
+          .from(trekReview)
+          .where(where),
+        db
+          .select({
+            rating: trekReview.rating,
+            count: sql<number>`cast(count(*) as integer)`,
+          })
+          .from(trekReview)
+          .where(where)
+          .groupBy(trekReview.rating),
+      ]);
 
-    // Get average rating
-    const avgRating = await prisma.trekReview.aggregate({
-      where,
-      _avg: {
-        rating: true,
-      },
-    });
-
-    // Get rating distribution
-    const ratingDistribution = await prisma.trekReview.groupBy({
-      by: ["rating"],
-      where,
-      _count: {
-        _all: true,
-      },
-    });
+    const total = totalRows[0]?.count ?? 0;
 
     return NextResponse.json({
       success: true,
-      reviews,
+      reviews: reviews.map((row) => ({
+        ...row.review,
+        trek: row.trek,
+      })),
       stats: {
         total,
-        averageRating: avgRating._avg.rating || 0,
+        averageRating: avgRatingRows[0]?.averageRating ?? 0,
         ratingDistribution: ratingDistribution.reduce<Record<number, number>>(
           (acc, review) => {
-            acc[review.rating] = review._count._all;
+            acc[review.rating] = review.count;
             return acc;
           },
           {},
@@ -105,11 +116,13 @@ export async function PATCH(request: Request) {
     // Note: We don't have isHidden field in the model yet, so we'll add metadata
     // For now, let's just return success without modifying
 
-    const review = await prisma.trekReview.findUnique({
-      where: { id: reviewId },
-    });
+    const review = await db
+      .select({ id: trekReview.id })
+      .from(trekReview)
+      .where(eq(trekReview.id, reviewId))
+      .limit(1);
 
-    if (!review) {
+    if (!review[0]) {
       return NextResponse.json({ error: "Review not found" }, { status: 404 });
     }
 
