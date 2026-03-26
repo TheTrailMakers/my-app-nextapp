@@ -1,20 +1,23 @@
-import { NextResponse } from 'next/server';
-import { checkUserRole, logAudit, unlockUserAccount } from '@/lib/roleUtils';
-import { prisma } from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import type { UserRole } from "@prisma/client";
+import { logAudit } from "@/lib/roleUtils";
+import { requireApiRole } from "@/lib/apiAuth";
+import { prisma } from "@/lib/prisma";
 
 // GET a specific user
 export async function GET(
   request: Request,
-  { params }: { params: { userId: string } }
+  props: { params: Promise<{ userId: string }> },
 ) {
-  const { authorized } = await checkUserRole('ADMIN');
-  
-  if (!authorized) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+  const params = await props.params;
+  const { response } = await requireApiRole("ADMIN");
+
+  if (response) {
+    return response;
   }
 
   try {
-    const user = await (prisma as any).user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id: params.userId },
       select: {
         id: true,
@@ -30,20 +33,20 @@ export async function GET(
         accountLockedUntil: true,
         lastLoginAt: true,
         createdAt: true,
-        updatedAt: true
-      }
+        updatedAt: true,
+      },
     });
 
     if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     return NextResponse.json({ success: true, user });
   } catch (error) {
-    console.error('Error fetching user:', error);
+    console.error("Error fetching user:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch user' },
-      { status: 500 }
+      { error: "Failed to fetch user" },
+      { status: 500 },
     );
   }
 }
@@ -51,34 +54,47 @@ export async function GET(
 // UPDATE user (admin only)
 export async function PATCH(
   request: Request,
-  { params }: { params: { userId: string } }
+  props: { params: Promise<{ userId: string }> },
 ) {
-  const { authorized, user: adminUser } = await checkUserRole('ADMIN');
-  
-  if (!authorized) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+  const params = await props.params;
+  const { response, user: adminUser } = await requireApiRole("ADMIN");
+
+  if (response || !adminUser) {
+    return (
+      response ?? NextResponse.json({ error: "Unauthorized" }, { status: 403 })
+    );
   }
 
   try {
-    const { role, isActive, firstName, lastName, phoneNumber } = await request.json();
+    const { role, isActive, firstName, lastName, phoneNumber } =
+      await request.json();
 
-    const existingUser = await (prisma as any).user.findUnique({
+    const existingUser = await prisma.user.findUnique({
       where: { id: params.userId },
-      select: { id: true, role: true, isActive: true }
+      select: { id: true, role: true, isActive: true },
     });
 
     if (!existingUser) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     // Prevent admins from modifying themselves
     if (existingUser.id === adminUser.id) {
-      return NextResponse.json({ error: 'Cannot perform this action on yourself' }, { status: 400 });
+      return NextResponse.json(
+        { error: "Cannot perform this action on yourself" },
+        { status: 400 },
+      );
     }
 
     // Prepare update data
-    const updateData: any = {};
-    const changedFields: Record<string, any> = {};
+    const updateData: {
+      role?: UserRole;
+      isActive?: boolean;
+      firstName?: string;
+      lastName?: string;
+      phoneNumber?: string;
+    } = {};
+    const changedFields: Record<string, unknown> = {};
 
     if (role && role !== existingUser.role) {
       updateData.role = role;
@@ -94,7 +110,7 @@ export async function PATCH(
     if (lastName !== undefined) updateData.lastName = lastName;
     if (phoneNumber !== undefined) updateData.phoneNumber = phoneNumber;
 
-    const updatedUser = await (prisma as any).user.update({
+    const updatedUser = await prisma.user.update({
       where: { id: params.userId },
       data: updateData,
       select: {
@@ -105,26 +121,26 @@ export async function PATCH(
         lastName: true,
         role: true,
         isActive: true,
-        createdAt: true
-      }
+        createdAt: true,
+      },
     });
 
     if (Object.keys(changedFields).length > 0) {
       await logAudit(
-        'USER_UPDATED',
-        'USER',
+        "USER_UPDATED",
+        "USER",
         params.userId,
         adminUser.id,
-        changedFields
+        changedFields,
       );
     }
 
     return NextResponse.json({ success: true, user: updatedUser });
   } catch (error) {
-    console.error('Error updating user:', error);
+    console.error("Error updating user:", error);
     return NextResponse.json(
-      { error: 'Failed to update user' },
-      { status: 500 }
+      { error: "Failed to update user" },
+      { status: 500 },
     );
   }
 }
@@ -132,49 +148,51 @@ export async function PATCH(
 // DELETE user (admin only)
 export async function DELETE(
   request: Request,
-  { params }: { params: { userId: string } }
+  props: { params: Promise<{ userId: string }> },
 ) {
-  const { authorized, user: adminUser } = await checkUserRole('ADMIN');
-  
-  if (!authorized) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+  const params = await props.params;
+  const { response, user: adminUser } = await requireApiRole("ADMIN");
+
+  if (response || !adminUser) {
+    return (
+      response ?? NextResponse.json({ error: "Unauthorized" }, { status: 403 })
+    );
   }
 
   try {
-    const user = await (prisma as any).user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id: params.userId },
-      select: { id: true, email: true }
+      select: { id: true, email: true },
     });
 
     if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     // Prevent admins from deleting (deactivating) themselves
     if (user.id === adminUser.id) {
-      return NextResponse.json({ error: 'Cannot perform this action on yourself' }, { status: 400 });
+      return NextResponse.json(
+        { error: "Cannot perform this action on yourself" },
+        { status: 400 },
+      );
     }
 
     // Soft delete by deactivating
-    await (prisma as any).user.update({
+    await prisma.user.update({
       where: { id: params.userId },
-      data: { isActive: false }
+      data: { isActive: false },
     });
 
-    await logAudit(
-      'USER_DEACTIVATED',
-      'USER',
-      params.userId,
-      adminUser.id,
-      { email: user.email }
-    );
+    await logAudit("USER_DEACTIVATED", "USER", params.userId, adminUser.id, {
+      email: user.email,
+    });
 
-    return NextResponse.json({ success: true, message: 'User deactivated' });
+    return NextResponse.json({ success: true, message: "User deactivated" });
   } catch (error) {
-    console.error('Error deleting user:', error);
+    console.error("Error deleting user:", error);
     return NextResponse.json(
-      { error: 'Failed to delete user' },
-      { status: 500 }
+      { error: "Failed to delete user" },
+      { status: 500 },
     );
   }
 }
