@@ -9,6 +9,7 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
+import { randomUUID } from "node:crypto";
 import { sql } from "drizzle-orm";
 
 export const trekDifficulty = pgEnum("TrekDifficulty", [
@@ -42,7 +43,9 @@ export const userRole = pgEnum("UserRole", [
 export const accountTable = pgTable(
   "Account",
   {
-    id: text().primaryKey(),
+    id: text()
+      .$defaultFn(() => randomUUID())
+      .primaryKey(),
     accountId: text().notNull(),
     providerId: text().notNull(),
     userId: text()
@@ -71,7 +74,9 @@ export const accountTable = pgTable(
 export const sessionTable = pgTable(
   "Session",
   {
-    id: text().primaryKey(),
+    id: text()
+      .$defaultFn(() => randomUUID())
+      .primaryKey(),
     expiresAt: timestamp({ precision: 3 }).notNull(),
     token: text().notNull(),
     createdAt: timestamp({ precision: 3 })
@@ -99,7 +104,9 @@ export const sessionTable = pgTable(
 export const userTable = pgTable(
   "User",
   {
-    id: text().primaryKey(),
+    id: text()
+      .$defaultFn(() => randomUUID())
+      .primaryKey(),
     email: text().notNull(),
     username: text().notNull(),
     password: text(),
@@ -146,7 +153,9 @@ export const userTable = pgTable(
 export const verificationTable = pgTable(
   "Verification",
   {
-    id: text().primaryKey(),
+    id: text()
+      .$defaultFn(() => randomUUID())
+      .primaryKey(),
     identifier: text().notNull(),
     value: text().notNull(),
     expiresAt: timestamp({ precision: 3 }).notNull(),

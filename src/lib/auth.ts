@@ -24,6 +24,52 @@ function normalizeUsername(username: string) {
   return username.trim();
 }
 
+const GENERATED_USERNAME_MAX_LENGTH = 20;
+
+function sanitizeGeneratedUsername(value: string) {
+  const asciiValue = value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+  const sanitized = asciiValue
+    .replace(/[^A-Za-z0-9_]+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .toLowerCase();
+
+  if (sanitized.length >= 2) {
+    return sanitized.slice(0, GENERATED_USERNAME_MAX_LENGTH);
+  }
+
+  return "user";
+}
+
+async function generateUniqueUsername(user: {
+  email?: string | null;
+  name?: string | null;
+}) {
+  const emailLocalPart = user.email?.split("@")[0] ?? "";
+  const baseUsername = sanitizeGeneratedUsername(
+    emailLocalPart || user.name || "user",
+  );
+
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    const suffix = attempt === 0 ? "" : `_${attempt + 1}`;
+    const trimmedBase = baseUsername
+      .slice(0, GENERATED_USERNAME_MAX_LENGTH - suffix.length)
+      .replace(/_+$/g, "");
+    const candidate = `${trimmedBase || "user"}${suffix}`;
+    const existingUsers = await db
+      .select({ id: userTable.id })
+      .from(userTable)
+      .where(eq(userTable.username, candidate))
+      .limit(1);
+
+    if (existingUsers.length === 0) {
+      return candidate;
+    }
+  }
+
+  return `user_${randomUUID().replace(/-/g, "").slice(0, 15)}`;
+}
+
 function getHeaderValue(
   ctx: {
     headers?: Headers;
@@ -260,6 +306,32 @@ export const auth = betterAuth({
   advanced: {
     database: {
       generateId: "uuid",
+    },
+  },
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user) => {
+          if (
+            typeof user.username === "string" &&
+            normalizeUsername(user.username).length > 0
+          ) {
+            return { data: user };
+          }
+
+          const username = await generateUniqueUsername({
+            email: user.email,
+            name: user.name,
+          });
+
+          return {
+            data: {
+              ...user,
+              username,
+            },
+          };
+        },
+      },
     },
   },
   user: {

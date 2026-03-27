@@ -1,9 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getSession, signIn } from "@/lib/auth-client";
+import GoogleButton from "@/components/google-button";
+import AuthPageShell, {
+  authFieldLabelClassName,
+  authInlineLinkClassName,
+  authInputClassName,
+  authMutedTextClassName,
+  authPrimaryButtonClassName,
+} from "@/components/auth-page-shell";
 
 type LoginClientProps = {
   nextPath: string | null;
@@ -16,13 +24,13 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async (event: React.FormEvent) => {
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
     setLoading(true);
 
     try {
-      const { data, error: signInError } = await signIn.email({
+      const { error: signInError } = await signIn.email({
         email,
         password,
       });
@@ -66,40 +74,72 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
     }
   };
 
+  async function signInWithSocial(provider: "facebook" | "google") {
+    const callbackBaseUrl =
+      typeof window === "undefined" ? "" : window.location.origin;
+    const { data, error } = await signIn.social({
+      provider,
+      callbackURL: `${callbackBaseUrl}/dashboard`,
+      errorCallbackURL: `${callbackBaseUrl}/error`,
+    });
+    if (error || !data) {
+      if (error) {
+        const message =
+          typeof error.message === "string" && error.message.length > 0
+            ? error.message
+            : "Login failed. Please try again.";
+        setError(message);
+        return;
+      }
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="w-full max-w-md p-8 bg-gray-900 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-white text-center mb-6">
-          Login
-        </h1>
-
-        {error && (
-          <div className="bg-red-500 text-white p-3 rounded-sm mb-4">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleLogin} className="space-y-4">
+    <AuthPageShell
+      title="Log in"
+      error={error}
+      form={
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label className="block text-gray-300 mb-2">Email</label>
+            <label htmlFor="login-email" className={authFieldLabelClassName}>
+              Email
+            </label>
             <input
+              id="login-email"
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="w-full px-4 py-2 bg-gray-800 text-white rounded-sm border border-gray-700 focus:border-red-500 outline-hidden"
-              placeholder="Enter email"
+              className={authInputClassName}
+              placeholder="name@example.com"
+              autoComplete="email"
+              spellCheck={false}
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-300 mb-2">Password</label>
+            <div className="mb-1.5 flex items-center justify-between">
+              <label
+                htmlFor="login-password"
+                className={authFieldLabelClassName}
+              >
+                Password
+              </label>
+              <Link
+                href="/forgot-password"
+                className="text-xs text-[oklch(0.48_0.015_55)] transition hover:text-[oklch(0.36_0.02_55)]"
+              >
+                Forgot?
+              </Link>
+            </div>
             <input
+              id="login-password"
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="w-full px-4 py-2 bg-gray-800 text-white rounded-sm border border-gray-700 focus:border-red-500 outline-hidden"
-              placeholder="Enter password"
+              className={authInputClassName}
+              placeholder="Your password"
+              autoComplete="current-password"
               required
             />
           </div>
@@ -107,29 +147,27 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-sm transition disabled:opacity-50"
+            className={authPrimaryButtonClassName}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Logging in\u2026" : "Log in"}
           </button>
         </form>
-
-        <p className="text-gray-400 text-center mt-4">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="text-red-500 hover:text-red-400">
-            Sign Up
-          </Link>
-          <button>Sign In With Google</button>
-        </p>
-
-        <p className="text-gray-400 text-center mt-2">
-          <Link
-            href="/forgot-password"
-            className="text-red-500 hover:text-red-400"
-          >
-            Forgot Password?
+      }
+      social={
+        <GoogleButton
+          label="Continue with Google"
+          className="h-12 w-full rounded-xl border-[oklch(0.88_0.015_70)] bg-transparent text-[oklch(0.28_0.02_55)] shadow-none hover:bg-[oklch(0.97_0.005_80)]"
+          onClick={() => signInWithSocial("google")}
+        />
+      }
+      footer={
+        <p className={authMutedTextClassName}>
+          No account?{" "}
+          <Link href="/signup" className={authInlineLinkClassName}>
+            Sign up
           </Link>
         </p>
-      </div>
-    </div>
+      }
+    />
   );
 }

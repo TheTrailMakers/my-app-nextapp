@@ -105,10 +105,7 @@ export async function sendPasswordResetEmail({
   resetToken: string;
   userName: string;
 }) {
-  const baseUrl =
-    process.env.BETTER_AUTH_URL ??
-    process.env.NEXTAUTH_URL ??
-    "http://localhost:3000";
+  const baseUrl = process.env.BETTER_AUTH_URL ?? "http://localhost:3000";
   const resetUrl = `${baseUrl}/reset-password?token=${resetToken}`;
 
   const html = `

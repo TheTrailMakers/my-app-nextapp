@@ -1,10 +1,16 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type ButtonPropsType = {
   className?: string;
+  label?: string;
 } & React.HTMLAttributes<HTMLButtonElement>;
-export default function GoogleButton({ className, ...props }: ButtonPropsType) {
+export default function GoogleButton({
+  label = "Google",
+  className,
+  ...props
+}: ButtonPropsType) {
   return (
     <Button
       className={cn(className, "w-full")}
@@ -30,7 +36,7 @@ export default function GoogleButton({ className, ...props }: ButtonPropsType) {
           fill="#EA4335"
         />
       </svg>
-      <span className="font-semibold">Google</span>
+      <span className="font-semibold">{label}</span>
     </Button>
   );
 }

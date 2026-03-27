@@ -1,9 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
+import GoogleButton from "@/components/google-button";
+import AuthPageShell, {
+  authFieldLabelClassName,
+  authInlineLinkClassName,
+  authInputClassName,
+  authMutedTextClassName,
+  authPrimaryButtonClassName,
+} from "@/components/auth-page-shell";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -13,8 +21,8 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setError("");
     setLoading(true);
 
@@ -40,53 +48,85 @@ export default function SignUp() {
       setLoading(false);
     }
   };
+  async function signInWithSocial(provider: "facebook" | "google") {
+    const callbackBaseUrl =
+      typeof window === "undefined" ? "" : window.location.origin;
+    const { data, error } = await signIn.social({
+      provider,
+      callbackURL: `${callbackBaseUrl}/dashboard`,
+      errorCallbackURL: `${callbackBaseUrl}/error`,
+    });
+    if (error || !data) {
+      if (error) {
+        const message =
+          typeof error.message === "string" && error.message.length > 0
+            ? error.message
+            : "Login failed. Please try again.";
+        setError(message);
+        return;
+      }
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="w-full max-w-md p-8 bg-gray-900 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-white text-center mb-6">
-          Sign Up
-        </h1>
-
-        {error && (
-          <div className="bg-red-500 text-white p-3 rounded-sm mb-4">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSignUp} className="space-y-4">
+    <AuthPageShell
+      title="Create account"
+      error={error}
+      form={
+        <form onSubmit={handleSignUp} className="space-y-5">
           <div>
-            <label className="block text-gray-300 mb-2">Username</label>
+            <label
+              htmlFor="signup-username"
+              className={authFieldLabelClassName}
+            >
+              Username
+            </label>
             <input
+              id="signup-username"
               type="text"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-800 text-white rounded-sm border border-gray-700 focus:border-red-500 outline-hidden"
-              placeholder="Enter username"
+              onChange={(event) => setUsername(event.target.value)}
+              className={authInputClassName}
+              placeholder="Your username"
+              autoComplete="username"
+              spellCheck={false}
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-300 mb-2">Email</label>
+            <label htmlFor="signup-email" className={authFieldLabelClassName}>
+              Email
+            </label>
             <input
+              id="signup-email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-800 text-white rounded-sm border border-gray-700 focus:border-red-500 outline-hidden"
-              placeholder="Enter email"
+              onChange={(event) => setEmail(event.target.value)}
+              className={authInputClassName}
+              placeholder="name@example.com"
+              autoComplete="email"
+              spellCheck={false}
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-300 mb-2">Password</label>
+            <label
+              htmlFor="signup-password"
+              className={authFieldLabelClassName}
+            >
+              Password
+            </label>
             <input
+              id="signup-password"
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-800 text-white rounded-sm border border-gray-700 focus:border-red-500 outline-hidden"
-              placeholder="Enter password (min 12 characters)"
+              onChange={(event) => setPassword(event.target.value)}
+              className={authInputClassName}
+              placeholder="12 characters minimum"
+              autoComplete="new-password"
+              minLength={12}
               required
             />
           </div>
@@ -94,19 +134,27 @@ export default function SignUp() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-sm transition disabled:opacity-50"
+            className={authPrimaryButtonClassName}
           >
-            {loading ? "Signing up..." : "Sign Up"}
+            {loading ? "Creating account\u2026" : "Create account"}
           </button>
         </form>
-
-        <p className="text-gray-400 text-center mt-4">
+      }
+      social={
+        <GoogleButton
+          label="Sign up with Google"
+          className="h-12 w-full rounded-xl border-[oklch(0.88_0.015_70)] bg-transparent text-[oklch(0.28_0.02_55)] shadow-none hover:bg-[oklch(0.97_0.005_80)]"
+          onClick={() => signInWithSocial("google")}
+        />
+      }
+      footer={
+        <p className={authMutedTextClassName}>
           Already have an account?{" "}
-          <Link href="/login" className="text-red-500 hover:text-red-400">
-            Login
+          <Link href="/login" className={authInlineLinkClassName}>
+            Log in
           </Link>
         </p>
-      </div>
-    </div>
+      }
+    />
   );
 }
