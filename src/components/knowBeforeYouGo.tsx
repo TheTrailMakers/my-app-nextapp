@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 
 interface Article {
   Index: number;
@@ -17,112 +16,97 @@ interface Article {
 }
 
 export function KnowBeforeYouGo({ articles }: { articles: Article[] }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerView = 3;
-  const maxIndex = Math.max(0, articles.length - itemsPerView);
+  if (!articles || articles.length === 0) return null;
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
-  };
+  // Take the first 3 for the editorial spread
+  const featured = articles[0];
+  const secondary = articles.slice(1, 3);
 
   return (
-    <section className="py-20 px-6 bg-background border-t border-muted">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+    <section className="py-24 md:py-32 px-6 lg:px-12 bg-[#F9F6F0] dark:bg-[#1A1A1A] border-t border-border">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
-              Know Before You Go
+            <span className="text-primary uppercase tracking-[0.2em] text-xs font-semibold mb-6 flex items-center gap-4">
+              <span className="w-8 h-[1px] bg-primary"></span>
+              Field Notes
+            </span>
+            <h2 className="text-5xl md:text-7xl font-display text-foreground leading-[1.1] tracking-tight">
+              Know Before <br/>
+              <span className="italic text-primary/80">You Go.</span>
             </h2>
-            <p className="text-muted-foreground">
-              Expert tips and insights for your next adventure
-            </p>
           </div>
           <Link href="/lessons">
-            <button className="mt-6 md:mt-0 border-2 border-primary bg-primary/10 text-primary hover:text-primary/90 font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center gap-2 group">
-              Read All Lessons
-              <FiChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+            <button className="text-sm uppercase tracking-widest font-semibold flex items-center gap-2 group hover:text-primary transition-colors pb-1 border-b border-foreground hover:border-primary">
+              All Field Notes
+              <FiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </button>
           </Link>
         </div>
 
-        <div className="relative">
-          {/* Articles Container */}
-          <div className="overflow-hidden">
-            <div
-              className="flex gap-6 transition-transform duration-500"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
-              }}
-            >
-              {articles.map((article, idx) => (
-                <div
-                  key={idx}
-                  className="shrink-0 w-full md:w-1/3 bg-card border border-border rounded-lg overflow-hidden hover:border-primary transition duration-300 group cursor-pointer flex flex-col"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={article.ImageLink}
-                      alt={article.ImageAlt}
-                      fill
-                      className="object-cover group-hover:scale-110 transition duration-300"
-                    />
-                  </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <p className="text-xs text-primary font-semibold mb-2 uppercase">
-                      {article.CreatedOn}
-                    </p>
-                    <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition">
-                      {article.Title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-2">
-                      {article.Brief}
-                    </p>
-                    <div className="flex justify-between items-center text-xs text-muted-foreground/70">
-                      <span>By {article.Author}</span>
-                      <span>❤️ {article.Likes}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
+        {/* Editorial Magazine Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          
+          {/* Main Featured Article (Large) */}
+          <div className="lg:col-span-7 group cursor-pointer flex flex-col">
+            <div className="relative w-full aspect-video md:aspect-[4/3] rounded-sm overflow-hidden mb-8">
+              <Image
+                src={featured.ImageLink || "https://images.unsplash.com/photo-1551316679-9c6ae9dec224"}
+                alt={featured.ImageAlt}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
+              />
+              <div className="absolute inset-0 bg-black/10 mix-blend-multiply group-hover:bg-transparent transition-colors duration-700"></div>
             </div>
+            
+            <div className="flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-4">
+              <span className="text-primary">{featured.CreatedOn}</span>
+              <span className="w-1 h-1 bg-border rounded-full"></span>
+              <span>{featured.Author}</span>
+            </div>
+            
+            <h3 className="text-3xl md:text-4xl font-display text-foreground group-hover:text-primary transition-colors duration-500 mb-4 leading-tight">
+              {featured.Title}
+            </h3>
+            
+            <p className="text-muted-foreground leading-relaxed max-w-2xl font-body">
+              {featured.Brief}
+            </p>
           </div>
 
-          {/* Navigation Buttons */}
-          {articles.length > itemsPerView && (
-            <>
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 md:-translate-x-12 z-10 bg-secondary hover:bg-secondary/90 text-foreground p-3 rounded-full transition"
-              >
-                <FiChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 md:translate-x-12 z-10 bg-secondary hover:bg-secondary/90 text-foreground p-3 rounded-full transition"
-              >
-                <FiChevronRight className="w-6 h-6" />
-              </button>
-            </>
-          )}
-
-          {/* Indicators */}
-          {articles.length > itemsPerView && (
-            <div className="flex justify-center gap-2 mt-8">
-              {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`w-2 h-2 rounded-full transition ${
-                    idx === currentIndex ? "bg-blue-400 w-6" : "bg-gray-600"
-                  }`}
-                />
-              ))}
-            </div>
-          )}
+          {/* Secondary Articles Stack */}
+          <div className="lg:col-span-5 flex flex-col gap-12">
+            {secondary.map((article, idx) => (
+              <div key={idx} className="group cursor-pointer flex flex-col sm:flex-row lg:flex-col gap-6">
+                <div className="relative w-full sm:w-1/2 lg:w-full aspect-video rounded-sm overflow-hidden shrink-0">
+                  <Image
+                    src={article.ImageLink}
+                    alt={article.ImageAlt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-out brightness-90 group-hover:brightness-100"
+                  />
+                  <div className="absolute inset-0 border border-black/5 pointer-events-none mix-blend-overlay"></div>
+                </div>
+                
+                <div className="flex flex-col justify-center">
+                  <div className="flex items-center gap-3 text-[10px] font-semibold tracking-widest uppercase text-muted-foreground mb-3">
+                    <span className="text-primary">{article.CreatedOn}</span>
+                    <span className="w-1 h-1 bg-border rounded-full"></span>
+                    <span>{article.Author}</span>
+                  </div>
+                  
+                  <h3 className="text-xl md:text-2xl font-display text-foreground group-hover:text-primary transition-colors duration-500 mb-3 leading-snug">
+                    {article.Title}
+                  </h3>
+                  
+                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                    {article.Brief}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
         </div>
       </div>
     </section>
