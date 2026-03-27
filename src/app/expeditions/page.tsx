@@ -62,14 +62,14 @@ export default async function ExpeditionsPage() {
   const expeditions = await getExpeditions();
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950">
+    <div className="min-h-screen bg-linear-to-b from-background to-muted">
       {/* Header Section */}
       <div className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
             Alpine Expeditions
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-lg text-muted-foreground">
             Challenge yourself with our high-altitude climbing expeditions in
             the Himalayas. Experience world-class mountaineering with
             experienced guides and comprehensive support.
@@ -82,7 +82,7 @@ export default async function ExpeditionsPage() {
         <div className="max-w-7xl mx-auto">
           {expeditions.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-muted-foreground">
                 No expeditions available at the moment.
               </p>
             </div>
@@ -91,10 +91,10 @@ export default async function ExpeditionsPage() {
               {expeditions.map((expedition) => (
                 <div
                   key={expedition.id}
-                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
+                  className="bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
                 >
                   {/* Image */}
-                  <div className="h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                  <div className="h-48 bg-muted overflow-hidden">
                     <Image
                       src={
                         expedition.imageUrl ||
@@ -111,55 +111,55 @@ export default async function ExpeditionsPage() {
 
                   {/* Content */}
                   <div className="p-4">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-xl font-bold text-foreground mb-2">
                       {expedition.name}
                     </h3>
 
                     {/* Details Grid */}
                     <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-muted-foreground">
                           Altitude
                         </p>
-                        <p className="font-semibold text-gray-900 dark:text-white">
+                        <p className="font-semibold text-foreground">
                           {expedition.maxAltitude}m
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-muted-foreground">
                           Duration
                         </p>
-                        <p className="font-semibold text-gray-900 dark:text-white">
+                        <p className="font-semibold text-foreground">
                           {expedition.duration} days
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-muted-foreground">
                           Difficulty
                         </p>
-                        <p className="font-semibold text-gray-900 dark:text-white capitalize">
+                        <p className="font-semibold text-foreground capitalize">
                           {formatDifficulty(expedition.difficulty)}
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-muted-foreground">
                           Price
                         </p>
-                        <p className="font-semibold text-gray-900 dark:text-white">
+                        <p className="font-semibold text-foreground">
                           ₹
                           {(expedition.basePrice / 100).toLocaleString("en-IN")}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                       {expedition.description}
                     </p>
 
                     {/* Button */}
                     <Link
                       href={`/expeditions/${expedition.slug}`}
-                      className="w-full inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-center"
+                      className="w-full inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2 px-4 rounded-lg transition-colors text-center"
                     >
                       View Details
                     </Link>

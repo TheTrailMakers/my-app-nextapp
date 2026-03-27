@@ -3,6 +3,7 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import type { UserRole } from "@/lib/user-role";
+import { formatRoleLabel } from "@/lib/utils";
 
 export interface AdminUserRecord {
   id: string;
@@ -160,28 +161,28 @@ export default function AdminClient({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 shadow-sm">
+    <div className="min-h-screen bg-background">
+      <div className="bg-card shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-bold text-foreground">
             Admin Dashboard
           </h1>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-muted-foreground">
             Manage users, roles, and system settings
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        <div className="mb-6 flex gap-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="mb-6 flex gap-4 border-b border-border">
           {["users", "audit-logs", "settings"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab as typeof activeTab)}
               className={`px-4 py-2 font-medium capitalize transition-colors ${
                 activeTab === tab
-                  ? "border-b-2 border-blue-600 text-blue-600 dark:text-blue-400"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                  ? "border-b-2 border-primary text-primary"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {tab.replace("-", " ")}
@@ -190,18 +191,16 @@ export default function AdminClient({
         </div>
 
         {activeTab === "users" && (
-          <div className="overflow-hidden rounded-lg bg-white shadow-sm dark:bg-gray-800">
-            <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Users
-              </h2>
+          <div className="overflow-hidden rounded-lg bg-card shadow-sm">
+            <div className="flex items-center justify-between border-b border-border px-6 py-4">
+              <h2 className="text-xl font-semibold text-foreground">Users</h2>
               {(currentUserRole === "ADMIN" ||
                 currentUserRole === "SUPER_ADMIN") && (
                 <div className="flex gap-2">
-                  <button className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+                  <button className="rounded-lg bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90">
                     Add User
                   </button>
-                  <button className="rounded-lg bg-gray-600 px-4 py-2 text-white hover:bg-gray-700">
+                  <button className="rounded-lg bg-secondary px-4 py-2 text-secondary-foreground hover:bg-secondary/90">
                     IP Restrictions
                   </button>
                 </div>
@@ -210,53 +209,50 @@ export default function AdminClient({
 
             {loading ? (
               <div className="p-6 text-center">
-                <div className="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
-                <p className="mt-2 text-gray-600 dark:text-gray-400">
+                <div className="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-primary"></div>
+                <p className="mt-2 text-muted-foreground">
                   Refreshing users...
                 </p>
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-gray-100 dark:bg-gray-700">
+                  <thead className="bg-muted">
                     <tr>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-900 dark:text-white">
+                      <th className="px-6 py-3 text-left font-semibold text-foreground">
                         User
                       </th>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-900 dark:text-white">
+                      <th className="px-6 py-3 text-left font-semibold text-foreground">
                         Email
                       </th>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-900 dark:text-white">
+                      <th className="px-6 py-3 text-left font-semibold text-foreground">
                         Role
                       </th>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-900 dark:text-white">
+                      <th className="px-6 py-3 text-left font-semibold text-foreground">
                         Status
                       </th>
-                      <th className="px-6 py-3 text-left font-semibold text-gray-900 dark:text-white">
+                      <th className="px-6 py-3 text-left font-semibold text-foreground">
                         Last Login
                       </th>
-                      <th className="px-6 py-3 text-center font-semibold text-gray-900 dark:text-white">
+                      <th className="px-6 py-3 text-center font-semibold text-foreground">
                         Actions
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tbody className="divide-y divide-border">
                     {users.map((user) => (
-                      <tr
-                        key={user.id}
-                        className="hover:bg-gray-50 dark:hover:bg-gray-700/50"
-                      >
+                      <tr key={user.id} className="hover:bg-muted/50">
                         <td className="px-6 py-4">
                           <div>
-                            <p className="font-medium text-gray-900 dark:text-white">
+                            <p className="font-medium text-foreground">
                               {user.username}
                             </p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                            <p className="text-xs text-muted-foreground">
                               {user.firstName || ""} {user.lastName || ""}
                             </p>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-gray-600 dark:text-gray-400">
+                        <td className="px-6 py-4 text-muted-foreground">
                           {user.email}
                         </td>
                         <td className="px-6 py-4">
@@ -271,7 +267,7 @@ export default function AdminClient({
                                     : "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
                             }`}
                           >
-                            {user.role}
+                            {formatRoleLabel(user.role)}
                           </span>
                         </td>
                         <td className="px-6 py-4">
@@ -287,7 +283,7 @@ export default function AdminClient({
                               </span>
                             )}
                             {!user.isActive && (
-                              <span className="rounded-sm bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-400">
+                              <span className="rounded-sm bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
                                 Inactive
                               </span>
                             )}
@@ -300,7 +296,7 @@ export default function AdminClient({
                               )}
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-xs text-gray-600 dark:text-gray-400">
+                        <td className="px-6 py-4 text-xs text-muted-foreground">
                           {user.lastLoginAt
                             ? new Date(user.lastLoginAt).toLocaleDateString()
                             : "Never"}
@@ -362,7 +358,7 @@ export default function AdminClient({
                                       }}
                                       className="whitespace-nowrap rounded-sm bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:hover:bg-indigo-900/50"
                                     >
-                                      Reset Pwd
+                                      Reset Password
                                     </button>
                                   )}
                                 <button
@@ -401,11 +397,11 @@ export default function AdminClient({
         )}
 
         {activeTab === "audit-logs" && (
-          <div className="rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800">
-            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+          <div className="rounded-lg bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-xl font-semibold text-foreground">
               Audit Logs
             </h2>
-            <p className="mb-4 text-gray-600 dark:text-gray-400">
+            <p className="mb-4 text-muted-foreground">
               Recent failed login attempts
             </p>
             <LoginAttempts />
@@ -413,24 +409,26 @@ export default function AdminClient({
         )}
 
         {activeTab === "settings" && (
-          <div className="rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800">
-            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+          <div className="rounded-lg bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-xl font-semibold text-foreground">
               System Settings
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">Coming soon...</p>
+            <p className="text-muted-foreground">
+              Settings tools are coming soon.
+            </p>
           </div>
         )}
       </div>
 
       {isModalOpen && selectedUser && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-            <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-white">
+        <div className="fixed inset-0 z-modal flex items-center justify-center bg-background/80 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-lg bg-card p-6 shadow-lg">
+            <h3 className="mb-4 text-lg font-bold text-foreground">
               Update Role for {selectedUser.username}
             </h3>
 
             <div className="mb-6">
-              <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="mb-2 block text-sm font-medium text-foreground">
                 Select Role
               </label>
               <select
@@ -438,7 +436,7 @@ export default function AdminClient({
                 onChange={(event) =>
                   setEditRole(event.target.value as EditableRole)
                 }
-                className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 outline-hidden focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground outline-hidden focus:ring-2 focus:ring-primary"
               >
                 <option value="USER">User</option>
                 <option value="MODERATOR">Moderator</option>
@@ -458,13 +456,13 @@ export default function AdminClient({
                   setIsModalOpen(false);
                   setSelectedUser(null);
                 }}
-                className="rounded-lg bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                className="rounded-lg bg-secondary px-4 py-2 text-secondary-foreground hover:bg-secondary/90"
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpdateRole}
-                className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+                className="rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground hover:bg-primary/90"
               >
                 Update Role
               </button>

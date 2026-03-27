@@ -21,3 +21,10 @@
 - tailwindcss.com
 - better-auth.com
 - orm.drizzle.team
+
+# DONTS
+
+- Don't delete useful code comments.
+- Don't write unnecessary useEffect hooks.
+- Look for reusable code and try not to repeat yourself.
+- Don't create clever abstractions that make the code harder to understand.

@@ -30,7 +30,7 @@ export default function TrekCard({
 
   return (
     <div
-      className="m-4 border snap-center relative border-border bg-bg-card shadow-warm
+      className="m-4 border snap-center relative border-border bg-card shadow-warm
                         w-80 shrink-0 rounded-card-lg font"
     >
       <Link href={PageLink || "/contact"}>
@@ -46,19 +46,19 @@ export default function TrekCard({
 
       <div className="border-b border-border p-2 min-h-40">
         <div className="flex items-center">
-          <h2 className=" pl-1 font-semibold uppercase text-text-primary ">
+          <h2 className=" pl-1 font-semibold uppercase text-foreground ">
             {Name}
           </h2>
-          <h4 className=" px-2 ml-4 text-[10px] text-center font-medium uppercase rounded-pill bg-accent-peach text-primary ">
+          <h4 className=" px-2 ml-4 text-[10px] text-center font-medium uppercase rounded-pill bg-secondary text-primary ">
             {State}
           </h4>
         </div>
 
-        <p className=" text-sm p-1 text-text-secondary">{Description}</p>
+        <p className=" text-sm p-1 text-muted-foreground">{Description}</p>
       </div>
 
       <div className="p-2 pt-1 border-border">
-        <h3 className=" pl-1 font-bold text-sm uppercase text-text-muted inline-block">
+        <h3 className=" pl-1 font-bold text-sm uppercase text-muted-foreground inline-block">
           {" "}
           Details
         </h3>
@@ -81,7 +81,7 @@ export default function TrekCard({
       <Link href={PageLink || "/contact"}>
         <div className="text-center flex flex-col items-center pt-4">
           <p
-            className="text-white bg-primary hover:bg-primary-dark
+            className="text-primary-foreground bg-primary hover:bg-primary/90
                 py-1 w-3/4 font-bold text-lg rounded-t-card-lg"
           >
             {Date[0]}

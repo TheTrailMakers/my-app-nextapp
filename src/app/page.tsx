@@ -64,13 +64,13 @@ async function UpcomingAdventuresTable() {
   }
 
   return (
-    <section className="py-10 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-brand-warmwhite border-t border-white/20">
+    <section className="py-10 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-background border-t border-white/20">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-2 text-text-primary">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-2 text-foreground">
             Upcoming Adventures
           </h2>
-          <p className="text-text-secondary text-sm md:text-base">
+          <p className="text-muted-foreground text-sm md:text-base">
             Explore our scheduled departures (earliest first)
           </p>
         </div>
@@ -78,27 +78,27 @@ async function UpcomingAdventuresTable() {
         {/* Desktop Table - Hidden on Mobile */}
         <div className="hidden md:block overflow-x-auto border border-border rounded-card-lg shadow-warm">
           <table className="w-full">
-            <thead className="bg-bg-soft border-b border-border">
+            <thead className="bg-muted border-b border-border">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-text-primary whitespace-nowrap">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-foreground whitespace-nowrap">
                   Start Date
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-text-primary whitespace-nowrap">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-foreground whitespace-nowrap">
                   Adventure
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-text-primary whitespace-nowrap">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-foreground whitespace-nowrap">
                   Difficulty
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-text-primary whitespace-nowrap">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-foreground whitespace-nowrap">
                   Duration
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-text-primary whitespace-nowrap">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-foreground whitespace-nowrap">
                   Price
                 </th>
                 <th className="px-6 py-4 text-left"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border bg-bg-card">
+            <tbody className="divide-y divide-border bg-card">
               {sortedDepartures.map((item, idx) => {
                 const trek = item.trek;
                 const departure = item.departure;
@@ -112,26 +112,26 @@ async function UpcomingAdventuresTable() {
                 return (
                   <tr
                     key={`${trek.id}-${idx}`}
-                    className="hover:bg-bg-soft transition"
+                    className="hover:bg-muted transition"
                   >
-                    <td className="px-6 py-4 text-sm text-text-secondary">
+                    <td className="px-6 py-4 text-sm text-muted-foreground">
                       {startDate}
                     </td>
                     <td className="px-6 py-4">
                       <div>
-                        <p className="text-sm font-semibold text-text-primary">
+                        <p className="text-sm font-semibold text-foreground">
                           {trek.name}
                         </p>
-                        <p className="text-xs text-text-muted flex items-center gap-1 mt-1">
+                        <p className="text-xs text-muted-foreground/70 flex items-center gap-1 mt-1">
                           <FiMapPin className="w-3 h-3" />
                           {trek.state}
                         </p>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-text-secondary">
+                    <td className="px-6 py-4 text-sm text-muted-foreground">
                       {formatDifficulty(trek.difficulty)}
                     </td>
-                    <td className="px-6 py-4 text-sm text-text-secondary">
+                    <td className="px-6 py-4 text-sm text-muted-foreground">
                       {trek.duration} days
                     </td>
                     <td className="px-6 py-4 text-sm font-bold text-primary">
@@ -139,7 +139,7 @@ async function UpcomingAdventuresTable() {
                     </td>
                     <td className="px-6 py-4 text-right">
                       <Link href={`/treks/${trek.slug}`}>
-                        <button className="inline-flex items-center gap-2 text-primary hover:text-primary-dark transition font-semibold text-sm">
+                        <button className="inline-flex items-center gap-2 text-primary hover:text-primary/90 transition font-semibold text-sm">
                           View
                           <FiArrowRight className="w-4 h-4" />
                         </button>
@@ -166,27 +166,27 @@ async function UpcomingAdventuresTable() {
 
             return (
               <Link key={`${trek.id}-${idx}`} href={`/treks/${trek.slug}`}>
-                <div className="bg-bg-card rounded-2xl p-4 shadow-warm flex justify-between items-start">
+                <div className="bg-card rounded-2xl p-4 shadow-warm flex justify-between items-start">
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-text-primary text-sm truncate">
+                    <p className="font-semibold text-foreground text-sm truncate">
                       {trek.name}
                     </p>
-                    <p className="text-xs text-text-muted flex items-center gap-1 mt-1">
+                    <p className="text-xs text-muted-foreground/70 flex items-center gap-1 mt-1">
                       <FiMapPin className="w-3 h-3 shrink-0" />
                       <span className="truncate">{trek.state}</span>
                     </p>
-                    <span className="inline-block mt-2 text-xs bg-brand-sage text-white px-2 py-0.5 rounded-full">
+                    <span className="inline-block mt-2 text-xs bg-primary/80 text-primary-foreground px-2 py-0.5 rounded-full">
                       {formatDifficulty(trek.difficulty)}
                     </span>
                   </div>
                   <div className="text-right shrink-0 ml-3">
-                    <p className="text-xs text-brand-burnt font-medium">
+                    <p className="text-xs text-primary font-medium">
                       {startDate}
                     </p>
                     <p className="text-sm font-bold text-primary mt-1">
                       {priceValue > 0 ? `₹${formattedPrice}` : formattedPrice}
                     </p>
-                    <p className="text-xs text-text-muted mt-1">
+                    <p className="text-xs text-muted-foreground/70 mt-1">
                       {trek.duration} days
                     </p>
                   </div>
@@ -198,7 +198,7 @@ async function UpcomingAdventuresTable() {
 
         <div className="mt-8 text-center">
           <Link href="/all">
-            <button className="border-2 border-primary bg-primary/10 text-primary hover:text-primary-dark font-bold py-3 px-8 rounded-pill transition duration-300 inline-flex items-center gap-2 group">
+            <button className="border-2 border-primary bg-primary/10 text-primary hover:text-primary/90 font-bold py-3 px-8 rounded-pill transition duration-300 inline-flex items-center gap-2 group">
               View All Adventures
               <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
             </button>
@@ -267,7 +267,7 @@ function CTASection() {
 
 export default async function Home() {
   return (
-    <main className="min-h-screen bg-brand-warmwhite text-text-primary">
+    <main className="min-h-screen bg-background text-foreground">
       <HeroCarousel />
       <UpcomingAdventuresTable />
       <WhatSetUsApart />

@@ -21,7 +21,7 @@ function Article({
   Likes,
 }: ArticleProps) {
   return (
-    <div className="max-w-80 h-[500px] bg-white rounded-3xl snap-center shrink-0 shadow-lg text-black m-4">
+    <div className="max-w-80 h-[500px] bg-card rounded-3xl snap-center shrink-0 shadow-lg text-card-foreground m-4">
       <div className="relative w-80 h-48">
         <Image
           src={ImageLink}
@@ -30,7 +30,7 @@ function Article({
           height={192}
           className="object-cover rounded-t-3xl max-w-80 h-48 object-[0%_80%]"
         ></Image>
-        <div className="absolute bottom-2 left-2 text-2xl font-extrabold text-white">
+        <div className="absolute bottom-2 left-2 text-2xl font-extrabold text-primary-foreground">
           {" "}
           Like {Likes}
         </div>
@@ -43,10 +43,10 @@ function Article({
 
       <div className="px-4  flex justify-between items-end">
         <div className="flex flex-col">
-          <h5 className="leading-5 font-bold text-stone-700">{Author}</h5>
-          <h6 className="text-xs text-stone-500">Published on {CreatedOn}</h6>
+          <h5 className="leading-5 font-bold text-foreground">{Author}</h5>
+          <h6 className="text-xs text-muted-foreground">Published on {CreatedOn}</h6>
         </div>
-        <div className="font-extrabold text-xl text-slate-500 text-right">
+        <div className="font-extrabold text-xl text-muted-foreground/80 text-right">
           <div>Share</div>
           <div>Save</div>
         </div>

@@ -31,13 +31,13 @@ export function TrekByRegionClient({ regions, regionStats }: TrekByRegionClientP
   const visibleRegions = regions.slice(currentIndex, currentIndex + itemsPerView);
 
   return (
-    <section className="py-10 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-brand-warmwhite border-t border-white/20">
+    <section className="py-10 md:py-16 lg:py-20 px-4 md:px-6 lg:px-12 bg-background border-t border-border">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 md:mb-12 lg:mb-16">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-text-primary">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-foreground">
             Explore by Region
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto text-sm md:text-base">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
             Discover amazing treks across India's most spectacular mountain regions
           </p>
         </div>
@@ -47,7 +47,7 @@ export function TrekByRegionClient({ regions, regionStats }: TrekByRegionClientP
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-bg-card hover:bg-bg-soft text-text-primary p-3 rounded-full shadow-warm transition hidden md:flex items-center justify-center"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-card hover:bg-muted text-foreground p-3 rounded-full shadow-warm transition hidden md:flex items-center justify-center"
           >
             <FiChevronLeft className="w-6 h-6" />
           </button>
@@ -68,17 +68,17 @@ export function TrekByRegionClient({ regions, regionStats }: TrekByRegionClientP
                       />
                     )}
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-linear-to-t from-text-primary via-text-primary/40 to-transparent group-hover:via-text-primary/50 transition duration-300"></div>
+                    <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent group-hover:via-background/50 transition duration-300"></div>
                     
                     {/* Content */}
                     <div className="absolute inset-0 flex flex-col items-center justify-end p-4 md:p-6 text-center">
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 group-hover:text-primary-light transition">
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-2 md:mb-3 group-hover:text-primary/80 transition">
                         {region}
                       </h3>
                       <p className="text-primary font-semibold text-sm md:text-base mb-2 md:mb-3">
                         {stats.count} Trek{stats.count !== 1 ? "s" : ""}
                       </p>
-                      <button className="bg-primary hover:bg-primary-dark text-white px-4 py-1.5 md:px-6 md:py-2 rounded-pill text-xs md:text-sm font-semibold transition opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-300">
+                      <button className="bg-primary hover:bg-primary/90 text-foreground px-4 py-1.5 md:px-6 md:py-2 rounded-pill text-xs md:text-sm font-semibold transition opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-300">
                         Explore →
                       </button>
                     </div>
@@ -91,7 +91,7 @@ export function TrekByRegionClient({ regions, regionStats }: TrekByRegionClientP
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-bg-card hover:bg-bg-soft text-text-primary p-3 rounded-full shadow-warm transition hidden md:flex items-center justify-center"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-card hover:bg-muted text-foreground p-3 rounded-full shadow-warm transition hidden md:flex items-center justify-center"
           >
             <FiChevronRight className="w-6 h-6" />
           </button>

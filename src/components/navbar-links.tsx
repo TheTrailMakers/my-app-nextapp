@@ -33,15 +33,15 @@ export default function NavbarLinks({
               onClick={onNavigate}
               className={
                 mobile
-                  ? `block text-lg font-medium transition duration-300 ${
+                  ? `block text-lg font-medium transition-colors duration-normal ${
                       isActive
-                        ? "text-blue-400"
-                        : "text-slate-300 hover:text-white"
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
                     }`
-                  : `text-sm font-medium transition duration-300 ${
+                  : `text-sm font-medium transition-colors duration-normal ${
                       isActive
-                        ? "text-blue-400 border-b-2 border-blue-400 pb-1"
-                        : "text-slate-300 hover:text-white"
+                        ? "text-primary border-b-2 border-primary pb-1"
+                        : "text-muted-foreground hover:text-foreground"
                     }`
               }
             >

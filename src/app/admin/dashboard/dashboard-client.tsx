@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { UserRole } from "@/lib/user-role";
 import type { DashboardStats } from "@/lib/services/adminDashboardService";
+import { formatRoleLabel } from "@/lib/utils";
 
 interface Trek {
   id: string;
@@ -82,6 +83,37 @@ type AdminTab =
   | "finance"
   | "marketing"
   | "users";
+
+function formatStatusLabel(status: string) {
+  switch (status) {
+    case "CONFIRMED":
+      return "Confirmed";
+    case "OPEN":
+      return "Open";
+    case "COMPLETED":
+      return "Completed";
+    case "PENDING":
+      return "Pending";
+    case "CANCELLED":
+      return "Cancelled";
+    case "FULL":
+      return "Full";
+    default:
+      return status
+        .toLowerCase()
+        .split("_")
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+  }
+}
+
+function formatDifficultyLabel(difficulty: string) {
+  return difficulty
+    .toLowerCase()
+    .split("_")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
 
 export default function AdminDashboardClient({
   initialRole,
@@ -205,12 +237,12 @@ export default function AdminDashboardClient({
       case "COMPLETED":
         return "bg-green-100 text-green-800";
       case "PENDING":
-        return "bg-yellow-100 text-yellow-800";
+        return "bg-amber-100 text-amber-800";
       case "CANCELLED":
       case "FULL":
-        return "bg-red-100 text-red-800";
+        return "bg-destructive/10 text-destructive";
       default:
-        return "bg-gray-100 text-gray-800";
+        return "bg-muted text-muted-foreground";
     }
   };
 
@@ -223,22 +255,22 @@ export default function AdminDashboardClient({
   const canManageUsers = initialRole === "SUPER_ADMIN";
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm">
+    <div className="min-h-screen bg-background">
+      <div className="bg-card shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-foreground">
                 Admin Dashboard
               </h1>
-              <span className="ml-3 rounded-sm bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
-                {initialRole}
+              <span className="ml-3 rounded-sm bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                {formatRoleLabel(initialRole)}
               </span>
             </div>
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.push("/dashboard")}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-muted-foreground hover:text-foreground"
               >
                 Go to User Dashboard
               </button>
@@ -247,31 +279,31 @@ export default function AdminDashboardClient({
         </div>
       </div>
 
-      <div className="border-b border-gray-200 bg-white">
+      <div className="border-b border-border bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="-mb-px flex space-x-8">
             <button
               onClick={() => setActiveTab("overview")}
-              className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "overview" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
+              className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "overview" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"}`}
             >
               Quick Overview
             </button>
             <button
               onClick={() => setActiveTab("treks")}
-              className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "treks" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
+              className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "treks" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"}`}
             >
               Trek Management
             </button>
             <button
               onClick={() => setActiveTab("participants")}
-              className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "participants" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
+              className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "participants" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"}`}
             >
               Participants
             </button>
             {canViewFinance && (
               <button
                 onClick={() => setActiveTab("finance")}
-                className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "finance" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
+                className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "finance" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"}`}
               >
                 Finance
               </button>
@@ -279,7 +311,7 @@ export default function AdminDashboardClient({
             {canViewMarketing && (
               <button
                 onClick={() => setActiveTab("marketing")}
-                className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "marketing" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
+                className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "marketing" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"}`}
               >
                 Marketing
               </button>
@@ -287,7 +319,7 @@ export default function AdminDashboardClient({
             {canManageUsers && (
               <button
                 onClick={() => setActiveTab("users")}
-                className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "users" ? "border-blue-500 text-blue-600" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"}`}
+                className={`border-b-2 px-1 py-4 text-sm font-medium ${activeTab === "users" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"}`}
               >
                 Users
               </button>
@@ -299,17 +331,17 @@ export default function AdminDashboardClient({
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
+            <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-primary"></div>
           </div>
         ) : (
           <>
             {activeTab === "overview" && stats && (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div className="rounded-lg bg-white p-6 shadow-sm">
-                  <div className="text-sm font-medium text-gray-500">
+                <div className="rounded-lg bg-card p-6 shadow-sm">
+                  <div className="text-sm font-medium text-muted-foreground">
                     Total Bookings (This Month)
                   </div>
-                  <div className="mt-2 text-3xl font-semibold text-gray-900">
+                  <div className="mt-2 text-3xl font-semibold text-foreground">
                     {stats.totalBookingsThisMonth}
                   </div>
                 </div>
@@ -364,14 +396,14 @@ export default function AdminDashboardClient({
                 <div className="mb-6 flex items-center justify-between">
                   <h2 className="text-xl font-semibold">Trek Management</h2>
                   {canManageTreks && (
-                    <button className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+                    <button className="rounded-md bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90">
                       Add New Trek
                     </button>
                   )}
                 </div>
-                <div className="overflow-hidden rounded-lg bg-white shadow-sm">
+                <div className="overflow-hidden rounded-lg bg-card shadow-sm">
                   <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-muted">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                           Trek Name
@@ -393,25 +425,25 @@ export default function AdminDashboardClient({
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white">
+                    <tbody className="divide-y divide-border bg-card">
                       {treks.map((trek) => (
                         <tr key={trek.id}>
                           <td className="whitespace-nowrap px-6 py-4">
-                            <div className="text-sm font-medium text-gray-900">
+                            <div className="text-sm font-medium text-foreground">
                               {trek.name}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-muted-foreground">
                               {trek.slug}
                             </div>
                           </td>
-                          <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-6 py-4 text-sm text-muted-foreground">
                             {trek.state}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             <span
                               className={`rounded-sm px-2 py-1 text-xs font-medium ${trek.difficulty === "EASY" ? "bg-green-100 text-green-800" : trek.difficulty === "MODERATE" ? "bg-yellow-100 text-yellow-800" : "bg-red-100 text-red-800"}`}
                             >
-                              {trek.difficulty}
+                              {formatDifficultyLabel(trek.difficulty)}
                             </span>
                           </td>
                           <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
@@ -421,10 +453,10 @@ export default function AdminDashboardClient({
                             {trek.departures?.length || 0} upcoming
                           </td>
                           <td className="whitespace-nowrap px-6 py-4 text-sm">
-                            <button className="mr-3 text-blue-600 hover:text-blue-900">
+                            <button className="mr-3 text-primary hover:text-primary/90">
                               Edit
                             </button>
-                            <button className="text-gray-600 hover:text-gray-900">
+                            <button className="text-muted-foreground hover:text-foreground">
                               View
                             </button>
                           </td>
@@ -443,9 +475,9 @@ export default function AdminDashboardClient({
                     Participant Management
                   </h2>
                 </div>
-                <div className="overflow-hidden rounded-lg bg-white shadow-sm">
+                <div className="overflow-hidden rounded-lg bg-card shadow-sm">
                   <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-muted">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                           Name
@@ -470,14 +502,14 @@ export default function AdminDashboardClient({
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white">
+                    <tbody className="divide-y divide-border bg-card">
                       {participants.map((participant) => (
                         <tr key={participant.id}>
                           <td className="whitespace-nowrap px-6 py-4">
-                            <div className="text-sm font-medium text-gray-900">
+                            <div className="text-sm font-medium text-foreground">
                               {participant.contactName}
                             </div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-muted-foreground">
                               {participant.contactEmail}
                             </div>
                             {participant.isRepeatTrekker && (
@@ -486,14 +518,15 @@ export default function AdminDashboardClient({
                               </span>
                             )}
                           </td>
-                          <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-                            {participant.departure?.trek?.name || "N/A"}
+                          <td className="whitespace-nowrap px-6 py-4 text-sm text-muted-foreground">
+                            {participant.departure?.trek?.name ||
+                              "Not assigned"}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             <span
                               className={`rounded-sm px-2 py-1 text-xs font-medium ${getStatusColor(participant.status)}`}
                             >
-                              {participant.status}
+                              {formatStatusLabel(participant.status)}
                             </span>
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
@@ -502,28 +535,36 @@ export default function AdminDashboardClient({
                                 ✓ Submitted
                               </span>
                             ) : (
-                              <span className="text-yellow-600">Pending</span>
+                              <span className="text-yellow-600">
+                                Awaiting form
+                              </span>
                             )}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             {participant.idVerified ? (
                               <span className="text-green-600">✓ Verified</span>
                             ) : (
-                              <span className="text-yellow-600">Pending</span>
+                              <span className="text-yellow-600">
+                                Awaiting ID check
+                              </span>
                             )}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             {participant.waiverSigned ? (
                               <span className="text-green-600">✓ Signed</span>
                             ) : (
-                              <span className="text-yellow-600">Pending</span>
+                              <span className="text-yellow-600">
+                                Awaiting waiver
+                              </span>
                             )}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             <span
                               className={`rounded-sm px-2 py-1 text-xs font-medium ${getStatusColor(participant.payment?.status || "PENDING")}`}
                             >
-                              {participant.payment?.status || "PENDING"}
+                              {formatStatusLabel(
+                                participant.payment?.status || "PENDING",
+                              )}
                             </span>
                           </td>
                         </tr>
@@ -538,42 +579,42 @@ export default function AdminDashboardClient({
               <div>
                 <h2 className="mb-6 text-xl font-semibold">Finance Overview</h2>
                 <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <div className="text-sm font-medium text-gray-500">
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
+                    <div className="text-sm font-medium text-muted-foreground">
                       Total Revenue
                     </div>
-                    <div className="mt-2 text-3xl font-semibold text-gray-900">
+                    <div className="mt-2 text-3xl font-semibold text-foreground">
                       {formatCurrency(finance.totalRevenue)}
                     </div>
                   </div>
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <div className="text-sm font-medium text-gray-500">
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
+                    <div className="text-sm font-medium text-muted-foreground">
                       Advance Collected
                     </div>
-                    <div className="mt-2 text-3xl font-semibold text-gray-900">
+                    <div className="mt-2 text-3xl font-semibold text-foreground">
                       {formatCurrency(finance.advanceCollected)}
                     </div>
                   </div>
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <div className="text-sm font-medium text-gray-500">
-                      Balance Pending
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
+                    <div className="text-sm font-medium text-muted-foreground">
+                      Outstanding Balance
                     </div>
-                    <div className="mt-2 text-3xl font-semibold text-gray-900">
+                    <div className="mt-2 text-3xl font-semibold text-foreground">
                       {formatCurrency(finance.balancePending)}
                     </div>
                   </div>
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <div className="text-sm font-medium text-gray-500">
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
+                    <div className="text-sm font-medium text-muted-foreground">
                       GST Collected
                     </div>
-                    <div className="mt-2 text-3xl font-semibold text-gray-900">
+                    <div className="mt-2 text-3xl font-semibold text-foreground">
                       {formatCurrency(finance.gstCollected)}
                     </div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
                     <h3 className="mb-4 text-lg font-medium">
                       Payment Method Split
                     </h3>
@@ -582,7 +623,7 @@ export default function AdminDashboardClient({
                         key={method.method}
                         className="flex justify-between border-b py-2"
                       >
-                        <span className="text-gray-600">
+                        <span className="text-muted-foreground">
                           {method.method || "Unknown"}
                         </span>
                         <span className="font-medium">
@@ -591,18 +632,20 @@ export default function AdminDashboardClient({
                       </div>
                     ))}
                   </div>
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
                     <h3 className="mb-4 text-lg font-medium">
                       Trek Leader Payouts
                     </h3>
                     <div className="flex justify-between border-b py-2">
-                      <span className="text-gray-600">Pending</span>
+                      <span className="text-muted-foreground">
+                        Awaiting payout
+                      </span>
                       <span className="font-medium text-yellow-600">
                         {formatCurrency(finance.trekLeaderPayouts.pending)}
                       </span>
                     </div>
                     <div className="flex justify-between py-2">
-                      <span className="text-gray-600">Paid</span>
+                      <span className="text-muted-foreground">Paid</span>
                       <span className="font-medium text-green-600">
                         {formatCurrency(finance.trekLeaderPayouts.paid)}
                       </span>
@@ -618,19 +661,19 @@ export default function AdminDashboardClient({
                   Marketing Metrics
                 </h2>
                 <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <div className="text-sm font-medium text-gray-500">
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
+                    <div className="text-sm font-medium text-muted-foreground">
                       Website Visitors
                     </div>
-                    <div className="mt-2 text-3xl font-semibold text-gray-900">
+                    <div className="mt-2 text-3xl font-semibold text-foreground">
                       {marketing.websiteVisitors}
                     </div>
                   </div>
-                  <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <div className="text-sm font-medium text-gray-500">
+                  <div className="rounded-lg bg-card p-6 shadow-sm">
+                    <div className="text-sm font-medium text-muted-foreground">
                       Conversion Rate
                     </div>
-                    <div className="mt-2 text-3xl font-semibold text-gray-900">
+                    <div className="mt-2 text-3xl font-semibold text-foreground">
                       {marketing.conversionRate}%
                     </div>
                   </div>
@@ -660,17 +703,17 @@ export default function AdminDashboardClient({
                   </div>
                 </div>
 
-                <div className="rounded-lg bg-white p-6 shadow-sm">
+                <div className="rounded-lg bg-card p-6 shadow-sm">
                   <h3 className="mb-4 text-lg font-medium">
                     Top Performing Treks
                   </h3>
                   <table className="min-w-full">
                     <thead>
                       <tr>
-                        <th className="text-left text-xs font-medium uppercase text-gray-500">
+                        <th className="text-left text-xs font-medium uppercase text-muted-foreground">
                           Trek Name
                         </th>
-                        <th className="text-right text-xs font-medium uppercase text-gray-500">
+                        <th className="text-right text-xs font-medium uppercase text-muted-foreground">
                           Bookings
                         </th>
                         <th className="text-right text-xs font-medium uppercase text-gray-500">
@@ -702,14 +745,14 @@ export default function AdminDashboardClient({
             {activeTab === "users" && canManageUsers && (
               <div>
                 <h2 className="mb-6 text-xl font-semibold">User Management</h2>
-                <div className="rounded-lg bg-white p-6 shadow-sm">
-                  <p className="text-gray-600">
+                <div className="rounded-lg bg-card p-6 shadow-sm">
+                  <p className="text-muted-foreground">
                     User management features are available in the main admin
                     panel.
                   </p>
                   <button
                     onClick={() => router.push("/admin")}
-                    className="mt-4 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                    className="mt-4 rounded-md bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
                   >
                     Go to User Management
                   </button>

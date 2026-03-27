@@ -18,7 +18,7 @@ export default async function PaymentFailurePage({
   const error = params.error;
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-900 to-black text-white flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-b from-background to-muted/40 text-foreground">
       <div className="max-w-3xl mx-auto p-8">
         <div className="bg-red-900/20 border border-red-700 rounded-lg p-8 text-center">
           <FiXCircle className="w-16 h-16 mx-auto mb-4 text-red-400" />
@@ -28,13 +28,15 @@ export default async function PaymentFailurePage({
           </p>
 
           {bookingId && (
-            <p className="text-sm text-gray-300 mb-4">
-              Booking reference: <span className="font-mono">{bookingId}</span>
+            <p className="mb-4 text-sm text-muted-foreground">
+              Booking Reference: <span className="font-mono">{bookingId}</span>
             </p>
           )}
 
           {error && (
-            <p className="text-sm text-gray-300 mb-6">Reason: {error}</p>
+            <p className="mb-6 text-sm text-muted-foreground">
+              Reason: {error}
+            </p>
           )}
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -44,14 +46,14 @@ export default async function PaymentFailurePage({
                   ? `/booking/payment?bookingId=${bookingId}&amount=${amount}`
                   : "/all"
               }
-              className="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-sm text-white"
+              className="rounded-sm bg-secondary px-6 py-3 text-secondary-foreground hover:bg-secondary/90"
             >
               Try Again
             </Link>
 
             <Link
               href="/all"
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-sm text-white text-center"
+              className="rounded-sm bg-primary px-6 py-3 text-center text-primary-foreground hover:bg-primary/90"
             >
               Browse Treks
             </Link>

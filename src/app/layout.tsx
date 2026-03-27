@@ -1,19 +1,26 @@
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Poppins, Inter } from "next/font/google";
+import { Merriweather, Manrope } from "next/font/google";
 import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-merriweather",
+  display: "swap",
+});
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://thetrailmakers.in";
-
-const poppins = Poppins({
+const manrope = Manrope({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-manrope",
+  display: "swap",
 });
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://thetrailmakers.in";
 
 export const metadata: Metadata = {
   title: "The Trail Makers - Explore new routes in the Himalayas",
@@ -26,11 +33,17 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={cn("font-sans", inter.variable)}>
-      <body className={poppins.variable}>
-        <Navbar />
-        {children}
-        <Footer />
+    <html
+      lang="en"
+      className={cn(merriweather.variable, manrope.variable)}
+      suppressHydrationWarning
+    >
+      <body className="font-body antialiased">
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,34 +1,18 @@
 import type { ReactNode } from "react";
 
-/* ─── palette tokens (oklch, warm-tinted neutrals) ─── */
-const bg = "oklch(0.97_0.008_75)";
-const surface = "oklch(0.993_0.005_80)";
-const border = "oklch(0.88_0.015_70)";
-const textPrimary = "oklch(0.22_0.02_55)";
-const textSecondary = "oklch(0.48_0.015_55)";
-const textTertiary = "oklch(0.58_0.01_55)";
-const accent = "oklch(0.50_0.13_40)";
-const accentHover = "oklch(0.44_0.13_40)";
-const errorBg = "oklch(0.94_0.025_25)";
-const errorBorder = "oklch(0.82_0.08_25)";
-const errorText = "oklch(0.42_0.12_25)";
-const successBg = "oklch(0.94_0.03_145)";
-const successBorder = "oklch(0.82_0.06_145)";
-const successText = "oklch(0.38_0.08_150)";
+export const authFieldLabelClassName =
+  "mb-1.5 block text-xs font-semibold uppercase tracking-widest text-muted-foreground";
 
-/* ─── shared class names ─── */
+export const authInputClassName =
+  "w-full rounded-md border border-input bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground transition duration-normal focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/50";
 
-export const authFieldLabelClassName = `mb-1.5 block text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[${textSecondary}]`;
+export const authPrimaryButtonClassName =
+  "inline-flex w-full items-center justify-center rounded-md bg-primary px-5 py-3 text-sm font-semibold tracking-wide text-primary-foreground transition-colors duration-normal hover:bg-primary/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50";
 
-export const authInputClassName = `w-full rounded-xl border border-[${border}] bg-[${surface}] px-4 py-3 text-[${textPrimary}] placeholder:text-[${textTertiary}] transition duration-150 focus:border-[${accent}] focus:outline-none`;
+export const authInlineLinkClassName =
+  "font-medium text-primary transition-colors hover:text-primary/80 hover:underline underline-offset-4";
 
-export const authPrimaryButtonClassName = `inline-flex w-full items-center justify-center rounded-xl bg-[${accent}] px-5 py-3 text-sm font-semibold tracking-wide text-[oklch(0.98_0.005_80)] transition duration-150 hover:bg-[${accentHover}] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50`;
-
-export const authInlineLinkClassName = `font-medium text-[${accent}] transition hover:text-[${accentHover}]`;
-
-export const authMutedTextClassName = `text-sm text-[${textSecondary}]`;
-
-/* ─── types ─── */
+export const authMutedTextClassName = "text-sm text-muted-foreground";
 
 type AuthPageShellProps = {
   title: string;
@@ -40,8 +24,6 @@ type AuthPageShellProps = {
   success?: string;
 };
 
-/* ─── component ─── */
-
 export default function AuthPageShell({
   title,
   subtitle,
@@ -52,33 +34,23 @@ export default function AuthPageShell({
   success,
 }: AuthPageShellProps) {
   return (
-    <main
-      className={`relative isolate flex min-h-screen flex-col items-center justify-center bg-[${bg}] px-4 py-12 text-[${textPrimary}]`}
-    >
+    <main className="relative isolate flex min-h-screen flex-col items-center justify-center bg-background px-4 py-12 text-foreground">
       {/* faint decorative line */}
-      <div
-        className={`pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-[min(18rem,40vw)] bg-[linear-gradient(to_bottom,transparent_10%,${border}_50%,transparent_90%)]`}
-      />
+      <div className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-[min(18rem,40vw)] bg-gradient-to-b from-transparent via-border to-transparent opacity-50" />
 
-      <div className="w-full max-w-104 space-y-10">
+      <div className="w-full max-w-sm space-y-10 z-[1]">
         {/* brand */}
-        <p
-          className={`text-[0.66rem] font-semibold uppercase tracking-[0.28em] text-[${textTertiary}]`}
-        >
+        <p className="text-[0.66rem] font-semibold uppercase tracking-widest text-muted-foreground">
           The Trail Makers
         </p>
 
         {/* heading */}
-        <div className="space-y-1.5">
-          <h1
-            className={`text-[clamp(1.75rem,4vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-[${textPrimary}]`}
-          >
+        <div className="space-y-2">
+          <h1 className="text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-foreground font-display">
             {title}
           </h1>
           {subtitle ? (
-            <p
-              className={`text-[0.9rem] leading-relaxed text-[${textSecondary}]`}
-            >
+            <p className="text-sm leading-relaxed text-muted-foreground">
               {subtitle}
             </p>
           ) : null}
@@ -86,16 +58,12 @@ export default function AuthPageShell({
 
         {/* status messages */}
         {error ? (
-          <div
-            className={`rounded-xl border border-[${errorBorder}] bg-[${errorBg}] px-4 py-3 text-sm text-[${errorText}]`}
-          >
+          <div className="rounded-md border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">
             {error}
           </div>
         ) : null}
         {success ? (
-          <div
-            className={`rounded-xl border border-[${successBorder}] bg-[${successBg}] px-4 py-3 text-sm text-[${successText}]`}
-          >
+          <div className="rounded-md border border-green-500/20 bg-green-500/10 px-4 py-3 text-sm text-green-600 dark:text-green-400">
             {success}
           </div>
         ) : null}
@@ -107,20 +75,18 @@ export default function AuthPageShell({
         {social ? (
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <span className={`h-px flex-1 bg-[${border}]`} />
-              <span
-                className={`text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[${textTertiary}]`}
-              >
+              <span className="h-px flex-1 bg-border" />
+              <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                 or
               </span>
-              <span className={`h-px flex-1 bg-[${border}]`} />
+              <span className="h-px flex-1 bg-border" />
             </div>
             {social}
           </div>
         ) : null}
 
         {/* footer */}
-        <div className={`text-sm text-[${textSecondary}]`}>{footer}</div>
+        <div className="text-sm text-muted-foreground">{footer}</div>
       </div>
     </main>
   );

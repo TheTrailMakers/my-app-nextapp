@@ -71,9 +71,9 @@ export default async function ExpeditionDetailPage(props: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative h-96 bg-gray-200 dark:bg-gray-800 overflow-hidden">
+      <div className="relative h-96 bg-muted overflow-hidden">
         <Image
           src={
             expedition.imageUrl ||
@@ -103,40 +103,40 @@ export default async function ExpeditionDetailPage(props: PageProps) {
           {/* Left Column - Details */}
           <div className="lg:col-span-2">
             {/* Key Stats */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-foreground mb-4">
                 Expedition Details
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Max Altitude
                   </p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-2xl font-bold text-foreground">
                     {expedition.maxAltitude}m
                   </p>
                 </div>
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Duration
                   </p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-2xl font-bold text-foreground">
                     {expedition.duration} days
                   </p>
                 </div>
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Difficulty
                   </p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white capitalize">
+                  <p className="text-2xl font-bold text-foreground capitalize">
                     {formatDifficulty(expedition.difficulty)}
                   </p>
                 </div>
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Distance
                   </p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <p className="text-2xl font-bold text-foreground">
                     {expedition.distance}km
                   </p>
                 </div>
@@ -145,11 +145,11 @@ export default async function ExpeditionDetailPage(props: PageProps) {
 
             {/* Description */}
             {expedition.longDescription && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
                   About
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {expedition.longDescription}
                 </p>
               </div>
@@ -157,11 +157,11 @@ export default async function ExpeditionDetailPage(props: PageProps) {
 
             {/* Itinerary */}
             {expedition.itinerary && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
                   Itinerary
                 </h2>
-                <div className="space-y-2 whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                <div className="space-y-2 whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
                   {expedition.itinerary}
                 </div>
               </div>
@@ -169,15 +169,15 @@ export default async function ExpeditionDetailPage(props: PageProps) {
 
             {/* Inclusions */}
             {expedition.inclusions && expedition.inclusions.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
                   What's Included
                 </h2>
                 <ul className="space-y-2">
                   {expedition.inclusions.map((item: string, idx: number) => (
                     <li
                       key={`${item}-${idx}`}
-                      className="flex items-start text-gray-700 dark:text-gray-300"
+                      className="flex items-start text-muted-foreground"
                     >
                       <span className="text-green-600 dark:text-green-400 mr-3">
                         ✓
@@ -191,15 +191,15 @@ export default async function ExpeditionDetailPage(props: PageProps) {
 
             {/* Exclusions */}
             {expedition.exclusions && expedition.exclusions.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
                   What's Not Included
                 </h2>
                 <ul className="space-y-2">
                   {expedition.exclusions.map((item: string, idx: number) => (
                     <li
                       key={`${item}-${idx}`}
-                      className="flex items-start text-gray-700 dark:text-gray-300"
+                      className="flex items-start text-muted-foreground"
                     >
                       <span className="text-red-600 dark:text-red-400 mr-3">
                         ✗
@@ -213,17 +213,17 @@ export default async function ExpeditionDetailPage(props: PageProps) {
 
             {/* Requirements */}
             {expedition.requirements && expedition.requirements.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-card rounded-lg shadow-sm p-6">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
                   Requirements
                 </h2>
                 <ul className="space-y-2">
                   {expedition.requirements.map((item: string, idx: number) => (
                     <li
                       key={`${item}-${idx}`}
-                      className="flex items-start text-gray-700 dark:text-gray-300"
+                      className="flex items-start text-muted-foreground"
                     >
-                      <span className="text-blue-600 dark:text-blue-400 mr-3">
+                      <span className="text-primary mr-3">
                         •
                       </span>
                       <span>{item}</span>
@@ -237,15 +237,15 @@ export default async function ExpeditionDetailPage(props: PageProps) {
           {/* Right Column - Sidebar */}
           <div>
             {/* Price and Booking */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 sticky top-4">
+            <div className="bg-card rounded-lg shadow-sm p-6 sticky top-4">
               <div className="mb-6">
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
+                <p className="text-muted-foreground text-sm mb-2">
                   Starting Price
                 </p>
-                <p className="text-4xl font-bold text-gray-900 dark:text-white">
+                <p className="text-4xl font-bold text-foreground">
                   ₹{(expedition.basePrice / 100).toLocaleString("en-IN")}
                 </p>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                <p className="text-muted-foreground text-sm mt-1">
                   Per person
                 </p>
               </div>
@@ -253,19 +253,19 @@ export default async function ExpeditionDetailPage(props: PageProps) {
               {/* Available Sessions */}
               {expedition.sessions && expedition.sessions.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-3">
+                  <h3 className="font-bold text-foreground mb-3">
                     Available Dates
                   </h3>
                   <div className="space-y-2 max-h-64 overflow-y-auto">
                     {expedition.sessions.map((session) => (
                       <div
                         key={session.id}
-                        className="border border-gray-200 dark:border-gray-700 rounded-sm p-3"
+                        className="border border-border rounded-sm p-3"
                       >
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                        <p className="text-sm font-semibold text-foreground">
                           {session.startDate.toLocaleDateString("en-IN")}
                         </p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                        <p className="text-xs text-muted-foreground">
                           {session.seatsAvailable} seats available
                         </p>
                       </div>
@@ -274,23 +274,23 @@ export default async function ExpeditionDetailPage(props: PageProps) {
                 </div>
               )}
 
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors mb-3">
+              <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-4 rounded-lg transition-colors mb-3">
                 Book Now
               </button>
 
               <Link
                 href="/expeditions"
-                className="w-full inline-block text-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold py-2"
+                className="w-full inline-block text-center text-primary hover:text-primary/80 font-semibold py-2"
               >
                 ← Back to Expeditions
               </Link>
 
               {/* Additional Info */}
-              <div className="mt-6 pb-0 border-t border-gray-200 dark:border-gray-700 pt-6">
-                <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+              <div className="mt-6 pb-0 border-t border-border pt-6">
+                <p className="text-xs text-muted-foreground mb-2">
                   📍 <strong>Location:</strong> {expedition.state}
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-muted-foreground">
                   🗓️ <strong>Best Season:</strong> {expedition.bestSeason}
                 </p>
               </div>

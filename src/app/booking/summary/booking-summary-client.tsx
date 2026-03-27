@@ -90,12 +90,12 @@ export default function BookingSummaryClient({
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-900 to-black text-white">
-      <div className="border-b border-gray-800">
+    <div className="min-h-screen bg-linear-to-b from-background to-muted/40 text-foreground">
+      <div className="border-b border-border">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <Link
             href={trekSlug ? `/treks/${trekSlug}` : "/all"}
-            className="flex items-center gap-2 text-blue-400 hover:text-blue-300"
+            className="flex items-center gap-2 text-primary hover:text-primary/90"
           >
             <FiArrowLeft /> Back to Trek
           </Link>
@@ -104,24 +104,30 @@ export default function BookingSummaryClient({
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-2">Confirm Your Booking</h1>
-        <p className="text-gray-400 mb-12">Complete your trek reservation</p>
+        <p className="mb-12 text-muted-foreground">
+          Complete your trek reservation
+        </p>
 
         <div className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2">
-            <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6 mb-8">
+            <div className="mb-8 rounded-lg border border-border bg-card p-6">
               <h2 className="text-2xl font-bold mb-4">
                 {trekName || "Selected Trek"}
               </h2>
 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Departure Dates:</span>
+                  <span className="text-muted-foreground">
+                    Departure Dates:
+                  </span>
                   <span className="font-semibold">
                     {startDate || "TBD"} to {endDate || "TBD"}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Price per Person:</span>
+                  <span className="text-muted-foreground">
+                    Price per Person:
+                  </span>
                   <span className="font-semibold">
                     ₹
                     {(
@@ -132,7 +138,7 @@ export default function BookingSummaryClient({
               </div>
             </div>
 
-            <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6 mb-8">
+            <div className="mb-8 rounded-lg border border-border bg-card p-6">
               <h3 className="text-xl font-bold mb-4">Number of Participants</h3>
 
               <div className="flex items-center gap-4">
@@ -140,7 +146,7 @@ export default function BookingSummaryClient({
                   onClick={() =>
                     setNumberOfPeople((current) => Math.max(1, current - 1))
                   }
-                  className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-sm"
+                  className="rounded-sm bg-secondary px-4 py-2 text-secondary-foreground hover:bg-secondary/90"
                 >
                   −
                 </button>
@@ -155,7 +161,7 @@ export default function BookingSummaryClient({
                   }
                   min="1"
                   max={Number.parseInt(availableSeats || "0", 10)}
-                  className="bg-gray-700 text-white px-4 py-2 rounded-sm text-center w-20"
+                  className="w-20 rounded-sm border border-input bg-background px-4 py-2 text-center text-foreground"
                 />
 
                 <button
@@ -167,23 +173,23 @@ export default function BookingSummaryClient({
                       ),
                     )
                   }
-                  className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-sm"
+                  className="rounded-sm bg-secondary px-4 py-2 text-secondary-foreground hover:bg-secondary/90"
                 >
                   +
                 </button>
 
-                <span className="text-gray-400 text-sm">
+                <span className="text-sm text-muted-foreground">
                   (Max: {availableSeats || "0"} available)
                 </span>
               </div>
             </div>
 
-            <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
+            <div className="rounded-lg border border-border bg-card p-6">
               <h3 className="text-xl font-bold mb-4">Contact Information</h3>
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="mb-2 block text-sm text-muted-foreground">
                     Full Name
                   </label>
                   <input
@@ -191,12 +197,12 @@ export default function BookingSummaryClient({
                     value={contactName}
                     onChange={(event) => setContactName(event.target.value)}
                     placeholder="Your full name"
-                    className="w-full bg-gray-700 border border-gray-600 rounded-sm px-4 py-2 text-white focus:border-blue-500 focus:outline-hidden"
+                    className="w-full rounded-sm border border-input bg-background px-4 py-2 text-foreground focus:border-primary focus:outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="mb-2 block text-sm text-muted-foreground">
                     Phone Number
                   </label>
                   <input
@@ -204,12 +210,12 @@ export default function BookingSummaryClient({
                     value={contactPhone}
                     onChange={(event) => setContactPhone(event.target.value)}
                     placeholder="+91 98765 43210"
-                    className="w-full bg-gray-700 border border-gray-600 rounded-sm px-4 py-2 text-white focus:border-blue-500 focus:outline-hidden"
+                    className="w-full rounded-sm border border-input bg-background px-4 py-2 text-foreground focus:border-primary focus:outline-hidden"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm text-gray-400 mb-2">
+                  <label className="mb-2 block text-sm text-muted-foreground">
                     Email Address
                   </label>
                   <input
@@ -217,7 +223,7 @@ export default function BookingSummaryClient({
                     value={contactEmail}
                     onChange={(event) => setContactEmail(event.target.value)}
                     placeholder="your.email@example.com"
-                    className="w-full bg-gray-700 border border-gray-600 rounded-sm px-4 py-2 text-white focus:border-blue-500 focus:outline-hidden"
+                    className="w-full rounded-sm border border-input bg-background px-4 py-2 text-foreground focus:border-primary focus:outline-hidden"
                   />
                 </div>
               </div>
@@ -231,7 +237,7 @@ export default function BookingSummaryClient({
                   onChange={(event) => setAgreed(event.target.checked)}
                   className="w-5 h-5 mt-1"
                 />
-                <span className="text-sm text-gray-400">
+                <span className="text-sm text-muted-foreground">
                   I agree to the trek terms, conditions, and cancellation
                   policy. I confirm that I am in good health and fit for
                   trekking.
@@ -247,10 +253,10 @@ export default function BookingSummaryClient({
           </div>
 
           <div className="h-fit">
-            <div className="bg-linear-to-br from-blue-900 to-blue-800 rounded-lg p-6 sticky top-20">
+            <div className="sticky top-20 rounded-lg border border-primary/20 bg-linear-to-br from-primary/10 to-secondary/50 p-6">
               <h3 className="text-lg font-bold mb-6">Price Breakdown</h3>
 
-              <div className="space-y-3 mb-6 pb-6 border-b border-blue-700">
+              <div className="mb-6 space-y-3 border-b border-border pb-6">
                 <div className="flex justify-between text-sm">
                   <span>Price per person</span>
                   <span>
@@ -271,7 +277,7 @@ export default function BookingSummaryClient({
               <div className="mb-6">
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-bold">Total Amount</span>
-                  <span className="text-3xl font-bold text-yellow-400">
+                  <span className="text-3xl font-bold text-primary">
                     ₹
                     {totalPrice.toLocaleString("en-IN", {
                       maximumFractionDigits: 0,
@@ -283,13 +289,13 @@ export default function BookingSummaryClient({
               <button
                 onClick={handleProceed}
                 disabled={loading}
-                className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-600 text-black font-bold py-3 rounded-lg transition flex items-center justify-center gap-2"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 font-bold text-primary-foreground transition hover:bg-primary/90 disabled:bg-muted disabled:text-muted-foreground"
               >
                 {loading ? "Processing..." : "Proceed to Payment"}
                 <FiChevronRight />
               </button>
 
-              <p className="text-xs text-gray-300 text-center mt-4">
+              <p className="mt-4 text-center text-xs text-muted-foreground">
                 ✓ Secure payment via Razorpay (Card, UPI, Netbanking)
               </p>
             </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useHaptic } from "@/hooks/use-haptic";
 
 interface AccordionProps {
   question: string;
@@ -9,25 +10,41 @@ interface AccordionProps {
 
 function Accordion({ question, answer }: AccordionProps) {
   const [open, setOpen] = useState(false);
+  const haptic = useHaptic();
+
+  const handleToggle = () => {
+    haptic("select");
+    setOpen(!open);
+  };
+
   return (
-    <div className="my-2 flex-col bg-amber-500 rounded-lg">
+    <div
+      className="my-2 flex flex-col border border-border bg-background rounded-md overflow-hidden transition-colors data-[state=open]:border-primary/50"
+      data-state={open ? "open" : "closed"}
+    >
       <button
-        onClick={() => {
-          setOpen(!open);
-        }}
-        className="flex justify-between items-center w-full 
-        px-2 py-1 font-medium"
+        onClick={handleToggle}
+        className="flex justify-between items-center w-full px-4 py-3 font-semibold hover:bg-muted/50 transition-colors"
       >
-        <span className="text-black text-left">{question}</span>
-        <span className="text-2xl leading-4">{open ? "-" : "+"}</span>
+        <span className="text-foreground text-left">{question}</span>
+        <span
+          className="text-xl leading-none text-muted-foreground transition-transform duration-normal data-[state=open]:rotate-45"
+          data-state={open ? "open" : "closed"}
+        >
+          +
+        </span>
       </button>
 
       <div
-        className={`grid overflow-hidden transition-all duration-300 ease-in-out 
-        bg-amber-800 text-neutral-300 rounded-b-lg
-        ${open ? "grid-rows-[1fr] opacity-100 px-2 pr-4 font-extralight py-6" : "grid-rows-[0fr] opacity-0"}`}
+        className={`grid overflow-hidden transition-all duration-normal ease-out-expo bg-muted/20 text-muted-foreground ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
       >
-        <div className="overflow-hidden text-left">{answer}</div>
+        <div className="overflow-hidden">
+          <div className="px-4 py-4 text-left leading-relaxed text-sm">
+            {answer}
+          </div>
+        </div>
       </div>
     </div>
   );

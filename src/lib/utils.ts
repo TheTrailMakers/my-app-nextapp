@@ -1,3 +1,4 @@
+import { UserRole } from "@/lib/user-role";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -106,6 +107,21 @@ export function safeJsonParse<T>(json: string | null, fallback: T): T {
     return JSON.parse(json);
   } catch {
     return fallback;
+  }
+}
+
+export function formatRoleLabel(role: UserRole) {
+  switch (role) {
+    case "SUPER_ADMIN":
+      return "Super Admin";
+    case "ADMIN":
+      return "Admin";
+    case "MODERATOR":
+      return "Moderator";
+    case "USER":
+      return "User";
+    default:
+      return role;
   }
 }
 

@@ -118,29 +118,40 @@ const mockData = {
 
 function ResultCard({ result }: { result: SearchResult }) {
   const typeColors: Record<SearchResult["type"], string> = {
-    trek: "bg-blue-500",
-    lesson: "bg-purple-500",
-    faq: "bg-green-500",
-    course: "bg-orange-500",
-    expedition: "bg-red-500",
+    trek: "bg-primary text-primary-foreground",
+    lesson: "bg-secondary text-secondary-foreground",
+    faq: "bg-green-600 text-white",
+    course: "bg-amber-500 text-white",
+    expedition: "bg-destructive text-destructive-foreground",
+  };
+  const typeLabels: Record<SearchResult["type"], string> = {
+    trek: "Trek",
+    lesson: "Lesson",
+    faq: "FAQ",
+    course: "Course",
+    expedition: "Expedition",
   };
 
   return (
     <Link href={result.href}>
-      <div className="cursor-pointer rounded-lg border border-gray-700 p-6 transition hover:border-blue-400 hover:bg-gray-800/50">
+      <div className="cursor-pointer rounded-lg border border-border p-6 transition hover:border-primary hover:bg-muted/50">
         <div className="flex items-start gap-4">
           <div
-            className={`${typeColors[result.type]} shrink-0 rounded-full px-3 py-1 text-xs font-semibold uppercase text-white`}
+            className={`${typeColors[result.type]} shrink-0 rounded-full px-3 py-1 text-xs font-semibold uppercase`}
           >
-            {result.type}
+            {typeLabels[result.type]}
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="mb-2 text-lg font-bold text-white">
+            <h3 className="mb-2 text-lg font-bold text-foreground">
               {result.title}
             </h3>
-            <p className="mb-2 text-sm text-gray-400">{result.description}</p>
+            <p className="mb-2 text-sm text-muted-foreground">
+              {result.description}
+            </p>
             {result.category && (
-              <p className="text-xs text-gray-500">{result.category}</p>
+              <p className="text-xs text-muted-foreground/70">
+                {result.category}
+              </p>
             )}
           </div>
         </div>
@@ -205,11 +216,11 @@ export default function SearchPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black pb-12 pt-24 text-white">
+    <main className="min-h-screen bg-background pb-12 pt-24 text-foreground">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="mb-8 inline-flex items-center gap-2 text-slate-400 transition hover:text-white"
+          className="mb-8 inline-flex items-center gap-2 text-muted-foreground transition hover:text-foreground"
         >
           <FiArrowLeft className="h-4 w-4" />
           Back to Home
@@ -217,7 +228,7 @@ export default function SearchPage() {
 
         <section className="mb-12">
           <h1 className="mb-4 text-4xl font-bold">Search Results</h1>
-          <p className="text-gray-400">
+          <p className="text-muted-foreground">
             {query
               ? `Showing results for "${query}"`
               : "Enter a search query to find treks, lessons, FAQs, courses, and expeditions"}
@@ -232,16 +243,16 @@ export default function SearchPage() {
           </div>
         ) : query ? (
           <div className="py-12 text-center">
-            <p className="mb-4 text-lg text-gray-400">
-              No results found for "{query}"
+            <p className="mb-4 text-lg text-muted-foreground">
+              No results found for &ldquo;{query}&rdquo;
             </p>
-            <p className="text-gray-500">
+            <p className="text-muted-foreground/70">
               Try searching with different keywords or browse our categories.
             </p>
           </div>
         ) : (
           <div className="py-12 text-center">
-            <p className="text-lg text-gray-400">
+            <p className="text-lg text-muted-foreground">
               Start searching to discover treks, lessons, FAQs, courses, and
               expeditions.
             </p>

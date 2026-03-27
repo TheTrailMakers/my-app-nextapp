@@ -6,7 +6,7 @@ export default function PrintReceiptButton() {
   return (
     <button
       onClick={() => window.print()}
-      className="w-full mt-6 flex items-center justify-center gap-2 bg-white text-green-900 font-bold py-2 rounded-lg hover:bg-gray-100 transition"
+      className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-card py-2 font-bold text-foreground transition hover:bg-muted"
     >
       <FiDownload /> Download Receipt
     </button>

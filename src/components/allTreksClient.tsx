@@ -79,9 +79,9 @@ const TrekCardSmall = ({ trek }: { trek: TrekCardProps }) => {
 
   return (
     <Link href={`/treks/${trek.slug}`}>
-      <div className="group cursor-pointer h-full bg-gray-900 border border-gray-700 rounded-lg overflow-hidden hover:border-blue-600 hover:shadow-lg hover:shadow-blue-600/20 transition-all duration-300">
+      <div className="group cursor-pointer h-full bg-card border border-border rounded-lg overflow-hidden hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">
         {/* Image Container - Smaller */}
-        <div className="relative h-32 overflow-hidden bg-gray-800">
+        <div className="relative h-32 overflow-hidden bg-muted">
           <Image
             src={imgSrc}
             alt={trek.name}
@@ -91,17 +91,17 @@ const TrekCardSmall = ({ trek }: { trek: TrekCardProps }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-card via-transparent to-transparent"></div>
 
           {/* State Badge - smaller; show short on small screens, full on larger */}
-          <div className="absolute top-2 right-2 bg-blue-600/90 px-2 py-0.5 rounded-full text-[10px] font-semibold text-white">
+          <div className="absolute top-2 right-2 bg-primary/90 px-2 py-0.5 rounded-full text-[10px] font-semibold text-foreground">
             <span className="inline sm:hidden">{shortState}</span>
             <span className="hidden sm:inline">{trek.state}</span>
           </div>
 
           {/* Difficulty Badge */}
           <div
-            className={`absolute bottom-2 left-2 ${difficultyColors[trek.difficulty] || "bg-gray-600/80"} px-2 py-0.5 rounded-full text-[10px] font-semibold text-white`}
+            className={`absolute bottom-2 left-2 ${difficultyColors[trek.difficulty] || "bg-gray-600/80"} px-2 py-0.5 rounded-full text-[10px] font-semibold text-foreground`}
           >
             {formatDifficulty(trek.difficulty)}
           </div>
@@ -110,45 +110,45 @@ const TrekCardSmall = ({ trek }: { trek: TrekCardProps }) => {
         {/* Content - Compact */}
         <div className="p-3">
           {/* Title */}
-          <h3 className="text-sm font-bold text-white mb-1 group-hover:text-blue-400 transition line-clamp-2">
+          <h3 className="text-sm font-bold text-foreground mb-1 group-hover:text-primary transition line-clamp-2">
             {trek.name}
           </h3>
 
           {/* Description */}
-          <p className="text-xs text-gray-400 mb-2 line-clamp-1">
+          <p className="text-xs text-muted-foreground mb-2 line-clamp-1">
             {trek.description}
           </p>
 
           {/* Stats Grid - Smaller */}
           <div className="grid grid-cols-3 gap-2 mb-3">
             <div className="text-center">
-              <p className="text-[9px] text-gray-500 uppercase font-semibold">
+              <p className="text-[9px] text-muted-foreground/70 uppercase font-semibold">
                 Duration
               </p>
-              <p className="text-xs font-bold text-blue-400">
+              <p className="text-xs font-bold text-primary">
                 {trek.duration}d
               </p>
             </div>
             <div className="text-center">
-              <p className="text-[9px] text-gray-500 uppercase font-semibold">
+              <p className="text-[9px] text-muted-foreground/70 uppercase font-semibold">
                 Distance
               </p>
-              <p className="text-xs font-bold text-blue-400">
+              <p className="text-xs font-bold text-primary">
                 {trek.distance ? `${trek.distance}km` : "N/A"}
               </p>
             </div>
             <div className="text-center">
-              <p className="text-[9px] text-gray-500 uppercase font-semibold">
+              <p className="text-[9px] text-muted-foreground/70 uppercase font-semibold">
                 Departures
               </p>
-              <p className="text-xs font-bold text-blue-400">
+              <p className="text-xs font-bold text-primary">
                 {trek.departuresCount}
               </p>
             </div>
           </div>
 
           {/* Explore Button - Smaller */}
-          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 text-sm rounded-lg transition">
+          <button className="w-full bg-primary hover:bg-primary/90 text-foreground font-semibold py-1.5 text-sm rounded-lg transition">
             Explore
           </button>
         </div>
@@ -202,21 +202,21 @@ export default function AllTreksPageClient({
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header Section */}
       <div className="px-6 md:px-12 lg:px-20 pt-12 pb-8">
         <h1 className="text-5xl md:text-7xl font-bold mb-4">All Treks</h1>
-        <p className="text-gray-400 text-lg max-w-3xl">
+        <p className="text-muted-foreground text-lg max-w-3xl">
           Explore our complete collection of treks, expeditions, and adventures
           across India's most stunning landscapes.
         </p>
       </div>
 
       {/* Sort Bar */}
-      <div className="px-6 md:px-12 lg:px-20 pb-8 flex items-center justify-between border-b border-gray-700 flex-wrap gap-4">
-        <p className="text-gray-400 text-sm">
+      <div className="px-6 md:px-12 lg:px-20 pb-8 flex items-center justify-between border-b border-border flex-wrap gap-4">
+        <p className="text-muted-foreground text-sm">
           Showing{" "}
-          <span className="text-white font-semibold">
+          <span className="text-foreground font-semibold">
             {initialTreks.length}
           </span>{" "}
           treks
@@ -224,8 +224,8 @@ export default function AllTreksPageClient({
 
         {/* Sort Controls */}
         <div className="flex items-center gap-3 flex-wrap justify-end">
-          <label className="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300">
-            <span className="font-semibold text-white">State</span>
+          <label className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-2 text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">State</span>
             <select
               value={currentState || ""}
               onChange={(event) =>
@@ -248,10 +248,10 @@ export default function AllTreksPageClient({
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               disabled={isPending}
-              className="flex items-center gap-2 bg-gray-900 border border-gray-700 hover:border-blue-600 px-3 py-2 rounded-lg transition text-sm font-semibold whitespace-nowrap"
+              className="flex items-center gap-2 bg-card border border-border hover:border-blue-600 px-3 py-2 rounded-lg transition text-sm font-semibold whitespace-nowrap"
             >
               Sort:{" "}
-              <span className="text-blue-400">
+              <span className="text-primary">
                 {sortOptions.find((o) => o.value === currentSort)?.label}
               </span>
               <FiChevronDown
@@ -261,7 +261,7 @@ export default function AllTreksPageClient({
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-20">
+              <div className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-xl z-20">
                 {sortOptions.map((option) => (
                   <button
                     key={option.value}
@@ -271,8 +271,8 @@ export default function AllTreksPageClient({
                     }}
                     className={`block w-full text-left px-4 py-2 text-sm transition ${
                       currentSort === option.value
-                        ? "bg-blue-600/20 text-blue-400 font-semibold"
-                        : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                        ? "bg-primary/20 text-primary font-semibold"
+                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     } first:rounded-t-lg last:rounded-b-lg`}
                   >
                     {option.label}
@@ -283,14 +283,14 @@ export default function AllTreksPageClient({
           </div>
 
           {/* Ascending/Descending Toggle */}
-          <div className="flex bg-gray-900 border border-gray-700 rounded-lg overflow-hidden">
+          <div className="flex bg-card border border-border rounded-lg overflow-hidden">
             <button
               onClick={() => navigateWithParams({ order: "asc" })}
               disabled={isPending}
               className={`px-3 py-2 text-sm font-semibold transition ${
                 currentOrder === "asc"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-900 text-gray-400 hover:text-white"
+                  ? "bg-primary text-foreground"
+                  : "bg-card text-muted-foreground hover:text-foreground"
               }`}
               title="Ascending Order"
             >
@@ -301,8 +301,8 @@ export default function AllTreksPageClient({
               disabled={isPending}
               className={`px-3 py-2 text-sm font-semibold transition ${
                 currentOrder === "desc"
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-900 text-gray-400 hover:text-white"
+                  ? "bg-primary text-foreground"
+                  : "bg-card text-muted-foreground hover:text-foreground"
               }`}
               title="Descending Order"
             >
@@ -314,7 +314,7 @@ export default function AllTreksPageClient({
             <button
               onClick={() => navigateWithParams({ state: null })}
               disabled={isPending}
-              className="rounded-lg border border-gray-700 px-3 py-2 text-sm font-semibold text-gray-300 transition hover:border-gray-500 hover:text-white"
+              className="rounded-lg border border-border px-3 py-2 text-sm font-semibold text-muted-foreground transition hover:border-gray-500 hover:text-foreground"
             >
               Clear State
             </button>
@@ -335,7 +335,7 @@ export default function AllTreksPageClient({
         {/* Empty State */}
         {initialTreks.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-gray-400 text-lg">No treks found</p>
+            <p className="text-muted-foreground text-lg">No treks found</p>
           </div>
         )}
       </div>

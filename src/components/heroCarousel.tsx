@@ -32,7 +32,7 @@ export function HeroCarousel() {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
       <div className="absolute inset-0 flex items-center justify-center p-6 md:p-8">
         <div className="relative w-full h-full max-w-6xl">
           {/* Carousel Images */}
@@ -56,23 +56,23 @@ export function HeroCarousel() {
           {/* Fixed Text Overlay with Handwritten Font */}
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="text-center">
-              <h1 className="text-6xl md:text-8xl text-white mb-2" style={{ fontFamily: 'Caveat, cursive', fontWeight: 700 }}>
+              <h1 className="text-6xl md:text-8xl text-foreground mb-2" style={{ fontFamily: 'Caveat, cursive', fontWeight: 700 }}>
                 Make Your Own Trail
               </h1>
-              <p className="text-xl md:text-2xl text-blue-300 font-light tracking-widest">Begin Your Adventure</p>
+              <p className="text-xl md:text-2xl text-primary/80 font-light tracking-widest">Begin Your Adventure</p>
             </div>
           </div>
 
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-secondary hover:bg-secondary/90 text-foreground p-3 rounded-full transition"
           >
             <FiChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-secondary hover:bg-secondary/90 text-foreground p-3 rounded-full transition"
           >
             <FiChevronRight className="w-6 h-6" />
           </button>

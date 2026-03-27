@@ -30,19 +30,19 @@ export function KnowBeforeYouGo({ articles }: { articles: Article[] }) {
   };
 
   return (
-    <section className="py-20 px-6 bg-black border-t border-gray-800">
+    <section className="py-20 px-6 bg-background border-t border-muted">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-2 text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
               Know Before You Go
             </h2>
-            <p className="text-gray-400">
+            <p className="text-muted-foreground">
               Expert tips and insights for your next adventure
             </p>
           </div>
           <Link href="/lessons">
-            <button className="mt-6 md:mt-0 border-2 border-blue-600 bg-blue-600/10 text-blue-400 hover:text-blue-300 font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center gap-2 group">
+            <button className="mt-6 md:mt-0 border-2 border-primary bg-primary/10 text-primary hover:text-primary/90 font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center gap-2 group">
               Read All Lessons
               <FiChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
             </button>
@@ -61,7 +61,7 @@ export function KnowBeforeYouGo({ articles }: { articles: Article[] }) {
               {articles.map((article, idx) => (
                 <div
                   key={idx}
-                  className="shrink-0 w-full md:w-1/3 bg-gray-800/40 border border-gray-700 rounded-lg overflow-hidden hover:border-blue-400 transition duration-300 group cursor-pointer flex flex-col"
+                  className="shrink-0 w-full md:w-1/3 bg-card border border-border rounded-lg overflow-hidden hover:border-primary transition duration-300 group cursor-pointer flex flex-col"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -72,16 +72,16 @@ export function KnowBeforeYouGo({ articles }: { articles: Article[] }) {
                     />
                   </div>
                   <div className="p-6 flex flex-col flex-1">
-                    <p className="text-xs text-blue-400 font-semibold mb-2 uppercase">
+                    <p className="text-xs text-primary font-semibold mb-2 uppercase">
                       {article.CreatedOn}
                     </p>
-                    <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition">
+                    <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition">
                       {article.Title}
                     </h3>
-                    <p className="text-sm text-gray-400 mb-4 flex-1 line-clamp-2">
+                    <p className="text-sm text-muted-foreground mb-4 flex-1 line-clamp-2">
                       {article.Brief}
                     </p>
-                    <div className="flex justify-between items-center text-xs text-gray-500">
+                    <div className="flex justify-between items-center text-xs text-muted-foreground/70">
                       <span>By {article.Author}</span>
                       <span>❤️ {article.Likes}</span>
                     </div>
@@ -96,13 +96,13 @@ export function KnowBeforeYouGo({ articles }: { articles: Article[] }) {
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 md:-translate-x-12 z-10 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 md:-translate-x-12 z-10 bg-secondary hover:bg-secondary/90 text-foreground p-3 rounded-full transition"
               >
                 <FiChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 md:translate-x-12 z-10 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 md:translate-x-12 z-10 bg-secondary hover:bg-secondary/90 text-foreground p-3 rounded-full transition"
               >
                 <FiChevronRight className="w-6 h-6" />
               </button>

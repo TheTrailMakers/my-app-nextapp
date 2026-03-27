@@ -1,7 +1,8 @@
 "use client";
 
-import Link from 'next/link';
-import React, { useState } from 'react';
+import Link from "next/link";
+import React, { useState } from "react";
+import { useHaptic } from "@/hooks/use-haptic";
 
 type Batch = {
   day: string;
@@ -9,26 +10,63 @@ type Batch = {
   available: number;
 };
 
-function Calendar({ month, batches, trekSlug }: { month: string; batches: Batch[]; trekSlug?: string }) {
+function Calendar({
+  month,
+  batches,
+  trekSlug,
+}: {
+  month: string;
+  batches: Batch[];
+  trekSlug?: string;
+}) {
   const [open, setOpen] = useState(false);
+  const haptic = useHaptic();
+
+  const handleToggle = () => {
+    haptic("select");
+    setOpen(!open);
+  };
 
   return (
-    <div className="my-2 flex-col w-full bg-amber-500 rounded-lg py-1 hover:bg-amber-600 transition-colors">
-      <button onClick={() => setOpen(!open)} className="flex justify-between items-center w-full px-2 py-1 font-semibold">
-        <span className="text-stone-900 text-left">{month}</span>
-        <span className="text-2xl leading-4">{open ? '-' : '+'}</span>
+    <div
+      className="my-2 flex flex-col w-full bg-background border border-border rounded-md overflow-hidden transition-colors data-[state=open]:border-primary/50"
+      data-state={open ? "open" : "closed"}
+    >
+      <button
+        onClick={handleToggle}
+        className="flex justify-between items-center w-full px-4 py-3 font-semibold hover:bg-muted/50 transition-colors"
+      >
+        <span className="text-foreground text-left">{month}</span>
+        <span
+          className="text-xl leading-none text-muted-foreground transition-transform duration-normal data-[state=open]:rotate-45"
+          data-state={open ? "open" : "closed"}
+        >
+          +
+        </span>
       </button>
 
-      <div className={`grid overflow-hidden transition-all duration-300 ease-in-out ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'} bg-amber-800 text-neutral-300 rounded-b-lg`}>
+      <div
+        className={`grid overflow-hidden transition-all duration-normal ease-out-expo bg-muted/20 text-muted-foreground ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
         <div className="overflow-hidden">
           {batches.map((batch, index) => {
-            const href = trekSlug ? `/treks/${trekSlug}` : "https://wa.me/7980426832";
+            const href = trekSlug
+              ? `/treks/${trekSlug}`
+              : "https://wa.me/7980426832";
             return (
               <Link href={href} key={index}>
-                <div className="flex justify-between items-left text-xs px-4 py-2 border-b border-amber-700 last:border-b-0 hover:bg-amber-700 transition-colors cursor-pointer">
-                  <span>{batch.day}</span>
-                  <span>Seats: {batch.batchSize}</span>
-                  <span>Left: {batch.available}</span>
+                <div className="flex justify-between items-left text-sm px-4 py-3 border-b border-border last:border-b-0 hover:bg-muted/50 transition-colors cursor-pointer">
+                  <span className="font-medium text-foreground">
+                    {batch.day}
+                  </span>
+                  <span className="text-muted-foreground">
+                    Seats: {batch.batchSize}
+                  </span>
+                  <span className="text-muted-foreground">
+                    Left: {batch.available}
+                  </span>
                 </div>
               </Link>
             );

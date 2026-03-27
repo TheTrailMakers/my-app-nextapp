@@ -26,7 +26,7 @@ function Scrollables({ Name, Img, PageLink }: ScrollablesProps) {
             sizes="(max-width: 768px) 250px, 400px"
           ></Image>
 
-          <div className="absolute w-full h-full  bg-linear-to-b from-black to-transparent to-50% border-t-2 border-t-blue-600 border-e-blue-600 rounded-xl"></div>
+          <div className="absolute w-full h-full  bg-linear-to-b from-background/80 to-transparent to-50% border-t-2 border-t-primary border-e-primary rounded-xl"></div>
 
           <h4 className="absolute top-2 text-base uppercase text-center leading-5 px-2 font-semibold">
             {Name}

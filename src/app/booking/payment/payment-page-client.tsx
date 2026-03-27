@@ -145,10 +145,10 @@ export default function PaymentPageClient({
 
   if (!bookingId || !amount) {
     return (
-      <div className="min-h-screen bg-linear-to-b from-gray-900 to-black text-white flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-b from-background to-muted/40 text-foreground">
         <div className="text-center">
           <p className="text-red-400 mb-4">Invalid booking details</p>
-          <Link href="/all" className="text-blue-400 hover:text-blue-300">
+          <Link href="/all" className="text-primary hover:text-primary/90">
             Back to Treks
           </Link>
         </div>
@@ -163,14 +163,14 @@ export default function PaymentPageClient({
         src="https://checkout.razorpay.com/v1/checkout.js"
         strategy="afterInteractive"
       />
-      <div className="min-h-screen bg-linear-to-b from-gray-900 to-black text-white">
-        <div className="border-b border-gray-800">
+      <div className="min-h-screen bg-linear-to-b from-background to-muted/40 text-foreground">
+        <div className="border-b border-border">
           <div className="max-w-4xl mx-auto px-4 py-6">
             <button
               onClick={() => router.back()}
-              className="flex items-center gap-2 text-blue-400 hover:text-blue-300"
+              className="flex items-center gap-2 text-primary hover:text-primary/90"
             >
-              <FiArrowLeft /> Back
+              <FiArrowLeft /> Back to Summary
             </button>
           </div>
         </div>
@@ -179,13 +179,15 @@ export default function PaymentPageClient({
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
               <h1 className="text-4xl font-bold mb-2">Complete Payment</h1>
-              <p className="text-gray-400 mb-12">Secure payment via Razorpay</p>
+              <p className="mb-12 text-muted-foreground">
+                Secure payment via Razorpay
+              </p>
 
-              <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-6 mb-8">
+              <div className="mb-8 rounded-lg border border-border bg-card p-6">
                 <h2 className="text-2xl font-bold mb-6">Payment Method</h2>
 
                 <div className="space-y-3">
-                  <label className="flex items-center p-4 border-2 border-blue-500 rounded-lg bg-blue-900/20 cursor-pointer">
+                  <label className="flex cursor-pointer items-center rounded-lg border-2 border-primary bg-primary/10 p-4">
                     <input
                       type="radio"
                       name="payment"
@@ -197,16 +199,16 @@ export default function PaymentPageClient({
                     </span>
                   </label>
 
-                  <label className="flex items-center p-4 border border-gray-600 rounded-lg cursor-pointer hover:border-gray-500">
+                  <label className="flex cursor-pointer items-center rounded-lg border border-border p-4 hover:border-primary/40">
                     <input
                       type="radio"
                       name="payment"
                       disabled
                       className="w-4 h-4"
                     />
-                    <span className="ml-3 font-semibold text-gray-400">
-                      UPI/Wallet{" "}
-                      <span className="text-xs text-gray-500">
+                    <span className="ml-3 font-semibold text-muted-foreground">
+                      UPI and Wallets{" "}
+                      <span className="text-xs text-muted-foreground/70">
                         (Coming soon)
                       </span>
                     </span>
@@ -217,7 +219,7 @@ export default function PaymentPageClient({
               <div className="bg-yellow-900/20 border border-yellow-700 rounded-lg p-6 mb-8">
                 <h3 className="font-bold mb-3 flex items-center gap-2">
                   <FiCheckCircle className="text-yellow-500" />
-                  Test Mode - Use Test Card
+                  Test Mode: Use This Card
                 </h3>
                 <div className="space-y-2 text-sm">
                   <p>
@@ -243,18 +245,18 @@ export default function PaymentPageClient({
             </div>
 
             <div className="h-fit">
-              <div className="bg-linear-to-br from-blue-900 to-blue-800 rounded-lg p-6 sticky top-20">
+              <div className="sticky top-20 rounded-lg border border-primary/20 bg-linear-to-br from-primary/10 to-secondary/50 p-6">
                 <h3 className="text-lg font-bold mb-6">Order Summary</h3>
 
-                <div className="space-y-4 mb-6 pb-6 border-b border-blue-700">
+                <div className="mb-6 space-y-4 border-b border-border pb-6">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-300">Booking ID</span>
+                    <span className="text-muted-foreground">Booking ID</span>
                     <span className="font-mono text-xs">
                       {bookingId.slice(-8)}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-300">Amount</span>
+                    <span className="text-muted-foreground">Amount</span>
                     <span className="font-bold">
                       ₹{(Number.parseInt(amount, 10) / 100).toLocaleString()}
                     </span>
@@ -264,14 +266,14 @@ export default function PaymentPageClient({
                 <button
                   onClick={handlePayment}
                   disabled={loading || processing}
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-600 text-black font-bold py-3 rounded-lg transition"
+                  className="w-full rounded-lg bg-primary py-3 font-bold text-primary-foreground transition hover:bg-primary/90 disabled:bg-muted disabled:text-muted-foreground"
                 >
                   {processing
                     ? "Processing..."
                     : `Pay ₹${(Number.parseInt(amount, 10) / 100).toLocaleString()}`}
                 </button>
 
-                <p className="text-xs text-gray-300 text-center mt-4">
+                <p className="mt-4 text-center text-xs text-muted-foreground">
                   Powered by Razorpay
                 </p>
               </div>

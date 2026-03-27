@@ -28,6 +28,14 @@ interface ProfileBooking {
 
 type ProfileFormData = Partial<ProfileUser>;
 
+function formatBookingStatus(status: string) {
+  return status
+    .toLowerCase()
+    .split("_")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
 export default function ProfileClient({
   initialProfile,
   initialBookings,
@@ -69,28 +77,26 @@ export default function ProfileClient({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 shadow-sm">
+    <div className="min-h-screen bg-background">
+      <div className="bg-card shadow-sm">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            My Profile
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+          <h1 className="text-3xl font-bold text-foreground">My Profile</h1>
+          <p className="mt-1 text-muted-foreground">
             Manage your account and bookings
           </p>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex gap-4 mb-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="mb-6 flex gap-4 border-b border-border">
           {(["profile", "bookings"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 font-medium capitalize transition-colors ${
                 activeTab === tab
-                  ? "border-b-2 border-blue-600 text-blue-600 dark:text-blue-400"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                  ? "border-b-2 border-primary text-primary"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {tab}
@@ -99,9 +105,9 @@ export default function ProfileClient({
         </div>
 
         {activeTab === "profile" && profile && (
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+          <div className="rounded-lg bg-card p-6 shadow-sm">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-xl font-semibold text-foreground">
                 Account Information
               </h2>
               <button
@@ -116,8 +122,8 @@ export default function ProfileClient({
                 disabled={isSaving}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-70 ${
                   isEditing
-                    ? "bg-green-600 hover:bg-green-700 text-white"
-                    : "bg-blue-600 hover:bg-blue-700 text-white"
+                    ? "bg-green-600 text-white hover:bg-green-700"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90"
                 }`}
               >
                 {isSaving
@@ -130,31 +136,31 @@ export default function ProfileClient({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   Email
                 </label>
                 <input
                   type="email"
                   value={editData.email || ""}
                   disabled
-                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-muted px-4 py-2 text-foreground disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   Username
                 </label>
                 <input
                   type="text"
                   value={editData.username || ""}
                   disabled
-                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-muted px-4 py-2 text-foreground disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   First Name
                 </label>
                 <input
@@ -164,12 +170,12 @@ export default function ProfileClient({
                     setEditData({ ...editData, firstName: event.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground disabled:bg-muted disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   Last Name
                 </label>
                 <input
@@ -179,12 +185,12 @@ export default function ProfileClient({
                     setEditData({ ...editData, lastName: event.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground disabled:bg-muted disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   Phone Number
                 </label>
                 <input
@@ -197,12 +203,12 @@ export default function ProfileClient({
                     })
                   }
                   disabled={!isEditing}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground disabled:bg-muted disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   Address
                 </label>
                 <input
@@ -212,12 +218,12 @@ export default function ProfileClient({
                     setEditData({ ...editData, address: event.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground disabled:bg-muted disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   City
                 </label>
                 <input
@@ -227,12 +233,12 @@ export default function ProfileClient({
                     setEditData({ ...editData, city: event.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground disabled:bg-muted disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   State
                 </label>
                 <input
@@ -242,12 +248,12 @@ export default function ProfileClient({
                     setEditData({ ...editData, state: event.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground disabled:bg-muted disabled:opacity-50"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-sm font-medium text-foreground">
                   Pincode
                 </label>
                 <input
@@ -257,7 +263,7 @@ export default function ProfileClient({
                     setEditData({ ...editData, pincode: event.target.value })
                   }
                   disabled={!isEditing}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:opacity-50"
+                  className="w-full rounded-lg border border-input bg-background px-4 py-2 text-foreground disabled:bg-muted disabled:opacity-50"
                 />
               </div>
 
@@ -267,7 +273,7 @@ export default function ProfileClient({
                     setIsEditing(false);
                     setEditData(profile);
                   }}
-                  className="px-4 py-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-700 text-gray-900 dark:text-white rounded-lg font-medium"
+                  className="rounded-lg bg-secondary px-4 py-2 font-medium text-secondary-foreground hover:bg-secondary/90"
                 >
                   Cancel
                 </button>
@@ -277,30 +283,27 @@ export default function ProfileClient({
         )}
 
         {activeTab === "bookings" && (
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          <div className="overflow-hidden rounded-lg bg-card shadow-sm">
+            <div className="border-b border-border px-6 py-4">
+              <h2 className="text-xl font-semibold text-foreground">
                 My Bookings
               </h2>
             </div>
 
             {bookings.length === 0 ? (
-              <div className="p-6 text-center text-gray-600 dark:text-gray-400">
+              <div className="p-6 text-center text-muted-foreground">
                 <p>No bookings yet. Start booking your next trek!</p>
               </div>
             ) : (
-              <div className="divide-y divide-gray-200 dark:divide-gray-700">
+              <div className="divide-y divide-border">
                 {bookings.map((booking) => (
-                  <div
-                    key={booking.id}
-                    className="p-6 hover:bg-gray-50 dark:hover:bg-gray-700/50"
-                  >
+                  <div key={booking.id} className="p-6 hover:bg-muted/50">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                        <h3 className="text-lg font-semibold text-foreground">
                           Booking #{booking.id.slice(0, 8)}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm">
+                        <p className="text-sm text-muted-foreground">
                           {new Date(booking.createdAt).toLocaleDateString()}
                         </p>
                       </div>
@@ -313,40 +316,40 @@ export default function ProfileClient({
                               : "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400"
                         }`}
                       >
-                        {booking.status}
+                        {formatBookingStatus(booking.status)}
                       </span>
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">
-                          Travelers
+                        <p className="text-xs font-medium text-muted-foreground">
+                          Travellers
                         </p>
-                        <p className="text-gray-900 dark:text-white font-semibold">
+                        <p className="font-semibold text-foreground">
                           {booking.numberOfPeople}
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">
+                        <p className="text-xs font-medium text-muted-foreground">
                           Total Amount
                         </p>
-                        <p className="text-gray-900 dark:text-white font-semibold">
+                        <p className="font-semibold text-foreground">
                           ₹{(booking.totalAmount / 100).toLocaleString()}
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">
+                        <p className="text-xs font-medium text-muted-foreground">
                           Name
                         </p>
-                        <p className="text-gray-900 dark:text-white font-semibold">
+                        <p className="font-semibold text-foreground">
                           {booking.contactName}
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-600 dark:text-gray-400 text-xs font-medium">
+                        <p className="text-xs font-medium text-muted-foreground">
                           Phone
                         </p>
-                        <p className="text-gray-900 dark:text-white font-semibold">
+                        <p className="font-semibold text-foreground">
                           {booking.contactPhone}
                         </p>
                       </div>
@@ -354,10 +357,10 @@ export default function ProfileClient({
 
                     {booking.status !== "CANCELLED" && (
                       <div className="flex gap-3">
-                        <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium">
+                        <button className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
                           Edit Booking
                         </button>
-                        <button className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium">
+                        <button className="rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground hover:bg-destructive/90">
                           Cancel Booking
                         </button>
                       </div>
