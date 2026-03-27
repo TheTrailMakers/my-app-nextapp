@@ -16,6 +16,7 @@ Sentry.init({
   debug: process.env.NODE_ENV === "development",
 
   // Enable sending user PII (Personally Identifiable Information)
+  // Controlled via SENTRY_SEND_DEFAULT_PII env var; defaults to false.
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
-  sendDefaultPii: true,
+  sendDefaultPii: process.env.SENTRY_SEND_DEFAULT_PII === "true",
 });
