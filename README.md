@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Trail Makers Next App
 
-## Getting Started
+Production-focused Next.js 16 application for trekking discovery, bookings, expeditions, courses, FAQs, and role-based admin operations.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 App Router
+- React 19
+- Drizzle ORM with PostgreSQL
+- Better Auth
+- Tailwind CSS
+- Sentry monitoring
+
+## Core Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun run dev
+bun run lint
+bun run build
+bun run db:generate
+bun run db:push
+bun run db:seed
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Required Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+DATABASE_URL=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+NEXT_PUBLIC_SITE_URL=
+RESEND_API_KEY=
+EMAIL_FROM=
+NEXT_PUBLIC_SENTRY_DSN=
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`NEXT_PUBLIC_SITE_URL` should point to the canonical deployment URL and is used for metadata generation.
 
-## Learn More
+For Sentry source map uploads during production builds, also set:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+SENTRY_AUTH_TOKEN=
+SENTRY_ORG=
+SENTRY_PROJECT=
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database Workflow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Generate Drizzle SQL artifacts with `bun run db:generate`.
+2. Apply the current schema with `bun run db:push`.
+3. Seed bootstrap data with `bun run db:seed`.
 
-## Deploy on Vercel
+## Application Areas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Public marketing and catalog routes under `src/app`
+- Booking, payment, and profile flows under `src/app/booking` and `src/app/profile`
+- Admin APIs and dashboards under `src/app/admin` and `src/app/api/admin`
+- Shared business logic under `src/lib/services`
+- Auth and RBAC logic under `src/lib/auth.ts`, `src/lib/roleUtils.ts`, and `src/proxy.ts`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Architectural Conventions
+
+- Prefer server-rendered route pages for catalog and content sections.
+- Use client components only for interactive islands.
+- Route protection lives in `src/proxy.ts` for this Next 16 branch.
+- Use the shared Drizzle database client from `src/drizzle/db.ts`.
+- Use `next/image` for application images.
+- Add `loading.tsx` and `error.tsx` boundaries for routes with significant server work.
+
+## Validation
+
+Before merging substantial changes, run:
+
+```bash
+bun run lint
+bun run build
+```
+
+## Notes
+
+- The build is resilient when `DATABASE_URL` is missing by catching database access for static generation paths and falling back to empty collections where needed.
+- Sentry runtime configuration lives in `src/instrumentation-client.ts`, `sentry.server.config.ts`, and `sentry.edge.config.ts`.
+- The Sentry build plugin is configured in `next.config.mjs` and uses `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, and `SENTRY_PROJECT` when source maps should be uploaded.

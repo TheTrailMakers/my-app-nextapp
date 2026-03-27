@@ -1,64 +1,49 @@
-import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import { desc, eq } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { booking, departure, payment, trek } from "@/drizzle/schema";
+import { getAppSession } from "@/lib/auth-session";
 
 // GET user's bookings
 export async function GET() {
-  const session = await getServerSession(authOptions);
-  
-  if (!session?.user?.email) {
-    return NextResponse.json(
-      { error: 'Unauthorized' },
-      { status: 401 }
-    );
+  const session = await getAppSession();
+
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const user = await (prisma as any).user.findUnique({
-      where: { email: session.user.email },
-      select: { id: true }
-    });
+    const rows = await db
+      .select({ booking, departure, trek, payment })
+      .from(booking)
+      .innerJoin(departure, eq(booking.departureId, departure.id))
+      .innerJoin(trek, eq(departure.trekId, trek.id))
+      .leftJoin(payment, eq(payment.bookingId, booking.id))
+      .where(eq(booking.userId, session.user.id))
+      .orderBy(desc(booking.createdAt));
 
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
-
-    const bookings = await (prisma as any).booking.findMany({
-      where: { userId: user.id },
-      include: {
-        departure: {
-          include: {
-            trek: {
-              select: {
-                id: true,
-                name: true,
-                slug: true
-              }
-            }
-          }
+    const bookings = rows.map(({ booking, departure, trek, payment }) => ({
+      ...booking,
+      departure: {
+        ...departure,
+        trek: {
+          id: trek.id,
+          name: trek.name,
+          slug: trek.slug,
         },
-        payment: {
-          select: {
-            status: true
-          }
-        }
       },
-      orderBy: { createdAt: 'desc' }
-    });
+      payment: payment ? { status: payment.status } : null,
+    }));
 
     return NextResponse.json({
       success: true,
-      bookings
+      bookings,
     });
   } catch (error) {
-    console.error('Error fetching bookings:', error);
+    console.error("Error fetching bookings:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch bookings' },
-      { status: 500 }
+      { error: "Failed to fetch bookings" },
+      { status: 500 },
     );
   }
 }

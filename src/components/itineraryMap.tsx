@@ -24,19 +24,19 @@ export function ItineraryMap({ waypoints, trekName }: ItineraryMapProps) {
   const mapWidth = 100;
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-gray-950 to-black border-t border-gray-800">
+    <section className="py-20 px-6 bg-linear-to-b from-background to-background border-t border-muted">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
           Your Journey Map
         </h2>
-        <p className="text-gray-400 mb-12">
+        <p className="text-muted-foreground mb-12">
           Visual representation of your trek route and daily progress
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Map Visualization */}
           <div className="lg:col-span-2">
-            <div className="bg-gray-900 border border-gray-700 rounded-lg p-8">
+            <div className="bg-card border border-border rounded-lg p-8">
               <svg
                 viewBox={`0 0 ${mapWidth} ${mapHeight}`}
                 className="w-full h-auto"
@@ -164,12 +164,12 @@ export function ItineraryMap({ waypoints, trekName }: ItineraryMapProps) {
 
           {/* Waypoint List */}
           <div className="lg:col-span-1\">
-            <h3 className="text-2xl font-bold mb-6 text-white\">Daily Breakdown</h3>
+            <h3 className="text-2xl font-bold mb-6 text-foreground\">Daily Breakdown</h3>
             <div className="space-y-2">
               {waypoints.map((waypoint) => (
                 <div
                   key={waypoint.day}
-                  className="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden hover:border-blue-400 transition"
+                  className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary transition"
                 >
                   <button
                     onClick={() =>
@@ -177,36 +177,36 @@ export function ItineraryMap({ waypoints, trekName }: ItineraryMapProps) {
                         expandedDay === waypoint.day ? null : waypoint.day
                       )
                     }
-                    className="w-full px-4 py-4 flex items-start justify-between hover:bg-gray-800 transition"
+                    className="w-full px-4 py-4 flex items-start justify-between hover:bg-muted transition"
                   >
                     <div className="flex items-start gap-3 text-left flex-1">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-sm font-bold">
+                      <div className="shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-sm font-bold">
                         {waypoint.day}
                       </div>
                       <div>
-                        <p className="font-semibold text-white">
+                        <p className="font-semibold text-foreground">
                           {waypoint.location}
                         </p>
                         {waypoint.altitude && (
-                          <p className="text-xs text-gray-400 mt-1">
+                          <p className="text-xs text-muted-foreground mt-1">
                             {waypoint.altitude.toLocaleString()} m
                           </p>
                         )}
                       </div>
                     </div>
                     {waypoint.description && (
-                      <div className="flex-shrink-0">
+                      <div className="shrink-0">
                         {expandedDay === waypoint.day ? (
-                          <FiChevronUp className="w-5 h-5 text-gray-400" />
+                          <FiChevronUp className="w-5 h-5 text-muted-foreground" />
                         ) : (
-                          <FiChevronDown className="w-5 h-5 text-gray-400" />
+                          <FiChevronDown className="w-5 h-5 text-muted-foreground" />
                         )}
                       </div>
                     )}
                   </button>
 
                   {expandedDay === waypoint.day && waypoint.description && (
-                    <div className="px-4 py-3 bg-gray-800/50 border-t border-gray-700 text-sm text-gray-300">
+                    <div className="px-4 py-3 bg-muted/50 border-t border-border text-sm text-muted-foreground">
                       {waypoint.description}
                     </div>
                   )}
@@ -217,24 +217,24 @@ export function ItineraryMap({ waypoints, trekName }: ItineraryMapProps) {
         </div>
 
         {/* Legend */}
-        <div className="mt-12 bg-gray-900 border border-gray-700 rounded-lg p-6">
-          <h4 className="font-semibold text-white mb-4">Understanding the Map</h4>
+        <div className="mt-12 bg-card border border-border rounded-lg p-6">
+          <h4 className="font-semibold text-foreground mb-4">Understanding the Map</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <p className="text-sm text-gray-400 mb-2">🔵 Altitude Progression</p>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-muted-foreground mb-2">🔵 Altitude Progression</p>
+              <p className="text-sm text-muted-foreground">
                 The colored line shows elevation changes throughout your trek
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-400 mb-2">📍 Daily Camps</p>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-muted-foreground mb-2">📍 Daily Camps</p>
+              <p className="text-sm text-muted-foreground">
                 Each numbered point represents your resting location for the day
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-400 mb-2">📊 Difficulty Indicator</p>
-              <p className="text-sm text-gray-300">
+              <p className="text-sm text-muted-foreground mb-2">📊 Difficulty Indicator</p>
+              <p className="text-sm text-muted-foreground">
                 Color intensifies with altitude - steeper climbs ahead
               </p>
             </div>

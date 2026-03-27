@@ -1,3 +1,7 @@
+import { UserRole } from "@/lib/user-role";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 /**
  * Utility Functions
  */
@@ -27,7 +31,8 @@ export function formatDate(date: Date): string {
 
 /**
  * Format date with time
- */
+
+*/
 export function formatDateTime(date: Date): string {
   return date.toLocaleDateString("en-IN", {
     day: "numeric",
@@ -56,7 +61,7 @@ export function generateSlug(text: string): string {
  */
 export function calculateBookingTotal(
   numberOfPeople: number,
-  pricePerPerson: number
+  pricePerPerson: number,
 ): number {
   return numberOfPeople * pricePerPerson;
 }
@@ -103,4 +108,23 @@ export function safeJsonParse<T>(json: string | null, fallback: T): T {
   } catch {
     return fallback;
   }
+}
+
+export function formatRoleLabel(role: UserRole) {
+  switch (role) {
+    case "SUPER_ADMIN":
+      return "Super Admin";
+    case "ADMIN":
+      return "Admin";
+    case "MODERATOR":
+      return "Moderator";
+    case "USER":
+      return "User";
+    default:
+      return role;
+  }
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }

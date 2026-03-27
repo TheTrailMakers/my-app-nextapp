@@ -1,12 +1,23 @@
-/**
- * PRODUCTION-READY TREKKING BOOKING PLATFORM
- * Complete Architecture Documentation
- * 
- * This document outlines the production-ready architecture for a trekking
- * booking platform built with Next.js, PostgreSQL, and Prisma.
- */
+/\*\*
+
+- PRODUCTION-READY TREKKING BOOKING PLATFORM
+- Complete Architecture Documentation
+-
+- This document outlines the production-ready architecture for a trekking
+- booking platform built with Next.js, PostgreSQL, and Drizzle ORM.
+  \*/
 
 # Complete Trekking Booking Platform Architecture
+
+## Current Delivery Conventions
+
+- Public catalog and content routes should default to server rendering with ISR where practical.
+- Client components should be reserved for interactive islands such as booking forms, search interactions, and authenticated dashboards.
+- Route protection for this Next 16 codebase is implemented in `src/proxy.ts`.
+- API routes and services should use the shared Drizzle client from `src/drizzle/db.ts` and avoid creating ad hoc database clients.
+- Route groups with meaningful server work should provide `loading.tsx` and `error.tsx` boundaries.
+- Shared UI primitives should expose typed props instead of `any`.
+- Database bootstrap data is seeded through the configured Drizzle-era seed script.
 
 ## 📋 Table of Contents
 
@@ -26,6 +37,7 @@
 ### Overview
 
 The database consists of 7 interconnected tables designed for:
+
 - **Data consistency**: Proper relationships and constraints
 - **Performance**: Indexed fields for common queries
 - **Audit trail**: Complete history of all operations
@@ -34,6 +46,7 @@ The database consists of 7 interconnected tables designed for:
 ### Models
 
 #### 1. **User** (Already exists)
+
 Stores authentication and profile information
 \`\`\`
 Columns: id, email, username, password, firstName, lastName, phoneNumber, address, city, state, pincode
@@ -41,9 +54,11 @@ Indexes: email, createdAt
 \`\`\`
 
 #### 2. **Trek**
+
 Static trek information
 \`\`\`
 Columns:
+
 - id (CUID): Primary key
 - slug: Unique URL-friendly identifier
 - name: Trek name
@@ -64,9 +79,11 @@ Indexes: slug (unique), difficulty, state, fulltext on name/description
 \`\`\`
 
 #### 3. **Departure**
+
 Individual trek batches with seat availability
 \`\`\`
 Columns:
+
 - id (CUID): Primary key
 - trekId: Foreign key to Trek
 - startDate: When trek starts
@@ -78,6 +95,7 @@ Columns:
 - cancellationReason: Text
 
 Constraints:
+
 - UNIQUE(trekId, startDate): Prevent duplicate batches
 - Foreign key: trekId → Trek.id (ON DELETE CASCADE)
 
@@ -85,20 +103,23 @@ Indexes: trekId, startDate, isCancelled
 \`\`\`
 
 #### 4. **Booking**
+
 Customer bookings linked to departures
 \`\`\`
 Columns:
+
 - id (CUID): Primary key
 - userId: Foreign key to User
 - departureId: Foreign key to Departure
 - numberOfPeople: How many seats
-- totalAmount: numberOfPeople * pricePerPerson (denormalized for history)
+- totalAmount: numberOfPeople \* pricePerPerson (denormalized for history)
 - status: ENUM (PENDING, CONFIRMED, CANCELLED, COMPLETED)
 - contactName, contactPhone, contactEmail: Booking contact info
 - cancellationReason: Why booking was cancelled
 - cancelledAt: When cancelled
 
 Constraints:
+
 - UNIQUE(userId, departureId): One booking per user per departure
 - Foreign keys: userId → User.id, departureId → Departure.id (ON DELETE CASCADE)
 
@@ -106,9 +127,11 @@ Indexes: userId, departureId, status, createdAt
 \`\`\`
 
 #### 5. **Payment**
+
 Payment tracking and transactions
 \`\`\`
 Columns:
+
 - id (CUID): Primary key
 - bookingId: Foreign key to Booking (UNIQUE, one-to-one)
 - userId: Foreign key to User
@@ -125,10 +148,12 @@ Indexes: userId, bookingId, status, createdAt
 \`\`\`
 
 #### 6. **TrekReview**
+
 Customer reviews and ratings
 \`\`\```
 
 #### 7. **AuditLog**
+
 Complete audit trail for compliance
 \`\`\`
 Records: BOOKING_CREATED, PAYMENT_COMPLETED, BOOKING_CANCELLED, etc.
@@ -228,41 +253,56 @@ T6    |                     | Create booking      |
 The `BookingService.createBooking()` method uses PostgreSQL transactions:
 
 ```typescript
-const booking = await prisma.$transaction(
-  async (tx) => {
-    // Step 1: Prevent duplicate bookings
-    const existing = await tx.booking.findUnique({
-      where: { userId_departureId: { userId, departureId } }
-    });
-    if (existing) throw new DuplicateBookingError();
+const booking = await db.transaction(async (tx) => {
+  // Step 1: Prevent duplicate bookings
+  const existing = await tx.query.bookingTable.findFirst({
+    where: and(
+      eq(bookingTable.userId, userId),
+      eq(bookingTable.departureId, departureId),
+    ),
+  });
+  if (existing) throw new DuplicateBookingError();
 
-    // Step 2: Get latest seat count WITHIN transaction
-    const departure = await tx.departure.findUnique({
-      where: { id: departureId }
-    });
-    if (departure.seatsAvailable < numberOfPeople) {
-      throw new InsufficientSeatsError();
-    }
+  // Step 2: Get latest seat count WITHIN transaction
+  const [departureRecord] = await tx
+    .select({ seatsAvailable: departure.seatsAvailable })
+    .from(departure)
+    .where(eq(departure.id, departureId))
+    .limit(1);
+  if (!departureRecord || departureRecord.seatsAvailable < numberOfPeople) {
+    throw new InsufficientSeatsError();
+  }
 
-    // Step 3: Atomic update - decrements seats and creates booking
-    await tx.departure.update({
-      where: { id: departureId },
-      data: { seatsAvailable: { decrement: numberOfPeople } }
-    });
+  // Step 3: Atomic update - decrement seats and create booking
+  await tx
+    .update(departure)
+    .set({ seatsAvailable: departureRecord.seatsAvailable - numberOfPeople })
+    .where(eq(departure.id, departureId));
 
-    // Step 4: Create booking record
-    const booking = await tx.booking.create({ /* ... */ });
+  // Step 4: Create booking record
+  const [createdBooking] = await tx
+    .insert(bookingTable)
+    .values({ userId, departureId, numberOfPeople })
+    .returning();
+
+  return createdBooking;
+});
+```
 
     // Step 5: Audit log
-    await tx.auditLog.create({ /* ... */ });
+    await tx.auditLog.create({
+      /* ... */
+    });
 
     return booking;
-  },
-  {
-    isolationLevel: "Serializable", // CRITICAL: Prevents all race conditions
-    timeout: 10000
-  }
+
+},
+{
+isolationLevel: "Serializable", // CRITICAL: Prevents all race conditions
+timeout: 10000,
+},
 );
+
 ```
 
 ### Why This Works
@@ -280,16 +320,18 @@ const booking = await prisma.$transaction(
 ### Error Class Hierarchy
 
 ```
+
 AppError (base)
 ├── ValidationError (400)
 ├── UnauthorizedError (401)
 ├── NotFoundError (404)
 ├── ConflictError (409)
-│   ├── InsufficientSeatsError
-│   └── DuplicateBookingError
+│ ├── InsufficientSeatsError
+│ └── DuplicateBookingError
 ├── PaymentRequiredError (402)
 └── RateLimitError (429)
-```
+
+````
 
 ### Error Response Format
 
@@ -302,7 +344,7 @@ AppError (base)
     "statusCode": 400
   }
 }
-```
+````
 
 ### Example: Handling Concurrent Bookings
 
@@ -327,8 +369,11 @@ try {
     // 500 Internal Server Error (log this!)
     console.error("Unexpected booking error:", error);
     return NextResponse.json(
-      { success: false, error: { message: "Internal server error", code: "INTERNAL_ERROR" } },
-      { status: 500 }
+      {
+        success: false,
+        error: { message: "Internal server error", code: "INTERNAL_ERROR" },
+      },
+      { status: 500 },
     );
   }
 }
@@ -371,8 +416,12 @@ const validatedData = createBookingSchema.parse(request.body);
 ### 3. SQL Injection Prevention
 
 ```typescript
-// SAFE: Prisma parameterizes queries
-const trek = await prisma.trek.findUnique({ where: { slug } });
+// SAFE: Drizzle parameterizes queries
+const [trekRecord] = await db
+  .select()
+  .from(trek)
+  .where(eq(trek.slug, slug))
+  .limit(1);
 
 // NOT safe (don't do this):
 // SELECT * FROM treks WHERE slug = '${slug}'; // Vulnerable!
@@ -385,28 +434,30 @@ const trek = await prisma.trek.findUnique({ where: { slug } });
 // Suggested: 10 bookings per user per hour
 // Use: upstash/redis or similar
 
-app.use(rateLimit({
-  keyGenerator: (req) => req.user.id,
-  skip: (req) => req.path === "/api/public/...",
-  handler: () => {
-    throw new RateLimitError("Too many requests");
-  }
-}));
+app.use(
+  rateLimit({
+    keyGenerator: (req) => req.user.id,
+    skip: (req) => req.path === "/api/public/...",
+    handler: () => {
+      throw new RateLimitError("Too many requests");
+    },
+  }),
+);
 ```
 
 ### 5. Data Sensitivity
 
 ```typescript
 // NEVER return passwords
-const user = await prisma.user.findUnique({
-  where: { id: userId },
-  select: {
-    id: true,
-    email: true,
-    username: true,
-    // password: false (implicitly excluded)
-  }
-});
+const [user] = await db
+  .select({
+    id: userTable.id,
+    email: userTable.email,
+    username: userTable.username,
+  })
+  .from(userTable)
+  .where(eq(userTable.id, userId))
+  .limit(1);
 
 // Store sensitive data encrypted
 // Passwords: bcrypt (already done)
@@ -420,7 +471,10 @@ const user = await prisma.user.findUnique({
 // Set proper CORS headers
 const response = new NextResponse(data);
 response.headers.set("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
-response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
+response.headers.set(
+  "Access-Control-Allow-Methods",
+  "GET, POST, PUT, PATCH, DELETE",
+);
 response.headers.set("X-Content-Type-Options", "nosniff");
 response.headers.set("X-Frame-Options", "DENY");
 ```
@@ -471,8 +525,8 @@ REDIS_URL=redis://redis-prod:6379
 ### Database Migrations
 
 ```bash
-# Run migrations in production
-npx prisma migrate deploy
+# Sync schema in production
+bun run db:push
 
 # Backup before migration
 pg_dump $DATABASE_URL > backup_$(date +%Y%m%d_%H%M%S).sql
@@ -481,12 +535,14 @@ pg_dump $DATABASE_URL > backup_$(date +%Y%m%d_%H%M%S).sql
 ### Deployment Platforms
 
 **Recommended for Next.js:**
+
 - **Vercel** (easiest, integrated with Next.js)
 - **Railway** (simple, PostgreSQL included)
 - **Heroku** (traditional, reliable)
 - **AWS** (most scalable, complex setup)
 
 **Database Hosting:**
+
 - **Neon** (Postgres, free tier available)
 - **Supabase** (Postgres + Auth + Storage)
 - **AWS RDS** (enterprise-grade)
@@ -507,20 +563,20 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.File({ filename: "error.log", level: "error" }),
     new winston.transports.File({ filename: "combined.log" }),
-  ]
+  ],
 });
 
 // Log important events
 logger.info("Booking created", {
   bookingId: "bk123",
   userId: "usr123",
-  departureId: "dep123"
+  departureId: "dep123",
 });
 
 logger.error("Payment failed", {
   bookingId: "bk123",
   error: error.message,
-  gateway: "razorpay"
+  gateway: "razorpay",
 });
 ```
 
@@ -536,7 +592,7 @@ if (duration > 5000) {
   logger.warn("Slow booking creation", {
     duration,
     userId,
-    departureId
+    departureId,
   });
 }
 ```
@@ -557,7 +613,7 @@ Sentry.init({
 // Add context for better debugging
 Sentry.setContext("booking", {
   departureId,
-  numberOfPeople
+  numberOfPeople,
 });
 ```
 
@@ -569,7 +625,7 @@ async function notifyAdmins(event: string, data: any) {
   await sendEmail({
     to: process.env.ADMIN_EMAILS,
     subject: `ALERT: ${event}`,
-    body: JSON.stringify(data, null, 2)
+    body: JSON.stringify(data, null, 2),
   });
 }
 
@@ -583,6 +639,7 @@ async function notifyAdmins(event: string, data: any) {
 ### 5. Dashboard Metrics
 
 Track:
+
 - **Booking metrics**: Total bookings, conversion rate, average value
 - **Payment metrics**: Success rate, refund rate, revenue
 - **System metrics**: API response time, error rate, uptime
@@ -596,14 +653,14 @@ Track:
 
 ```sql
 -- Add indexes for common queries
-CREATE INDEX idx_bookings_user_status 
+CREATE INDEX idx_bookings_user_status
   ON bookings(user_id, status);
 
-CREATE INDEX idx_departures_trek_date 
+CREATE INDEX idx_departures_trek_date
   ON departures(trek_id, start_date);
 
 -- Partition large tables by date/status
-CREATE TABLE bookings_2024_q1 
+CREATE TABLE bookings_2024_q1
   PARTITION OF bookings FOR VALUES FROM (2024-01-01) TO (2024-04-01);
 ```
 
@@ -614,7 +671,7 @@ CREATE TABLE bookings_2024_q1
 const trek = await cache(
   () => TrekService.getTrekBySlug(slug),
   ["trek", slug],
-  { revalidate: 3600 } // 1 hour
+  { revalidate: 3600 }, // 1 hour
 );
 
 // Don't cache availability (changes frequently)
@@ -623,9 +680,21 @@ const availability = await BookingService.checkAvailability(departureId);
 
 // Cache user profile
 const user = await cache(
-  () => prisma.user.findUnique({ where: { id } }),
+  async () => {
+    const [record] = await db
+      .select({
+        id: userTable.id,
+        email: userTable.email,
+        username: userTable.username,
+      })
+      .from(userTable)
+      .where(eq(userTable.id, id))
+      .limit(1);
+
+    return record ?? null;
+  },
   ["user", id],
-  { revalidate: 300 } // 5 minutes
+  { revalidate: 300 }, // 5 minutes
 );
 ```
 
@@ -634,11 +703,13 @@ const user = await cache(
 ```typescript
 // Read from replica, write to primary
 const bookings = await replicaDb.booking.findMany({
-  where: { userId }
+  where: { userId },
 });
 
 // Always write to primary
-await primaryDb.booking.create({ /* ... */ });
+await primaryDb.booking.create({
+  /* ... */
+});
 ```
 
 ### 4. Asynchronous Processing
@@ -648,7 +719,7 @@ await primaryDb.booking.create({ /* ... */ });
 await publishEvent("booking.created", {
   bookingId,
   userId,
-  email: user.email
+  email: user.email,
 });
 
 // Handle in separate worker
@@ -662,14 +733,16 @@ messageQueue.consume("booking.created", async (event) => {
 
 ```typescript
 // .env
-DATABASE_URL="postgresql://...?schema=public&poolingMode=transaction&max_pool_size=20"
+DATABASE_URL =
+  "postgresql://...?schema=public&poolingMode=transaction&max_pool_size=20";
 
-// Prisma handles this automatically
+// Neon + pg pooling handle this for Drizzle connections
 ```
 
 ### 6. Load Balancing
 
 Deploy multiple Next.js instances behind:
+
 - **Nginx** (reverse proxy)
 - **Load balancer** (AWS ALB, Google Cloud Load Balancer)
 - **Edge network** (Cloudflare, Akamai)
@@ -691,6 +764,7 @@ server {
 ### Estimated Capacity
 
 With a single PostgreSQL instance:
+
 - **100 concurrent users**: Easy
 - **1000 concurrent users**: With caching & optimization
 - **10,000+ concurrent users**: Requires read replicas, caching layer (Redis), load balancing
@@ -700,42 +774,48 @@ With a single PostgreSQL instance:
 ## Testing Strategy
 
 ### Unit Tests
+
 ```typescript
 describe("BookingService", () => {
   it("should create booking and decrease seats", async () => {
     const booking = await BookingService.createBooking(/*...*/);
     expect(booking.id).toBeDefined();
-    
-    const departure = await prisma.departure.findUnique({});
-    expect(departure.seatsAvailable).toBeLessThan(initialSeats);
+
+    const currentDeparture = await db.query.departure.findFirst({
+      where: eq(departure.id, departureId),
+    });
+    expect(currentDeparture?.seatsAvailable).toBeLessThan(initialSeats);
   });
 
   it("should throw InsufficientSeatsError when seats full", async () => {
     await expect(
-      BookingService.createBooking(userId, departureId, 100)
+      BookingService.createBooking(userId, departureId, 100),
     ).rejects.toThrow(InsufficientSeatsError);
   });
 });
 ```
 
 ### Integration Tests
+
 ```typescript
 describe("Booking API", () => {
   it("should handle concurrent bookings correctly", async () => {
-    const promises = Array(10).fill(null).map(() =>
-      fetch("/api/bookings", {
-        method: "POST",
-        body: JSON.stringify({
-          departureId,
-          numberOfPeople: 1,
-          /*...*/
-        })
-      })
-    );
+    const promises = Array(10)
+      .fill(null)
+      .map(() =>
+        fetch("/api/bookings", {
+          method: "POST",
+          body: JSON.stringify({
+            departureId,
+            numberOfPeople: 1,
+            /*...*/
+          }),
+        }),
+      );
 
     const responses = await Promise.all(promises);
-    const successes = responses.filter(r => r.ok).length;
-    
+    const successes = responses.filter((r) => r.ok).length;
+
     // Only 5 should succeed if 5 seats available
     expect(successes).toBeLessThanOrEqual(5);
   });
@@ -743,6 +823,7 @@ describe("Booking API", () => {
 ```
 
 ### Load Testing
+
 ```bash
 # Using autocannon
 npx autocannon -c 100 -d 30 https://yourdomain.com/api/bookings
@@ -762,6 +843,6 @@ This architecture provides:
 ✅ **Scalability**: Caching, read replicas, async processing  
 ✅ **Reliability**: Error handling, logging, monitoring  
 ✅ **Maintainability**: Clean code, clear separation of concerns  
-✅ **Auditability**: Complete audit trail of all operations  
+✅ **Auditability**: Complete audit trail of all operations
 
 This is production-ready for a booking platform handling thousands of daily transactions with real money involved.

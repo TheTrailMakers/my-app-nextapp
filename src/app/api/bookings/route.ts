@@ -5,15 +5,14 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { BookingService } from "@/lib/services/bookingService";
+import { createBooking, getUserBookings } from "@/lib/services/bookingService";
 import { createBookingSchema } from "@/lib/validations";
 import { createErrorResponse, UnauthorizedError } from "@/lib/errors";
+import { getAppSession } from "@/lib/auth-session";
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getAppSession();
     const userId = (session?.user as { id?: string })?.id;
     if (!userId) {
       throw new UnauthorizedError("You must be logged in to book a trek");
@@ -25,13 +24,13 @@ export async function POST(request: NextRequest) {
     const validatedData = createBookingSchema.parse(body);
 
     // Create booking with transaction
-    const booking = await BookingService.createBooking(
+    const booking = await createBooking(
       userId,
       validatedData.departureId,
       validatedData.numberOfPeople,
       validatedData.contactName,
       validatedData.contactPhone,
-      validatedData.contactEmail
+      validatedData.contactEmail,
     );
 
     return NextResponse.json(
@@ -40,7 +39,7 @@ export async function POST(request: NextRequest) {
         data: booking,
         message: "Booking created successfully",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     const errorResponse = createErrorResponse(error);
@@ -53,7 +52,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
+    const session = await getAppSession();
     const userId = (session?.user as { id?: string })?.id;
     if (!userId) {
       throw new UnauthorizedError();
@@ -62,11 +61,7 @@ export async function GET(request: NextRequest) {
     const page = parseInt(request.nextUrl.searchParams.get("page") || "1");
     const limit = parseInt(request.nextUrl.searchParams.get("limit") || "10");
 
-    const result = await BookingService.getUserBookings(
-      userId,
-      page,
-      limit
-    );
+    const result = await getUserBookings(userId, page, limit);
 
     return NextResponse.json({
       success: true,
@@ -75,9 +70,8 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     const errorResponse = createErrorResponse(error);
-    return NextResponse.json(
-      errorResponse,
-      { status: error instanceof UnauthorizedError ? 401 : 500 }
-    );
+    return NextResponse.json(errorResponse, {
+      status: error instanceof UnauthorizedError ? 401 : 500,
+    });
   }
 }

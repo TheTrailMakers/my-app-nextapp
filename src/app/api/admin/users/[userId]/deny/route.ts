@@ -1,85 +1,87 @@
-import { NextResponse } from 'next/server';
-import { checkUserRole, logAudit } from '@/lib/roleUtils';
-import { prisma } from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import { eq } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { userTable } from "@/drizzle/schema";
+import { logAudit } from "@/lib/roleUtils";
+import { requireApiRole } from "@/lib/apiAuth";
 
 // POST: Toggle deny access (Super Admin only)
 export async function POST(
   request: Request,
-  { params }: { params: { userId: string } }
+  props: { params: Promise<{ userId: string }> },
 ) {
-  const { authorized, user: adminUser } = await checkUserRole('ADMIN');
-  
-  if (!authorized || !adminUser) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-  }
+  const params = await props.params;
+  const { response, user: adminUser } = await requireApiRole("SUPER_ADMIN");
 
-  // Only Super Admin can deny/allow access
-  const session = await (await import('next-auth')).getServerSession();
-  if (!session?.user?.email) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-  }
-
-  const currentUser = await (prisma as any).user.findUnique({
-    where: { email: session.user.email },
-    select: { role: true }
-  });
-
-  if (currentUser?.role !== 'SUPER_ADMIN') {
-    return NextResponse.json({ error: 'Only Super Admin can deny/allow access' }, { status: 403 });
+  if (response || !adminUser) {
+    return (
+      response ?? NextResponse.json({ error: "Unauthorized" }, { status: 403 })
+    );
   }
 
   try {
     const { deny } = await request.json();
 
-    const existingUser = await (prisma as any).user.findUnique({
-      where: { id: params.userId },
-      select: { id: true, username: true, isDenied: true, role: true }
-    });
+    const existingUser = await db
+      .select({
+        id: userTable.id,
+        username: userTable.username,
+        isDenied: userTable.isDenied,
+        role: userTable.role,
+      })
+      .from(userTable)
+      .where(eq(userTable.id, params.userId))
+      .limit(1);
 
-    if (!existingUser) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    const user = existingUser[0];
+
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
     // Prevent acting on self
-    if (existingUser.id === adminUser.id) {
-      return NextResponse.json({ error: 'Cannot perform this action on yourself' }, { status: 400 });
-    }
-
-    // Prevent denying other Super Admins
-    if (deny && existingUser.role === 'SUPER_ADMIN' && existingUser.id !== adminUser.id) {
+    if (user.id === adminUser.id) {
       return NextResponse.json(
-        { error: 'Cannot deny access to another Super Admin' },
-        { status: 403 }
+        { error: "Cannot perform this action on yourself" },
+        { status: 400 },
       );
     }
 
-    const updatedUser = await (prisma as any).user.update({
-      where: { id: params.userId },
-      data: { isDenied: deny }
-    });
+    // Prevent denying other Super Admins
+    if (deny && user.role === "SUPER_ADMIN" && user.id !== adminUser.id) {
+      return NextResponse.json(
+        { error: "Cannot deny access to another Super Admin" },
+        { status: 403 },
+      );
+    }
+
+    await db
+      .update(userTable)
+      .set({ isDenied: Boolean(deny), updatedAt: new Date() })
+      .where(eq(userTable.id, params.userId));
 
     // Log the action
     await logAudit(
-      deny ? 'DENY_ACCESS' : 'ALLOW_ACCESS',
-      'User',
+      deny ? "DENY_ACCESS" : "ALLOW_ACCESS",
+      "User",
       params.userId,
       adminUser.id,
-      { isDenied: { from: existingUser.isDenied, to: deny } },
-      { targetUsername: existingUser.username }
+      { isDenied: { from: user.isDenied, to: Boolean(deny) } },
+      { targetUsername: user.username },
     );
 
     return NextResponse.json({
       success: true,
       user: {
-        id: updatedUser.id,
-        isDenied: updatedUser.isDenied
-      }
+        id: params.userId,
+        isDenied: Boolean(deny),
+      },
     });
   } catch (error) {
-    console.error('Error toggling deny access:', error);
+    console.error("Error toggling deny access:", error);
     return NextResponse.json(
-      { error: 'Failed to toggle deny access' },
-      { status: 500 }
+      { error: "Failed to toggle deny access" },
+      { status: 500 },
     );
   }
 }

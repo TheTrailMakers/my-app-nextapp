@@ -53,12 +53,12 @@ export function NarrativePage({
   cta,
 }: NarrativePageProps) {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-background text-foreground">
       {/* Back Button */}
       <div className="max-w-6xl mx-auto px-4 md:px-8 pt-12 pb-8">
         <Link
           href={breadcrumb?.href || backLink}
-          className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-12"
+          className="inline-flex items-center gap-2 text-primary hover:text-primary/90 mb-12"
         >
           <FiArrowLeft className="w-4 h-4" />
           {breadcrumb?.label || "Back"}
@@ -76,13 +76,13 @@ export function NarrativePage({
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-black/30"></div>
+            <div className="absolute inset-0 bg-background/30"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-              <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
+              <h1 className="text-5xl md:text-7xl font-bold mb-4 text-foreground">
                 {title}
               </h1>
               {subtitle && (
-                <p className="text-xl md:text-2xl text-gray-300 max-w-3xl">
+                <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl">
                   {subtitle}
                 </p>
               )}
@@ -92,7 +92,7 @@ export function NarrativePage({
           <div className="max-w-6xl mx-auto px-4 md:px-8 py-20 text-center">
             <h1 className="text-5xl md:text-7xl font-bold mb-4">{title}</h1>
             {subtitle && (
-              <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
                 {subtitle}
               </p>
             )}
@@ -105,7 +105,7 @@ export function NarrativePage({
         {sections.map((section, idx) => (
           <section
             key={section.id}
-            className={`mb-32 px-4 md:px-8 ${idx % 2 === 0 ? "bg-black" : "bg-gray-950"}`}
+            className={`mb-32 px-4 md:px-8 ${idx % 2 === 0 ? "bg-background" : "bg-muted/50"}`}
           >
             {section.image ? (
               <div
@@ -120,14 +120,14 @@ export function NarrativePage({
                       {section.title}
                     </h2>
                   )}
-                  <div className="space-y-4 md:space-y-6 text-gray-300 text-base md:text-lg leading-relaxed">
+                  <div className="space-y-4 md:space-y-6 text-muted-foreground text-base md:text-lg leading-relaxed">
                     {section.content.split("\n\n").map((paragraph, i) => (
                       <p key={i}>{paragraph}</p>
                     ))}
                   </div>
                   {section.cta && (
                     <Link href={section.cta.href} className="inline-block mt-8">
-                      <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                      <button className="bg-primary hover:bg-primary/90 text-foreground font-bold py-3 px-8 rounded-lg transition duration-300">
                         {section.cta.text}
                       </button>
                     </Link>
@@ -153,14 +153,14 @@ export function NarrativePage({
                     {section.title}
                   </h2>
                 )}
-                <div className="space-y-4 md:space-y-6 text-gray-300 text-base md:text-lg leading-relaxed">
+                <div className="space-y-4 md:space-y-6 text-muted-foreground text-base md:text-lg leading-relaxed">
                   {section.content.split("\n\n").map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>
                   ))}
                 </div>
                 {section.cta && (
                   <Link href={section.cta.href} className="inline-block mt-8">
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                    <button className="bg-primary hover:bg-primary/90 text-foreground font-bold py-3 px-8 rounded-lg transition duration-300">
                       {section.cta.text}
                     </button>
                   </Link>
@@ -173,7 +173,7 @@ export function NarrativePage({
 
       {/* Stats Section */}
       {stats && stats.length > 0 && (
-        <section className="bg-gray-950 py-20 px-4 md:px-8">
+        <section className="bg-muted/50 py-20 px-4 md:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {stats.map((stat, idx) => (
@@ -181,10 +181,10 @@ export function NarrativePage({
                   key={idx}
                   className="bg-gray-900 border border-gray-700 rounded-lg p-8 text-center hover:border-blue-600 transition duration-300"
                 >
-                  <h3 className="text-4xl md:text-5xl font-bold text-blue-400 mb-2">
+                  <h3 className="text-4xl md:text-5xl font-bold text-primary mb-2">
                     {stat.number}
                   </h3>
-                  <p className="text-gray-300 text-lg">{stat.label}</p>
+                  <p className="text-muted-foreground text-lg">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -193,7 +193,7 @@ export function NarrativePage({
       )}
 
       {/* Bottom CTA */}
-      <section className="bg-gradient-to-r from-blue-900 to-purple-900 py-20 px-4 md:px-8">
+      <section className="bg-linear-to-r from-blue-900 to-purple-900 py-20 px-4 md:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             {cta ? "Ready to Continue Your Journey?" : "Ready to Start Your Adventure?"}

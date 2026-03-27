@@ -1,81 +1,92 @@
-'use client';
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { cache } from "react";
+import { desc } from "drizzle-orm";
+import db from "@/drizzle/db";
+import { course as courseTable } from "@/drizzle/schema";
+import { isDatabaseConfigured } from "@/lib/databaseAvailability";
+import { getCourseBySlug } from "@/lib/services/courseService";
 
-import { use, useEffect, useState } from 'react';
+const fallbackCourseImage =
+  "https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg";
 
-async function getCourse(slug: string) {
-  try {
-    const response = await fetch(`/api/courses/${slug}`);
-    if (!response.ok) return null;
-    const data = await response.json();
-    return data.course;
-  } catch (error) {
-    console.error('Failed to fetch course:', error);
-    return null;
-  }
-}
-
-interface PagesProps {
+interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export default function CourseDetailPage({ params }: PagesProps) {
-  const { slug } = use(params);
-  const [course, setCourse] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 3600;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getCourse(slug);
-      setCourse(data);
-      setLoading(false);
-    };
-    fetchData();
-  }, [slug]);
+function formatDifficulty(difficulty: string) {
+  return difficulty.replace(/_/g, " ");
+}
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
-          <p className="text-gray-600 dark:text-gray-400 mt-4">Loading course...</p>
-        </div>
-      </div>
-    );
+const getCachedCourse = cache(async (slug: string) => getCourseBySlug(slug));
+
+export async function generateStaticParams() {
+  if (!isDatabaseConfigured()) {
+    return [];
   }
 
+  try {
+    const courses = await db
+      .select({ slug: courseTable.slug })
+      .from(courseTable)
+      .orderBy(desc(courseTable.createdAt));
+
+    return courses.map((course) => ({ slug: course.slug }));
+  } catch (error) {
+    console.warn("Skipping course static params during build:", error);
+    return [];
+  }
+}
+
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
+  const course = await getCachedCourse(params.slug).catch(() => null);
+
   if (!course) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Course Not Found</h1>
-          <p className="text-gray-600 dark:text-gray-400 mb-4">The course you're looking for doesn't exist.</p>
-          <a
-            href="/courses"
-            className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
-          >
-            Back to Courses
-          </a>
-        </div>
-      </div>
-    );
+    return { title: "Course Not Found | Trail Makers" };
+  }
+
+  return {
+    title: `${course.name} Course | Trail Makers`,
+    description: course.description,
+    openGraph: {
+      title: course.name,
+      description: course.description,
+      images: course.imageUrl ? [course.imageUrl] : [],
+    },
+  };
+}
+
+export default async function CourseDetailPage(props: PageProps) {
+  const params = await props.params;
+  const course = await getCachedCourse(params.slug).catch(() => null);
+
+  if (!course) {
+    notFound();
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative h-96 bg-gray-200 dark:bg-gray-800 overflow-hidden">
-        <img
-          src={course.imageUrl || course.thumbnailUrl || 'https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg'}
+      <div className="relative h-96 bg-muted overflow-hidden">
+        <Image
+          src={course.imageUrl || course.thumbnailUrl || fallbackCourseImage}
           alt={course.name}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://res.cloudinary.com/thetrail/image/upload/v1714107209/default_trek_image.jpg';
-          }}
+          fill
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black/40 flex items-end">
           <div className="w-full p-8">
-            <h1 className="text-4xl font-bold text-white mb-2">{course.name}</h1>
-            <p className="text-white text-lg opacity-90">{course.description}</p>
+            <h1 className="text-4xl font-bold text-white mb-2">
+              {course.name}
+            </h1>
+            <p className="text-white text-lg opacity-90">
+              {course.description}
+            </p>
           </div>
         </div>
       </div>
@@ -86,27 +97,41 @@ export default function CourseDetailPage({ params }: PagesProps) {
           {/* Left Column - Details */}
           <div className="lg:col-span-2">
             {/* Key Stats */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Course Details</h2>
+            <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+              <h2 className="text-2xl font-bold text-foreground mb-4">
+                Course Details
+              </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Duration</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{course.duration} days</p>
-                </div>
-                <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Difficulty</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white capitalize">
-                    {course.difficulty.replace(/_/g, ' ')}
+                  <p className="text-muted-foreground text-sm">
+                    Duration
+                  </p>
+                  <p className="text-2xl font-bold text-foreground">
+                    {course.duration} days
                   </p>
                 </div>
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Location</p>
-                  <p className="text-lg font-bold text-gray-900 dark:text-white">{course.location}</p>
+                  <p className="text-muted-foreground text-sm">
+                    Difficulty
+                  </p>
+                  <p className="text-2xl font-bold text-foreground capitalize">
+                    {formatDifficulty(course.difficulty)}
+                  </p>
                 </div>
                 <div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Price</p>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                    ₹{(course.price / 100).toLocaleString('en-IN')}
+                  <p className="text-muted-foreground text-sm">
+                    Location
+                  </p>
+                  <p className="text-lg font-bold text-foreground">
+                    {course.location}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-muted-foreground text-sm">
+                    Price
+                  </p>
+                  <p className="text-2xl font-bold text-foreground">
+                    ₹{(course.price / 100).toLocaleString("en-IN")}
                   </p>
                 </div>
               </div>
@@ -114,17 +139,23 @@ export default function CourseDetailPage({ params }: PagesProps) {
 
             {/* Description */}
             {course.longDescription && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">About This Course</h2>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{course.longDescription}</p>
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  About This Course
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  {course.longDescription}
+                </p>
               </div>
             )}
 
             {/* Curriculum */}
             {course.curriculum && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Curriculum</h2>
-                <div className="space-y-3 whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Curriculum
+                </h2>
+                <div className="space-y-3 whitespace-pre-wrap text-muted-foreground text-sm leading-relaxed">
                   {course.curriculum}
                 </div>
               </div>
@@ -132,12 +163,19 @@ export default function CourseDetailPage({ params }: PagesProps) {
 
             {/* Inclusions */}
             {course.inclusions && course.inclusions.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What's Included</h2>
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  What's Included
+                </h2>
                 <ul className="space-y-2">
                   {course.inclusions.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-start text-gray-700 dark:text-gray-300">
-                      <span className="text-green-600 dark:text-green-400 mr-3">✓</span>
+                    <li
+                      key={`${item}-${idx}`}
+                      className="flex items-start text-muted-foreground"
+                    >
+                      <span className="text-green-600 dark:text-green-400 mr-3">
+                        ✓
+                      </span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -147,12 +185,19 @@ export default function CourseDetailPage({ params }: PagesProps) {
 
             {/* Exclusions */}
             {course.exclusions && course.exclusions.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What's Not Included</h2>
+              <div className="bg-card rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  What's Not Included
+                </h2>
                 <ul className="space-y-2">
                   {course.exclusions.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-start text-gray-700 dark:text-gray-300">
-                      <span className="text-red-600 dark:text-red-400 mr-3">✗</span>
+                    <li
+                      key={`${item}-${idx}`}
+                      className="flex items-start text-muted-foreground"
+                    >
+                      <span className="text-red-600 dark:text-red-400 mr-3">
+                        ✗
+                      </span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -162,12 +207,19 @@ export default function CourseDetailPage({ params }: PagesProps) {
 
             {/* Requirements */}
             {course.requirements && course.requirements.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Requirements</h2>
+              <div className="bg-card rounded-lg shadow-sm p-6">
+                <h2 className="text-2xl font-bold text-foreground mb-4">
+                  Requirements
+                </h2>
                 <ul className="space-y-2">
                   {course.requirements.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-start text-gray-700 dark:text-gray-300">
-                      <span className="text-blue-600 dark:text-blue-400 mr-3">•</span>
+                    <li
+                      key={`${item}-${idx}`}
+                      className="flex items-start text-muted-foreground"
+                    >
+                      <span className="text-primary mr-3">
+                        •
+                      </span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -179,14 +231,16 @@ export default function CourseDetailPage({ params }: PagesProps) {
           {/* Right Column - Sidebar */}
           <div>
             {/* Price and Booking */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 sticky top-4">
+            <div className="bg-card rounded-lg shadow-sm p-6 sticky top-4">
               <div className="mb-6">
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">Course Price</p>
-                <p className="text-4xl font-bold text-gray-900 dark:text-white">
-                  ₹{(course.price / 100).toLocaleString('en-IN')}
+                <p className="text-muted-foreground text-sm mb-2">
+                  Course Price
+                </p>
+                <p className="text-4xl font-bold text-foreground">
+                  ₹{(course.price / 100).toLocaleString("en-IN")}
                 </p>
                 {course.instructor && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                  <p className="text-sm text-muted-foreground mt-3">
                     <strong>Instructor:</strong> {course.instructor}
                   </p>
                 )}
@@ -195,14 +249,19 @@ export default function CourseDetailPage({ params }: PagesProps) {
               {/* Available Sessions */}
               {course.sessions && course.sessions.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-3">Available Batches</h3>
+                  <h3 className="font-bold text-foreground mb-3">
+                    Available Batches
+                  </h3>
                   <div className="space-y-2 max-h-64 overflow-y-auto">
-                    {course.sessions.map((session: any) => (
-                      <div key={session.id} className="border border-gray-200 dark:border-gray-700 rounded p-3">
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {new Date(session.startDate).toLocaleDateString('en-IN')}
+                    {course.sessions.map((session) => (
+                      <div
+                        key={session.id}
+                        className="border border-border rounded-sm p-3"
+                      >
+                        <p className="text-sm font-semibold text-foreground">
+                          {session.startDate.toLocaleDateString("en-IN")}
                         </p>
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                        <p className="text-xs text-muted-foreground mt-1">
                           {session.seatsAvailable} spots left
                         </p>
                       </div>
@@ -211,21 +270,25 @@ export default function CourseDetailPage({ params }: PagesProps) {
                 </div>
               )}
 
-              <button className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors mb-3">
+              <button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-4 rounded-lg transition-colors mb-3">
                 Register Now
               </button>
 
-              <a
+              <Link
                 href="/courses"
-                className="w-full inline-block text-center text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 font-semibold py-2"
+                className="w-full inline-block text-center text-primary hover:text-primary/80 font-semibold py-2"
               >
                 ← Back to Courses
-              </a>
+              </Link>
 
               {/* Additional Info */}
-              <div className="mt-6 pb-0 border-t border-gray-200 dark:border-gray-700 pt-6">
-                <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">📍 <strong>Location:</strong> {course.location}</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">⏱️ <strong>Duration:</strong> {course.duration} days</p>
+              <div className="mt-6 pb-0 border-t border-border pt-6">
+                <p className="text-xs text-muted-foreground mb-2">
+                  📍 <strong>Location:</strong> {course.location}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  ⏱️ <strong>Duration:</strong> {course.duration} days
+                </p>
               </div>
             </div>
           </div>

@@ -62,12 +62,14 @@ The visual and product experience should feel:
 ### 2.3 Visual Direction
 
 #### Light Mode
+
 - Warm off-white / parchment backgrounds.
 - Earthy browns, muted greens, stone neutrals.
 - Sunset orange / amber accent.
 - Strong text contrast.
 
 #### Dark Mode
+
 - Deep charcoal / forest-night surfaces.
 - Warm light text tones.
 - Same sunset accent adapted for dark backgrounds.
@@ -79,6 +81,7 @@ The visual and product experience should feel:
 - **Sans-serif:** Used for body copy, labels, forms, data, and dashboards.
 
 Recommended pairing:
+
 - **Headings:** Lora / Playfair Display / Merriweather
 - **Body/UI:** Inter / Manrope / Source Sans
 
@@ -109,19 +112,24 @@ Recommended pairing:
 ## 4. User Roles
 
 ### 4.1 Public User
+
 A visitor browsing the website without logging in.
 
 ### 4.2 Registered User
+
 A logged-in customer who can book treks, pay online, download invoices, and cancel bookings.
 
 ### 4.3 Super Admin
+
 Full control over the platform, including treks, departures, content, pricing, bookings, users, testimonials, finance, settings, and role management.
 
 ### 4.4 Media Admin
+
 Can manage blogs, images, videos, and trek media/content sections.  
 Can manage testimonials only if permitted by super admin.
 
 ### 4.5 Account Admin
+
 Can manage bookings, accounting, finance tracking, GST invoices, refunds, coupon usage, and financial exports.
 
 ---
@@ -167,6 +175,7 @@ Can manage bookings, accounting, finance tracking, GST invoices, refunds, coupon
 ## 6. Information Architecture
 
 ## Public Pages
+
 - Home
 - All Treks
 - Treks by State
@@ -185,6 +194,7 @@ Can manage bookings, accounting, finance tracking, GST invoices, refunds, coupon
 - Refund Policy
 
 ## Authenticated User Pages
+
 - Dashboard Overview
 - Upcoming Bookings
 - Past Bookings
@@ -195,6 +205,7 @@ Can manage bookings, accounting, finance tracking, GST invoices, refunds, coupon
 - Security Settings
 
 ## Admin Pages
+
 - Dashboard Overview
 - Trek Management
 - Departure Dates / Inventory
@@ -220,9 +231,11 @@ Can manage bookings, accounting, finance tracking, GST invoices, refunds, coupon
 ## 7.1 Home Page
 
 ### Objective
+
 Introduce the brand, establish trust, and push users toward trek discovery and booking.
 
 ### Sections
+
 1. Hero banner
 2. Search / Explore CTA
 3. Upcoming treks
@@ -236,6 +249,7 @@ Introduce the brand, establish trust, and push users toward trek discovery and b
 11. Footer
 
 ### Hero Requirements
+
 - Large immersive banner image/video
 - Headline and subheadline aligned to brand voice
 - Primary CTA: `Explore Treks`
@@ -247,15 +261,18 @@ Introduce the brand, establish trust, and push users toward trek discovery and b
 ## 7.2 All Treks Page
 
 ### Objective
+
 Allow users to discover and compare treks efficiently.
 
 ### Features
+
 - Search
 - Sort
 - Filter
 - Pagination or infinite scroll
 
 ### Filters
+
 - State
 - Difficulty
 - Fitness level
@@ -266,6 +283,7 @@ Allow users to discover and compare treks efficiently.
 - Trek type
 
 ### Sort Options
+
 - Popular
 - Newest
 - Price: low to high
@@ -275,6 +293,7 @@ Allow users to discover and compare treks efficiently.
 - Upcoming departures
 
 ### Trek Card Content
+
 - Cover image
 - Trek name
 - State
@@ -291,9 +310,11 @@ Allow users to discover and compare treks efficiently.
 ## 7.3 Trek Detail Page
 
 ### Objective
+
 Provide complete information and drive booking conversion.
 
 ### Core Sections
+
 1. Hero banner
 2. Quick facts
 3. Sticky booking panel
@@ -314,7 +335,9 @@ Provide complete information and drive booking conversion.
 18. Footer CTA
 
 ### Sticky Booking Panel
+
 Must include:
+
 - upcoming departure dates,
 - date selection,
 - seat availability,
@@ -322,13 +345,16 @@ Must include:
 - traveler count,- `Book Now` CTA.
 
 ### Downloadables
+
 Each trek can have:
+
 - itinerary PDF,
 - exercise / preparation PDF,
 - packing checklist PDF,
 - trek summary PDF.
 
 ### Trek Facts
+
 - duration,
 - region / state,
 - altitude,
@@ -346,6 +372,7 @@ Each trek can have:
 ## 7.4 Blog
 
 ### Blog Listing
+
 - Featured image
 - Title
 - Excerpt
@@ -356,6 +383,7 @@ Each trek can have:
 - Pagination
 
 ### Blog Detail
+
 - Hero image
 - Title
 - Meta information
@@ -365,6 +393,7 @@ Each trek can have:
 - CTA to related trek or contact
 
 ### Admin Capabilities
+
 - Create
 - Edit
 - Save draft
@@ -378,6 +407,7 @@ Each trek can have:
 ## 7.5 Authentication
 
 ### Features
+
 - Signup
 - Login
 - Forgot password
@@ -386,6 +416,7 @@ Each trek can have:
 - Session management
 
 ### Signup Fields
+
 - Name
 - Email
 - Phone (optional or required based on business need)
@@ -398,6 +429,7 @@ Each trek can have:
 ## 7.6 Booking Flow
 
 ### Step 1 — Select Trek Details
+
 - Selected trek summary
 - Departure date
 - Traveler count
@@ -405,6 +437,7 @@ Each trek can have:
 - Trek Price
 
 ### Step 2 — Review
+
 - Booking summary
 - Add Full Name, Age
 - Fare breakdown
@@ -416,11 +449,13 @@ Each trek can have:
 - Cancellation policy acceptance
 
 ### Step 3 — Payment
+
 - Razorpay checkout
 - Success / failure / pending handling
 - Booking confirmation creation only after verified payment state
 
 ### Step 4 — Confirmation
+
 - Booking ID
 - Trek and departure details
 - Paid amount
@@ -429,6 +464,7 @@ Each trek can have:
 - Link to dashboard
 
 ### Step 5 - Additional Details fill up (in Dashboard )
+
 - Sections for each individual
 - Addons for other participants(payment link after addons added)
 - Link Share option to Other Participants for Details fill up (log in required)
@@ -437,17 +473,18 @@ Each trek can have:
 - Emergency contact
 - Medical / health notes
 - Dietary notes (optional)
-- 
-
+-
 
 ---
 
 ## 7.7 Cancellation and Refunds
 
 ### User Capabilities
+
 Users must be able to cancel directly from their dashboard without admin intervention.
 
 ### Cancellation Requirements
+
 - Show applicable refund amount before final confirmation
 - Show cancellation policy clearly
 - Capture optional cancellation reason
@@ -457,6 +494,7 @@ Users must be able to cancel directly from their dashboard without admin interve
 - Reflect refund status in dashboard
 
 ### Refund Requirements
+
 - Razorpay refund initiation
 - Refund status tracking
 - GST handling as per business/accounting rules
@@ -468,6 +506,7 @@ Users must be able to cancel directly from their dashboard without admin interve
 ## 7.8 User Dashboard
 
 ### Sections
+
 - Dashboard Overview
 - Upcoming Bookings
 - Past Bookings
@@ -477,12 +516,14 @@ Users must be able to cancel directly from their dashboard without admin interve
 - Saved Treks (optional MVP)
 
 ### Dashboard Overview
+
 - Welcome card
 - Upcoming trek summary
 - Booking statistics
 - Quick actions
 
 ### Booking Details
+
 - Trek details
 - Departure details
 - Travelers
@@ -499,22 +540,23 @@ Users must be able to cancel directly from their dashboard without admin interve
 
 ## Roles and Permissions
 
-| Module | Super Admin | Media Admin | Account Admin |
-|---|---|---|---|
-| Manage Treks | Yes | Limited content only | No |
-| Manage Departure Dates | Yes | No | Limited view |
-| Manage Pricing | Yes | No | View |
-| Manage Blogs | Yes | Yes | No |
-| Manage Images/Videos | Yes | Yes | No |
-| Manage Testimonials | Yes | Yes | No |
-| Manage Bookings | Yes | No | Yes |
-| Manage Refunds | Yes | No | Yes |
-| Manage GST / Invoices | Yes | No | Yes |
-| Finance Export | Yes | No | Yes |
-| Role Management | Yes | No | No |
-| Settings | Yes | No | Limited |
+| Module                 | Super Admin | Media Admin          | Account Admin |
+| ---------------------- | ----------- | -------------------- | ------------- |
+| Manage Treks           | Yes         | Limited content only | No            |
+| Manage Departure Dates | Yes         | No                   | Limited view  |
+| Manage Pricing         | Yes         | No                   | View          |
+| Manage Blogs           | Yes         | Yes                  | No            |
+| Manage Images/Videos   | Yes         | Yes                  | No            |
+| Manage Testimonials    | Yes         | Yes                  | No            |
+| Manage Bookings        | Yes         | No                   | Yes           |
+| Manage Refunds         | Yes         | No                   | Yes           |
+| Manage GST / Invoices  | Yes         | No                   | Yes           |
+| Finance Export         | Yes         | No                   | Yes           |
+| Role Management        | Yes         | No                   | No            |
+| Settings               | Yes         | No                   | Limited       |
 
 ### Super Admin Modules
+
 - Dashboard overview
 - Trek CRUD
 - Departure date CRUD
@@ -526,6 +568,7 @@ Users must be able to cancel directly from their dashboard without admin interve
 - Audit logs
 
 ### Media Admin Modules
+
 - Blog management
 - Trek media
 - Trek content sections
@@ -534,6 +577,7 @@ Users must be able to cancel directly from their dashboard without admin interve
 - Gallery management
 
 ### Account Admin Modules
+
 - Booking list
 - Booking detail view
 - Refund management
@@ -549,6 +593,7 @@ Users must be able to cancel directly from their dashboard without admin interve
 Trail Makers supports dynamic pricing at the departure level.
 
 ### Pricing Types
+
 - Early bird pricing
 - Seasonal pricing
 - Demand-based pricing
@@ -556,7 +601,9 @@ Trail Makers supports dynamic pricing at the departure level.
 - Coupon-based discount pricing
 
 ### Pricing Logic
+
 Each departure can have:
+
 - base price,
 - early bird price and validity,
 - demand threshold rules,
@@ -565,12 +612,15 @@ Each departure can have:
 - GST configuration.
 
 ### Examples
+
 - Early bird valid until a set date or seat threshold.
 - Demand-based price activates after a specific occupancy threshold.
 - Seasonal prices can be configured by date range.
 
 ### Booking UI Requirements
+
 Users must always see:
+
 - current applicable price,
 - original price if discounted,
 - coupon savings,
@@ -582,7 +632,9 @@ Users must always see:
 ## 9. Finance, GST, Coupons, and Exports
 
 ### Finance Tracking
+
 The platform must track:
+
 - booking revenue,
 - discounts,
 - refunds,
@@ -592,9 +644,11 @@ The platform must track:
 - payout-related references.
 
 ### GST Invoices
+
 Generate downloadable GST invoices for completed bookings.
 
 Invoice should include:
+
 - company legal details,
 - GSTIN,
 - customer details,
@@ -605,7 +659,9 @@ Invoice should include:
 - payment reference.
 
 ### Coupons
+
 Coupon engine must support:
+
 - flat discounts,
 - percentage discounts,
 - date-limited coupons,
@@ -615,7 +671,9 @@ Coupon engine must support:
 - minimum order value rules.
 
 ### Finance Export
+
 Export formats:
+
 - CSV
 - XLSX (preferred if implemented)
 - filtered exports by date range, trek, booking status, refund status
@@ -625,6 +683,7 @@ Export formats:
 ## 10. Media and Content Management
 
 ### Media Types
+
 - Trek cover images
 - Gallery images
 - Videos
@@ -634,6 +693,7 @@ Export formats:
 - PDF assets
 
 ### Content Operations
+
 - Upload
 - Replace
 - Delete
@@ -643,6 +703,7 @@ Export formats:
 - Compress and optimize
 
 ### Testimonials
+
 Super admin can create, edit, feature, and remove testimonials.  
 Media admin can manage testimonial media where permitted.
 
@@ -651,6 +712,7 @@ Media admin can manage testimonial media where permitted.
 ## 11. Non-Functional Requirements
 
 ### Performance
+
 - Fast initial load
 - Optimized images
 - Lazy loading for galleries
@@ -658,6 +720,7 @@ Media admin can manage testimonial media where permitted.
 - Mobile-first optimization
 
 ### Accessibility
+
 - Keyboard navigable
 - Proper heading hierarchy
 - Color contrast compliant
@@ -666,6 +729,7 @@ Media admin can manage testimonial media where permitted.
 - Accessible forms and errors
 
 ### Security
+
 - Secure authentication
 - Hashed passwords
 - Protected admin routes
@@ -674,12 +738,14 @@ Media admin can manage testimonial media where permitted.
 - Secure file access rules
 
 ### Reliability
+
 - Prevent overselling
 - Prevent duplicate booking creation on payment retries
 - Webhook-safe payment reconciliation
 - Soft delete where appropriate for traceability
 
 ### SEO
+
 - Meta titles and descriptions
 - Open Graph tags
 - Clean URLs
@@ -691,6 +757,7 @@ Media admin can manage testimonial media where permitted.
 ## 12. Suggested Data Model
 
 ### Core Entities
+
 - User
 - AdminUser
 - Trek
@@ -708,6 +775,7 @@ Media admin can manage testimonial media where permitted.
 - AuditLog
 
 ### Key Relationships
+
 - One trek has many departures
 - One booking belongs to one departure
 - One booking has many travelers
@@ -721,6 +789,7 @@ Media admin can manage testimonial media where permitted.
 ## 13. Suggested Tech Direction
 
 ### Frontend
+
 - Next.js or React-based SSR-friendly framework
 - TypeScript
 - Responsive UI
@@ -728,6 +797,7 @@ Media admin can manage testimonial media where permitted.
 - Dark/light mode support
 
 ### Backend
+
 - Node.js
 - REST or typed API
 - PostgreSQL
@@ -735,6 +805,7 @@ Media admin can manage testimonial media where permitted.
 - Background jobs or webhook processing for payment and refund events
 
 ### Integrations
+
 - Razorpay
 - Email provider
 - Cloud storage for media and PDFs
@@ -746,6 +817,7 @@ Media admin can manage testimonial media where permitted.
 ## 14. Success Metrics
 
 ### Business Metrics
+
 - Booking conversion rate
 - Revenue per month
 - Average order value
@@ -754,6 +826,7 @@ Media admin can manage testimonial media where permitted.
 - Coupon usage rate
 
 ### Product Metrics
+
 - Search-to-detail click rate
 - Trek detail to booking-start rate
 - Booking-start to payment-success rate
@@ -762,6 +835,7 @@ Media admin can manage testimonial media where permitted.
 - Cancellation self-service rate
 
 ### Operational Metrics
+
 - Refund processing time
 - Invoice generation accuracy
 - Admin handling time per booking
@@ -772,11 +846,13 @@ Media admin can manage testimonial media where permitted.
 ## 15. Acceptance Criteria Summary
 
 ### Public Site
+
 - Users can browse, filter, and sort treks.
 - Users can open complete trek detail pages.
 - Trek pages show maps, route visuals, fitness, difficulty, weather, inclusions, exclusions, and downloadable PDFs.
 
 ### Booking
+
 - Users can select a departure date and see live seats.
 - Users can pay full amount online with Razorpay.
 - Price reflects dynamic pricing and coupons.
@@ -784,12 +860,14 @@ Media admin can manage testimonial media where permitted.
 - Successful payment creates a confirmed booking.
 
 ### Dashboard
+
 - Users can view current and past bookings.
 - Users can download invoices.
 - Users can cancel directly.
 - Users can view refund progress.
 
 ### Admin
+
 - Super admin can manage treks, departures, settings, testimonials, and roles.
 - Media admin can manage blogs and media assets.
 - Account admin can manage bookings, refunds, invoices, coupons, and finance exports.

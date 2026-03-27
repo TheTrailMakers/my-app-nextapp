@@ -4,45 +4,76 @@
  */
 
 import { notFound } from "next/navigation";
-import { TrekService } from "@/lib/services/trekService";
+import { cache } from "react";
+import { getTrekBySlug, listTreks } from "@/lib/services/trekService";
+import { getAppSession } from "@/lib/auth-session";
 import TrekPageClient from "./trek-page-client";
+import { isDatabaseConfigured } from "@/lib/databaseAvailability";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export const revalidate = 3600;
 
+const getCachedTrek = cache(async (slug: string) => getTrekBySlug(slug));
+
 export async function generateStaticParams() {
+  if (!isDatabaseConfigured()) {
+    return [];
+  }
+
   try {
-    const { treks } = await TrekService.listTreks({ page: 1, limit: 50 });
-    return treks.map((trek: any) => ({ slug: trek.slug }));
+    const { treks } = await listTreks({ page: 1, limit: 50 });
+    return treks.map((trek) => ({ slug: trek.slug }));
   } catch (error) {
-    console.warn("Skipping generateStaticParams – DB unreachable during build:", error);
+    console.warn(
+      "Skipping generateStaticParams – DB unreachable during build:",
+      error,
+    );
     return [];
   }
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
+  if (!isDatabaseConfigured()) {
+    return { title: "Trail Makers" };
+  }
+
   try {
-    const trek = await TrekService.getTrekBySlug(params.slug);
+    const trek = await getCachedTrek(params.slug);
     return {
       title: `${trek.name} Trek | Trail Makers`,
       description: trek.description,
-      openGraph: { title: trek.name, description: trek.description, images: trek.imageUrl ? [trek.imageUrl] : [] },
+      openGraph: {
+        title: trek.name,
+        description: trek.description,
+        images: trek.imageUrl ? [trek.imageUrl] : [],
+      },
     };
   } catch (error) {
     return { title: "Trek Not Found | Trail Makers" };
   }
 }
 
-export default async function TrekPage({ params }: PageProps) {
-  try {
-    const trek = await TrekService.getTrekBySlug(params.slug);
-    return <TrekPageClient trek={trek} />;
-  } catch (error) {
+export default async function TrekPage(props: PageProps) {
+  const params = await props.params;
+  if (!isDatabaseConfigured()) {
     notFound();
   }
+
+  const trek = await getCachedTrek(params.slug).catch(() => null);
+
+  if (!trek) {
+    notFound();
+  }
+
+  const session = await getAppSession();
+
+  return (
+    <TrekPageClient trek={trek} isAuthenticated={Boolean(session?.user)} />
+  );
 }

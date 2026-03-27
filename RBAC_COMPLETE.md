@@ -1,11 +1,13 @@
 # Role-Based Access Control (RBAC) System - Implementation Complete ✅
 
 ## Overview
+
 A comprehensive role-based access control system has been successfully implemented for the Trail Makers booking platform with three user tiers, automatic account locking, audit logging, and middleware-enforced route protection.
 
 ## System Architecture
 
 ### Role Hierarchy
+
 1. **ADMIN** (Level 3)
    - Full system control
    - User management (create, edit, delete, unlock accounts)
@@ -30,6 +32,7 @@ A comprehensive role-based access control system has been successfully implement
 ## Database Schema Extensions
 
 ### New Models & Fields
+
 ```
 User Table Additions:
 - role: UserRole (ADMIN, MODERATOR, USER) [default: USER]
@@ -61,18 +64,21 @@ Updated AuditLog Model:
 ## Security Features
 
 ### Account Locking
+
 - Automatic account lock after **5 failed login attempts within 1 hour**
 - Automatic unlock after **30 minutes**
 - Manual unlock available to admins via API/Dashboard
 - Failed login tracking with IP address and user agent
 
 ### Audit Trail
+
 - Comprehensive logging of all admin actions
 - Tracks: user creation, role changes, status updates, unlocks, deletions
 - JSON metadata support for detailed change tracking
 - Filterable by action, entity type, user, and date range
 
 ### Route Protection
+
 - Middleware enforces authentication and authorization
 - Protected routes: `/admin/*`, `/moderator/*`, `/profile/*`, `/dashboard/*`
 - Automatic redirects based on account status:
@@ -84,6 +90,7 @@ Updated AuditLog Model:
 ## Implemented APIs
 
 ### Admin User Management
+
 - `GET /api/admin/users` - List users (paginated, filterable by role)
 - `POST /api/admin/users` - Create new user
 - `GET /api/admin/users/[userId]` - Get user details
@@ -92,11 +99,13 @@ Updated AuditLog Model:
 - `POST /api/admin/users/[userId]/unlock` - Unlock locked account
 
 ### Audit Logs
+
 - `GET /api/admin/audit-logs` - Retrieve audit trail (moderator+ access)
   - Supports filtering: action, entityType, userId, startDate, endDate
   - Paginated results (limit 1-100)
 
 ### User Self-Service
+
 - `GET /api/user/profile` - Fetch own profile
 - `PATCH /api/user/profile` - Update personal information
 - `GET /api/user/bookings` - Fetch own booking history
@@ -104,37 +113,37 @@ Updated AuditLog Model:
 ## Frontend Components
 
 ### Admin Dashboard (`/admin`)
-- **Users Tab**: 
+
+- **Users Tab**:
   - Paginated user table with role, status, last login
   - Edit role modal (assign USER/MODERATOR/ADMIN)
   - Unlock button for locked accounts
   - Activate/Deactivate toggle
   - Color-coded role badges
   - Status indicators with icons
-  
-- **Audit Logs Tab**: 
+- **Audit Logs Tab**:
   - Display audit trail with filters
   - Search by action, user, date range
   - [Placeholder - backend ready]
-  
-- **Settings Tab**: 
+- **Settings Tab**:
   - System configuration
   - IP restrictions management
   - [Placeholder - backend ready]
 
 ### User Profile (`/profile`)
-- **Profile Tab**: 
+
+- **Profile Tab**:
   - View/edit personal information
   - Email and username (read-only)
   - Edit/Save toggle with validation
-  
-- **Bookings Tab**: 
+- **Bookings Tab**:
   - List all user's bookings
   - Status badges (confirmed/pending/cancelled)
   - Edit and Cancel buttons per booking
   - Booking details with dates and travelers
 
 ### Error Pages
+
 - `/access-denied` - Insufficient permissions
 - `/account-locked` - Account locked (30-min auto-unlock info)
 - `/account-deactivated` - Account deactivated (contact support)
@@ -142,6 +151,7 @@ Updated AuditLog Model:
 ## Initial Admin Account
 
 **Bootstrap Credentials:**
+
 ```
 Email: admin@trailmakers.com
 Username: admin
@@ -155,21 +165,25 @@ Status: Active
 ## Implementation Files
 
 ### Core Utilities
+
 - `src/lib/roleUtils.ts` - Role checking, audit logging, account locking
 - `src/lib/auth.ts` - Enhanced NextAuth configuration with role integration
 - `src/middleware.ts` - Route protection and role enforcement
 
 ### API Routes (Admin)
+
 - `src/app/api/admin/users/route.ts`
 - `src/app/api/admin/users/[userId]/route.ts`
 - `src/app/api/admin/users/[userId]/unlock/route.ts`
 - `src/app/api/admin/audit-logs/route.ts`
 
 ### API Routes (User)
+
 - `src/app/api/user/profile/route.ts`
 - `src/app/api/user/bookings/route.ts`
 
 ### Frontend Pages
+
 - `src/app/admin/page.tsx` - Admin dashboard
 - `src/app/profile/page.tsx` - User profile
 - `src/app/access-denied/page.tsx` - Access denied error
@@ -177,12 +191,14 @@ Status: Active
 - `src/app/account-deactivated/page.tsx` - Account deactivated error
 
 ### Database
-- `prisma/schema.prisma` - Extended schema with roles and security
-- `prisma/seed-admin.js` - Admin user bootstrap script
+
+- `src/drizzle/schema.ts` - Drizzle schema with roles and security
+- `scripts/seed-db.js` - Admin and super-admin bootstrap script
 
 ## Testing the System
 
 ### Test Login
+
 1. Navigate to `/login`
 2. Enter credentials:
    - Email: `admin@trailmakers.com`
@@ -190,18 +206,21 @@ Status: Active
 3. Should redirect to homepage (authenticated)
 
 ### Test Admin Access
+
 1. Login as admin
 2. Navigate to `/admin`
 3. Should see user management dashboard
 4. Try editing user roles, unlocking accounts, viewing audit logs
 
 ### Test Role-Based Access
+
 1. Create a USER account via admin dashboard
 2. Login as USER, try accessing `/admin`
 3. Should redirect to `/access-denied`
 4. Access `/profile` should work
 
 ### Test Account Locking
+
 1. Login with USER account
 2. Enter wrong password 5+ times within 1 hour
 3. Account should lock automatically
@@ -211,6 +230,7 @@ Status: Active
 ## Status Indicators
 
 ✅ **Completed & Tested**:
+
 - User role hierarchy (ADMIN > MODERATOR > USER)
 - Account locking system (5 attempts, 30-min auto-unlock)
 - Admin user management APIs
@@ -221,6 +241,7 @@ Status: Active
 - Initial admin user seeded
 
 🔄 **Ready for Further Development**:
+
 - Backend implementation for booking edit/cancel
 - Moderator dashboard page
 - Content flagging and moderation system

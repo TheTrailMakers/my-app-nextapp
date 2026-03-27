@@ -3,7 +3,17 @@
  * Production-ready payment processing with idempotency
  */
 
-import { prisma } from "@/lib/prisma";
+import { eq } from "drizzle-orm";
+import { randomUUID } from "node:crypto";
+import db from "@/drizzle/db";
+import {
+  auditLog,
+  booking as bookingTable,
+  departure as departureTable,
+  payment as paymentTable,
+  trek as trekTable,
+  userTable,
+} from "@/drizzle/schema";
 import Razorpay from "razorpay";
 import crypto from "crypto";
 import {
@@ -15,6 +25,77 @@ import { sendBookingConfirmationEmail } from "@/lib/email";
 
 // Lazy-load Razorpay client to prevent build-time initialization errors
 let razorpayInstance: Razorpay | null = null;
+
+async function findBookingPaymentRow(bookingId: string) {
+  const rows = await db
+    .select({
+      booking: bookingTable,
+      user: userTable,
+      departure: departureTable,
+      trek: trekTable,
+    })
+    .from(bookingTable)
+    .innerJoin(userTable, eq(bookingTable.userId, userTable.id))
+    .innerJoin(departureTable, eq(bookingTable.departureId, departureTable.id))
+    .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+    .where(eq(bookingTable.id, bookingId))
+    .limit(1);
+
+  return rows[0] ?? null;
+}
+
+async function findPaymentWithBookingByTransactionId(transactionId: string) {
+  const rows = await db
+    .select({
+      payment: paymentTable,
+      booking: bookingTable,
+      user: userTable,
+      departure: departureTable,
+      trek: trekTable,
+    })
+    .from(paymentTable)
+    .innerJoin(bookingTable, eq(paymentTable.bookingId, bookingTable.id))
+    .innerJoin(userTable, eq(bookingTable.userId, userTable.id))
+    .innerJoin(departureTable, eq(bookingTable.departureId, departureTable.id))
+    .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+    .where(eq(paymentTable.transactionId, transactionId))
+    .limit(1);
+
+  return rows[0] ?? null;
+}
+
+async function findPaymentWithBookingById(paymentId: string) {
+  const rows = await db
+    .select({
+      payment: paymentTable,
+      booking: bookingTable,
+      departure: departureTable,
+      trek: trekTable,
+    })
+    .from(paymentTable)
+    .innerJoin(bookingTable, eq(paymentTable.bookingId, bookingTable.id))
+    .innerJoin(departureTable, eq(bookingTable.departureId, departureTable.id))
+    .innerJoin(trekTable, eq(departureTable.trekId, trekTable.id))
+    .where(eq(paymentTable.id, paymentId))
+    .limit(1);
+
+  return rows[0] ?? null;
+}
+
+function mapPaymentWithBooking(
+  row: NonNullable<Awaited<ReturnType<typeof findPaymentWithBookingById>>>,
+) {
+  return {
+    ...row.payment,
+    booking: {
+      ...row.booking,
+      departure: {
+        ...row.departure,
+        trek: row.trek,
+      },
+    },
+  };
+}
 
 function getRazorpayClient(): Razorpay {
   if (!razorpayInstance) {
@@ -29,245 +110,278 @@ function getRazorpayClient(): Razorpay {
   return razorpayInstance;
 }
 
-export class PaymentService {
-  /**
-   * Create payment intent for a booking
-   * Implements idempotency for safety in retries
-   */
-  static async createPaymentIntent(
-    bookingId: string,
-    userId: string
-  ) {
-    // Get booking details
-    const booking = await prisma.booking.findUnique({
-      where: { id: bookingId },
-      include: {
-        user: true,
+export async function createPaymentIntent(
+  bookingId: string,
+  userId: string,
+  expectedAmount?: number,
+) {
+  // Get booking details
+  const bookingRow = await findBookingPaymentRow(bookingId);
+  const booking = bookingRow
+    ? {
+        ...bookingRow.booking,
+        user: bookingRow.user,
         departure: {
-          include: { trek: true },
+          ...bookingRow.departure,
+          trek: bookingRow.trek,
         },
-      },
-    });
-
-    if (!booking) {
-      throw new NotFoundError("Booking not found");
-    }
-
-    if (booking.userId !== userId) {
-      throw new ValidationError("Cannot pay for someone else's booking");
-    }
-
-    // Check if payment already exists
-    const existingPayment = await prisma.payment.findUnique({
-      where: { bookingId },
-    });
-
-    if (existingPayment) {
-      if (existingPayment.status === "COMPLETED") {
-        throw new ValidationError("Payment already completed for this booking");
       }
-      // Return existing payment if pending (allows retry)
-      return existingPayment;
-    }
+    : null;
 
-    // Create payment record in database
-    const payment = await prisma.payment.create({
-      data: {
+  if (!booking) {
+    throw new NotFoundError("Booking not found");
+  }
+
+  if (booking.userId !== userId) {
+    throw new ValidationError("Cannot pay for someone else's booking");
+  }
+
+  if (
+    typeof expectedAmount === "number" &&
+    expectedAmount !== booking.totalAmount
+  ) {
+    throw new ValidationError("Amount does not match booking total");
+  }
+
+  if (booking.status === "CONFIRMED" || booking.status === "COMPLETED") {
+    throw new ValidationError("This booking has already been paid");
+  }
+
+  if (booking.status === "CANCELLED") {
+    throw new ValidationError("This booking has been cancelled");
+  }
+
+  // Check if payment already exists
+  const existingPayments = await db
+    .select()
+    .from(paymentTable)
+    .where(eq(paymentTable.bookingId, bookingId))
+    .limit(1);
+  const existingPayment = existingPayments[0] ?? null;
+
+  if (existingPayment) {
+    if (existingPayment.status === "COMPLETED") {
+      throw new ValidationError("Payment already completed for this booking");
+    }
+  }
+
+  let paymentId = existingPayment?.id ?? "";
+
+  if (!existingPayment) {
+    const createdPayments = await db
+      .insert(paymentTable)
+      .values({
+        id: randomUUID(),
         bookingId,
         userId,
         amount: booking.totalAmount,
         status: "PENDING",
         paymentGateway: "razorpay",
         paymentIntentId: generateIdempotencyKey(bookingId),
+        updatedAt: new Date(),
+      })
+      .returning({ id: paymentTable.id });
+    paymentId = createdPayments[0]?.id ?? "";
+  } else {
+    paymentId = existingPayment.id;
+  }
+
+  // Create Razorpay order
+  try {
+    const razorpay = getRazorpayClient();
+    const razorpayOrder = await razorpay.orders.create({
+      amount: booking.totalAmount, // in paise
+      currency: "INR",
+      receipt: bookingId, // Unique receipt ID
+      notes: {
+        bookingId,
+        userId,
+        trekName: booking.departure.trek.name,
+        numberOfPeople: booking.numberOfPeople,
       },
     });
 
-    // Create Razorpay order
-    try {
-      const razorpay = getRazorpayClient();
-      const razorpayOrder = await razorpay.orders.create({
-        amount: booking.totalAmount, // in paise
-        currency: "INR",
-        receipt: bookingId, // Unique receipt ID
-        notes: {
-          bookingId,
-          userId,
-          trekName: booking.departure.trek.name,
-          numberOfPeople: booking.numberOfPeople,
-        },
-      });
+    // Update payment with Razorpay order ID
+    const updatedPayments = await db
+      .update(paymentTable)
+      .set({
+        amount: booking.totalAmount,
+        status: "PENDING",
+        paymentGateway: "razorpay",
+        transactionId: razorpayOrder.id,
+        errorMessage: null,
+        updatedAt: new Date(),
+      })
+      .where(eq(paymentTable.id, paymentId))
+      .returning();
+    const updatedPayment = updatedPayments[0];
 
-      // Update payment with Razorpay order ID
-      const updatedPayment = await prisma.payment.update({
-        where: { id: payment.id },
-        data: {
-          transactionId: razorpayOrder.id,
-        },
-      });
-
-      return {
-        payment: updatedPayment,
-        razorpayOrder,
-      };
-    } catch (error) {
-      // Mark payment as failed and log error
-      await prisma.payment.update({
-        where: { id: payment.id },
-        data: {
+    return {
+      payment: updatedPayment,
+      razorpayOrder,
+    };
+  } catch (error) {
+    // Mark payment as failed and log error
+    if (paymentId) {
+      await db
+        .update(paymentTable)
+        .set({
           status: "FAILED",
-          errorMessage: error instanceof Error ? error.message : "Unknown error",
-        },
-      });
-
-      throw new PaymentRequiredError(
-        "Failed to initiate payment. Please try again."
-      );
+          errorMessage:
+            error instanceof Error ? error.message : "Unknown error",
+          updatedAt: new Date(),
+        })
+        .where(eq(paymentTable.id, paymentId));
     }
-  }
 
-  /**
-   * Verify payment signature from Razorpay webhook
-   * CRITICAL: Prevents fake payment confirmations
-   */
-  static verifyPaymentSignature(
-    razorpayOrderId: string,
-    razorpayPaymentId: string,
-    razorpaySignature: string
-  ): boolean {
-    const shasum = crypto.createHmac(
-      "sha256",
-      process.env.RAZORPAY_KEY_SECRET!
+    throw new PaymentRequiredError(
+      "Failed to initiate payment. Please try again.",
     );
-    shasum.update(`${razorpayOrderId}|${razorpayPaymentId}`);
-    const expectedSignature = shasum.digest("hex");
+  }
+}
 
-    return expectedSignature === razorpaySignature;
+export function verifyPaymentSignature(
+  razorpayOrderId: string,
+  razorpayPaymentId: string,
+  razorpaySignature: string,
+): boolean {
+  const shasum = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET!);
+  shasum.update(`${razorpayOrderId}|${razorpayPaymentId}`);
+  const expectedSignature = shasum.digest("hex");
+
+  return expectedSignature === razorpaySignature;
+}
+
+export async function processPaymentSuccess(
+  razorpayOrderId: string,
+  razorpayPaymentId: string,
+  razorpaySignature: string,
+) {
+  // Verify signature first (security critical!)
+  if (
+    !verifyPaymentSignature(
+      razorpayOrderId,
+      razorpayPaymentId,
+      razorpaySignature,
+    )
+  ) {
+    throw new ValidationError("Invalid payment signature");
   }
 
-  /**
-   * Process successful payment
-   * Updates booking status and creates audit trail
-   */
-  static async processPaymentSuccess(
-    razorpayOrderId: string,
-    razorpayPaymentId: string,
-    razorpaySignature: string
-  ) {
-    // Verify signature first (security critical!)
-    if (
-      !this.verifyPaymentSignature(
-        razorpayOrderId,
-        razorpayPaymentId,
-        razorpaySignature
-      )
-    ) {
-      throw new ValidationError("Invalid payment signature");
-    }
+  // Find payment record
+  const payment = await findPaymentWithBookingByTransactionId(razorpayOrderId);
 
-    // Find payment record
-    const payment = await prisma.payment.findUnique({
-      where: { transactionId: razorpayOrderId },
-      include: { 
-        booking: {
-          include: {
-            departure: { include: { trek: true } },
-            user: true,
-          }
-        }
-      },
-    });
+  if (!payment) {
+    throw new NotFoundError("Payment record not found");
+  }
 
-    if (!payment) {
-      throw new NotFoundError("Payment record not found");
-    }
-
-    // Update payment and booking in transaction
-    const result = await prisma.$transaction(async (tx) => {
+  // Update payment and booking in transaction
+  await db.transaction(
+    async (tx) => {
       // Update payment
-      const updatedPayment = await tx.payment.update({
-        where: { id: payment.id },
-        data: {
+      await tx
+        .update(paymentTable)
+        .set({
           status: "COMPLETED",
           transactionId: razorpayPaymentId,
-        },
-      });
+          updatedAt: new Date(),
+        })
+        .where(eq(paymentTable.id, payment.payment.id));
 
       // Update booking status
-      const updatedBooking = await tx.booking.update({
-        where: { id: payment.bookingId },
-        data: {
+      await tx
+        .update(bookingTable)
+        .set({
           status: "CONFIRMED",
-        },
-        include: {
-          departure: {
-            include: { trek: true },
-          },
-          user: true,
-        },
-      });
+          updatedAt: new Date(),
+        })
+        .where(eq(bookingTable.id, payment.payment.bookingId));
 
       // Create audit log
-      await tx.auditLog.create({
-        data: {
-          action: "PAYMENT_COMPLETED",
-          entityType: "PAYMENT",
-          entityId: updatedPayment.id,
-          userId: payment.userId,
-          metadata: JSON.stringify({
-            amount: updatedPayment.amount,
-            razorpayPaymentId,
-          }),
-        },
+      await tx.insert(auditLog).values({
+        id: randomUUID(),
+        action: "PAYMENT_COMPLETED",
+        entityType: "PAYMENT",
+        entityId: payment.payment.id,
+        userId: payment.payment.userId,
+        metadata: JSON.stringify({
+          amount: payment.payment.amount,
+          razorpayPaymentId,
+        }),
+        description: `PAYMENT_COMPLETED on PAYMENT ${payment.payment.id}`,
       });
+    },
+    { isolationLevel: "serializable" },
+  );
 
-      return { payment: updatedPayment, booking: updatedBooking };
-    });
+  const result = await findPaymentWithBookingById(payment.payment.id);
 
-    // Send confirmation email (async, non-blocking)
-    if (result.booking.user && result.booking.user.email) {
-      sendBookingConfirmationEmail({
-        to: result.booking.user.email,
-        userName: result.booking.user.firstName || result.booking.user.username || 'Adventurer',
-        bookingDetails: {
-          trekName: result.booking.departure?.trek?.name || 'Your Trek',
-          startDate: result.booking.departure?.startDate ? new Date(result.booking.departure.startDate).toLocaleDateString('en-IN') : 'TBD',
-          endDate: result.booking.departure?.endDate ? new Date(result.booking.departure.endDate).toLocaleDateString('en-IN') : 'TBD',
-          numberOfPeople: result.booking.numberOfPeople,
-          totalAmount: result.booking.totalAmount,
-          bookingId: result.booking.id,
-        },
-      }).catch(err => console.error('Failed to send confirmation email:', err));
-    }
-
-    return result;
+  if (!result) {
+    throw new NotFoundError("Payment record not found");
   }
 
-  /**
-   * Process payment failure
-   */
-  static async processPaymentFailure(
-    razorpayOrderId: string,
-    errorMessage: string
-  ) {
-    const payment = await prisma.payment.findUnique({
-      where: { transactionId: razorpayOrderId },
-    });
-
-    if (!payment) {
-      throw new NotFoundError("Payment record not found");
-    }
-
-    await prisma.payment.update({
-      where: { id: payment.id },
-      data: {
-        status: "FAILED",
-        errorMessage,
+  // Send confirmation email (async, non-blocking)
+  if (payment.user.email) {
+    sendBookingConfirmationEmail({
+      to: payment.user.email,
+      userName: payment.user.firstName || payment.user.username || "Adventurer",
+      bookingDetails: {
+        trekName: payment.trek.name || "Your Trek",
+        startDate: payment.departure.startDate
+          ? new Date(payment.departure.startDate).toLocaleDateString("en-IN")
+          : "TBD",
+        endDate: payment.departure.endDate
+          ? new Date(payment.departure.endDate).toLocaleDateString("en-IN")
+          : "TBD",
+        numberOfPeople: payment.booking.numberOfPeople,
+        totalAmount: payment.booking.totalAmount,
+        bookingId: payment.booking.id,
       },
-    });
+    }).catch((err) => console.error("Failed to send confirmation email:", err));
+  }
 
-    // Log failed payment
-    await prisma.auditLog.create({
-      data: {
+  return {
+    payment: result.payment,
+    booking: {
+      ...result.booking,
+      departure: {
+        ...result.departure,
+        trek: result.trek,
+      },
+      user: payment.user,
+    },
+  };
+}
+
+export async function processPaymentFailure(
+  razorpayOrderId: string,
+  errorMessage: string,
+) {
+  const payments = await db
+    .select()
+    .from(paymentTable)
+    .where(eq(paymentTable.transactionId, razorpayOrderId))
+    .limit(1);
+  const payment = payments[0] ?? null;
+
+  if (!payment) {
+    throw new NotFoundError("Payment record not found");
+  }
+
+  await db.transaction(
+    async (tx) => {
+      await tx
+        .update(paymentTable)
+        .set({
+          status: "FAILED",
+          errorMessage,
+          updatedAt: new Date(),
+        })
+        .where(eq(paymentTable.id, payment.id));
+
+      // Log failed payment
+      await tx.insert(auditLog).values({
+        id: randomUUID(),
         action: "PAYMENT_FAILED",
         entityType: "PAYMENT",
         entityId: payment.id,
@@ -276,98 +390,94 @@ export class PaymentService {
           razorpayOrderId,
           errorMessage,
         }),
-      },
-    });
+        description: `PAYMENT_FAILED on PAYMENT ${payment.id}`,
+      });
+    },
+    { isolationLevel: "serializable" },
+  );
+}
+
+export async function refundPayment(paymentId: string, userId: string) {
+  const payments = await db
+    .select()
+    .from(paymentTable)
+    .where(eq(paymentTable.id, paymentId))
+    .limit(1);
+  const payment = payments[0] ?? null;
+
+  if (!payment) {
+    throw new NotFoundError("Payment not found");
   }
 
-  /**
-   * Refund payment
-   * Called when booking is cancelled
-   */
-  static async refundPayment(paymentId: string, userId: string) {
-    const payment = await prisma.payment.findUnique({
-      where: { id: paymentId },
+  if (payment.userId !== userId) {
+    throw new ValidationError("Cannot refund someone else's payment");
+  }
+
+  if (payment.status !== "COMPLETED") {
+    throw new ValidationError("Only completed payments can be refunded");
+  }
+
+  try {
+    // Request refund from Razorpay
+    const razorpay = getRazorpayClient();
+    const refund = await razorpay.payments.refund(payment.transactionId!, {
+      amount: payment.amount,
     });
 
-    if (!payment) {
-      throw new NotFoundError("Payment not found");
-    }
+    // Update payment record
+    const updated = await db.transaction(
+      async (tx) => {
+        const updatedPayments = await tx
+          .update(paymentTable)
+          .set({
+            status: "REFUNDED",
+            refundAmount: payment.amount,
+            refundedAt: new Date(),
+            refundTransactionId: refund.id,
+            updatedAt: new Date(),
+          })
+          .where(eq(paymentTable.id, payment.id))
+          .returning();
 
-    if (payment.userId !== userId) {
-      throw new ValidationError("Cannot refund someone else's payment");
-    }
-
-    if (payment.status !== "COMPLETED") {
-      throw new ValidationError("Only completed payments can be refunded");
-    }
-
-    try {
-      // Request refund from Razorpay
-      const razorpay = getRazorpayClient();
-      const refund = await razorpay.payments.refund(payment.transactionId!, {
-        amount: payment.amount,
-      });
-
-      // Update payment record
-      const updated = await prisma.payment.update({
-        where: { id: payment.id },
-        data: {
-          status: "REFUNDED",
-          refundAmount: payment.amount,
-          refundedAt: new Date(),
-          refundTransactionId: refund.id,
-        },
-      });
-
-      // Audit log
-      await prisma.auditLog.create({
-        data: {
+        // Audit log
+        await tx.insert(auditLog).values({
+          id: randomUUID(),
           action: "PAYMENT_REFUNDED",
           entityType: "PAYMENT",
-          entityId: updated.id,
+          entityId: payment.id,
           userId,
           metadata: JSON.stringify({
             amount: payment.amount,
             razorpayRefundId: refund.id,
           }),
-        },
-      });
+          description: `PAYMENT_REFUNDED on PAYMENT ${payment.id}`,
+        });
 
-      return updated;
-    } catch (error) {
-      throw new PaymentRequiredError(
-        "Failed to process refund. Please contact support."
-      );
-    }
-  }
-
-  /**
-   * Get payment details
-   */
-  static async getPayment(paymentId: string, userId: string) {
-    const payment = await prisma.payment.findUnique({
-      where: { id: paymentId },
-      include: {
-        booking: {
-          include: {
-            departure: {
-              include: { trek: true },
-            },
-          },
-        },
+        return updatedPayments[0];
       },
-    });
+      { isolationLevel: "serializable" },
+    );
 
-    if (!payment) {
-      throw new NotFoundError("Payment not found");
-    }
-
-    if (payment.userId !== userId) {
-      throw new ValidationError("Cannot access other user's payment");
-    }
-
-    return payment;
+    return updated;
+  } catch (error) {
+    throw new PaymentRequiredError(
+      "Failed to process refund. Please contact support.",
+    );
   }
+}
+
+export async function getPayment(paymentId: string, userId: string) {
+  const payment = await findPaymentWithBookingById(paymentId);
+
+  if (!payment) {
+    throw new NotFoundError("Payment not found");
+  }
+
+  if (payment.payment.userId !== userId) {
+    throw new ValidationError("Cannot access other user's payment");
+  }
+
+  return mapPaymentWithBooking(payment);
 }
 
 /**
@@ -383,8 +493,20 @@ function generateIdempotencyKey(bookingId: string): string {
  * Should be called from /api/webhooks/razorpay
  */
 export async function handleRazorpayWebhook(
-  event: any,
-  signature: string
+  event: {
+    event: string;
+    payload: {
+      payment: {
+        entity: {
+          id: string;
+          order_id: string;
+          signature?: string;
+          error_description?: string;
+        };
+      };
+    };
+  },
+  signature: string,
 ) {
   const secret = process.env.RAZORPAY_WEBHOOK_SECRET!;
 
@@ -400,17 +522,21 @@ export async function handleRazorpayWebhook(
   // Handle different event types
   switch (event.event) {
     case "payment.authorized":
-      await PaymentService.processPaymentSuccess(
+      if (!event.payload.payment.entity.signature) {
+        throw new ValidationError("Missing payment signature");
+      }
+
+      await processPaymentSuccess(
         event.payload.payment.entity.order_id,
         event.payload.payment.entity.id,
-        event.payload.payment.entity.signature
+        event.payload.payment.entity.signature,
       );
       break;
 
     case "payment.failed":
-      await PaymentService.processPaymentFailure(
+      await processPaymentFailure(
         event.payload.payment.entity.order_id,
-        event.payload.payment.entity.error_description
+        event.payload.payment.entity.error_description ?? "Payment failed",
       );
       break;
 
