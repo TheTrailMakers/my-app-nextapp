@@ -21,6 +21,15 @@ type SortOptionValue =
   | "distance"
   | "earliest";
 
+type SortOptionValue =
+  | "popular"
+  | "name"
+  | "difficulty"
+  | "duration"
+  | "state"
+  | "distance"
+  | "earliest";
+
 interface TrekCardProps {
   id: string;
   name: string;
@@ -324,6 +333,16 @@ export default function AllTreksPageClient({
               </span>
             </button>
           </div>
+
+          {currentState && (
+            <button
+              onClick={() => navigateWithParams({ state: null })}
+              disabled={isPending}
+              className="rounded-lg border border-border px-3 py-2 text-sm font-semibold text-muted-foreground transition hover:border-gray-500 hover:text-foreground"
+            >
+              Clear State
+            </button>
+          )}
         </div>
       </div>
 
