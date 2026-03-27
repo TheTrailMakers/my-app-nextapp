@@ -16,7 +16,7 @@ Sentry.init({
 
   debug: process.env.NODE_ENV === "development",
 
-  // Enable sending user PII (Personally Identifiable Information)
+  // Disable sending user PII (Personally Identifiable Information) from edge by default.
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
-  sendDefaultPii: true,
+  sendDefaultPii: false,
 });
