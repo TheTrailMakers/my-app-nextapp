@@ -73,7 +73,7 @@ export default function SignUp() {
       title="Create account"
       error={error}
       form={
-        <form onSubmit={handleSignUp} className="space-y-5">
+        <form onSubmit={handleSignUp} className="space-y-6">
           <div>
             <label
               htmlFor="signup-username"
@@ -143,7 +143,7 @@ export default function SignUp() {
       social={
         <GoogleButton
           label="Sign up with Google"
-          className="h-12 w-full rounded-xl border-[oklch(0.88_0.015_70)] bg-transparent text-[oklch(0.28_0.02_55)] shadow-none hover:bg-[oklch(0.97_0.005_80)]"
+          className="h-14 w-full rounded-none border border-border/50 bg-transparent text-sm font-semibold tracking-wide text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           onClick={() => signInWithSocial("google")}
         />
       }

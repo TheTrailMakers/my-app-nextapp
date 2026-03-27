@@ -99,7 +99,7 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
       title="Log in"
       error={error}
       form={
-        <form onSubmit={handleLogin} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label htmlFor="login-email" className={authFieldLabelClassName}>
               Email
@@ -127,7 +127,7 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
               </label>
               <Link
                 href="/forgot-password"
-                className="text-xs text-[oklch(0.48_0.015_55)] transition hover:text-[oklch(0.36_0.02_55)]"
+                className="text-[0.65rem] font-semibold uppercase tracking-widest text-muted-foreground transition hover:text-foreground"
               >
                 Forgot?
               </Link>
@@ -156,7 +156,7 @@ export default function LoginClient({ nextPath }: LoginClientProps) {
       social={
         <GoogleButton
           label="Continue with Google"
-          className="h-12 w-full rounded-xl border-[oklch(0.88_0.015_70)] bg-transparent text-[oklch(0.28_0.02_55)] shadow-none hover:bg-[oklch(0.97_0.005_80)]"
+          className="h-14 w-full rounded-none border border-border/50 bg-transparent text-sm font-semibold tracking-wide text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           onClick={() => signInWithSocial("google")}
         />
       }
