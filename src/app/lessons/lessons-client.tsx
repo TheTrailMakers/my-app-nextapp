@@ -6,9 +6,9 @@ import {
   FiArrowRight,
   FiHeart,
   FiMessageCircle,
-  FiShare2,
 } from "react-icons/fi";
 import { ImageWithFallback as Image } from "@/components/imageWithFallback";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export interface LessonCardData {
   id: number;
@@ -147,7 +147,9 @@ export default function LessonsClient({
         {filteredLessons.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 md:gap-x-12 md:gap-y-24">
             {filteredLessons.map((lesson) => (
-              <LessonCardEditorial key={lesson.id} lesson={lesson} />
+              <ScrollReveal key={lesson.id} animation="fade-up" offset={["start 95%", "start 75%"]}>
+                <LessonCardEditorial lesson={lesson} />
+              </ScrollReveal>
             ))}
           </div>
         ) : (

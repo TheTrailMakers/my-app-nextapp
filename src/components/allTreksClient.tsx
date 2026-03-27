@@ -10,6 +10,7 @@ import {
   FiArrowUp,
 } from "react-icons/fi";
 import { ImageWithFallback as Image } from "@/components/imageWithFallback";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 type SortOptionValue =
   | "popular"
@@ -181,17 +182,23 @@ export default function AllTreksPageClient({
       {/* Header Section */}
       <section className="relative px-6 md:px-12 lg:px-20 pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="max-w-[1400px] mx-auto flex flex-col items-center text-center">
-          <span className="text-primary uppercase tracking-[0.2em] text-xs font-sans font-semibold mb-6 block">
-            The Collection
-          </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display leading-[1.1] tracking-tight max-w-4xl text-balance">
-            Explore the Wild.
-          </h1>
-          <p className="mt-8 text-muted-foreground text-lg md:text-xl max-w-2xl leading-relaxed">
-            Explore our complete collection of treks, expeditions, and
-            adventures across India's most stunning landscapes. Curated for
-            those who seek the extraordinary.
-          </p>
+          <ScrollReveal animation="fade-up" offset={["start 95%", "start 80%"]}>
+            <span className="text-primary uppercase tracking-[0.2em] text-xs font-sans font-semibold mb-6 block">
+              The Collection
+            </span>
+          </ScrollReveal>
+          <ScrollReveal animation="fade-up" offset={["start 95%", "start 70%"]}>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-display leading-[1.1] tracking-tight max-w-4xl text-balance">
+              Explore the Wild.
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal animation="fade-up" offset={["start 90%", "start 70%"]}>
+            <p className="mt-8 text-muted-foreground text-lg md:text-xl max-w-2xl leading-relaxed">
+              Explore our complete collection of treks, expeditions, and
+              adventures across India's most stunning landscapes. Curated for
+              those who seek the extraordinary.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -328,7 +335,9 @@ export default function AllTreksPageClient({
           {initialTreks.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 md:gap-x-12 md:gap-y-24">
               {initialTreks.map((trek) => (
-                <TrekCardEditorial key={trek.id} trek={trek} />
+                <ScrollReveal key={trek.id} animation="fade-up" offset={["start 95%", "start 75%"]}>
+                  <TrekCardEditorial trek={trek} />
+                </ScrollReveal>
               ))}
             </div>
           ) : (
