@@ -48,7 +48,7 @@ async function UpcomingAdventuresEditorial() {
   }
 
   return (
-    <section className="py-24 md:py-32 px-6 lg:px-12 bg-[#F9F6F0] dark:bg-[#121415] relative">
+    <section className="py-24 md:py-32 px-6 lg:px-12 bg-linear-to-b from-background to-muted relative">
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-8">
           <div className="max-w-xl">
@@ -159,7 +159,7 @@ async function UpcomingAdventuresEditorial() {
         <div className="mt-16 text-right md:text-center block">
           <Link
             href="/all"
-            className="relative inline-flex items-center gap-4 text-sm uppercase tracking-[0.2em] font-medium text-foreground hover:text-primary transition-colors pb-2 border-b border-border hover:border-primary group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-[#F9F6F0] dark:focus-visible:ring-offset-[#121415] rounded-sm"
+            className="relative inline-flex items-center gap-4 text-sm uppercase tracking-[0.2em] font-medium text-foreground hover:text-primary transition-colors pb-2 border-b border-border hover:border-primary group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background rounded-sm"
           >
             See All Expeditions
             <FiArrowRight

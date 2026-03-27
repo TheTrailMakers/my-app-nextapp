@@ -58,21 +58,24 @@ const lessons: LessonCardData[] = [
 
 export default function LessonsPage() {
   return (
-    <main className="bg-black text-white min-h-screen pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <section className="mb-12">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Mountain Lessons
+    <div className="min-h-screen bg-linear-to-b from-background to-muted text-foreground selection:bg-primary/20 pb-24">
+      {/* Header Section */}
+      <section className="relative px-6 md:px-12 lg:px-20 pt-32 md:pt-40 pb-16 md:pb-24">
+        <div className="max-w-[1400px] mx-auto flex flex-col items-center text-center">
+          <span className="text-primary uppercase tracking-[0.2em] text-xs font-sans font-semibold mb-6 block">
+            Knowledge Hub
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display leading-[1.1] tracking-tight max-w-4xl text-balance">
+            Mountain Lessons.
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl">
+          <p className="mt-8 text-muted-foreground text-lg md:text-xl max-w-2xl leading-relaxed">
             Learn from experienced trekkers, discover gear tips, explore
             destinations, and read real stories from the trails.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <LessonsClient lessons={lessons} />
-      </div>
-    </main>
+      <LessonsClient lessons={lessons} />
+    </div>
   );
 }
