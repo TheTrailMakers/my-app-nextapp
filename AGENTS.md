@@ -28,3 +28,5 @@
 - Don't write unnecessary useEffect hooks.
 - Look for reusable code and try not to repeat yourself.
 - Don't create clever abstractions that make the code harder to understand.
+- Don't hardcode colors, use theme colors setup in globals.css
+- Don't hardcode fonts, use theme fonts setup in globals.css

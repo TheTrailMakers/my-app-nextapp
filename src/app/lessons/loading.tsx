@@ -1,4 +1,4 @@
-export default function LoadingAllTreksPage() {
+export default function LoadingLessonsPage() {
   return (
     <div className="min-h-screen bg-linear-to-b from-background to-muted pb-24">
       {/* Header Section Skeleton */}

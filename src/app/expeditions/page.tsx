@@ -4,6 +4,7 @@ import { desc } from "drizzle-orm";
 import db from "@/drizzle/db";
 import { expedition as expeditionTable } from "@/drizzle/schema";
 import { isDatabaseConfigured } from "@/lib/databaseAvailability";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 interface ExpeditionCard {
   id: string;
@@ -66,14 +67,18 @@ export default async function ExpeditionsPage() {
       {/* Header Section */}
       <div className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-            Alpine Expeditions
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Challenge yourself with our high-altitude climbing expeditions in
-            the Himalayas. Experience world-class mountaineering with
-            experienced guides and comprehensive support.
-          </p>
+          <ScrollReveal animation="fade-up" offset={["start 95%", "start 80%"]}>
+            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+              Alpine Expeditions
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal animation="fade-up" offset={["start 90%", "start 70%"]}>
+            <p className="text-lg text-muted-foreground">
+              Challenge yourself with our high-altitude climbing expeditions in
+              the Himalayas. Experience world-class mountaineering with
+              experienced guides and comprehensive support.
+            </p>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -89,82 +94,87 @@ export default async function ExpeditionsPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {expeditions.map((expedition) => (
-                <div
+                <ScrollReveal
                   key={expedition.id}
-                  className="bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
+                  animation="fade-up"
+                  offset={["start 95%", "start 75%"]}
                 >
-                  {/* Image */}
-                  <div className="h-48 bg-muted overflow-hidden">
-                    <Image
-                      src={
-                        expedition.imageUrl ||
-                        expedition.thumbnailUrl ||
-                        fallbackExpeditionImage
-                      }
-                      alt={expedition.name}
-                      width={800}
-                      height={480}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="h-full w-full object-cover hover:scale-105 transition-transform"
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-4">
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      {expedition.name}
-                    </h3>
-
-                    {/* Details Grid */}
-                    <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
-                      <div>
-                        <p className="text-muted-foreground">
-                          Altitude
-                        </p>
-                        <p className="font-semibold text-foreground">
-                          {expedition.maxAltitude}m
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">
-                          Duration
-                        </p>
-                        <p className="font-semibold text-foreground">
-                          {expedition.duration} days
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">
-                          Difficulty
-                        </p>
-                        <p className="font-semibold text-foreground capitalize">
-                          {formatDifficulty(expedition.difficulty)}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">
-                          Price
-                        </p>
-                        <p className="font-semibold text-foreground">
-                          ₹
-                          {(expedition.basePrice / 100).toLocaleString("en-IN")}
-                        </p>
-                      </div>
+                  <div
+                    className="bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden"
+                  >
+                    {/* Image */}
+                    <div className="h-48 bg-muted overflow-hidden">
+                      <Image
+                        src={
+                          expedition.imageUrl ||
+                          expedition.thumbnailUrl ||
+                          fallbackExpeditionImage
+                        }
+                        alt={expedition.name}
+                        width={800}
+                        height={480}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="h-full w-full object-cover hover:scale-105 transition-transform"
+                      />
                     </div>
 
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                      {expedition.description}
-                    </p>
+                    {/* Content */}
+                    <div className="p-4">
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {expedition.name}
+                      </h3>
 
-                    {/* Button */}
-                    <Link
-                      href={`/expeditions/${expedition.slug}`}
-                      className="w-full inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2 px-4 rounded-lg transition-colors text-center"
-                    >
-                      View Details
-                    </Link>
+                      {/* Details Grid */}
+                      <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
+                        <div>
+                          <p className="text-muted-foreground">
+                            Altitude
+                          </p>
+                          <p className="font-semibold text-foreground">
+                            {expedition.maxAltitude}m
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">
+                            Duration
+                          </p>
+                          <p className="font-semibold text-foreground">
+                            {expedition.duration} days
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">
+                            Difficulty
+                          </p>
+                          <p className="font-semibold text-foreground capitalize">
+                            {formatDifficulty(expedition.difficulty)}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">
+                            Price
+                          </p>
+                          <p className="font-semibold text-foreground">
+                            ₹
+                            {(expedition.basePrice / 100).toLocaleString("en-IN")}
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                        {expedition.description}
+                      </p>
+
+                      {/* Button */}
+                      <Link
+                        href={`/expeditions/${expedition.slug}`}
+                        className="w-full inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2 px-4 rounded-lg transition-colors text-center"
+                      >
+                        View Details
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           )}
