@@ -35,9 +35,9 @@ export default function AuthPageShell({
   success,
 }: AuthPageShellProps) {
   return (
-    <main className="min-h-screen w-full flex flex-col md:flex-row bg-[#F9F6F0] dark:bg-[#121415] selection:bg-primary/20">
+    <main className="min-h-[calc(100dvh-85px)] w-full flex flex-col md:flex-row bg-[#F9F6F0] dark:bg-[#121415] selection:bg-primary/20">
       {/* Cinematic Image Section */}
-      <div className="relative w-full h-[30vh] md:h-screen md:w-[45%] lg:w-[50%] overflow-hidden shrink-0">
+      <div className="relative w-full h-[30vh] md:h-auto md:min-h-full md:w-[45%] lg:w-[50%] overflow-hidden shrink-0">
         <div className="absolute inset-0 bg-black/20 z-10 transition-opacity duration-1000 mix-blend-multiply dark:mix-blend-normal dark:bg-black/30" />
         <Image
           src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600"
