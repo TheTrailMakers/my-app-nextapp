@@ -1,0 +1,19 @@
+{
+  "name": "@the-trail-makers/infra",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "alchemy dev",
+    "deploy": "alchemy deploy",
+    "destroy": "alchemy destroy"
+  },
+  "dependencies": {
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@the-trail-makers/config": "workspace:*",
+    "alchemy": "catalog:",
+    "typescript": "^5"
+  }
+}

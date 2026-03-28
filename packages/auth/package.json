@@ -1,0 +1,24 @@
+{
+  "name": "@the-trail-makers/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@the-trail-makers/db": "workspace:*",
+    "@the-trail-makers/env": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@the-trail-makers/config": "workspace:*",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@the-trail-makers/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@orpc/client": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/zod": "catalog:",
+    "@the-trail-makers/auth": "workspace:*",
+    "@the-trail-makers/db": "workspace:*",
+    "@the-trail-makers/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@the-trail-makers/config": "workspace:*",
+    "hono": "catalog:",
+    "typescript": "^5"
+  }
+}

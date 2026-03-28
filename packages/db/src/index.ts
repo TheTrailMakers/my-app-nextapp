@@ -1,0 +1,6 @@
+import { env } from "@the-trail-makers/env/server";
+import { drizzle } from "drizzle-orm/d1";
+
+import * as schema from "./schema";
+
+export const db = drizzle(env.DB, { schema, casing: "snake_case" });

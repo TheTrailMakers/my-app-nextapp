@@ -1,88 +1,113 @@
-# The Trail Makers Next App
+# the-trail-makers
 
-Production-focused Next.js 16 application for trekking discovery, bookings, expeditions, courses, FAQs, and role-based admin operations.
+This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Start, Hono, ORPC, and more.
 
-## Stack
+## Features
 
-- Next.js 16 App Router
-- React 19
-- Drizzle ORM with PostgreSQL
-- Better Auth
-- Tailwind CSS
-- Sentry monitoring
+- **TypeScript** - For type safety and improved developer experience
+- **TanStack Start** - SSR framework with TanStack Router
+- **TailwindCSS** - Utility-first CSS for rapid UI development
+- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
+- **Hono** - Lightweight, performant server framework
+- **oRPC** - End-to-end type-safe APIs with OpenAPI integration
+- **workers** - Runtime environment
+- **Drizzle** - TypeScript-first ORM
+- **SQLite/Turso** - Database engine
+- **Authentication** - Better-Auth
+- **Biome** - Linting and formatting
+- **Turborepo** - Optimized monorepo build system
 
-## Core Commands
+## Getting Started
+
+First, install the dependencies:
 
 ```bash
 bun install
-bun run dev
-bun run lint
-bun run build
-bun run db:generate
+```
+
+## Database Setup
+
+This project uses SQLite with Drizzle ORM.
+
+1. Start the local SQLite database (optional):
+   D1 local development and migrations are handled automatically by Alchemy during dev and deploy.
+
+2. Update your `.env` file in the `apps/server` directory with the appropriate connection details if needed.
+
+3. Apply the schema to your database:
+
+```bash
 bun run db:push
-bun run db:seed
 ```
 
-## Required Environment Variables
+Then, run the development server:
 
 ```bash
-DATABASE_URL=
-NEXTAUTH_SECRET=
-NEXTAUTH_URL=
-NEXT_PUBLIC_SITE_URL=
-RESEND_API_KEY=
-EMAIL_FROM=
-NEXT_PUBLIC_SENTRY_DSN=
-RAZORPAY_KEY_ID=
-RAZORPAY_KEY_SECRET=
-UPSTASH_REDIS_REST_URL=
-UPSTASH_REDIS_REST_TOKEN=
+bun run dev
 ```
 
-`NEXT_PUBLIC_SITE_URL` should point to the canonical deployment URL and is used for metadata generation.
+Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
+The API is running at [http://localhost:3000](http://localhost:3000).
 
-For Sentry source map uploads during production builds, also set:
+## UI Customization
+
+React web apps in this stack share shadcn/ui primitives through `packages/ui`.
+
+- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
+- Update shared primitives in `packages/ui/src/components/*`
+- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
+
+### Add more shared components
+
+Run this from the project root to add more primitives to the shared UI package:
 
 ```bash
-SENTRY_AUTH_TOKEN=
-SENTRY_ORG=
-SENTRY_PROJECT=
+npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
 ```
 
-## Database Workflow
+Import shared components like this:
 
-1. Generate Drizzle SQL artifacts with `bun run db:generate`.
-2. Apply the current schema with `bun run db:push`.
-3. Seed bootstrap data with `bun run db:seed`.
-
-## Application Areas
-
-- Public marketing and catalog routes under `src/app`
-- Booking, payment, and profile flows under `src/app/booking` and `src/app/profile`
-- Admin APIs and dashboards under `src/app/admin` and `src/app/api/admin`
-- Shared business logic under `src/lib/services`
-- Auth and RBAC logic under `src/lib/auth.ts`, `src/lib/roleUtils.ts`, and `src/proxy.ts`
-
-## Architectural Conventions
-
-- Prefer server-rendered route pages for catalog and content sections.
-- Use client components only for interactive islands.
-- Route protection lives in `src/proxy.ts` for this Next 16 branch.
-- Use the shared Drizzle database client from `src/drizzle/db.ts`.
-- Use `next/image` for application images.
-- Add `loading.tsx` and `error.tsx` boundaries for routes with significant server work.
-
-## Validation
-
-Before merging substantial changes, run:
-
-```bash
-bun run lint
-bun run build
+```tsx
+import { Button } from "@the-trail-makers/ui/components/button";
 ```
 
-## Notes
+### Add app-specific blocks
 
-- The build is resilient when `DATABASE_URL` is missing by catching database access for static generation paths and falling back to empty collections where needed.
-- Sentry runtime configuration lives in `src/instrumentation-client.ts`, `sentry.server.config.ts`, and `sentry.edge.config.ts`.
-- The Sentry build plugin is configured in `next.config.mjs` and uses `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, and `SENTRY_PROJECT` when source maps should be uploaded.
+If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
+
+## Deployment (Cloudflare via Alchemy)
+
+- Dev: bun run dev
+- Deploy: bun run deploy
+- Destroy: bun run destroy
+
+For more details, see the guide on [Deploying to Cloudflare with Alchemy](https://www.better-t-stack.dev/docs/guides/cloudflare-alchemy).
+
+## Git Hooks and Formatting
+
+- Format and lint fix: `bun run check`
+
+## Project Structure
+
+```
+the-trail-makers/
+├── apps/
+│   ├── web/         # Frontend application (React + TanStack Start)
+│   └── server/      # Backend API (Hono, ORPC)
+├── packages/
+│   ├── ui/          # Shared shadcn/ui components and styles
+│   ├── api/         # API layer / business logic
+│   ├── auth/        # Authentication configuration & logic
+│   └── db/          # Database schema & queries
+```
+
+## Available Scripts
+
+- `bun run dev`: Start all applications in development mode
+- `bun run build`: Build all applications
+- `bun run dev:web`: Start only the web application
+- `bun run dev:server`: Start only the server
+- `bun run check-types`: Check TypeScript types across all apps
+- `bun run db:push`: Push schema changes to database
+- `bun run db:generate`: Generate database client/types
+- `bun run check`: Run Biome formatting and linting
