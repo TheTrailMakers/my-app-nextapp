@@ -276,6 +276,7 @@ html.theme-transitioning *::after {
   html {
     @apply font-body antialiased;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground;
