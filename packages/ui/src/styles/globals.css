@@ -20,6 +20,9 @@
    ============================================================ */
 
 :root {
+  --font-merriweather: "Lora Variable", "Lora", serif;
+  --font-manrope: "Manrope Variable", "Manrope", sans-serif;
+
   /* Sunset / amber family — primary accent */
   --tm-sunset: oklch(0.65 0.19 52);
   --tm-sunset-light: oklch(0.75 0.14 52);
