@@ -357,7 +357,7 @@ html.theme-transitioning *::after {
 }
 
 @utility nav-primary-action {
-  @apply rounded-full bg-foreground px-4 py-2 text-sm font-semibold tracking-[0.01em] text-background transition-all duration-150 hover:bg-foreground/92;
+  @apply rounded-full bg-foreground px-3 py-2 text-sm font-semibold tracking-[0.01em] text-background transition-all duration-150 hover:bg-foreground/92;
 }
 
 @utility nav-secondary-action {

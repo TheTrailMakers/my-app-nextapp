@@ -226,7 +226,7 @@ export default function NavbarClient({
         </div>
 
         {!isAuthenticated ? (
-          <div className="nav-floating-pill nav-desktop-pill-height flex items-center gap-1 p-1.5 pl-2">
+          <div className="nav-floating-pill nav-desktop-pill-height flex items-center gap-1 p-2">
             <MotionLink
               href="/login"
               whileTap={{ scale: 0.96 }}
