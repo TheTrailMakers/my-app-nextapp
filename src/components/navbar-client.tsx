@@ -140,42 +140,88 @@ export default function NavbarClient({
   return (
     <div className="relative flex flex-1 items-start justify-end">
       <div className="hidden lg:flex min-w-0 flex-1 items-center justify-end gap-3 xl:gap-4">
+        <div className="relative">
+          <div className="nav-floating-pill nav-desktop-pill-height flex items-center gap-1 p-1.5">
+            <motion.button
+              onClick={toggleSearch}
+              whileTap={{ scale: 0.88 }}
+              aria-label="Toggle search"
+              className="nav-icon-button"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {searchOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                    transition={{ duration: 0.15, ease: EASE_OUT }}
+                  >
+                    <FiX className="h-4 w-4" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="search"
+                    initial={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                    transition={{ duration: 0.15, ease: EASE_OUT }}
+                  >
+                    <FiSearch className="h-4 w-4" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </div>
+
+          <AnimatePresence>
+            {searchOpen && (
+              <motion.div
+                key="desktop-search"
+                initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                transition={{ duration: 0.2, ease: EASE_OUT }}
+                className="absolute top-[calc(100%+1rem)] left-0 z-dropdown w-[min(28rem,calc(100vw-3rem))]"
+              >
+                <form
+                  onSubmit={handleSearch}
+                  className="nav-floating-pill flex items-center gap-3 rounded-[1.7rem] px-4 py-3"
+                >
+                  <FiSearch className="w-4 h-4 text-muted-foreground shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Search treks, lessons, FAQs…"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    autoFocus
+                    className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
+                  />
+                  <AnimatePresence>
+                    {searchQuery && (
+                      <motion.button
+                        key="clear"
+                        initial={{ opacity: 0, scale: 0.7 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.7 }}
+                        transition={{ duration: 0.12, ease: EASE_OUT }}
+                        type="button"
+                        onClick={() => setSearchQuery("")}
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <FiX className="w-3.5 h-3.5" />
+                      </motion.button>
+                    )}
+                  </AnimatePresence>
+                </form>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
         <div className="nav-floating-pill nav-desktop-pill-height flex min-w-0 items-center px-2.5">
           <NavbarLinks links={links} />
         </div>
-
         <div className="nav-floating-pill nav-desktop-pill-height flex items-center gap-1 p-1.5">
-          <motion.button
-            onClick={toggleSearch}
-            whileTap={{ scale: 0.88 }}
-            aria-label="Toggle search"
-            className="nav-icon-button"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {searchOpen ? (
-                <motion.span
-                  key="close"
-                  initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
-                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                  exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
-                  transition={{ duration: 0.15, ease: EASE_OUT }}
-                >
-                  <FiX className="h-4 w-4" />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="search"
-                  initial={{ opacity: 0, rotate: 45, scale: 0.8 }}
-                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                  exit={{ opacity: 0, rotate: -45, scale: 0.8 }}
-                  transition={{ duration: 0.15, ease: EASE_OUT }}
-                >
-                  <FiSearch className="h-4 w-4" />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.button>
-
           <ThemeToggle />
         </div>
 
@@ -215,51 +261,6 @@ export default function NavbarClient({
           </div>
         )}
       </div>
-
-      {/* ── Desktop search expand ──────────────────────────── */}
-      <AnimatePresence>
-        {searchOpen && (
-          <motion.div
-            key="desktop-search"
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: EASE_OUT }}
-            className="absolute right-0 top-[calc(100%+0.8rem)] hidden w-[min(28rem,calc(100vw-3rem))] lg:block"
-          >
-            <form
-              onSubmit={handleSearch}
-              className="nav-floating-pill flex items-center gap-3 rounded-[1.7rem] px-4 py-3"
-            >
-              <FiSearch className="w-4 h-4 text-muted-foreground shrink-0" />
-              <input
-                type="text"
-                placeholder="Search treks, lessons, FAQs…"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                autoFocus
-                className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
-              />
-              <AnimatePresence>
-                {searchQuery && (
-                  <motion.button
-                    key="clear"
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.7 }}
-                    transition={{ duration: 0.12, ease: EASE_OUT }}
-                    type="button"
-                    onClick={() => setSearchQuery("")}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <FiX className="w-3.5 h-3.5" />
-                  </motion.button>
-                )}
-              </AnimatePresence>
-            </form>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* ── Mobile controls ────────────────────────────────── */}
       <div className="nav-floating-pill lg:hidden flex items-center gap-1 p-1.5">

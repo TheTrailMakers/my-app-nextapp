@@ -39,13 +39,13 @@ export default async function Navbar() {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-3 sm:pt-4">
-        <div className="flex min-h-[var(--navbar-h)] items-start justify-between gap-4 sm:gap-5">
+        <div className="flex min-h-(--navbar-h) items-start justify-between gap-4 sm:gap-5">
           <Link
             href="/"
             className="group flex h-14 shrink-0 items-center justify-center px-1.5"
             aria-label="The Trail Makers home"
           >
-            <span className="relative block h-[60px] w-[60px]">
+            <span className="relative block h-15 w-15">
               <Image
                 src="/TTM_Dark.png"
                 alt="The Trail Makers"
